@@ -199,6 +199,26 @@ footer a{color:var(--macro); text-decoration:none; border-bottom:1px solid rgba(
   .gloss.compact dl{grid-template-columns:1fr;}
   .tl li{flex-direction:column; gap:2px;}
 }
+
+/* ---------- §5 ワーク：墨塗りの日報 ---------- */
+.redact{display:inline-block; height:1.05em; vertical-align:-.15em; background:#111; border-radius:2px; margin:0 1px;}
+.form{background:#fff; color:#222; border:1px solid var(--line); border-radius:10px; padding:16px; margin:12px 0 6px; font-size:14px; line-height:1.75; overflow:hidden;}
+.form .fhead{display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;}
+.form .fmeta{margin-left:auto; text-align:right; font-size:13px; line-height:1.7;}
+.form .stamp{margin-left:auto; margin-top:6px; width:64px; border:1px solid #888; font-size:12px; text-align:center;}
+.form .stamp div:first-child{border-bottom:1px solid #888; padding:1px 0;}
+.form .stamp div:last-child{height:40px;}
+.form .ftitle{text-align:center; font-size:20px; font-weight:800; margin:12px 0 14px; letter-spacing:.04em;}
+.form .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); border:1px solid #9aa5ad; border-bottom:none;}
+.form .cell{border-bottom:1px solid #9aa5ad;}
+.form .cell + .cell{border-left:1px solid #9aa5ad;}
+.form .lbl{background:#607d8b; color:#fff; font-size:12.5px; font-weight:700; padding:5px 10px;}
+.form .val{padding:8px 10px;}
+.form .full{border:1px solid #9aa5ad; border-top:none;}
+.form .pill{display:inline-block; border:1px solid #ccc; background:#eee; border-radius:999px; padding:0 12px; font-size:13px; font-weight:700;}
+.form .star{color:#f59e0b; letter-spacing:2px;}
+.form .chip8{display:inline-block; background:#d9f2ee; color:#0f5f54; font-size:11px; font-weight:800; border-radius:999px; padding:0 8px; margin-left:6px;}
+@media (prefers-color-scheme: dark){ .form{border-color:var(--line2);} }
 </style>
 <style>
 /* ---------- 文章講座（10/6 自習資料）で使うパーツ ---------- */
@@ -428,6 +448,7 @@ code.k{border:2px solid var(--ink); border-radius:6px; background:var(--pop-y); 
     <li><a href="#s-title">タイトル（本文より先に決める）</a> <span class="s">― 問1</span></li>
     <li><a href="#s-para">段落の1文目と2文目（結論と理由）</a> <span class="s">― 問2・問3</span></li>
     <li><a href="#s-md">Markdown記法（日報で使う5つ）と日報テンプレート</a> <span class="s">― 問4</span></li>
+    <li><a href="#s-work">ワーク：実際の日報を書き直す</a> <span class="s">― 墨塗りの日報1本</span></li>
   </ol>
 </nav>
 
@@ -657,6 +678,61 @@ code.k{border:2px solid var(--ink); border-radius:6px; background:var(--pop-y); 
     <li><b>次のMarkdownを表示すると、どこが崩れるか。2か所。<br><code class="k">#展示会アンケート集計</code>／<code class="k">-回答数 312件</code></b>
       <span class="hint"><span class="lb">着地点</span>どちらも<b>記号のあとの半角スペースが無い</b>。見出しにも箇条書きにもならない。§4 の「日報で使う5つ」の1・3。</span></li>
   </ol>
+</section>
+
+<!-- ============ §5 ワーク ============ -->
+<section class="topic" id="s-work">
+  <span class="badge bridge">§5 ワーク</span>
+  <h2 class="thead">実際の日報を書き直す</h2>
+  <p class="sub">実際に提出された日報1本。人名・サービス名などの固有名詞は墨塗り</p>
+
+  <h3>元の日報</h3>
+  <div class="form" aria-label="墨塗りした臨地実務実習日報">
+    <div class="fhead">
+      <div class="fmeta">No.: 123<br>2026年10月03日(土)<br><span class="redact" style="width:3.2em" role="img" aria-label="墨塗り"></span> &gt; <span class="redact" style="width:3.2em" role="img" aria-label="墨塗り"></span>
+        <div class="stamp"><div><span class="redact" style="width:2.4em" role="img" aria-label="墨塗り"></span></div><div></div></div>
+      </div>
+    </div>
+    <div class="ftitle">臨地実務実習日報</div>
+    <div class="grid">
+      <div class="cell"><div class="lbl">勤務形態</div><div class="val"><span class="pill">オンライン</span></div></div>
+      <div class="cell"><div class="lbl">本日の業務時間</div><div class="val"><b>09:00 〜 18:00</b><span class="chip8">8時間</span><br><span style="font-size:12.5px;color:#666">・休憩: 60分</span></div></div>
+      <div class="cell"><div class="lbl">本日の自己評価</div><div class="val"><span class="star">★★★★☆</span>【4/5】</div></div>
+    </div>
+    <div class="full"><div class="lbl">本日の業務内容（開始時間〜終了時間）</div>
+      <div class="val">09：00〜10：00　リサーチ<br>10：00〜10：30　ミーティング<br>10：30〜12：00　<span class="redact" style="width:2em" role="img" aria-label="墨塗り"></span>さんとの意見交換<br>12：00〜13：00　休憩<br>13：00〜18：00　リサーチ・日報作成</div></div>
+    <div class="grid" style="border-top:none">
+      <div class="cell"><div class="lbl">業務を通じて何を学んだか、自身の成長を実感した点</div>
+        <div class="val">ミーティングでITに詳しくない中小企業は値段だけで選びやすいと言われたので、安く見えても、人数や容量で実際の金額が変わることに気をつけて調べました。<span class="redact" style="width:4.5em" role="img" aria-label="墨塗り"></span>、<span class="redact" style="width:3em" role="img" aria-label="墨塗り"></span>、<span class="redact" style="width:4em" role="img" aria-label="墨塗り"></span>、<span class="redact" style="width:5em" role="img" aria-label="墨塗り"></span>を実際に使ってみました。</div></div>
+      <div class="cell"><div class="lbl">自身の課題を実感した点</div>
+        <div class="val">一旦、10人で使った場合の月額に直して比べていますが、料金が「ユーザー数」「容量」「通数」とバラバラで、同じ条件で比べるのが難しいなと感じました。</div></div>
+    </div>
+    <div class="full"><div class="lbl">本日の感想、意見</div>
+      <div class="val"><span class="redact" style="width:4.5em" role="img" aria-label="墨塗り"></span>と<span class="redact" style="width:3em" role="img" aria-label="墨塗り"></span>は、会員登録なしで送れてパスワードも設定できました。<span class="redact" style="width:3em" role="img" aria-label="墨塗り"></span>には送り間違いを防ぐ「<span class="redact" style="width:5em" role="img" aria-label="墨塗り"></span>」があり、<span class="redact" style="width:4em" role="img" aria-label="墨塗り"></span>は登録なしだと容量が500MBで、他のサービスで送れたファイルが送れませんでした。受け取る側にも広告が出るサービスがあり、無料でも機能の差が少しずつあって面白かったです。</div></div>
+  </div>
+
+  <h3>ワーク</h3>
+  <div class="hw s">
+    <div class="hwttl">この日報を、§2〜§4 の書き方でMarkdownの日報に書き直す。</div>
+    <div class="hwhint"><span class="lb">使うもの</span>§4 の日報テンプレート。墨塗りのサービス名は「A」「B」「C」「D」と置き換えてよい。</div>
+  </div>
+
+  <h3>手順</h3>
+  <ol class="chain">
+    <li><b>今日の結論を1つに決める。</b>元の日報の中から、上司にいちばん伝えたいことを探す（§2 の書く順番1）</li>
+    <li><b>タイトルを1行で書く。</b>結論の名詞句、数字を入れる（§2）</li>
+    <li><b>段落の1文目に結論、2文目に理由。</b>3文目以降は数字・条件などの事実を箇条書き（§3）</li>
+    <li><b>「相談したいこと」と「明日の予定」を足す。</b>元の日報に無ければ、自分で補うか見出しごと消す（§4）</li>
+    <li><b>感想とあいさつを削る。</b>「面白かったです」「難しいなと感じました」は、事実か相談に書き換える（§1 の2本の違い）</li>
+  </ol>
+
+  <h3>書き直す前に見るところ</h3>
+  <ul class="facts">
+    <li><b>結論の位置</b>　元の日報では、比べて分かったことがどの欄の何文目に書かれているか</li>
+    <li><b>量の言葉</b>　「少しずつ」「バラバラ」を、数字や条件（10人で使った場合の月額、容量500MBなど）に置き換えられるか</li>
+    <li><b>読み手に頼むこと</b>　「同じ条件で比べるのが難しい」を、上司に判断してほしいこと（比べる条件をどう揃えるか）として書き直せるか</li>
+    <li><b>業務内容の時刻表</b>　時間の並びは日報の結論ではない。本文に入れるなら、根拠の事実として必要な分だけ</li>
+  </ul>
 </section>
 
 <footer>
