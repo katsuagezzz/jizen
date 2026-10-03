@@ -5,52 +5,137 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>事前指導（2026後期 Day2）企業からのフィードバックとビジネスマナー</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:#fafaf9; --card:#ffffff; --fg:#1c1917; --muted:#78716c; --line:#e7e5e4;
-    --accent:#c2410c; --accent-bg:#fff7ed; --red:#dc2626; --blue:#1d4ed8; --blue-bg:#eff6ff;
-    --green:#15803d; --green-bg:#f0fdf4; --quote:#f5f5f4;
+    --bg:#fff8ee; --dots:#ffd9b8; --card:#ffffff; --ink:#22202b; --muted:#6c6878; --edge:#22202b;
+    --pink:#ff5c8a; --pink-bg:#ffe3ec; --orange:#ff8a3d; --orange-bg:#ffe9d9;
+    --yellow:#ffc531; --yellow-bg:#fff4cc; --green:#2bb673; --green-bg:#dcf7e8;
+    --blue:#3d8bff; --blue-bg:#e0edff; --purple:#9b5cff; --purple-bg:#efe4ff;
+    --mark:#ffe55c; --mark-pink:#ffc2d4; --shadow:4px 4px 0 var(--edge);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg:#1c1917; --card:#292524; --fg:#f5f5f4; --muted:#a8a29e; --line:#44403c;
-      --accent:#fb923c; --accent-bg:#3a2a1f; --red:#f87171; --blue:#93c5fd; --blue-bg:#1e293b;
-      --green:#86efac; --green-bg:#1a2e22; --quote:#33302d;
+      --bg:#1b1824; --dots:#2c2738; --card:#262233; --ink:#f4f1fa; --muted:#b2acc2; --edge:#0c0a12;
+      --pink-bg:#40202d; --orange-bg:#40291b; --yellow-bg:#3d3418; --green-bg:#173528;
+      --blue-bg:#1a2a45; --purple-bg:#2e2147; --mark:#7a6a12; --mark-pink:#7a2a44;
     }
   }
   * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--fg); line-height:1.8;
-         font-family:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif; }
-  .wrap { max-width:820px; margin:0 auto; padding:24px 16px 64px; }
-  .backlink { color:var(--blue); text-decoration:none; font-size:.9rem; }
-  header { margin:16px 0 32px; }
-  header .label { color:var(--muted); font-size:.85rem; letter-spacing:.05em; }
-  h1 { font-size:1.6rem; line-height:1.4; margin:4px 0 0; }
-  h2 { font-size:1.3rem; margin:48px 0 16px; padding-bottom:6px; border-bottom:2px solid var(--line); }
-  h2.orange { color:var(--accent); border-color:var(--accent); }
-  h3 { font-size:1.05rem; margin:28px 0 8px; }
-  h4 { font-size:1rem; margin:20px 0 8px; }
-  ul, ol { padding-left:1.4em; }
-  li { margin:4px 0; }
-  .em { color:var(--red); font-weight:700; text-decoration:underline; text-underline-offset:3px; }
-  .ul { text-decoration:underline; text-underline-offset:3px; font-weight:700; }
-  .blue { color:var(--blue); }
-  .orange-t { color:var(--accent); font-weight:700; text-decoration:underline; text-underline-offset:3px; }
-  .voice { background:var(--card); border:1px solid var(--line); border-left:4px solid var(--accent);
-           border-radius:6px; padding:12px 16px; margin:12px 0; }
-  .voice.good { border-left-color:var(--green); }
-  .voice p { margin:0; }
-  .points { background:var(--blue-bg); border-radius:8px; padding:16px 20px; margin:32px 0; }
-  .points h3 { margin-top:0; color:var(--blue); }
-  .mail { background:var(--quote); border-radius:6px; padding:12px 16px; margin:12px 0;
-          font-size:.95rem; white-space:pre-wrap; }
-  .mail .tag { display:block; color:var(--muted); font-size:.8rem; margin-bottom:4px; white-space:normal; }
-  figure { margin:12px 0; }
-  figure img { max-width:100%; height:auto; border:1px solid var(--line); border-radius:6px; display:block; }
-  figcaption { color:var(--muted); font-size:.8rem; margin-top:4px; }
-  details { background:var(--card); border:1px solid var(--line); border-radius:6px; padding:8px 12px; margin:8px 0; }
-  summary { cursor:pointer; }
-  hr { border:none; border-top:1px solid var(--line); margin:40px 0; }
+  body { margin:0; color:var(--ink); line-height:1.85; font-size:16px;
+    font-family:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;
+    background-color:var(--bg);
+    background-image:radial-gradient(var(--dots) 1.5px, transparent 1.5px); background-size:22px 22px; }
+  .wrap { max-width:860px; margin:0 auto; padding:20px 16px 80px; }
+  .backlink { display:inline-block; font-weight:800; font-size:.9rem; color:var(--ink); text-decoration:none;
+    background:var(--card); border:2px solid var(--edge); border-radius:999px; padding:4px 14px; box-shadow:2px 2px 0 var(--edge); }
+  .backlink:hover { transform:translate(-1px,-1px); box-shadow:3px 3px 0 var(--edge); }
+
+  /* hero */
+  .hero { position:relative; margin:20px 0 36px; padding:32px 24px 28px; border:3px solid var(--edge); border-radius:28px;
+    background:linear-gradient(135deg,#ff5c8a 0%,#ff8a3d 45%,#ffc531 100%); color:#fff; box-shadow:6px 6px 0 var(--edge); overflow:hidden; }
+  .hero::after { content:""; position:absolute; right:-40px; top:-40px; width:180px; height:180px; border-radius:50%;
+    background:rgba(255,255,255,.18); }
+  .hero .chip { display:inline-block; background:#fff; color:var(--edge); font-weight:800; font-size:.8rem;
+    border:2px solid var(--edge); border-radius:999px; padding:2px 12px; transform:rotate(-2deg); }
+  .hero h1 { font-size:clamp(1.7rem,6vw,2.6rem); line-height:1.3; margin:14px 0 6px; font-weight:800;
+    text-shadow:3px 3px 0 rgba(34,32,43,.35); }
+  .hero p { margin:0; font-weight:700; opacity:.95; }
+  .hero .emoji { position:absolute; right:22px; bottom:12px; font-size:3.4rem; transform:rotate(10deg); }
+
+  @media (max-width:600px) { .hero .emoji { top:12px; bottom:auto; right:12px; font-size:2.4rem; } .hero h1 { margin-top:22px; } }
+  /* section titles */
+  .sec { display:flex; align-items:center; gap:10px; margin:48px 0 18px; }
+  .sec .icon { flex:none; width:48px; height:48px; border-radius:50%; display:grid; place-items:center; font-size:1.5rem;
+    background:var(--card); border:3px solid var(--edge); box-shadow:3px 3px 0 var(--edge); }
+  .sec h2 { margin:0; font-size:clamp(1.25rem,4.5vw,1.6rem); font-weight:800; line-height:1.35;
+    background:linear-gradient(transparent 62%, var(--mark) 62%); padding:0 4px; }
+
+  /* feedback cards */
+  .fb { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:18px 18px 8px; margin:0 0 22px;
+    box-shadow:var(--shadow); }
+  .fb-head { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+  .fb-head h3 { margin:0; font-size:1.15rem; font-weight:800; flex:1; line-height:1.4; }
+  .num { flex:none; width:40px; height:40px; border-radius:12px; display:grid; place-items:center; color:#fff; font-weight:800;
+    font-size:1.2rem; border:2px solid var(--edge); transform:rotate(-6deg); background:var(--c); }
+  .sticker { font-size:1.8rem; transform:rotate(8deg); }
+  .c-pink { --c:var(--pink); --cb:var(--pink-bg); } .c-orange { --c:var(--orange); --cb:var(--orange-bg); }
+  .c-yellow { --c:var(--yellow); --cb:var(--yellow-bg); } .c-green { --c:var(--green); --cb:var(--green-bg); }
+  .c-blue { --c:var(--blue); --cb:var(--blue-bg); } .c-purple { --c:var(--purple); --cb:var(--purple-bg); }
+  .fb .lead { margin:0 0 8px; font-weight:700; }
+  .checks { list-style:none; padding:0; margin:0 0 10px; }
+  .checks li { position:relative; padding:8px 12px 8px 40px; margin:8px 0; background:var(--cb); border-radius:14px; }
+  .checks li::before { content:"✔"; position:absolute; left:12px; top:8px; width:20px; height:20px; border-radius:6px;
+    background:var(--c); color:#fff; font-size:.75rem; display:grid; place-items:center; margin-top:4px; }
+  .bubble { position:relative; background:var(--cb); border-radius:18px; padding:14px 16px; margin:4px 0 18px 0; }
+  .bubble::after { content:""; position:absolute; left:26px; bottom:-10px; border:10px solid transparent; border-bottom:0;
+    border-top-color:var(--cb); }
+  .bubble p { margin:0; }
+  .bubble.good { --cb:var(--green-bg); border:3px solid var(--edge); box-shadow:var(--shadow); padding-left:56px; margin-bottom:24px; }
+  .bubble.good::before { content:"👍"; position:absolute; left:14px; top:12px; font-size:1.6rem; }
+  .bubble.good::after { display:none; }
+
+  /* emphasis */
+  .em { font-weight:800; background:linear-gradient(transparent 55%, var(--mark-pink) 55%); padding:0 2px; color:inherit; }
+  .ul { font-weight:800; background:linear-gradient(transparent 55%, var(--mark) 55%); padding:0 2px; }
+
+  /* warning + points */
+  .warn { background:var(--card); border:3px dashed var(--pink); border-radius:22px; padding:16px; margin:0 0 22px; }
+  .points { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin:8px 0 0; }
+  .point { background:var(--cb); border:3px solid var(--edge); border-radius:22px; padding:16px; box-shadow:var(--shadow); }
+  .point .big { display:inline-grid; place-items:center; width:44px; height:44px; border-radius:50%; background:var(--c); color:#fff;
+    font-weight:800; font-size:1.3rem; border:2px solid var(--edge); }
+  .point h4 { margin:10px 0 4px; font-size:1.1rem; font-weight:800; }
+  .point p { margin:0; font-size:.95rem; }
+
+  /* lunch */
+  .lunch-intro { display:inline-block; font-weight:800; background:var(--card); border:2px solid var(--edge); border-radius:999px;
+    padding:4px 16px; margin:0 0 14px; box-shadow:2px 2px 0 var(--edge); }
+  .lgrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; }
+  .lcard { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:16px; box-shadow:var(--shadow); }
+  .lcard.wide { grid-column:1/-1; background:var(--yellow-bg); }
+  .lcard.wide2 { grid-column:1/-1; }
+  .licon { font-size:2rem; line-height:1; }
+  .lcard h4 { margin:8px 0 6px; font-size:1.05rem; font-weight:800; }
+  .lcard ul { margin:0; padding-left:1.2em; }
+  .say { display:inline-block; background:var(--card); border:2px solid var(--edge); border-radius:16px 16px 16px 4px;
+    padding:4px 14px; margin:0 0 10px; font-weight:700; }
+  .steps { margin:0; padding-left:0; list-style:none; counter-reset:s; }
+  .steps li { counter-increment:s; position:relative; padding:6px 0 6px 40px; }
+  .steps li::before { content:counter(s); position:absolute; left:0; top:6px; width:28px; height:28px; border-radius:50%;
+    background:var(--orange); color:#fff; font-weight:800; display:grid; place-items:center; border:2px solid var(--edge); font-size:.9rem; }
+
+  /* mail */
+  .mcard { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:18px; margin:0 0 18px; box-shadow:var(--shadow); }
+  .mcard h3 { margin:0 0 10px; font-size:1.1rem; font-weight:800; display:flex; gap:8px; align-items:center; }
+  .mcard h3 .tag { font-size:.75rem; color:#fff; background:var(--c); border:2px solid var(--edge); border-radius:999px; padding:0 10px; }
+  .mcard ul { margin:0; padding-left:1.2em; }
+  .pills { display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 0; padding:0; list-style:none; }
+  .pills li { background:var(--cb); border:2px solid var(--edge); border-radius:999px; padding:2px 12px; font-size:.92rem; }
+  .rules { list-style:none; padding:0; margin:0; counter-reset:r; }
+  .rules > li { counter-increment:r; position:relative; padding:8px 0 8px 44px; }
+  .rules > li::before { content:counter(r); position:absolute; left:0; top:8px; width:32px; height:32px; border-radius:10px;
+    background:var(--blue); color:#fff; font-weight:800; display:grid; place-items:center; border:2px solid var(--edge); transform:rotate(-6deg); }
+  figure { margin:12px 0 4px; }
+  figure img { max-width:100%; height:auto; display:block; border:3px solid var(--edge); border-radius:16px; background:#fff; }
+  figcaption { display:inline-block; margin-top:8px; font-size:.85rem; font-weight:700; background:var(--yellow-bg);
+    border-radius:10px; padding:2px 10px; }
+  details { background:var(--blue-bg); border:2px solid var(--edge); border-radius:16px; padding:8px 14px; margin:4px 0; }
+  summary { cursor:pointer; font-weight:800; }
+  details ul { padding-left:1.2em; }
+  .ai-ok { display:inline-flex; align-items:center; gap:8px; font-weight:800; font-size:1.1rem; background:var(--green);
+    color:#fff; border:3px solid var(--edge); border-radius:999px; padding:4px 18px; box-shadow:3px 3px 0 var(--edge); margin:4px 0 16px; }
+  .mail { background:var(--card); border:3px solid var(--edge); border-radius:18px; overflow:hidden; margin:0 0 16px; box-shadow:var(--shadow); }
+  .mail-head { display:flex; align-items:center; gap:6px; background:var(--blue-bg); border-bottom:3px solid var(--edge); padding:8px 12px; }
+  .mail-head .dot { width:12px; height:12px; border-radius:50%; border:2px solid var(--edge); background:var(--pink); }
+  .mail-head .dot:nth-child(2) { background:var(--yellow); } .mail-head .dot:nth-child(3) { background:var(--green); }
+  .mail-tag { margin-left:8px; font-weight:800; font-size:.85rem; }
+  .mail-body { padding:14px 16px; white-space:pre-wrap; font-size:.95rem; }
+  .mail.ng .mail-head { background:var(--pink-bg); }
+  .grid2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:0 16px; }
+  footer { text-align:center; margin-top:48px; font-weight:800; color:var(--muted); }
 </style>
 </head>
 <body>
@@ -58,154 +143,139 @@
 
 <a class="backlink" href="../">← 事前指導2D の一覧へ</a>
 
-<header>
-  <div class="label">インターン事前指導 ／ 2026後期 Day2</div>
-  <h1>🕺🏻 事前指導（2026後期 Day2）</h1>
+<header class="hero">
+  <span class="chip">インターン事前指導 ／ 2026後期 Day2</span>
+  <h1>事前指導<br>（2026後期 Day2）</h1>
+  <p>企業からのフィードバック・ランチの礼儀・メールのコツ</p>
+  <span class="emoji">🕺🏻</span>
 </header>
 
-<h2 class="orange">🎤 企業からのフィードバック</h2>
-
-<h3>1. 事前に身につけてほしい基礎</h3>
-<p>インターンに臨む前に、以下のご指導ご教授を頂いていると良いと感じました。</p>
-<ul>
+<div class="sec"><span class="icon">🎤</span><h2>企業からのフィードバック</h2></div>
+<article class="fb c-pink">
+  <div class="fb-head"><span class="num">1</span><h3>事前に身につけてほしい基礎</h3><span class="sticker">📚</span></div>
+  <p class="lead">インターンに臨む前に、以下のご指導ご教授を頂いていると良いと感じました。</p>
+<ul class="checks">
   <li>ビジネスパーソンとしての基礎知識の習得（<span class="em">挨拶、役職敬称さん付、ビジネスモラルやマナー、コンプライアンス、情報セキュリティー</span> 等）</li>
   <li>ビジネスツールによるコミュニケーションの重要性理解（<span class="em">時間管理、他者への依頼、メモ等の活用など</span>）</li>
   <li>インターン生としての目的、当社に来た目的、業務に従事している目的、将来の目的が対外的に説明できる準備が必要と感じました（※外部の方と関わっていくことを増やしていますので、その方たちとの質疑応答に対応できる様であれば尚良いと感じました）</li>
 </ul>
+</article>
+<article class="fb c-orange">
+  <div class="fb-head"><span class="num">2</span><h3>受け身の姿勢・反応の薄さ</h3><span class="sticker">😶</span></div>
+  <div class="bubble"><p>学生の性格なのだと思いましたが、基本的に待ちの姿勢であること、伝えても理解しているのか理解していないのか <span class="em">反応がなかったりする</span> と、正直業務を任せることが難しいと感じています。最低限そのあたりのセットアップをしてきてもらえると有難いです。</p></div>
+</article>
+<article class="fb c-yellow">
+  <div class="fb-head"><span class="num">3</span><h3>出席管理の徹底</h3><span class="sticker">⏰</span></div>
+  <div class="bubble"><p>貴校の学生は全体的に想定以上の動きをしていただきました。しかし、<span class="em">欠席・遅刻の回数が多い</span> 点は気になりました。後期からは貴校として徹底した出席管理や欠席・早退の基準の明確化をしていただけますと弊社としてより学生の管理がしやすくなると思いました。</p></div>
+</article>
+<article class="fb c-green">
+  <div class="fb-head"><span class="num">4</span><h3>ビジネスマナーの改善余地</h3><span class="sticker">👔</span></div>
+  <div class="bubble"><p>今後の社会人生活を見据えた際に、<span class="em">ビジネスマナーの点で改善の余地</span> があると感じております。ご本人に悪意がないことは十分に理解しておりますが、<span class="em">身だしなみや業務中の姿勢、言葉遣い</span> など、社会人として求められる水準には、今一歩のところと感じます。今回は基本的に弊社の社内メンターとの関わりに留まっているため、業務上の大きな問題には至っておりません。しかしながら、今後より厳格な指導をされる方や、社外のお客様と接する場面を想定した場合、ご本人の将来のために、今のうちから基本的なビジネスマナーを意識できるよう、ご指導いただけると幸いです。</p></div>
+</article>
+<article class="fb c-blue">
+  <div class="fb-head"><span class="num">5</span><h3>机で寝ない</h3><span class="sticker">😴</span></div>
+  <div class="bubble"><p>真面目で素直で、とても良い子だと思うのですが、<span class="em">たまに寝てしまっている</span> ことがありました。普通に腕に突っ伏して寝ていることもあったので注意しましたが、社員は目標達成に向けて必死で働いており、その時間を割いて学生のみなさんに教えさせていただいたりしているので、最低限のマナーは実習前にお伝えいただけると嬉しいです。毎日働く経験がなくて疲れるのはわかるのですが、自席で寝るのはあまり印象が良くないです。</p></div>
+  <div class="bubble"><p><span class="em">業務時間中の居眠りが多く</span>、全体的な評価が低くなっております。<span class="em">指導者から居眠りの指摘があった数時間後、役員の勉強会やお客様等の訪問先でも居眠りする姿が見られた</span>ため、その後の資料作成等の成果物や発表の精度が他二名と比べて数段低くなっていました。課されたタスクを良くも悪くもAIを活用することで、自分で考えて深堀をせずに完了したと思い込む場面も散見されたので、適宜指導者からヒントを与えて取り組んでもらいましたが改善は見られませんでした。グループワークの際には生き生きと発言し、明るい表情をしていたのでコミュニケーションの評価は3にいたしました。グループワークの中でも、課題を発見する能力や論理的な思考力は持っていると感じることがありました。<span class="ul">居眠りについては怠惰でしているというよりは、急に電池が切れたように目を閉じてしまうようでした。</span>⭕️⭕️さんに⭕️⭕️さんから質問したにも関わらず解答中に寝落ちしてしまったようなので、気持ちではなく身体の問題ではないかと危惧しています。今後懸念していることといたしまして、下期は上期以上にお客様先等の訪問の機会を増やしたカリキュラムで皆様の成長に寄与したいのですが、<span class="ul">お客様先へ⭕️⭕️さんを連れていくことは難しいと評価しています。</span>居眠りがあるとお客様や訪問担当の先輩に対して大変失礼にあたり、最悪のケースとしてお客様からのクレームにまで発展することもあるかと存じます。今回の弊社での実習は本人の希望とギャップがあった点、下期のカリキュラムにおいて⭕️⭕️さん⭕️⭕️さんと同じ取り組みができない点、居眠りをすることで同じ事務所にいる他従業員からも多数指摘が挙がる点を踏まえますと、⭕️⭕️さんのためにも<span class="em">下期から別の企業にインターン参加をした方が良いかと存じます</span>。</p></div>
+  <div class="bubble"><p>自身で2か月間の目標とアクションプランを設定し、毎週の報告会を通じて目標達成に向けて取り組む姿勢が見られました。また、開発業務の目的を理解し、要件定義から実装まで全工程をやり遂げた点は高く評価しています。一方で、計画の修正や他者との協働には指導者の手厚いフォローが必要な場面が多く見受けられました。加えて、<span class="em">40日間コンスタントに発生した勤務中の居眠りや、実習後半にかけての身だしなみの不備など、自己管理や企業に参加する意識に欠け、他社員からの指摘も発生しました。</span>主体性や能動的に動く姿勢が不足していると判断し、該当項目は厳しい評価としています。毎朝・終業後の大きな声での挨拶や、実習を通じて徐々にメモを取る習慣が身についてきた点は大変素晴らしい長所であり、ぜひ継続してください。今後は社会人としてより高い意識を持ち、勤務中の睡魔に対する対策など自己管理を徹底し、自らを律する力を養うことを期待しています。</p></div>
+  <div class="bubble"><p>該当する学生についてですが、総じて全員頑張ってくれていることを前提としていただきたいものの、⭕️⭕️くん・⭕️⭕️くんは就業時間中に寝ているところがよく見られます。念のため、休憩時間中なのかも確認しましたが、そうでない時間帯にも突っ伏して寝ているところがみられるため、個別に注意をしているところです。会議を聞いて議事録を書く、データをまとめる、などの一見地味な仕事でも意義があることが多いため、ぜひ集中してほしいと思っているのですが、なかなか日ごろの疲れで寝てしまうことが多そうに見えております。本日は⭕️⭕️君が体調不良でお休みのため、日ごろの体調管理や、就業時間中に集中が切れたときのリフレッシュの仕方なども、学校側からご指導いただけますと幸いです。⭕️⭕️君はだれよりも早く来てくれているので、ひとくくりに「インターン生」とするのはとてももったいないのですが、⭕️⭕️くん・⭕️⭕️くん・⭕️⭕️くんは数分の遅刻が積み重なっているように感じるため、改めて確認をいただけましたら幸いです。何卒引き続きよろしくお願いいたします</p></div>
+</article>
+<article class="fb c-purple">
+  <div class="fb-head"><span class="num">6</span><h3>深夜・メンタル</h3><span class="sticker">🌙</span></div>
+  <div class="bubble"><p>主にリモートワークでのインターンとなったが、毎日行われる朝会にも無断欠席等がかなりあり適切な指導が行えなかった。他のインターン学生を同じペースでと考えたので他の学生さんにペースダウン指示を出し、付いてきて欲しかったが最後まで付いてくることは無かった。また当社主催のセミナーで現地待ち合わせとなったときに１時間近い遅刻となり電車に乗り慣れてなく交通の事前調査が不足だった旨が日報に書かれていたが。<span class="em">二十歳を超す成人として銀座駅まで来れないと言うのは如何なものでしょうか。</span>前期インターンではノーコードツールを使いちょっとした管理システムを作るのが最終目標だったがノーコードツールで必要最低限のデータベースを項目を作っただけで、とても多くの時間をかけて作ったとは言えないモノだった。<span class="em">朝会に出てこない、日報もろくに出てこない状況</span>を考えると後期のインターンシップについては当方のカリキュラムを半分も消化できないので<span class="em">当方での受け入れはご遠慮させて頂くしか無いと考えています。</span>他の学生さんに申し訳無いです。</p></div>
+  <div class="bubble"><p>志村さん　⭕️⭕️です。インターンの⭕️⭕️君なのですが、メンタルの件は最初に聞いていたのですが、どうも調子が悪いようでどう扱って良いか困り果ててます。従業員であれば休職を促す所ですが、インターンなので困っています。このまま続けると余計具合がわるくなるのでは無いかと心配しております。</p></div>
+</article>
 
-<h3>2. 受け身の姿勢・反応の薄さ</h3>
-<div class="voice"><p>学生の性格なのだと思いましたが、基本的に待ちの姿勢であること、伝えても理解しているのか理解していないのか <span class="em">反応がなかったりする</span> と、正直業務を任せることが難しいと感じています。最低限そのあたりのセットアップをしてきてもらえると有難いです。</p></div>
+<div class="sec"><span class="icon">✅</span><h2>遅刻・無断欠席・セクハラ・喧嘩・・</h2></div>
+<div class="mail ng"><div class="mail-head"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="mail-tag">✉️ 実際に届いた連絡</span></div><div class="mail-body">夜分遅くに申し訳ございません。⭕️⭕️です。大変言い難いのですが、性病になってしまいました。それに伴い、治療の為1回のみの抗生剤を明日、服用するのですが、副作用がかなり強く出てしまうため、明日の出勤が厳しくなってしまうと思い、欠席のご連絡させていただきました。連続して服用することは無いので、今回限りになります。また、⭕️月⭕️日(金)家庭の事情により、お休みさせて頂きます。企業様には明日と⭕️日、両方お伝え済みです。よろしくお願い致します。</div></div>
 
-<h3>3. 出席管理の徹底</h3>
-<div class="voice"><p>貴校の学生は全体的に想定以上の動きをしていただきました。しかし、<span class="em">欠席・遅刻の回数が多い</span> 点は気になりました。後期からは貴校として徹底した出席管理や欠席・早退の基準の明確化をしていただけますと弊社としてより学生の管理がしやすくなると思いました。</p></div>
-
-<h3>4. ビジネスマナーの改善余地</h3>
-<div class="voice"><p>今後の社会人生活を見据えた際に、<span class="em">ビジネスマナーの点で改善の余地</span> があると感じております。ご本人に悪意がないことは十分に理解しておりますが、<span class="em">身だしなみや業務中の姿勢、言葉遣い</span> など、社会人として求められる水準には、今一歩のところと感じます。今回は基本的に弊社の社内メンターとの関わりに留まっているため、業務上の大きな問題には至っておりません。しかしながら、今後より厳格な指導をされる方や、社外のお客様と接する場面を想定した場合、ご本人の将来のために、今のうちから基本的なビジネスマナーを意識できるよう、ご指導いただけると幸いです。</p></div>
-
-<h3>5. 机で寝ない</h3>
-<div class="voice"><p>真面目で素直で、とても良い子だと思うのですが、<span class="em">たまに寝てしまっている</span> ことがありました。普通に腕に突っ伏して寝ていることもあったので注意しましたが、社員は目標達成に向けて必死で働いており、その時間を割いて学生のみなさんに教えさせていただいたりしているので、最低限のマナーは実習前にお伝えいただけると嬉しいです。毎日働く経験がなくて疲れるのはわかるのですが、自席で寝るのはあまり印象が良くないです。</p></div>
-<div class="voice"><p><span class="em">業務時間中の居眠りが多く</span>、全体的な評価が低くなっております。<span class="em">指導者から居眠りの指摘があった数時間後、役員の勉強会やお客様等の訪問先でも居眠りする姿が見られた</span>ため、その後の資料作成等の成果物や発表の精度が他二名と比べて数段低くなっていました。課されたタスクを良くも悪くもAIを活用することで、自分で考えて深堀をせずに完了したと思い込む場面も散見されたので、適宜指導者からヒントを与えて取り組んでもらいましたが改善は見られませんでした。グループワークの際には生き生きと発言し、明るい表情をしていたのでコミュニケーションの評価は3にいたしました。グループワークの中でも、課題を発見する能力や論理的な思考力は持っていると感じることがありました。<span class="ul">居眠りについては怠惰でしているというよりは、急に電池が切れたように目を閉じてしまうようでした。</span>⭕️⭕️さんに⭕️⭕️さんから質問したにも関わらず解答中に寝落ちしてしまったようなので、気持ちではなく身体の問題ではないかと危惧しています。今後懸念していることといたしまして、下期は上期以上にお客様先等の訪問の機会を増やしたカリキュラムで皆様の成長に寄与したいのですが、<span class="ul">お客様先へ⭕️⭕️さんを連れていくことは難しいと評価しています。</span>居眠りがあるとお客様や訪問担当の先輩に対して大変失礼にあたり、最悪のケースとしてお客様からのクレームにまで発展することもあるかと存じます。今回の弊社での実習は本人の希望とギャップがあった点、下期のカリキュラムにおいて⭕️⭕️さん⭕️⭕️さんと同じ取り組みができない点、居眠りをすることで同じ事務所にいる他従業員からも多数指摘が挙がる点を踏まえますと、⭕️⭕️さんのためにも<span class="em">下期から別の企業にインターン参加をした方が良いかと存じます</span>。</p></div>
-<div class="voice"><p>自身で2か月間の目標とアクションプランを設定し、毎週の報告会を通じて目標達成に向けて取り組む姿勢が見られました。また、開発業務の目的を理解し、要件定義から実装まで全工程をやり遂げた点は高く評価しています。一方で、計画の修正や他者との協働には指導者の手厚いフォローが必要な場面が多く見受けられました。加えて、<span class="em">40日間コンスタントに発生した勤務中の居眠りや、実習後半にかけての身だしなみの不備など、自己管理や企業に参加する意識に欠け、他社員からの指摘も発生しました。</span>主体性や能動的に動く姿勢が不足していると判断し、該当項目は厳しい評価としています。毎朝・終業後の大きな声での挨拶や、実習を通じて徐々にメモを取る習慣が身についてきた点は大変素晴らしい長所であり、ぜひ継続してください。今後は社会人としてより高い意識を持ち、勤務中の睡魔に対する対策など自己管理を徹底し、自らを律する力を養うことを期待しています。</p></div>
-<div class="voice"><p>該当する学生についてですが、総じて全員頑張ってくれていることを前提としていただきたいものの、⭕️⭕️くん・⭕️⭕️くんは就業時間中に寝ているところがよく見られます。念のため、休憩時間中なのかも確認しましたが、そうでない時間帯にも突っ伏して寝ているところがみられるため、個別に注意をしているところです。会議を聞いて議事録を書く、データをまとめる、などの一見地味な仕事でも意義があることが多いため、ぜひ集中してほしいと思っているのですが、なかなか日ごろの疲れで寝てしまうことが多そうに見えております。本日は⭕️⭕️君が体調不良でお休みのため、日ごろの体調管理や、就業時間中に集中が切れたときのリフレッシュの仕方なども、学校側からご指導いただけますと幸いです。⭕️⭕️君はだれよりも早く来てくれているので、ひとくくりに「インターン生」とするのはとてももったいないのですが、⭕️⭕️くん・⭕️⭕️くん・⭕️⭕️くんは数分の遅刻が積み重なっているように感じるため、改めて確認をいただけましたら幸いです。何卒引き続きよろしくお願いいたします</p></div>
-
-<h3>6. 深夜・メンタル</h3>
-<div class="voice"><p>主にリモートワークでのインターンとなったが、毎日行われる朝会にも無断欠席等がかなりあり適切な指導が行えなかった。他のインターン学生を同じペースでと考えたので他の学生さんにペースダウン指示を出し、付いてきて欲しかったが最後まで付いてくることは無かった。また当社主催のセミナーで現地待ち合わせとなったときに１時間近い遅刻となり電車に乗り慣れてなく交通の事前調査が不足だった旨が日報に書かれていたが。<span class="em">二十歳を超す成人として銀座駅まで来れないと言うのは如何なものでしょうか。</span>前期インターンではノーコードツールを使いちょっとした管理システムを作るのが最終目標だったがノーコードツールで必要最低限のデータベースを項目を作っただけで、とても多くの時間をかけて作ったとは言えないモノだった。<span class="em">朝会に出てこない、日報もろくに出てこない状況</span>を考えると後期のインターンシップについては当方のカリキュラムを半分も消化できないので<span class="em">当方での受け入れはご遠慮させて頂くしか無いと考えています。</span>他の学生さんに申し訳無いです。</p></div>
-<div class="voice"><p>志村さん　⭕️⭕️です。インターンの⭕️⭕️君なのですが、メンタルの件は最初に聞いていたのですが、どうも調子が悪いようでどう扱って良いか困り果ててます。従業員であれば休職を促す所ですが、インターンなので困っています。このまま続けると余計具合がわるくなるのでは無いかと心配しております。</p></div>
-
-<hr>
-
-<h2>✅ 遅刻・無断欠席・セクハラ・喧嘩・・</h2>
-<div class="mail">夜分遅くに申し訳ございません。⭕️⭕️です。大変言い難いのですが、性病になってしまいました。それに伴い、治療の為1回のみの抗生剤を明日、服用するのですが、副作用がかなり強く出てしまうため、明日の出勤が厳しくなってしまうと思い、欠席のご連絡させていただきました。連続して服用することは無いので、今回限りになります。また、⭕️月⭕️日(金)家庭の事情により、お休みさせて頂きます。企業様には明日と⭕️日、両方お伝え済みです。よろしくお願い致します。</div>
-
+<div class="sec"><span class="icon">💡</span><h2>フィードバックから学ぶべき3つのポイント</h2></div>
 <div class="points">
-  <h3>💡 フィードバックから学ぶべき3つのポイント</h3>
-  <ol>
-    <li><b>基本的なビジネスマナー</b> — 挨拶・身だしなみ・言葉遣い・姿勢</li>
-    <li><b>主体的な姿勢と反応</b> — 受け身にならない・聞いたら反応する・目的を自分の言葉で語れる</li>
-    <li><b>勤怠の徹底</b> — 遅刻・欠席・居眠りは即信用を失う。欠席5日間→学部教務委員会で審議。</li>
+  <div class="point c-pink"><span class="big">1</span><h4>基本的なビジネスマナー</h4><p>挨拶・身だしなみ・言葉遣い・姿勢</p></div>
+  <div class="point c-yellow"><span class="big">2</span><h4>主体的な姿勢と反応</h4><p>受け身にならない・聞いたら反応する・目的を自分の言葉で語れる</p></div>
+  <div class="point c-blue"><span class="big">3</span><h4>勤怠の徹底</h4><p>遅刻・欠席・居眠りは即信用を失う。欠席5日間→学部教務委員会で審議。</p></div>
+</div>
+
+<div class="sec"><span class="icon">🎒</span><h2>よくある礼儀（ランチ編）</h2></div>
+<span class="lunch-intro">🍜 ランチや夜居酒屋に誘われる</span>
+<div class="lgrid">
+<div class="lcard"><div class="licon">🛗</div><h4>エレベータ</h4><ul><li>先に乗り、後から降りる</li></ul></div><div class="lcard"><div class="licon">🚪</div><h4>店の入り口</h4><ul><li>後に入る。（慣れてきたら先に入り、受付を済ます）</li></ul></div><div class="lcard"><div class="licon">🪑</div><h4>上座・下座（同じ会社・取引先）</h4><ul><li>奥に座らない。</li><li>いちばん入口に近い席。</li><li>先に座らない。</li></ul></div><div class="lcard wide"><div class="licon">🧾</div><h4>注文</h4><p class="say">「好きなもの頼んでいいよ」と言われても。。</p><ol class="steps"><li>まず、「値段」と「内容」を確認する</li><li>次に、会社の人が頼んでるものを確認</li><li>会社の人より、高いもの、皿数多いものは頼まない。</li><li>自分だけドリンク付のメニューを頼まない。</li><li>何回もお代わりしない。</li></ol></div><div class="lcard wide2"><div class="licon">🍽️</div><h4>料理配膳後</h4><ul><li>他の人の料理が来るまで食べない（待つ）</li><li>乾杯のコップは一番下に</li></ul></div>
+</div>
+
+<div class="sec"><span class="icon">🌄</span><h2>メールで間違いの多い点</h2></div>
+
+<div class="mcard c-orange">
+  <h3><span class="tag">注意 1</span>会社名（後株？前株？、大文字？カタカナ？）</h3>
+  <ul class="pills">
+    <li>サントリー株式会社 or 株式会社サントリー</li>
+    <li>合同会社？株式会社？</li>
+    <li>Cip協議会, cip協議会, CIP協議会</li>
+  </ul>
+</div>
+
+<div class="mcard c-pink">
+  <h3><span class="tag">注意 2</span>宛名（先方の名前：漢字は間違わない）</h3>
+  <figure>
+    <img src="img/day2_mail_name.png" alt="宛名は「中田 朝彦 様」なのに、本文では「仲田様」と書いてしまっているメールの例" loading="lazy">
+    <figcaption>宛名は「中田」、本文は「仲田」── 同じメールの中で漢字が違っている例</figcaption>
+  </figure>
+</div>
+
+<div class="mcard c-blue">
+  <h3><span class="tag">注意 3</span>即レス＋全員返信</h3>
+  <p style="margin:0 0 4px;font-weight:700">下記3点必ず守る</p>
+  <ol class="rules">
+    <li><span class="em">即レス</span></li>
+    <li>添付書類だけ送らない。本文必ず記入する</li>
+    <li>
+      <details>
+        <summary><span class="em">「全員返信」機能について覚える</span></summary>
+        <p>複数宛名に送られたメールが届いたとき。</p>
+        <ul>
+          <li>下記画像の「全員返信」をクリックすると、宛名全員のメアドがそのまま引き継がれ、「全員返信＝cc入れて返信」となります。
+            <figure><img src="img/day2_reply_all.png" alt="メール画面の「返信」「全員に返信」「転送」ボタン" loading="lazy"></figure></li>
+          <li>「全員返信」は、アドレス帳に載っているメアド「全員」に返信することではない。</li>
+          <li>もらったメールに<span class="ul">記載されている宛名「だけ」の全員</span>に返信する機能です。</li>
+        </ul>
+        <p>なので、</p>
+        <ul>
+          <li>メール返信する時は、とりあえず「全員返信」ボタンを押せば、</li>
+          <li>「ccがついてないメール」と注意されることも、</li>
+          <li>一つ一つメアドをcc欄にコピペする手間も省けます。</li>
+        </ul>
+      </details>
+    </li>
   </ol>
 </div>
 
-<h2>🎒 よくある礼儀（ランチ編）</h2>
-<h4>ランチや夜居酒屋に誘われる</h4>
-<ul>
-  <li><b>エレベータ</b>
-    <ul><li>先に乗り、後から降りる</li></ul></li>
-  <li><b>店の入り口</b>
-    <ul><li>後に入る。（慣れてきたら先に入り、受付を済ます）</li></ul></li>
-  <li><b>上座・下座（同じ会社・取引先）</b>
-    <ul>
-      <li>奥に座らない。</li>
-      <li>いちばん入口に近い席。</li>
-      <li>先に座らない。</li>
-    </ul></li>
-  <li><b>注文</b>
-    <ul>
-      <li>「好きなもの頼んでいいよ」と言われても。。
-        <ul>
-          <li>まず、「値段」と「内容」を確認する</li>
-          <li>次に、会社の人が頼んでるものを確認</li>
-          <li>会社の人より、高いもの、皿数多いものは頼まない。</li>
-          <li>自分だけドリンク付のメニューを頼まない。</li>
-          <li>何回もお代わりしない。</li>
-        </ul></li>
-    </ul></li>
-  <li><b>料理配膳後</b>
-    <ul>
-      <li>他の人の料理が来るまで食べない（待つ）</li>
-      <li>乾杯のコップは一番下に</li>
-    </ul></li>
-</ul>
-
-<h2>🌄 メールで間違いの多い点</h2>
-<ul>
-  <li><b>会社名（後株？前株？、大文字？カタカナ？）</b>
-    <ul>
-      <li>サントリー株式会社 or 株式会社サントリー</li>
-      <li>合同会社？株式会社？</li>
-      <li>Cip協議会, cip協議会, CIP協議会</li>
-    </ul></li>
-  <li><b>宛名（先方の名前：漢字は間違わない）</b>
-    <figure>
-      <img src="img/day2_mail_name.png" alt="宛名は「中田 朝彦 様」なのに、本文では「仲田様」と書いてしまっているメールの例" loading="lazy">
-      <figcaption>宛名は「中田」、本文は「仲田」── 同じメールの中で漢字が違っている例</figcaption>
-    </figure></li>
-  <li><b class="blue">即レス＋全員返信</b>
-    <ul>
-      <li>下記3点必ず守る
-        <ol>
-          <li><span class="em">即レス</span></li>
-          <li>添付書類だけ送らない。本文必ず記入する</li>
-          <li>
-            <details>
-              <summary><span class="em">「全員返信」機能について覚える</span></summary>
-              <p>複数宛名に送られたメールが届いたとき。</p>
-              <ul>
-                <li>下記画像の「全員返信」をクリックすると、宛名全員のメアドがそのまま引き継がれ、「全員返信＝cc入れて返信」となります。
-                  <figure><img src="img/day2_reply_all.png" alt="メール画面の「返信」「全員に返信」「転送」ボタン" loading="lazy"></figure></li>
-                <li>「全員返信」は、アドレス帳に載っているメアド「全員」に返信することではない。</li>
-                <li>もらったメールに<span class="ul">記載されている宛名「だけ」の全員</span>に返信する機能です。</li>
-              </ul>
-              <p>なので、</p>
-              <ul>
-                <li>メール返信する時は、とりあえず「全員返信」ボタンを押せば、</li>
-                <li>「ccがついてないメール」と注意されることも、</li>
-                <li>一つ一つメアドをcc欄にコピペする手間も省けます。</li>
-              </ul>
-            </details>
-          </li>
-        </ol></li>
-    </ul></li>
-  <li><span class="orange-t">AIメール　→　活用してよい</span></li>
-</ul>
-
-<div class="mail"><span class="tag">欠席連絡の例 1</span>お世話になっております。
+<span class="ai-ok">🤖 AIメール　→　活用してよい</span>
+<div class="grid2">
+<div class="mail"><div class="mail-head"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="mail-tag">✉️ 欠席連絡の例 1</span></div><div class="mail-body">お世話になっております。
 情報経営イノベーション専門職大学の⭕️⭕️⭕️⭕️です。
 本日のインターンですが、前日から37.5度の微熱と吐き気が続いており、現在も体調が優れず、出社までの移動がかなり困難な状況です。
 
 そのため、本日お休みをいただいても問題ないか、あるいは別の対応が可能か、ご相談したくご連絡いたしました。
 担当の方にはチャットでもご連絡しておりますが、現時点ではまだご返信をいただいていないため、念のためメールでもご連絡させていただきました。
 直前のご連絡となってしまい、誠に申し訳ございません。
-ご迷惑をおかけいたしますが、何卒よろしくお願いいたします。</div>
-
-<div class="mail"><span class="tag">欠席連絡の例 2</span>お世話になっております
+ご迷惑をおかけいたしますが、何卒よろしくお願いいたします。</div></div>
+<div class="mail"><div class="mail-head"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="mail-tag">✉️ 欠席連絡の例 2</span></div><div class="mail-body">お世話になっております
 臨地実務実習中の⚪︎⚪︎です。
 先週いっぱい胃腸炎のためお休みをいただいていましたが、熱がなかなか引かず37.6°あり、食事も摂りたくないような吐き気に襲われており本日お休みをいただき病院に再受診します。
 その際に長期化しているため診断書も発行していただきます。
-ご確認の程よろしくお願いします。</div>
-
-<div class="mail"><span class="tag">欠席連絡の例 3</span>お世話になっております。
+ご確認の程よろしくお願いします。</div></div>
+<div class="mail"><div class="mail-head"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="mail-tag">✉️ 欠席連絡の例 3</span></div><div class="mail-body">お世話になっております。
 ⚪︎⚪︎⚪︎駅まできたのですが、生理痛がひどく休んでも治らないため本日欠席させていただきます。
-ご連絡遅くなり申し訳ありません。</div>
-
-<div class="mail"><span class="tag">欠席連絡の例 4</span>お世話になっております。
+ご連絡遅くなり申し訳ありません。</div></div>
+<div class="mail"><div class="mail-head"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="mail-tag">✉️ 欠席連絡の例 4</span></div><div class="mail-body">お世話になっております。
 生理痛が酷く薬を服用しても動けそうにないため本日の実習をおやすみさせていただきたいです。
-よろしくお願いいたします。</div>
+よろしくお願いいたします。</div></div>
+</div>
 
-<h2>👍 良い評価</h2>
-<div class="voice good"><p>わからないことは自ら積極的に質問し、業務への理解を深めようとする姿勢が見られました。また、イベントにも積極的に参加し、社会人としての態度や礼儀も良好で、落ち着いて行動できていました。業務に対して前向きに取り組み、指示された内容だけでなく、自ら考えて行動する姿勢も評価できます。実習期間がもう少し長ければ、さらに多くの業務を経験し、一層成長できたと感じています。後期も元気に頑張ってください。今後のさらなる成長を期待しています。</p></div>
-<div class="voice good"><p>ご自身でアンケートテーマの検討から、設問作成、実査、集計、報告まで、一連のプロセスに取り組んでいただきました。未経験の領域ではありましたが、実習期間を通じて一つひとつの工程に真摯に向き合いながら進められていたことが印象的でした。調査設計や報告資料の作成においても、ご自身なりに工夫を重ねながら取り組まれており、試行錯誤しながら理解を深めていく姿勢が見られました。また、調査を進める中で生じた課題についても、必要な情報を収集しながら解決に向けて取り組まれていた感じています。</p></div>
-<div class="voice good"><p>インターン初日には「知らないことが多く、話についていくだけでも必死」と感じていましたが、この約2か月で非常に大きく成長しました。特に評価しているのは、分からないことをそのままにせず、メモを取る、紙に書き出す、実際に操作する、マニュアルを作るなど、自分なりの理解方法を見つけて改善し続けたことです。最終的には、人事業務のExcelを読み解き、事実・懸念・要望を整理し、仕様書を作り、アプリを実装し、テストし、利用者視点で改善し、最後には引継ぎ資料までまとめられるようになりました。これは単にアプリを作ったという以上に、実際の仕事の流れを一通り経験できたという意味で大きな成果です。今後の課題は、自分が理解した内容を、資料に頼りすぎず相手へ分かりやすく説明する力です。本人もその課題を正確に認識できています。まず完璧な文章を作ろうとするのではなく、「結論→理由→具体例」の順に短く説明することを繰り返すと、さらに大きく伸びると思います。丁寧に確認しながら着実に前へ進める姿勢は大きな強みです。今後はその丁寧さを維持しながら、優先順位とスピード、そして説明力を高めることで、業務アプリの改善や開発を安心して任せられる人材へ成長していくことを期待しています。</p></div>
+<div class="sec"><span class="icon">🌟</span><h2>良い評価</h2></div>
+<div class="bubble good"><p>わからないことは自ら積極的に質問し、業務への理解を深めようとする姿勢が見られました。また、イベントにも積極的に参加し、社会人としての態度や礼儀も良好で、落ち着いて行動できていました。業務に対して前向きに取り組み、指示された内容だけでなく、自ら考えて行動する姿勢も評価できます。実習期間がもう少し長ければ、さらに多くの業務を経験し、一層成長できたと感じています。後期も元気に頑張ってください。今後のさらなる成長を期待しています。</p></div>
+<div class="bubble good"><p>ご自身でアンケートテーマの検討から、設問作成、実査、集計、報告まで、一連のプロセスに取り組んでいただきました。未経験の領域ではありましたが、実習期間を通じて一つひとつの工程に真摯に向き合いながら進められていたことが印象的でした。調査設計や報告資料の作成においても、ご自身なりに工夫を重ねながら取り組まれており、試行錯誤しながら理解を深めていく姿勢が見られました。また、調査を進める中で生じた課題についても、必要な情報を収集しながら解決に向けて取り組まれていた感じています。</p></div>
+<div class="bubble good"><p>インターン初日には「知らないことが多く、話についていくだけでも必死」と感じていましたが、この約2か月で非常に大きく成長しました。特に評価しているのは、分からないことをそのままにせず、メモを取る、紙に書き出す、実際に操作する、マニュアルを作るなど、自分なりの理解方法を見つけて改善し続けたことです。最終的には、人事業務のExcelを読み解き、事実・懸念・要望を整理し、仕様書を作り、アプリを実装し、テストし、利用者視点で改善し、最後には引継ぎ資料までまとめられるようになりました。これは単にアプリを作ったという以上に、実際の仕事の流れを一通り経験できたという意味で大きな成果です。今後の課題は、自分が理解した内容を、資料に頼りすぎず相手へ分かりやすく説明する力です。本人もその課題を正確に認識できています。まず完璧な文章を作ろうとするのではなく、「結論→理由→具体例」の順に短く説明することを繰り返すと、さらに大きく伸びると思います。丁寧に確認しながら着実に前へ進める姿勢は大きな強みです。今後はその丁寧さを維持しながら、優先順位とスピード、そして説明力を高めることで、業務アプリの改善や開発を安心して任せられる人材へ成長していくことを期待しています。</p></div>
+
+<footer>がんばれ、インターン生！ 🎉</footer>
 
 </div>
 </body>
