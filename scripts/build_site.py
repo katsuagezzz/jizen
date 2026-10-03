@@ -122,7 +122,6 @@ def main() -> None:
   .c-yellow {{ --c:var(--yellow); --cb:var(--yellow-bg); }} .c-green {{ --c:var(--green); --cb:var(--green-bg); }}
   .c-blue {{ --c:var(--blue); --cb:var(--blue-bg); }} .c-purple {{ --c:var(--purple); --cb:var(--purple-bg); }}
   .empty {{ background:var(--card); border:3px dashed var(--muted); border-radius:22px; padding:20px; text-align:center; }}
-  footer {{ text-align:center; margin-top:40px; font-weight:800; color:var(--muted); }}
 </style>
 </head>
 <body>
@@ -137,7 +136,6 @@ def main() -> None:
   <ul>
 {items}
   </ul>
-  <footer>がんばれ、インターン生！ 🎉</footer>
 </main>
 </body>
 </html>
