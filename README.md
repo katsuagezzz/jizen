@@ -9,7 +9,7 @@
 3. GitHub Actions が `scripts/build_site.py` で一覧ページ（`index.html`）を自動生成し、Cloudflare Pages にデプロイ
 4. 学生には `https://<プロジェクト名>.pages.dev/` を共有（個別資料のURLを直接渡してもOK）
 
-一覧ページのリンク名は各HTMLの `<title>` が使われます。ファイル名に日付を付けると新しい順に並びます。
+一覧ページのリンク名は各HTMLの `<title>` が使われます。一覧はファイル名の順（例: `jizen_day2.html` → `jizen_day3.html`）に並びます。
 
 ## 初回セットアップ（1回だけ）
 
