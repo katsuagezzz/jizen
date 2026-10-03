@@ -27,7 +27,6 @@ def main() -> None:
     pages = sorted(
         (p for p in DIST.rglob("*.html") if p.name != "index.html" or p.parent != DIST),
         key=lambda p: str(p.relative_to(DIST)),
-        reverse=True,
     )
     items = "\n".join(
         f'      <li><a href="{html.escape(p.relative_to(DIST).as_posix())}">'
