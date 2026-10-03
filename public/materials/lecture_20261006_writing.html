@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自習資料｜2026年10月6日配布 インターン日報の書き方（タイトル・1文目の結論・2文目の理由・Markdown記法）</title>
+<style>
+:root{
+  --bg:#f6f7f9; --panel:#ffffff; --ink:#14181f; --ink2:#3f4855; --ink3:#6b7686;
+  --line:#dfe3ea; --line2:#eef1f5;
+  --macro:#1c6fd4; --macro-bg:#e8f1fd;
+  --corp:#b8480f; --corp-bg:#fdeee6;
+  --bridge:#0e7c66; --bridge-bg:#e4f4f0;
+  --word:#6b3fb5; --word-bg:#f0eafb;
+  --up:#0f7a4d; --down:#c02626;
+  --accent:#14181f;
+  --q-bg:#fbf7e8; --q-line:#e0cf94;
+  --note-bg:#f1f3f7;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0e1116; --panel:#161b23; --ink:#e8ecf2; --ink2:#b6c0cd; --ink3:#8a95a4;
+    --line:#2a323d; --line2:#212832;
+    --macro:#6fb2ff; --macro-bg:#132539;
+    --corp:#ff9c66; --corp-bg:#331e12;
+    --bridge:#5fd6bb; --bridge-bg:#0f2a26;
+    --word:#c3a6f5; --word-bg:#241a36;
+    --up:#4fc98a; --down:#ff7b7b;
+    --accent:#e8ecf2;
+    --q-bg:#221f14; --q-line:#4a422a;
+    --note-bg:#1b212a;
+  }
+}
+*{box-sizing:border-box;}
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic Medium","Yu Gothic","Meiryo","Noto Sans JP","Helvetica Neue",Arial,sans-serif;
+  font-size:16px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1040px; margin:0 auto; padding:22px 22px 80px;}
+.backlink{display:inline-block; font-size:13px; font-weight:700; color:var(--ink3); text-decoration:none; margin-bottom:10px;}
+.backlink:hover{color:var(--macro);}
+
+/* ---------- シリーズナビ ---------- */
+.snav{display:flex; flex-wrap:wrap; gap:7px; margin-bottom:16px;}
+.snav a, .snav span{
+  font-size:12.5px; font-weight:700; text-decoration:none; padding:6px 12px;
+  border:1px solid var(--line); border-radius:999px; background:var(--panel); color:var(--ink2);
+  white-space:nowrap;
+}
+.snav a:hover{border-color:var(--macro); color:var(--macro);}
+.snav .cur{background:var(--accent); color:var(--bg); border-color:var(--accent);}
+.snav .lbl{border:none; background:none; color:var(--ink3); padding:6px 2px; letter-spacing:.08em; font-size:11.5px;}
+
+/* ---------- header ---------- */
+header.masthead{
+  background:var(--panel); border:1px solid var(--line); border-radius:14px;
+  padding:26px 28px; margin-bottom:22px; border-top:6px solid var(--accent);
+}
+.vol{font-size:13px; letter-spacing:.18em; color:var(--ink3); font-weight:700;}
+h1.title{font-size:32px; line-height:1.3; margin:6px 0 14px; letter-spacing:.01em;}
+.meta{display:flex; flex-wrap:wrap; gap:10px 26px; font-size:14px; color:var(--ink2); border-top:1px solid var(--line2); padding-top:14px;}
+.meta b{color:var(--ink); font-weight:700;}
+.lede{margin-top:18px; padding:16px 18px; background:var(--note-bg); border-radius:10px; font-size:16.5px; line-height:1.9; color:var(--ink);}
+.lede strong{border-bottom:2px solid var(--macro); padding-bottom:1px;}
+
+nav.toc{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:20px 24px; margin-bottom:22px;}
+nav.toc h2{font-size:15px; margin:0 0 12px; letter-spacing:.06em; color:var(--ink3);}
+nav.toc ol{margin:0; padding-left:1.4em; font-size:15px;}
+nav.toc li{margin-bottom:6px;}
+nav.toc a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line);}
+nav.toc a:hover{color:var(--macro); border-bottom-color:var(--macro);}
+nav.toc .s{color:var(--ink3); font-size:13.5px;}
+
+section.topic{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:26px 28px 28px; margin-bottom:22px;}
+.badge{display:inline-block; font-size:12.5px; font-weight:700; letter-spacing:.08em; padding:4px 12px; border-radius:999px; margin-bottom:10px;}
+.badge.macro{background:var(--macro-bg); color:var(--macro);}
+.badge.corp{background:var(--corp-bg); color:var(--corp);}
+.badge.bridge{background:var(--bridge-bg); color:var(--bridge);}
+.badge.word{background:var(--word-bg); color:var(--word);}
+h2.thead{font-size:25px; line-height:1.45; margin:2px 0 6px; letter-spacing:.01em;}
+.sub{font-size:14.5px; color:var(--ink3); margin:0 0 20px;}
+h3{font-size:16px; margin:26px 0 12px; padding-left:11px; border-left:4px solid var(--accent); line-height:1.5;}
+h4{font-size:14.5px; margin:18px 0 8px; color:var(--ink2); letter-spacing:.04em;}
+ul{padding-left:1.25em;}
+.facts li{margin-bottom:9px;}
+.struct{background:var(--note-bg); border-radius:10px; padding:16px 18px 16px 34px; margin:10px 0;}
+
+/* ---------- KPIタイル ---------- */
+.kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(168px,1fr)); gap:10px; margin:16px 0 8px;}
+.kpi{border:1px solid var(--line); border-radius:10px; padding:13px 15px; background:var(--bg);}
+.kpi .k{font-size:11.5px; font-weight:800; letter-spacing:.06em; color:var(--ink3); margin-bottom:4px;}
+.kpi .v{font-size:22px; font-weight:800; line-height:1.25; font-variant-numeric:tabular-nums; letter-spacing:-.01em;}
+.kpi .n{font-size:12.5px; color:var(--ink2); line-height:1.6; margin-top:4px;}
+.kpi.m .v{color:var(--macro);} .kpi.c .v{color:var(--corp);} .kpi.g .v{color:var(--bridge);}
+
+.points{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:11px; margin:14px 0 4px;}
+.point{border:1px solid var(--line); border-radius:10px; padding:13px 15px; background:var(--bg);}
+.point .h{font-size:12px; font-weight:800; letter-spacing:.06em; color:var(--macro); margin-bottom:5px;}
+.point.b .h{color:var(--corp);} .point.c .h{color:var(--bridge);}
+.point p{margin:0; font-size:14.5px; line-height:1.7;}
+
+.formula{background:var(--note-bg); border-left:4px solid var(--bridge); border-radius:0 9px 9px 0; padding:13px 17px; margin:12px 0; font-size:15.5px; line-height:2;}
+.formula code{font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace; font-size:14.5px; background:transparent; font-weight:700;}
+.formula .n{display:block; font-size:13.5px; color:var(--ink2); line-height:1.7; margin-top:6px;}
+
+.chain{list-style:none; margin:14px 0 6px; padding:0; counter-reset:ch;}
+.chain li{counter-increment:ch; position:relative; padding:11px 14px 11px 46px; margin-bottom:8px; background:var(--bg); border:1px solid var(--line); border-radius:9px; font-size:14.8px; line-height:1.65;}
+.chain li::before{content:counter(ch); position:absolute; left:13px; top:11px; width:22px; height:22px; border-radius:50%; background:var(--accent); color:var(--bg); font-size:12px; font-weight:800; text-align:center; line-height:22px;}
+.chain li::after{content:"↓"; position:absolute; left:21px; bottom:-9px; font-size:13px; color:var(--ink3); font-weight:800; line-height:1;}
+.chain li:last-child::after{content:"";}
+
+/* ---------- 宿題カード ---------- */
+.hw{border:1px solid var(--line); border-top:5px solid var(--macro); border-radius:12px; padding:20px 22px 22px; margin:16px 0 0; background:var(--bg);}
+.hw.t{border-top-color:var(--corp);}
+.hw.s{border-top-color:var(--bridge);}
+.hwhead{display:flex; flex-wrap:wrap; gap:9px; align-items:baseline; margin-bottom:4px;}
+.team{font-size:12.5px; font-weight:800; letter-spacing:.06em; padding:3px 11px; border-radius:6px; background:var(--macro-bg); color:var(--macro);}
+.hw.t .team{background:var(--corp-bg); color:var(--corp);}
+.hw.s .team{background:var(--bridge-bg); color:var(--bridge);}
+.hwtime{font-size:12.5px; color:var(--ink3); font-weight:700;}
+.hwttl{font-size:19px; font-weight:800; line-height:1.5; margin:2px 0 10px;}
+.hw h4{margin-top:16px;}
+
+/* ---------- 問いリスト ---------- */
+.q{list-style:none; margin:8px 0 0; padding:0; counter-reset:qq;}
+.q>li{counter-increment:qq; position:relative; padding:12px 15px 12px 44px; margin-bottom:8px; background:var(--q-bg); border:1px solid var(--q-line); border-radius:9px; font-size:15px; line-height:1.7;}
+.q>li::before{content:"Q" counter(qq); position:absolute; left:12px; top:12px; font-size:12px; font-weight:800; color:var(--ink3); letter-spacing:.03em;}
+.q>li b{font-weight:800;}
+.q .hint{display:block; margin-top:6px; font-size:13.5px; color:var(--ink2); line-height:1.65;}
+
+.deliv{background:var(--note-bg); border-radius:9px; padding:13px 16px; margin-top:14px; font-size:14px; line-height:1.75;}
+.deliv b{font-weight:800;}
+
+table.calc{width:100%; border-collapse:collapse; font-size:14.5px; margin:12px 0;}
+table.calc th, table.calc td{border-bottom:1px solid var(--line2); padding:8px 10px; text-align:right; vertical-align:top;}
+table.calc th:first-child, table.calc td:first-child{text-align:left;}
+table.calc thead th{border-bottom:2px solid var(--line); font-size:13px; color:var(--ink3); text-align:right;}
+table.calc thead th:first-child{text-align:left;}
+table.calc td.num{font-variant-numeric:tabular-nums;}
+.pos{color:var(--up); font-weight:700;} .neg{color:var(--down); font-weight:700;}
+.tblwrap{overflow-x:auto;}
+
+/* ---------- タイムテーブル ---------- */
+.tl{margin:12px 0 0; padding:0; list-style:none;}
+.tl li{display:flex; gap:14px; padding:9px 0; border-bottom:1px solid var(--line2); font-size:14.5px;}
+.tl .t{flex:0 0 78px; font-weight:800; color:var(--ink3); font-variant-numeric:tabular-nums; font-size:13.5px; padding-top:2px;}
+.tl .c{flex:1;}
+.tl .c b{font-weight:800;}
+
+.views{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:12px; margin-top:12px;}
+.view{border:1px solid var(--line); border-left:4px solid var(--macro); border-radius:8px; padding:13px 15px; background:var(--bg);}
+.view .who{font-size:12.5px; font-weight:800; color:var(--macro); margin-bottom:5px;}
+.view p{margin:0; font-size:14.5px; line-height:1.7;}
+.view.b{border-left-color:var(--corp);} .view.b .who{color:var(--corp);}
+.view.c{border-left-color:var(--bridge);} .view.c .who{color:var(--bridge);}
+
+.gloss dl{margin:0; border-top:1px solid var(--line2);}
+.gloss dt{font-size:15px; font-weight:800; padding:12px 0 0; color:var(--ink);}
+.gloss dt .en{font-size:12.5px; font-weight:700; color:var(--ink3); margin-left:7px;}
+.gloss dd{margin:3px 0 0; padding:0 0 12px; border-bottom:1px solid var(--line2); font-size:14.5px; line-height:1.75; color:var(--ink2);}
+.gloss dd b{color:var(--ink); font-weight:700;}
+.gloss.compact dl{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); column-gap:26px;}
+.gloss.compact dd{font-size:14px;}
+
+.rel{margin-top:16px; font-size:13.5px; color:var(--ink2); background:var(--note-bg); border-radius:8px; padding:11px 15px;}
+.rel b{color:var(--ink);}
+.rel a{color:var(--macro); text-decoration:none; border-bottom:1px solid rgba(120,150,190,.45);}
+.tag{display:inline-block; font-size:11px; font-weight:700; padding:1px 7px; border-radius:4px; background:var(--note-bg); color:var(--ink3); margin-left:5px; vertical-align:1px;}
+.tag.chk{background:var(--q-bg); color:#8a6d1f; border:1px solid var(--q-line);}
+@media (prefers-color-scheme: dark){ .tag.chk{color:#d9c07a;} }
+
+.src{font-size:13px; color:var(--ink3); margin-top:14px; border-top:1px dashed var(--line); padding-top:11px;}
+.src b{color:var(--ink2); font-weight:700; letter-spacing:.06em; font-size:11.5px;}
+.src ul{margin:6px 0 0; padding-left:1.15em;}
+.src li{margin-bottom:4px; line-height:1.6;}
+.src a{color:var(--macro); text-decoration:none; word-break:break-all;}
+.src a:hover{border-bottom:1px solid var(--macro);}
+
+footer{margin-top:22px; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:22px 28px; font-size:13.5px; color:var(--ink2);}
+footer h2{font-size:16px; margin:0 0 10px; color:var(--ink);}
+footer ul{margin:0 0 14px; padding-left:1.25em;}
+footer li{margin-bottom:6px;}
+.next{border-top:1px solid var(--line2); padding-top:13px; font-size:14.5px; color:var(--ink);}
+footer a{color:var(--macro); text-decoration:none; border-bottom:1px solid rgba(120,150,190,.45);}
+
+@media print{
+  body{background:#fff; font-size:10.5pt;}
+  .wrap{max-width:100%; padding:0;}
+  nav.toc, .snav{display:none;}
+  header.masthead, section.topic, footer{border:1px solid #ccc; page-break-inside:avoid; margin-bottom:12px;}
+  a{color:#000 !important;}
+}
+@media (max-width:640px){
+  h1.title{font-size:24px;} h2.thead{font-size:20px;} .hwttl{font-size:17px;}
+  .wrap{padding:14px 13px 50px;}
+  section.topic, header.masthead, nav.toc, footer{padding:18px 16px;}
+  .hw{padding:16px 15px 18px;}
+  .gloss.compact dl{grid-template-columns:1fr;}
+  .tl li{flex-direction:column; gap:2px;}
+}
+</style>
+<style>
+/* ---------- 文章講座（10/6 自習資料）で使うパーツ ---------- */
+.lede ul.three{margin:9px 0 0; padding-left:1.15em; list-style:none;}
+.lede ul.three li{position:relative; margin-bottom:3px; line-height:1.75;}
+.lede ul.three li::before{content:""; position:absolute; left:-0.95em; top:.72em;
+  width:5px; height:5px; border-radius:50%; background:var(--macro);}
+.lede ul.three strong{border-bottom:none; padding-bottom:0;}
+.twocol{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px; margin:14px 0 4px;}
+.card{border:1px solid var(--line); border-radius:10px; padding:14px 16px; background:var(--bg);}
+.card .ch{font-size:12px; font-weight:800; letter-spacing:.06em; color:var(--macro); margin-bottom:6px;}
+.card.b .ch{color:var(--corp);} .card.c .ch{color:var(--bridge);} .card.d .ch{color:var(--word);}
+.card.b{border-top:4px solid var(--corp);} .card.c{border-top:4px solid var(--bridge);}
+.card p{margin:0; font-size:14.5px; line-height:1.75;}
+.card p+p{margin-top:8px;}
+.card ul{margin:6px 0 0; font-size:14.5px;}
+.card ul li{margin-bottom:4px;}
+.promptbox{background:var(--note-bg); border:1px solid var(--line); border-left:4px solid var(--word);
+  border-radius:0 10px 10px 0; padding:15px 17px; margin:12px 0;
+  font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+  font-size:13px; line-height:1.95; white-space:pre-wrap; word-break:break-word; color:var(--ink);}
+.promptbox .cap{display:block; font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Meiryo","Noto Sans JP",sans-serif;
+  font-size:11.5px; font-weight:800; letter-spacing:.09em; color:var(--word); margin-bottom:8px; white-space:normal;}
+.card .promptbox{margin:6px 0 0;}
+/* 日報の見本（表示されたときの見え方） */
+.nippo{background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 15px; font-size:14.3px; line-height:1.75;}
+.nippo .nt{font-size:16.5px; font-weight:800; line-height:1.45; margin:0 0 8px; padding-bottom:6px; border-bottom:1px solid var(--line2);}
+.nippo .nh{font-size:14.5px; font-weight:800; margin:12px 0 4px;}
+.nippo p{margin:0 0 6px;}
+.nippo ul{margin:4px 0 6px; padding-left:1.2em;}
+.nippo li{margin-bottom:3px;}
+.nippo .s1{background:var(--macro-bg);} .nippo .s2{background:var(--bridge-bg);}
+.mk{display:inline-block; font-size:10.5px; font-weight:800; letter-spacing:.06em; padding:1px 7px; border-radius:4px; margin-right:6px; vertical-align:1px;}
+.mk.s1{background:var(--macro-bg); color:var(--macro);} .mk.s2{background:var(--bridge-bg); color:var(--bridge);}
+.mk.ng{background:var(--corp-bg); color:var(--corp);}
+.hwhint{font-size:13.5px; color:var(--ink2); line-height:1.7; margin:10px 0 0; padding-left:11px; border-left:3px solid var(--bridge);}
+.hwhint .lb{font-weight:800; letter-spacing:.04em; color:var(--bridge); margin-right:5px;}
+section.topic .q .hint .lb{font-weight:800; letter-spacing:.04em; margin-right:5px; color:var(--bridge);}
+code.k{font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace; font-size:13.5px; background:var(--note-bg); border:1px solid var(--line); border-radius:4px; padding:0 5px;}
+.en{font-family:"Helvetica Neue",Arial,sans-serif;}
+section.topic .q>li::before{content:"問" counter(qq);}
+@media print{ .promptbox{white-space:pre-wrap;} }
+</style>
+<style>
+/* ---------- 10/6 自習資料のポップ版（第10回と同じ配色）（色の意味づけ macro/corp/bridge/word/q は踏襲） ---------- */
+:root{
+  --bg:#fff8ef; --panel:#ffffff; --ink:#1d1633; --ink2:#443b5e; --ink3:#7a7091;
+  --line:#1d1633; --line2:#efe6f7;
+  --macro:#2f6bff; --macro-bg:#e3ecff;
+  --corp:#ff5a36; --corp-bg:#ffe7df;
+  --bridge:#00a88a; --bridge-bg:#d9f7ef;
+  --word:#8a3ffc; --word-bg:#efe3ff;
+  --accent:#1d1633;
+  --q-bg:#fff4c2; --q-line:#f2c230;
+  --note-bg:#f6f1ff;
+  --pop-y:#ffd23f; --pop-p:#ff6fb5;
+  --shadow:4px 4px 0 var(--ink);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#15112a; --panel:#1f1a3a; --ink:#f4f0ff; --ink2:#cdc4ea; --ink3:#9d93c0;
+    --line:#f4f0ff; --line2:#2e2752;
+    --macro:#7aa2ff; --macro-bg:#1d2a5c;
+    --corp:#ff8a6b; --corp-bg:#4a2219;
+    --bridge:#3fe0bf; --bridge-bg:#0f3a33;
+    --word:#b98cff; --word-bg:#34205c;
+    --accent:#f4f0ff;
+    --q-bg:#3a3214; --q-line:#c9a227;
+    --note-bg:#28224a;
+    --pop-y:#ffd23f; --pop-p:#ff6fb5;
+    --shadow:4px 4px 0 #000;
+  }
+}
+body{
+  background:
+    radial-gradient(circle at 12% 8%, rgba(255,111,181,.16) 0 120px, transparent 121px),
+    radial-gradient(circle at 92% 22%, rgba(47,107,255,.14) 0 160px, transparent 161px),
+    radial-gradient(circle at 80% 70%, rgba(255,210,63,.16) 0 140px, transparent 141px),
+    var(--bg);
+  background-attachment:fixed;
+}
+
+/* 表紙 */
+header.masthead{
+  position:relative; overflow:hidden;
+  background:linear-gradient(135deg,#2f6bff 0%,#8a3ffc 52%,#ff6fb5 100%);
+  color:#fff; border:3px solid var(--ink); border-top-width:3px; border-radius:22px;
+  box-shadow:6px 6px 0 var(--ink);
+}
+header.masthead::before,header.masthead::after{content:""; position:absolute; border-radius:50%; pointer-events:none;}
+header.masthead::before{width:220px; height:220px; right:-60px; top:-70px; background:var(--pop-y); opacity:.9;}
+header.masthead::after{width:90px; height:90px; right:150px; bottom:-30px; background:#fff; opacity:.25;}
+header.masthead > *{position:relative; z-index:1;}
+header.masthead .vol{color:#fff; opacity:.9; display:inline-block; background:rgba(0,0,0,.22); padding:4px 12px; border-radius:999px; font-size:12px;}
+header.masthead h1.title{color:#fff; font-size:34px; font-weight:900; text-shadow:3px 3px 0 rgba(29,22,51,.35); margin-right:120px;}
+header.masthead .meta{color:#fff; border-top:2px dashed rgba(255,255,255,.5);}
+header.masthead .meta b{color:var(--pop-y);}
+header.masthead .lede{background:#fff; color:#1d1633; border:3px solid #1d1633; border-radius:16px; box-shadow:4px 4px 0 #1d1633;}
+header.masthead .lede ul.three li::before{width:12px; height:12px; left:-1.25em; top:.5em; border-radius:4px; transform:rotate(12deg);}
+header.masthead .lede ul.three li:nth-child(1)::before{background:#2f6bff;}
+header.masthead .lede ul.three li:nth-child(2)::before{background:#8a3ffc;}
+header.masthead .lede ul.three li:nth-child(3)::before{background:#ff5a36;}
+header.masthead .lede ul.three{padding-left:1.5em;}
+@media (max-width:640px){ header.masthead h1.title{font-size:25px; margin-right:40px;} header.masthead::before{width:130px; height:130px; right:-50px; top:-50px;} }
+
+/* ナビ・目次 */
+.snav a,.snav span{border:2px solid var(--ink); font-weight:800;}
+.snav .cur{background:var(--pop-y); color:#1d1633; border-color:var(--ink); box-shadow:2px 2px 0 var(--ink);}
+.snav .lbl{border:none;}
+.snav a:hover{background:var(--macro-bg);}
+nav.toc{border:3px solid var(--ink); border-radius:20px; box-shadow:var(--shadow);}
+nav.toc ol{list-style:none; padding:0; counter-reset:tc;}
+nav.toc li{counter-increment:tc; position:relative; padding:8px 0 8px 46px; margin:0;}
+nav.toc li::before{content:counter(tc); position:absolute; left:0; top:6px; width:32px; height:32px; border-radius:10px; border:2px solid var(--ink); font-weight:900; text-align:center; line-height:28px; color:#fff; background:#2f6bff;}
+nav.toc li:nth-child(2)::before{background:#8a3ffc;}
+nav.toc li:nth-child(1)::before{background:#00a88a;}
+nav.toc li:nth-child(2)::before{background:#2f6bff;}
+nav.toc li:nth-child(3)::before{background:#8a3ffc;}
+nav.toc li:nth-child(4)::before{background:#ff5a36;}
+nav.toc a{font-weight:800; border-bottom:none; background:linear-gradient(transparent 62%, rgba(255,210,63,.6) 62%);}
+
+/* 節 */
+section.topic{border:3px solid var(--ink); border-radius:22px; box-shadow:6px 6px 0 var(--ink); position:relative;}
+section.topic#s-ex{border-top:14px solid #00a88a;}
+section.topic#s-title{border-top:14px solid #2f6bff;}
+section.topic#s-para{border-top:14px solid #8a3ffc;}
+section.topic#s-md{border-top:14px solid #ff5a36;}
+.badge{border:2px solid var(--ink); font-size:13px; font-weight:900; padding:4px 14px; transform:rotate(-2deg); box-shadow:2px 2px 0 var(--ink);}
+.badge.macro{background:#2f6bff; color:#fff;}
+.badge.word{background:#8a3ffc; color:#fff;}
+.badge.corp{background:#ff5a36; color:#fff;}
+.badge.bridge{background:#00a88a; color:#fff;}
+h2.thead{font-size:27px; font-weight:900;}
+h3{border-left:none; padding:4px 14px; display:inline-block; background:var(--pop-y); color:#1d1633; border:2px solid var(--ink); border-radius:999px; box-shadow:2px 2px 0 var(--ink); font-size:15px;}
+.chk h3{margin-top:30px;}
+
+/* 宿題カード */
+.hw{border:3px solid var(--ink); border-top:3px solid var(--ink); border-radius:18px;
+    background:repeating-linear-gradient(-45deg, var(--q-bg) 0 14px, var(--panel) 14px 28px);
+    box-shadow:5px 5px 0 var(--pop-p);}
+.hw .hwttl{font-size:21px; font-weight:900; background:var(--panel); display:inline; padding:0 4px; box-decoration-break:clone; -webkit-box-decoration-break:clone; line-height:1.8;}
+.hw .hwtime{display:inline-block; background:var(--ink); color:var(--bg); padding:2px 10px; border-radius:999px; margin-bottom:8px;}
+.hw .hwhint{background:var(--panel); border-radius:10px; padding:8px 12px; border:2px solid var(--bridge); border-left-width:6px; margin-top:12px;}
+
+/* 凡例・欄外 */
+.legend{background:var(--note-bg); border:2px dashed var(--ink3); border-radius:14px; padding:10px 14px;}
+.mk{border-width:2px; border-radius:999px; font-weight:900;}
+.artlbl{display:inline-block; border:2px solid var(--ink); border-radius:999px; padding:4px 14px; background:var(--macro-bg); color:var(--macro); box-shadow:2px 2px 0 var(--ink);}
+.ar .mg .nn{border:2px solid var(--ink); border-left-width:6px; border-radius:12px; background:var(--panel); box-shadow:3px 3px 0 var(--line2);}
+.ar .mg .nn.ng{border-left-color:var(--corp); background:var(--corp-bg);}
+.ar .mg .nn.sm{border-left-color:var(--q-line); background:var(--q-bg);}
+.ar .mg .nn.ck{border-left-color:var(--word); background:var(--word-bg);}
+.ar .mg .nn.nt{border-left-color:var(--macro); background:var(--macro-bg);}
+mark.ng{background:rgba(255,90,54,.28);} mark.ck{background:rgba(138,63,252,.2);} mark.nt{background:rgba(47,107,255,.18);} mark.sm{background:rgba(255,210,63,.5);}
+.chk li{border-bottom:2px dotted var(--line2);}
+
+/* カード・KPI・図・式 */
+.kpi,.card,.fig,.pf a{border:2px solid var(--ink); border-radius:16px; box-shadow:4px 4px 0 var(--ink);}
+.kpi:nth-child(1){background:var(--q-bg);} .kpi:nth-child(2){background:var(--macro-bg);} .kpi:nth-child(3){background:var(--corp-bg);}
+.kpi .v{font-weight:900;}
+.card{border-top:8px solid var(--macro);} .card.b{border-top-color:var(--corp);}
+.fig{background:var(--panel);}
+.formula{border:2px solid var(--ink); border-left:8px solid var(--bridge); border-radius:14px; background:var(--bridge-bg);}
+.pf a{border-left-width:8px; transition:transform .12s ease, box-shadow .12s ease;}
+.pf a:hover{transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--ink);}
+.chain li{border:2px solid var(--ink); border-radius:14px;}
+.chain li::before{background:var(--pop-p); color:#fff; border:2px solid var(--ink); width:26px; height:26px; line-height:22px; left:11px; top:9px;}
+
+/* 問い */
+.q>li{border:2px solid var(--ink); border-radius:16px; box-shadow:3px 3px 0 var(--q-line);}
+section.topic .q>li::before{content:"問" counter(qq); background:var(--pop-y); color:#1d1633; border:2px solid var(--ink); border-radius:8px; padding:0 5px; left:9px; font-weight:900;}
+section.topic .q>li{padding-left:58px;}
+
+.rel{border:2px dashed var(--ink3); border-radius:14px;}
+footer{border:3px solid var(--ink); border-radius:22px; box-shadow:6px 6px 0 var(--ink);}
+
+@media print{
+  body{background:#fff;}
+  header.masthead{background:#fff; color:#000; box-shadow:none;}
+  header.masthead::before,header.masthead::after{display:none;}
+  header.masthead h1.title,header.masthead .meta,header.masthead .vol{color:#000; text-shadow:none; background:none;}
+  section.topic,nav.toc,footer,.kpi,.card,.fig,.hw,.q>li,.pf a{box-shadow:none !important;}
+  .hw{background:#fff;}
+}
+/* 自習資料のパーツ */
+.card.c{border-top-color:var(--bridge);} .card.d{border-top-color:var(--word);}
+.card .ch{font-size:13px; font-weight:900;}
+.nippo{border:2px solid var(--ink); border-radius:12px; box-shadow:3px 3px 0 var(--line2);}
+.nippo .nt{font-weight:900; border-bottom:2px dashed var(--ink3);}
+.nippo .nh{display:inline-block; background:var(--pop-y); color:#1d1633; border:2px solid var(--ink); border-radius:999px; padding:0 10px; font-size:13px;}
+.promptbox{border:2px solid var(--ink); border-left:8px solid var(--word); border-radius:14px; box-shadow:3px 3px 0 var(--word);}
+.card .promptbox{box-shadow:none;}
+code.k{border:2px solid var(--ink); border-radius:6px; background:var(--pop-y); color:#1d1633; font-weight:800;}
+.mk{border:2px solid var(--ink); border-radius:999px; font-weight:900;}
+.facts li::marker{color:var(--pop-p); font-size:1.2em;}
+@media print{ .nippo,.promptbox{box-shadow:none !important;} }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<a class="backlink" href="../">← 事前指導2D の一覧へ</a>
+
+
+<header class="masthead">
+  <div class="vol">SELF-STUDY HANDOUT ／ 自習資料　事前指導2D</div>
+  <h1 class="title">インターン日報の書き方（タイトル・1文目の結論・2文目の理由・Markdown記法）</h1>
+  <div class="meta">
+    <span><b>配布</b>　2026年10月6日（火）</span>
+    <span><b>使う場面</b>　インターン実習の日報</span>
+    <span><b>例文</b>　すべて設例（社名・数字は架空）</span>
+  </div>
+  <div class="lede">
+    <ul class="three">
+      <li><strong>タイトル　本文より先に決める。結論を1行で</strong></li>
+      <li><strong>段落の1文目に結論、2文目にその理由</strong></li>
+      <li><strong>Markdown記法　見出し・箇条書き・太字の3つで日報1本</strong></li>
+    </ul>
+  </div>
+</header>
+
+<nav class="toc">
+  <h2>この資料の構成</h2>
+  <ol>
+    <li><a href="#s-ex">わかりにくい日報とわかりやすい日報（同じ1日の2通り）</a> <span class="s">― 冒頭に宿題1行</span></li>
+    <li><a href="#s-title">タイトル（本文より先に決める）</a> <span class="s">― 問1</span></li>
+    <li><a href="#s-para">段落の1文目と2文目（結論と理由）</a> <span class="s">― 問2・問3</span></li>
+    <li><a href="#s-md">Markdown記法（日報で使う5つ）と日報テンプレート</a> <span class="s">― 問4</span></li>
+  </ol>
+</nav>
+
+<!-- ============ §1 実例 ============ -->
+<section class="topic" id="s-ex">
+  <span class="badge bridge">§1 実例</span>
+  <h2 class="thead">わかりにくい日報とわかりやすい日報（同じ1日の2通り）</h2>
+  <p class="sub">設例　営業企画部のインターン2日目。担当は競合3社の料金調査</p>
+
+  <h3>宿題</h3>
+  <div class="hw" style="margin-bottom:18px">
+    <div class="hwtime">次のインターン出勤日の日報で</div>
+    <div class="hwttl">§4 のテンプレートで日報を1本、Markdownで書く。</div>
+    <div class="hwhint"><span class="lb">着地点</span>タイトル1行と、段落ごとの1文目・2文目。<b>タイトルを先に書いてから本文。</b></div>
+  </div>
+
+  <h3>同じ1日を2通りに書いたもの</h3>
+  <div class="twocol">
+    <div class="card b">
+      <div class="ch">✕ わかりにくい日報</div>
+      <div class="nippo">
+        <div class="nt">10月6日 日報</div>
+        <p>本日もお疲れさまでした。午前中は先輩に教えていただきながら資料の作成をしました。いろいろ調べてみて、とても勉強になりました。午後は定例ミーティングに参加して、その後も作業を続けました。競合のことも少し調べたのですが、時間が足りなくて全部はできなかったので、明日も続けたいと思います。わからないことがあったので、また質問させてください。</p>
+      </div>
+    </div>
+    <div class="card c">
+      <div class="ch">○ わかりやすい日報</div>
+      <div class="nippo">
+        <div class="nt">競合3社の料金比較、2社分完了・残り1社は10/7午前</div>
+        <p><span class="s1">本日の成果は、競合3社のうちA社・B社の料金比較表。</span><span class="s2">C社は料金ページが会員登録後にしか見られず、登録してよいかの確認が取れなかったため。</span></p>
+        <div class="nh">相談したいこと</div>
+        <ul>
+          <li>C社の無料会員登録の可否（<b>法人メールアドレスが必要</b>）</li>
+        </ul>
+        <div class="nh">明日の予定</div>
+        <ul>
+          <li>10:00　C社の扱いを決める</li>
+          <li>12:00　比較表3社分を提出</li>
+        </ul>
+      </div>
+      <p style="margin-top:8px; font-size:13px; color:var(--ink2)"><span class="mk s1">1文目</span>結論　<span class="mk s2">2文目</span>理由</p>
+    </div>
+  </div>
+
+  <h3>2本の違い</h3>
+  <ul class="facts">
+    <li><b>タイトル</b>　✕ 日付だけ。開かないと中身が不明／○ 何がどこまで進んだかが1行で分かる</li>
+    <li><b>結論の位置</b>　✕ 最後の2文（「全部はできなかった」）／○ 1文目</li>
+    <li><b>理由</b>　✕ 「時間が足りなくて」のみ。何に時間を取られたか不明／○ 2文目に具体的な理由（会員登録の確認待ち）</li>
+    <li><b>量の言葉</b>　✕ 「いろいろ」「少し」「全部は」／○ 「3社のうち2社」</li>
+    <li><b>読み手に頼むこと</b>　✕ 「また質問させてください」で中身なし／○ 判断してほしいことが1行</li>
+    <li><b>感想とあいさつ</b>　✕ 「お疲れさまでした」「勉強になりました」／○ なし</li>
+  </ul>
+</section>
+
+<!-- ============ §2 タイトル ============ -->
+<section class="topic" id="s-title">
+  <span class="badge macro">§2 タイトル</span>
+  <h2 class="thead">タイトル（本文より先に決める）</h2>
+
+  <h3>書く順番</h3>
+  <ol class="chain">
+    <li><b>タイトルを1行で書く。</b>今日いちばん伝えたい結論</li>
+    <li><b>タイトルだけを読み返す。</b>上司がこの1行だけを読んで、何が進んだか・何を判断すればよいかが分かるか</li>
+    <li><b>分からなければ本文に進まない。</b>タイトルが書けない＝今日の結論がまだ決まっていない状態</li>
+    <li><b>本文はタイトルの中身を広げるだけ。</b>タイトルに無い話は本文にも入れない</li>
+  </ol>
+
+  <h3>アメリカ英語式のタイトル（headline）</h3>
+  <ul class="facts">
+    <li><b>内容</b>　ラベル（Report, Update）ではなく、<b>結論そのもの</b>を書く</li>
+    <li><b>形</b>　短い名詞句。動詞で終える文の形にしない。数字を入れる</li>
+    <li><b>表記（Title Case）</b>　英語の場合は主要な語の頭文字を大文字。冠詞（a, the）・短い前置詞（of, in, to）・接続詞（and, or）は小文字。ただし先頭の語は常に大文字</li>
+    <li><b>日本語の日報への移し方</b>　大文字の規則は使わない。<b>結論を名詞句で1行</b>、の部分だけを使う</li>
+  </ul>
+
+  <div class="twocol">
+    <div class="card b">
+      <div class="ch">✕ ラベルだけのタイトル</div>
+      <ul>
+        <li>10月6日 日報</li>
+        <li>本日の業務報告</li>
+        <li>今日の振り返り</li>
+        <li class="en">Daily Report</li>
+      </ul>
+    </div>
+    <div class="card c">
+      <div class="ch">○ 結論のタイトル</div>
+      <ul>
+        <li>競合3社の料金比較、2社分完了・残り1社は10/7午前</li>
+        <li>顧客リスト1,200件の重複チェック、48件を統合</li>
+        <li>展示会アンケート集計、回答の6割が価格への不満</li>
+        <li class="en">Competitor Pricing Review: 2 of 3 Firms Done</li>
+      </ul>
+    </div>
+  </div>
+
+  <ol class="q">
+    <li><b>§1 の ✕ の日報に、○ とは別のタイトルを1つ付ける。本文の中から、タイトルにできる事実は何か。</b>
+      <span class="hint"><span class="lb">着地点</span>✕ の本文には、<b>タイトルにできる事実がほとんど無い</b>（何の資料か・何社か・どこまでか、がすべて不明）。タイトルが書けないのは文章の問題ではなく、書く前に結論を決めていないため。</span></li>
+  </ol>
+</section>
+
+<!-- ============ §3 段落 ============ -->
+<section class="topic" id="s-para">
+  <span class="badge word">§3 段落</span>
+  <h2 class="thead">段落の1文目と2文目（結論と理由）</h2>
+
+  <h3>段落の組み立て</h3>
+  <ol class="chain">
+    <li><b>1文目　結論（topic sentence）。</b>この段落で言いたいことを1文で</li>
+    <li><b>2文目　理由（「〜のため」「because ...」）。</b>なぜ1文目が言えるのか</li>
+    <li><b>3文目以降　根拠の事実。</b>数字・日付・固有名詞。箇条書きでよい</li>
+  </ol>
+  <ul class="facts">
+    <li><b>1段落に結論は1つ。</b>結論が2つあれば段落を2つに分ける</li>
+    <li><b>1文目だけを縦に読んで日報が通じるか。</b>これが確認の方法</li>
+    <li><b>英語の型</b>　<span class="en">“We finished pricing for two of the three competitors. This is because Company C shows its prices only to registered members.”</span></li>
+  </ul>
+
+  <div class="twocol">
+    <div class="card b">
+      <div class="ch">✕ 経緯から始まり、結論が最後</div>
+      <p>朝からデータを見ていたところ、9月の問い合わせのうち、同じ会社から重複して入っているものがあることに気づき、先輩に相談したところ、担当者名がちがうだけで同じ会社であることが多いとわかったので、会社名で突き合わせをしたら48件が重複していたため統合しました。</p>
+    </div>
+    <div class="card c">
+      <div class="ch">○ 1文目に結論、2文目に理由</div>
+      <p><span class="mk s1">1文目</span>9月の問い合わせ1,200件のうち、48件を重複として統合。<br>
+      <span class="mk s2">2文目</span>同じ会社から担当者名だけ変えて入っていたため。<br>
+      <span class="mk">3文目</span>会社名と電話番号の両方が一致したものだけを統合。</p>
+    </div>
+  </div>
+
+  <ol class="q" style="counter-reset:qq 1">
+    <li><b>次の段落の1文目と2文目を入れ替えると、どちらが結論になるか。<br>「先方の担当者が10/9まで不在。見積書の送付は10/10に延期。」</b>
+      <span class="hint"><span class="lb">着地点</span>読み手が知りたいのは<b>何が変わったか</b>（送付日）。不在は理由なので2文目。§3 の段落の組み立て1・2。</span></li>
+    <li><b>「時間が足りなかったため」は、2文目の理由として足りているか。足りていなければ何を書き足すか。</b>
+      <span class="hint"><span class="lb">着地点</span>足りていない。<b>何に時間を取られたか</b>（確認待ち・想定外の作業）まで書いて初めて、読み手が手を打てる。§1 の ○ の2文目。</span></li>
+  </ol>
+</section>
+
+<!-- ============ §4 Markdown ============ -->
+<section class="topic" id="s-md">
+  <span class="badge corp">§4 Markdown</span>
+  <h2 class="thead">Markdown記法（日報で使う5つ）と日報テンプレート</h2>
+
+  <h3>Markdown</h3>
+  <ul class="facts">
+    <li><b>中身</b>　記号を添えた普通のテキスト。表示する側のツールが見出し・箇条書き・太字に変える</li>
+    <li><b>使える場所</b>　GitHub、Notion、多くのチャットツール・メモアプリ。<b>どの記号が使えるかはツールごとに違う</b>ので、提出先で一度試す</li>
+    <li><b>表示されなくても読める。</b>記号のままでも、見出しと箇条書きの区別がつく</li>
+  </ul>
+
+  <h3>日報で使う5つ</h3>
+  <ul class="facts">
+    <li><code class="k"># </code>　タイトル（見出し1）。<b>1本の日報に1つだけ</b></li>
+    <li><code class="k">## </code>　小見出し（見出し2）。「相談したいこと」「明日の予定」など</li>
+    <li><code class="k">- </code>　箇条書き。<b>記号のあとに半角スペース</b></li>
+    <li><code class="k">**太字**</code>　強調。<b>1段落に1か所まで</b></li>
+    <li><code class="k">[表示名](URL)</code>　リンク。作った資料の置き場所</li>
+  </ul>
+
+  <h3>書いたもの（左）と表示されたもの（右）</h3>
+  <div class="twocol">
+    <div class="card d">
+      <div class="ch">Markdownで書いたもの</div>
+<div class="promptbox"># 競合3社の料金比較、2社分完了・残り1社は10/7午前
+
+本日の成果は、競合3社のうちA社・B社の料金比較表。C社は料金ページが会員登録後にしか見られず、登録してよいかの確認が取れなかったため。
+
+- A社：月額プラン3種、最安 月9,800円
+- B社：月額プラン2種、最安 月12,000円
+- 比較表：[料金比較_1006](https://example.com/sheet)
+
+## 相談したいこと
+
+- C社の無料会員登録の可否（**法人メールアドレスが必要**）
+
+## 明日の予定
+
+- 10:00　C社の扱いを決める
+- 12:00　比較表3社分を提出</div>
+    </div>
+    <div class="card c">
+      <div class="ch">表示されたもの</div>
+      <div class="nippo">
+        <div class="nt">競合3社の料金比較、2社分完了・残り1社は10/7午前</div>
+        <p>本日の成果は、競合3社のうちA社・B社の料金比較表。C社は料金ページが会員登録後にしか見られず、登録してよいかの確認が取れなかったため。</p>
+        <ul>
+          <li>A社：月額プラン3種、最安 月9,800円</li>
+          <li>B社：月額プラン2種、最安 月12,000円</li>
+          <li>比較表：<a href="#s-md" style="color:var(--macro)">料金比較_1006</a></li>
+        </ul>
+        <div class="nh">相談したいこと</div>
+        <ul><li>C社の無料会員登録の可否（<b>法人メールアドレスが必要</b>）</li></ul>
+        <div class="nh">明日の予定</div>
+        <ul><li>10:00　C社の扱いを決める</li><li>12:00　比較表3社分を提出</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <h3>よくある崩れ方</h3>
+  <ul class="facts">
+    <li><b><code class="k">#</code> のあとにスペースが無い</b>　<code class="k">#競合3社</code> は見出しにならず、記号のまま表示</li>
+    <li><b>箇条書きの前に空行が無い</b>　ツールによっては直前の段落とつながって表示</li>
+    <li><b>全部を太字</b>　どこが大事か分からなくなる。太字は1段落に1か所まで</li>
+    <li><b>見出しだけで本文が無い</b>　「## 所感」だけ置いて中身が1行。書くことが無い見出しは消す</li>
+  </ul>
+
+  <h3>日報テンプレート（コピーして使う）</h3>
+<div class="promptbox"><span class="cap">TEMPLATE ／ 角括弧の中を書き換える</span># [結論を名詞句で1行。数字を入れる]
+
+[1文目：今日の結論]。[2文目：その理由]。
+
+- [根拠の事実1：数字・日付・固有名詞]
+- [根拠の事実2]
+
+## 相談したいこと
+
+- [判断してほしいことを1行。無ければこの見出しごと消す]
+
+## 明日の予定
+
+- [時刻]　[やること]</div>
+
+  <ol class="q" style="counter-reset:qq 3">
+    <li><b>次のMarkdownを表示すると、どこが崩れるか。2か所。<br><code class="k">#展示会アンケート集計</code>／<code class="k">-回答数 312件</code></b>
+      <span class="hint"><span class="lb">着地点</span>どちらも<b>記号のあとの半角スペースが無い</b>。見出しにも箇条書きにもならない。§4 の「日報で使う5つ」の1・3。</span></li>
+  </ol>
+</section>
+
+<footer>
+  <h2>例文について</h2>
+  <ul>
+    <li><b>例文はすべて設例。</b>社名（A社・B社・C社）、件数、料金、日付は架空。</li>
+    <li><b>Title Case の細かい規則は流派で違う。</b>何文字以下の前置詞を小文字にするかは、AP スタイルとシカゴ・マニュアルで異なる。日報で迷ったら先頭の語と主要な名詞・動詞だけ大文字。</li>
+    <li><b>Markdownの対応範囲はツールごとに違う。</b>提出先（社内チャット・Notion など）で、見出しと箇条書きが表示されるかを先に確認する。</li>
+  </ul>
+</footer>
+
+</div>
+</body>
+</html>
