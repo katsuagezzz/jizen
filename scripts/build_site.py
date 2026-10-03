@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "public"
 DIST = ROOT / "dist"
-SITE_TITLE = "志村ゼミ 資料ページ"
+SITE_TITLE = "事前指導2D"
 JST = timezone(timedelta(hours=9))
 
 
