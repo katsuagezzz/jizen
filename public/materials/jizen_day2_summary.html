@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Day2 講義のまとめ - インターン先の種類・日報・AIで履歴書</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#fff8ee; --dots:#ffd9b8; --card:#ffffff; --ink:#22202b; --muted:#6c6878; --edge:#22202b;
+    --pink:#ff5c8a; --pink-bg:#ffe3ec; --orange:#ff8a3d; --orange-bg:#ffe9d9;
+    --yellow:#e0a800; --yellow-bg:#fff4cc; --green:#2bb673; --green-bg:#dcf7e8;
+    --blue:#3d8bff; --blue-bg:#e0edff; --purple:#9b5cff; --purple-bg:#efe4ff;
+    --mark:#ffe55c; --mark-pink:#ffc2d4; --shadow:4px 4px 0 var(--edge);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#1b1824; --dots:#2c2738; --card:#262233; --ink:#f4f1fa; --muted:#b2acc2; --edge:#0c0a12;
+      --pink-bg:#40202d; --orange-bg:#40291b; --yellow-bg:#3d3418; --green-bg:#173528;
+      --blue-bg:#1a2a45; --purple-bg:#2e2147; --mark:#7a6a12; --mark-pink:#7a2a44;
+    }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; color:var(--ink); line-height:1.85; font-size:16px;
+    font-family:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;
+    background-color:var(--bg);
+    background-image:radial-gradient(var(--dots) 1.5px, transparent 1.5px); background-size:22px 22px; }
+  .wrap { max-width:860px; margin:0 auto; padding:20px 16px 80px; }
+  .backlink { display:inline-block; font-weight:800; font-size:.9rem; color:var(--ink); text-decoration:none;
+    background:var(--card); border:2px solid var(--edge); border-radius:999px; padding:4px 14px; box-shadow:2px 2px 0 var(--edge); }
+
+  .hero { position:relative; margin:20px 0 28px; padding:32px 24px 28px; border:3px solid var(--edge); border-radius:28px;
+    background:linear-gradient(135deg,#3d8bff 0%,#9b5cff 50%,#ff5c8a 100%); color:#fff; box-shadow:6px 6px 0 var(--edge); overflow:hidden; }
+  .hero::after { content:""; position:absolute; right:-40px; top:-40px; width:180px; height:180px; border-radius:50%; background:rgba(255,255,255,.18); }
+  .hero .chip { display:inline-block; background:#fff; color:#22202b; font-weight:800; font-size:.8rem;
+    border:2px solid #22202b; border-radius:999px; padding:2px 12px; transform:rotate(-2deg); }
+  .hero h1 { font-size:clamp(1.7rem,6vw,2.5rem); line-height:1.3; margin:14px 0 6px; font-weight:800; text-shadow:3px 3px 0 rgba(34,32,43,.35); }
+  .hero p { margin:0; font-weight:700; }
+  .hero .emoji { position:absolute; right:22px; bottom:12px; font-size:3.2rem; transform:rotate(10deg); }
+  @media (max-width:600px) { .hero .emoji { top:12px; bottom:auto; right:12px; font-size:2.4rem; } .hero h1 { margin-top:22px; } }
+
+  .take { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:18px 20px; box-shadow:var(--shadow); margin-bottom:8px; }
+  .take h2 { margin:0 0 8px; font-size:1.15rem; font-weight:800; }
+  .take ol { margin:0; padding-left:1.4em; }
+  .take li { margin:6px 0; font-weight:700; }
+
+  .sec { display:flex; align-items:center; gap:10px; margin:44px 0 16px; }
+  .sec .icon { flex:none; width:48px; height:48px; border-radius:50%; display:grid; place-items:center; font-size:1.5rem;
+    background:var(--card); border:3px solid var(--edge); box-shadow:3px 3px 0 var(--edge); }
+  .sec h2 { margin:0; font-size:clamp(1.2rem,4.5vw,1.55rem); font-weight:800; line-height:1.35;
+    background:linear-gradient(transparent 62%, var(--mark) 62%); padding:0 4px; }
+  .lead { margin:0 0 14px; }
+
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; }
+  .box { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:16px 18px; box-shadow:var(--shadow); }
+  .box.wide { grid-column:1/-1; }
+  .box h3 { margin:0 0 6px; font-size:1.08rem; font-weight:800; display:flex; align-items:center; gap:8px; }
+  .box h3 .tag { font-size:.75rem; color:#fff; background:var(--c); border:2px solid var(--edge); border-radius:999px; padding:0 10px; white-space:nowrap; }
+  .box ul { margin:0; padding-left:1.2em; }
+  .box li { margin:4px 0; }
+  .box .note { margin:8px 0 0; font-size:.9rem; background:var(--cb); border-radius:12px; padding:6px 12px; }
+  .c-pink { --c:var(--pink); --cb:var(--pink-bg); } .c-orange { --c:var(--orange); --cb:var(--orange-bg); }
+  .c-yellow { --c:var(--yellow); --cb:var(--yellow-bg); } .c-green { --c:var(--green); --cb:var(--green-bg); }
+  .c-blue { --c:var(--blue); --cb:var(--blue-bg); } .c-purple { --c:var(--purple); --cb:var(--purple-bg); }
+
+  .em { font-weight:800; background:linear-gradient(transparent 55%, var(--mark-pink) 55%); padding:0 2px; }
+  .ul { font-weight:800; background:linear-gradient(transparent 55%, var(--mark) 55%); padding:0 2px; }
+
+  .flow { list-style:none; margin:0; padding:0; counter-reset:f; }
+  .flow > li { counter-increment:f; position:relative; background:var(--card); border:3px solid var(--edge); border-radius:18px;
+    padding:12px 16px 12px 58px; margin:0 0 16px; box-shadow:var(--shadow); }
+  .flow > li::before { content:counter(f); position:absolute; left:14px; top:12px; width:32px; height:32px; border-radius:10px;
+    background:var(--c,var(--blue)); color:#fff; font-weight:800; display:grid; place-items:center; border:2px solid var(--edge); transform:rotate(-6deg); }
+  .flow > li b.h { display:block; font-size:1.02rem; }
+  .flow > li ul { margin:4px 0 0; padding-left:1.2em; }
+
+  .chain { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:6px 0 14px; }
+  .chain span { background:var(--card); border:2px solid var(--edge); border-radius:999px; padding:2px 12px; font-weight:800; font-size:.92rem; }
+  .chain i { font-style:normal; font-weight:800; color:var(--muted); }
+
+  .md { background:#22202b; color:#f4f1fa; border:3px solid var(--edge); border-radius:16px; padding:14px 16px; margin:10px 0 0;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.88rem; line-height:1.7; white-space:pre-wrap; overflow-x:auto; }
+  .md .c { color:#ffc531; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a class="backlink" href="../">← 事前指導2D の一覧へ</a>
+
+<header class="hero">
+  <span class="chip">事前指導2D ／ Day2　講義のまとめ</span>
+  <h1>Day2 講義のまとめ</h1>
+  <p>インターン先の種類・日報・AIで履歴書</p>
+  <span class="emoji">🗒️</span>
+</header>
+
+<div class="take">
+  <h2>🎯 今日の持ち帰り</h2>
+  <ol>
+    <li>インターン先は「大手かベンチャーか」「IT系か営業系か」の大枠で選ぶ</li>
+    <li>実習先では、寝ない・挨拶する・朝会と日報の時間を守る。1人の行動が、翌年以降の後輩の受け入れまで左右する</li>
+    <li>毎日の日報が、ガクチカと履歴書の材料になる。タイトル・小見出し・箇条書きで書けば、AIもうまく使える</li>
+  </ol>
+</div>
+
+<!-- ============ 1 ============ -->
+<div class="sec"><span class="icon">🏢</span><h2>インターン先の大きな種類</h2></div>
+<p class="lead">ここに書くのは全体的な傾向。個々の会社によって違う。</p>
+<div class="grid">
+  <div class="box c-blue">
+    <h3><span class="tag">大手</span>カリキュラムがしっかり</h3>
+    <ul>
+      <li>人数が多く、毎日やることが表などに細かく書いてある</li>
+      <li>やったことが明確なので、<span class="ul">履歴書・ガクチカに書きやすい</span></li>
+      <li>おすすめは上場している大手</li>
+    </ul>
+    <p class="note">担当の若手社員が忙しいと、放置される時間もある</p>
+  </div>
+  <div class="box c-purple">
+    <h3><span class="tag">スタートアップ・IT</span>ほぼ在宅</h3>
+    <ul>
+      <li>オフィスが無い会社も多く、オンライン・在宅が中心</li>
+      <li>毎朝9〜10時ごろのオンライン朝会＋毎日の日報。社員や社長がフィードバック</li>
+      <li>課題を与えられて家で開発し、最後にプレゼンする形が多い</li>
+    </ul>
+    <p class="note">「自走」という名の放置もある。やることを自分で考えてプランを出す。当たり外れがある</p>
+  </div>
+  <div class="box c-orange">
+    <h3><span class="tag">ビジネス系</span>人材・教育・営業</h3>
+    <ul>
+      <li>派遣先として多いのは人材会社と教育系</li>
+      <li>仕事の例：<b>テレアポ</b>（出社）／<b>展示会・イベント</b>（土日もあり。名刺配りや、イベントに向けたプレゼン資料づくり）／<b>プレゼン資料・動画づくり</b>（企画・脚本。在宅が多い）</li>
+    </ul>
+  </div>
+  <div class="box c-green">
+    <h3><span class="tag">非営利</span>観光協会など</h3>
+    <ul>
+      <li>地域のイベント運営、修学旅行生の案内など</li>
+      <li>週5日、現地に出向く</li>
+    </ul>
+  </div>
+  <div class="box wide c-yellow">
+    <h3><span class="tag">決まり方</span>第3志望くらいまで出す</h3>
+    <ul>
+      <li>志望を出し、面談して、受け入れ先がOKなら決定</li>
+      <li>迷ったら大枠だけ覚えておく：<span class="ul">大手かベンチャーか、IT系か営業会社か</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 2 ============ -->
+<div class="sec"><span class="icon">⚠️</span><h2>実習先での注意</h2></div>
+<div class="grid">
+  <div class="box c-pink">
+    <h3>😴 寝ない</h3>
+    <ul>
+      <li>手持ち無沙汰になっても、寝る・スマホをいじるのはNG</li>
+      <li>会社はワンフロアのことが多く、<span class="em">寝ていると必ず目立つ</span></li>
+      <li>何をしてよいか分からないときは、担当者に聞く</li>
+    </ul>
+  </div>
+  <div class="box c-orange">
+    <h3>🙇 挨拶する</h3>
+    <ul>
+      <li>社員は、役職者が通れば「お疲れさまです」「こんにちは」と挨拶するのが普通</li>
+      <li>挨拶しない・目も合わせない学生は「誰あいつ」になる</li>
+    </ul>
+  </div>
+  <div class="box c-blue">
+    <h3>⏰ 朝会と日報の時間を守る</h3>
+    <ul>
+      <li>日報の締め切りが18時なのに毎日深夜に出す、朝会に出てこない。これが続いて、途中で受け入れを断られた例がある</li>
+    </ul>
+  </div>
+  <div class="box c-purple">
+    <h3>🚀 スタートアップでは逆に</h3>
+    <ul>
+      <li>構ってもらえない。自立を必要以上に求められる</li>
+      <li>何をするかを自分で考えて提案すれば、自由にできる</li>
+    </ul>
+  </div>
+</div>
+
+<h3 style="margin:26px 0 8px;font-weight:800">苦情はこう伝わる</h3>
+<div class="chain"><span>役員・本部長</span><i>→</i><span>部長</span><i>→</i><span>課長</span><i>→</i><span>担当の若手社員</span><i>→</i><span>大学</span></div>
+<ul>
+  <li>役職者は学生に直接は言わない。上から順に伝わり、最後に大学に届く</li>
+  <li>受け入れは、大学が「若い人を入れてください」と<b>お願いして</b>実現しているもの。寝る・挨拶しないといった1人の行動で、関わった全員が謝ることになる</li>
+  <li>実際に「来年度からは受け入れできません」と断られた会社がある。断る理由は「体制の都合」などになり、本当の理由は表に出ない</li>
+  <li>だから<span class="em">頑張っている姿勢を見せる</span>ことが大事</li>
+</ul>
+
+<!-- ============ 3 ============ -->
+<div class="sec"><span class="icon">📝</span><h2>日報は、ガクチカと履歴書の材料</h2></div>
+<div class="grid">
+  <div class="box wide c-green">
+    <h3>なぜ日報が大事か</h3>
+    <ul>
+      <li>日報に書いた内容が、そのまま<span class="ul">ガクチカと履歴書</span>のネタになる。4か月で100日分くらいたまる</li>
+      <li>他の大学生と差がつくのは<b>中身（ネタ）</b>。AIはそれを形にする<b>手法</b></li>
+      <li>AIの出力を良くするのは、自分の文脈（<b>コンテキスト</b>）。日報は、それを毎日ためる仕組み</li>
+    </ul>
+  </div>
+</div>
+
+<h3 style="margin:26px 0 8px;font-weight:800">日報の書き方（AIが読みやすい形）</h3>
+<ol class="flow">
+  <li style="--c:var(--pink)"><b class="h">タイトル：今日学んだことを一言で</b>
+    後で60個並べても、タイトルだけで何をした日か分かるように。売れるタイトルである必要はない</li>
+  <li style="--c:var(--orange)"><b class="h">小見出し：1〜2個</b>
+    タイトルを具体的にしたもの。単語5〜10個、1文で</li>
+  <li style="--c:var(--blue)"><b class="h">説明：2つくらい、箇条書き・体言止め</b>
+    「頑張りました」「〜でした」で終わらせない</li>
+  <li style="--c:var(--purple)"><b class="h">具体的に書く</b>
+    「ミーティングをやりました」「日報を書きました」ではなく、<span class="em">ミーティングで何を話し、何を決めたか</span></li>
+</ol>
+<p>この形は Markdown と同じ。短く、頭の整理になり、後でAIに読み込ませたときに理解されやすい。書き方の詳細は <a href="jizen_day2.html" style="color:var(--blue);font-weight:800">Day2 インターン日報の書き方</a> を参照。</p>
+<div class="md"><span class="c"># </span>[今日の結論を一言]
+
+<span class="c">## </span>[小見出し：単語5〜10個]
+
+<span class="c">- </span>[何を話し、何を決めたか]
+<span class="c">- </span>[数字・日付・固有名詞]</div>
+
+<!-- ============ 4 ============ -->
+<div class="sec"><span class="icon">🤖</span><h2>AI講座：自分史から履歴書をつくる</h2></div>
+<p class="lead">前回書いた自分史をソースにして、NotebookLM で分析し、履歴書の中身をつくる。</p>
+<ol class="flow">
+  <li style="--c:var(--purple)"><b class="h">（任意）普段使っているAIで自己分析</b>
+    <ul>
+      <li>チャットAIに「これまでの会話から、自分の傾向や自覚していない特性を分析して」と頼むプロンプトを入れる</li>
+      <li>辛口の結果が出ることがある。気になる人はやらなくてよい</li>
+      <li>人間関係などプライベートな内容は、自分で省いてから使う</li>
+    </ul></li>
+  <li style="--c:var(--blue)"><b class="h">NotebookLM にソースを入れる</b>
+    <ul>
+      <li>「ソースを追加」から、Googleドライブの自分史を選ぶ</li>
+      <li>自己分析の結果は「コピーしたテキスト」として貼り付ける</li>
+    </ul></li>
+  <li style="--c:var(--pink)"><b class="h">仮説を出させる</b>
+    <ul><li>自分史のエピソードから共通点を拾い、「あなたはこういう人では」という仮説を5つほど出させる</li></ul></li>
+  <li style="--c:var(--orange)"><b class="h">自分の目で仕分ける</b>
+    <ul><li>「心当たりがある」「言われてみればそうかも」「ピンとこない」に分ける。<b>自覚していなかったが当たっているもの</b>が発見</li></ul></li>
+  <li style="--c:var(--green)"><b class="h">確かめて、書き戻す</b>
+    <ul>
+      <li>「この仮説が本当なら、他の場面でも同じことが起きているはず」とAIに聞いて確かめる</li>
+      <li>思い出したエピソードは自分史に書き足す。納得できた仮説だけをソースとして保存</li>
+    </ul></li>
+  <li style="--c:var(--yellow)"><b class="h">履歴書をつくる</b>
+    <ul>
+      <li>フォーマットはAIに作らせ、中身を NotebookLM で書く</li>
+      <li>「打ち出す強み」と「使うエピソード」の組み合わせを3つ出させ、選ぶ</li>
+      <li><b>ガクチカ</b>と<b>自己PR</b>の両方をつくる。自己PRは3つの型で1案ずつ出させ、1つ選ぶ</li>
+      <li>余力があれば、実習先での自己紹介用スライドも</li>
+    </ul></li>
+  <li style="--c:var(--pink)"><b class="h">提出</b>
+    <ul><li>履歴書を<b>PDF</b>で、クラスルームの提出先へ</li></ul></li>
+</ol>
+
+<div class="box c-blue" style="margin-top:6px">
+  <h3>💡 この先の使い方</h3>
+  <ul>
+    <li>実習先や提出する場面が決まったら、「この相手には、どの強みとエピソードをどう見せるべきか」をAIに相談する</li>
+    <li>ソースが増えるほど出力が変わる。自分史だけでは足りないので、<span class="ul">日報をためていく</span>ことが効いてくる</li>
+  </ul>
+</div>
+
+</div>
+</body>
+</html>
