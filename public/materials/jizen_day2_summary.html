@@ -53,6 +53,9 @@
   .sec h2 { margin:0; font-size:clamp(1.2rem,4.5vw,1.55rem); font-weight:800; line-height:1.35;
     background:linear-gradient(transparent 62%, var(--mark) 62%); padding:0 4px; }
   .lead { margin:0 0 14px; }
+  .linkbtn { display:inline-flex; align-items:center; gap:6px; margin:0 0 18px; font-weight:800; color:var(--ink); text-decoration:none;
+    background:var(--card); border:3px solid var(--edge); border-radius:999px; padding:4px 16px; box-shadow:3px 3px 0 var(--edge); }
+  .linkbtn:hover { transform:translate(-1px,-1px); box-shadow:4px 4px 0 var(--edge); }
 
   .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; }
   .box { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:16px 18px; box-shadow:var(--shadow); }
@@ -229,6 +232,7 @@
 <!-- ============ 4 ============ -->
 <div class="sec"><span class="icon">🤖</span><h2>AI講座：自分史から履歴書をつくる</h2></div>
 <p class="lead">前回書いた自分史をソースにして、NotebookLM で分析し、履歴書の中身をつくる。</p>
+<a class="linkbtn" href="https://app.notion.com/p/DAY2-1-3ef60259b1f081838e27f458a36c51c4" target="_blank" rel="noopener">📘 AI講座の資料（Notion）を開く →</a>
 <ol class="flow">
   <li style="--c:var(--purple)"><b class="h">（任意）普段使っているAIで自己分析</b>
     <ul>
