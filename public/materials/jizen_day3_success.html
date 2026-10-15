@@ -108,6 +108,24 @@
   .src { font-size:.82rem; color:var(--muted); line-height:1.7; }
   .src a { color:var(--blue); word-break:break-all; }
   .src ul { padding-left:1.2em; }
+  .rank2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; margin-top:6px; }
+  .rk { background:var(--card); border:3px solid var(--edge); border-radius:22px; box-shadow:var(--shadow); overflow:hidden; }
+  .rk h3 { margin:0; padding:10px 16px; color:#fff; font-size:1rem; font-weight:800; }
+  .rk.o h3 { background:var(--old); } .rk.n h3 { background:var(--new); }
+  .rk ol { list-style:none; margin:0; padding:6px 0; counter-reset:r; }
+  .rk li { counter-increment:r; display:flex; align-items:baseline; gap:8px; padding:5px 16px; border-bottom:1px dashed var(--muted); font-size:.95rem; }
+  .rk li:last-child { border-bottom:none; }
+  .rk li::before { content:counter(r); flex:none; width:1.6em; font-weight:800; color:var(--muted); }
+  .rk li .nm { flex:1; } .rk li .mc { font-weight:800; white-space:nowrap; }
+  .rk li.jp .nm::after { content:"日本"; margin-left:6px; font-size:.7rem; font-weight:800; color:#fff; background:#e60033; border-radius:6px; padding:0 6px; vertical-align:1px; }
+  .rk .tot { background:var(--yellow-bg); padding:10px 16px; font-weight:800; border-top:2px solid var(--edge); }
+  .rk .tot b { font-size:1.25rem; }
+  .big { text-align:center; margin:16px 0 4px; font-weight:800; font-size:1.05rem; }
+  .big b { font-size:1.6rem; background:linear-gradient(transparent 55%, var(--mark-pink) 55%); padding:0 4px; }
+  .rev { width:100%; border-collapse:collapse; font-size:.9rem; }
+  .rev th, .rev td { padding:6px 10px; border-bottom:1px dashed var(--muted); text-align:left; }
+  .rev td.r, .rev th.r { text-align:right; white-space:nowrap; }
+  .rev tfoot td { font-weight:800; border-top:2px solid var(--edge); border-bottom:none; }
 </style>
 </head>
 <body>
@@ -156,6 +174,24 @@
     <div class="o"><span class="v">ソ連崩壊</span><span class="s">1991年12月。前年に東西ドイツ統一</span></div>
     <div class="n"><span class="v">生成AIの普及</span><span class="s">スマホと生成AIが仕事の道具に</span></div></div>
 </div>
+
+<h3 style="margin:26px 0 8px;font-weight:800">世界の時価総額トップ10（会社の値段）</h3>
+<div class="rank2">
+  <div class="rk o"><h3>1989年（7月）</h3><ol><li class="jp"><span class="nm">NTT</span><span class="mc">1,638億ドル</span></li><li class="jp"><span class="nm">日本興業銀行</span><span class="mc">715億ドル</span></li><li class="jp"><span class="nm">住友銀行</span><span class="mc">695億ドル</span></li><li class="jp"><span class="nm">富士銀行</span><span class="mc">670億ドル</span></li><li class="jp"><span class="nm">第一勧業銀行</span><span class="mc">660億ドル</span></li><li><span class="nm">IBM</span><span class="mc">646億ドル</span></li><li class="jp"><span class="nm">三菱銀行</span><span class="mc">592億ドル</span></li><li><span class="nm">エクソン</span><span class="mc">549億ドル</span></li><li class="jp"><span class="nm">東京電力</span><span class="mc">544億ドル</span></li><li><span class="nm">ロイヤル・ダッチ・シェル</span><span class="mc">543億ドル</span></li></ol>
+    <div class="tot">10社合計　<b>約7,250億ドル</b><br><span style="font-weight:700;font-size:.85rem">うち日本企業 7社</span></div></div>
+  <div class="rk n"><h3>2026年（10月初め）</h3><ol><li><span class="nm">NVIDIA</span><span class="mc">5.65兆ドル</span></li><li><span class="nm">Apple</span><span class="mc">4.87兆ドル</span></li><li><span class="nm">Alphabet（Google）</span><span class="mc">4.16兆ドル</span></li><li><span class="nm">Microsoft</span><span class="mc">3.84兆ドル</span></li><li><span class="nm">Amazon</span><span class="mc">2.71兆ドル</span></li><li><span class="nm">TSMC</span><span class="mc">2.45兆ドル</span></li><li><span class="nm">SpaceX</span><span class="mc">2.09兆ドル</span></li><li><span class="nm">Meta</span><span class="mc">1.85兆ドル</span></li><li><span class="nm">Broadcom</span><span class="mc">1.70兆ドル</span></li><li><span class="nm">サウジアラムコ</span><span class="mc">1.65兆ドル</span></li></ol>
+    <div class="tot">10社合計　<b>約31兆ドル</b><br><span style="font-weight:700;font-size:.85rem">うち日本企業 0社</span></div></div>
+</div>
+<p class="big">トップ10の合計は、37年で<b>約43倍</b></p>
+<p style="margin:4px 4px 0;font-size:.9rem;text-align:center">1989年の銀行5行は、その後の合併でみずほ・三菱UFJ・三井住友に。2026年の10社のうち、NVIDIA・Amazon・Google・Meta・SpaceX は、1989年にはまだ存在しなかった。</p>
+
+<details style="margin-top:14px;background:var(--card);border:3px solid var(--edge);border-radius:18px;padding:10px 16px;box-shadow:3px 3px 0 var(--edge)">
+  <summary style="cursor:pointer;font-weight:800">参考：2026年トップ10の売上（最新の決算期）</summary>
+  <table class="rev"><thead><tr><th>会社</th><th>決算期</th><th class="r">売上</th></tr></thead>
+  <tbody><tr><td>NVIDIA</td><td>2026年1月期</td><td class="r">2,159億ドル</td></tr><tr><td>Apple</td><td>2025年9月期</td><td class="r">4,162億ドル</td></tr><tr><td>Alphabet（Google）</td><td>2025年12月期</td><td class="r">4,028億ドル</td></tr><tr><td>Microsoft</td><td>2026年6月期</td><td class="r">3,318億ドル</td></tr><tr><td>Amazon</td><td>2025年12月期</td><td class="r">7,169億ドル</td></tr><tr><td>TSMC</td><td>2025年12月期</td><td class="r">1,224億ドル</td></tr><tr><td>SpaceX</td><td>2025年12月期</td><td class="r">187億ドル</td></tr><tr><td>Meta</td><td>2025年12月期</td><td class="r">2,010億ドル</td></tr><tr><td>Broadcom</td><td>2025年10月期</td><td class="r">639億ドル</td></tr><tr><td>サウジアラムコ</td><td>2025年12月期</td><td class="r">約4,160億ドル</td></tr></tbody>
+  <tfoot><tr><td colspan="2">10社合計</td><td class="r">約2.9兆ドル</td></tr></tfoot></table>
+  <p style="margin:8px 0 0;font-size:.85rem;color:var(--muted)">1ドル158円で約460兆円。日本の名目GDP（約4.4兆ドル）の約3分の2にあたる。</p>
+</details>
 
 <!-- ============ 2 ============ -->
 <div class="sec"><span class="icon">💼</span><h2>働き方とお金</h2></div>
@@ -314,6 +350,10 @@
     <li>初任給：厚生労働省「賃金構造基本統計調査」（1991年は <a href="https://nenji-toukei.com/n/kiji/10021">年次統計</a> の整理による）</li>
     <li>GDP・1人当たりGDP：IMF World Economic Outlook（2026年4月版）、内閣府「国民経済計算 GDPの国際比較」
       <a href="https://www.esri.cao.go.jp/jp/sna/data/data_list/kakuhou/files/2024/sankou/pdf/kokusaihikaku_20251223.pdf">esri.cao.go.jp</a></li>
+    <li>時価総額トップ10：1989年はビジネスウィーク誌1989年7月17日号（
+      <a href="https://www.manegy.com/news/detail/7934/">マネジー</a> の表による）、2026年は10月初めの集計（
+      <a href="https://www.investingcube.com/deep-analysis/largest-companies-by-market-cap-in-2026-nvidia-leads-the-global-rankings/">Investing Cube</a>）。日によって数%動く</li>
+    <li>2026年トップ10の売上：各社の決算発表（NVIDIA・Apple・Alphabet・Microsoft・Amazon・Meta・Broadcom・TSMC・アラムコ）、SpaceX は上場申請書類（S-1）。アラムコは資料により4,160億〜4,460億ドルの幅がある</li>
     <li>時価総額ランキング：東洋経済オンライン
       <a href="https://toyokeizai.net/articles/-/601987">toyokeizai.net</a></li>
     <li>人口・年齢構成：総務省統計局「人口推計」
