@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Day3 「成功」とはなにか - 1991年と2026年をくらべる</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#fff8ee; --dots:#ffd9b8; --card:#ffffff; --ink:#22202b; --muted:#6c6878; --edge:#22202b;
+    --pink:#ff5c8a; --pink-bg:#ffe3ec; --orange:#ff8a3d; --orange-bg:#ffe9d9;
+    --yellow:#e0a800; --yellow-bg:#fff4cc; --green:#2bb673; --green-bg:#dcf7e8;
+    --blue:#3d8bff; --blue-bg:#e0edff; --purple:#9b5cff; --purple-bg:#efe4ff;
+    --mark:#ffe55c; --mark-pink:#ffc2d4; --shadow:4px 4px 0 var(--edge);
+    --old:#9b5cff; --new:#ff8a3d;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#1b1824; --dots:#2c2738; --card:#262233; --ink:#f4f1fa; --muted:#b2acc2; --edge:#0c0a12;
+      --pink-bg:#40202d; --orange-bg:#40291b; --yellow-bg:#3d3418; --green-bg:#173528;
+      --blue-bg:#1a2a45; --purple-bg:#2e2147; --mark:#7a6a12; --mark-pink:#7a2a44;
+    }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; color:var(--ink); line-height:1.8; font-size:16px;
+    font-family:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;
+    background-color:var(--bg);
+    background-image:radial-gradient(var(--dots) 1.5px, transparent 1.5px); background-size:22px 22px; }
+  .wrap { max-width:900px; margin:0 auto; padding:20px 16px 80px; }
+  .backlink { display:inline-block; font-weight:800; font-size:.9rem; color:var(--ink); text-decoration:none;
+    background:var(--card); border:2px solid var(--edge); border-radius:999px; padding:4px 14px; box-shadow:2px 2px 0 var(--edge); }
+
+  .hero { position:relative; margin:20px 0 28px; padding:32px 24px 28px; border:3px solid var(--edge); border-radius:28px;
+    background:linear-gradient(135deg,#9b5cff 0%,#ff5c8a 50%,#ff8a3d 100%); color:#fff; box-shadow:6px 6px 0 var(--edge); overflow:hidden; }
+  .hero::after { content:""; position:absolute; right:-40px; top:-40px; width:180px; height:180px; border-radius:50%; background:rgba(255,255,255,.18); }
+  .hero .chip { display:inline-block; background:#fff; color:#22202b; font-weight:800; font-size:.8rem;
+    border:2px solid #22202b; border-radius:999px; padding:2px 12px; transform:rotate(-2deg); }
+  .hero h1 { font-size:clamp(1.7rem,6vw,2.5rem); line-height:1.3; margin:14px 0 6px; font-weight:800; text-shadow:3px 3px 0 rgba(34,32,43,.35); }
+  .hero p { margin:0; font-weight:700; }
+  .hero .emoji { position:absolute; right:22px; bottom:12px; font-size:3.2rem; transform:rotate(10deg); }
+  @media (max-width:600px) { .hero .emoji { top:12px; bottom:auto; right:12px; font-size:2.4rem; } .hero h1 { margin-top:22px; } }
+
+  .intro { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:18px 20px; box-shadow:var(--shadow); }
+  .intro p { margin:0 0 8px; } .intro p:last-child { margin:0; }
+
+  .sec { display:flex; align-items:center; gap:10px; margin:44px 0 16px; }
+  .sec .icon { flex:none; width:48px; height:48px; border-radius:50%; display:grid; place-items:center; font-size:1.5rem;
+    background:var(--card); border:3px solid var(--edge); box-shadow:3px 3px 0 var(--edge); }
+  .sec h2 { margin:0; font-size:clamp(1.2rem,4.5vw,1.55rem); font-weight:800; line-height:1.35;
+    background:linear-gradient(transparent 62%, var(--mark) 62%); padding:0 4px; }
+
+  /* 比較表 */
+  .cmp { background:var(--card); border:3px solid var(--edge); border-radius:22px; box-shadow:var(--shadow); overflow:hidden; }
+  .cmp .row { display:grid; grid-template-columns:minmax(150px,1.1fr) 1fr 1fr; border-top:2px solid var(--edge); }
+  .cmp .row:first-child { border-top:none; }
+  .cmp .row > div { padding:10px 14px; }
+  .cmp .head > div { font-weight:800; font-size:.9rem; color:#fff; }
+  .cmp .head .k { background:var(--edge); }
+  .cmp .head .o { background:var(--old); }
+  .cmp .head .n { background:var(--new); }
+  .cmp .k { font-weight:800; font-size:.95rem; background:var(--yellow-bg); }
+  .cmp .o { border-left:2px dashed var(--muted); }
+  .cmp .n { border-left:2px dashed var(--muted); }
+  .cmp .v { display:block; font-weight:800; font-size:1.1rem; line-height:1.4; }
+  .cmp .s { display:block; font-size:.8rem; color:var(--muted); line-height:1.5; margin-top:2px; }
+  @media (max-width:640px) {
+    .cmp .row { grid-template-columns:1fr 1fr; }
+    .cmp .row > .k { grid-column:1/-1; }
+    .cmp .head .k { display:none; }
+    .cmp .o { border-left:none; }
+  }
+
+  /* 年齢構成バー */
+  .pyr { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:16px 18px; box-shadow:var(--shadow); }
+  .pyr .yr { font-weight:800; margin:6px 0 4px; }
+  .bar { display:flex; height:38px; border:2px solid var(--edge); border-radius:12px; overflow:hidden; }
+  .bar span { display:grid; place-items:center; font-size:.8rem; font-weight:800; color:#22202b; white-space:nowrap; overflow:hidden; }
+  .bar .a { background:#7fd6a8; } .bar .b { background:#9cc3ff; } .bar .c { background:#ffb38a; }
+  .legend { display:flex; flex-wrap:wrap; gap:6px 14px; margin-top:10px; font-size:.85rem; font-weight:700; }
+  .legend i { display:inline-block; width:14px; height:14px; border:2px solid var(--edge); border-radius:4px; vertical-align:-2px; margin-right:4px; }
+
+  /* あったもの→今 */
+  .gone { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:12px; }
+  .g { background:var(--card); border:3px solid var(--edge); border-radius:18px; padding:12px 14px; box-shadow:3px 3px 0 var(--edge); }
+  .g .from { font-weight:800; color:var(--old); }
+  .g .to { font-weight:800; color:var(--new); }
+  .g .arrow { font-weight:800; color:var(--muted); margin:0 4px; }
+  .g .note { display:block; font-size:.82rem; color:var(--muted); margin-top:4px; line-height:1.55; }
+
+  /* 問い */
+  .qs { list-style:none; margin:0; padding:0; counter-reset:q; }
+  .qs li { counter-increment:q; position:relative; background:var(--card); border:3px solid var(--edge); border-radius:18px;
+    padding:14px 16px 14px 62px; margin:0 0 14px; box-shadow:var(--shadow); font-weight:700; }
+  .qs li::before { content:"Q" counter(q); position:absolute; left:14px; top:14px; width:36px; height:36px; border-radius:10px;
+    background:var(--pink); color:#fff; font-weight:800; display:grid; place-items:center; border:2px solid var(--edge); transform:rotate(-6deg); font-size:.9rem; }
+  .qs li span { display:block; font-weight:400; font-size:.9rem; color:var(--muted); margin-top:4px; }
+
+  .then { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
+  .box { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:16px 18px; box-shadow:var(--shadow); }
+  .box h3 { margin:0 0 6px; font-size:1.05rem; font-weight:800; }
+  .box ul { margin:0; padding-left:1.2em; }
+  .box.old { background:var(--purple-bg); } .box.new { background:var(--orange-bg); }
+
+  .em { font-weight:800; background:linear-gradient(transparent 55%, var(--mark-pink) 55%); padding:0 2px; }
+  .src { font-size:.82rem; color:var(--muted); line-height:1.7; }
+  .src a { color:var(--blue); word-break:break-all; }
+  .src ul { padding-left:1.2em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a class="backlink" href="../">← 事前指導2D の一覧へ</a>
+
+<header class="hero">
+  <span class="chip">事前指導2D ／ Day3</span>
+  <h1>「成功」とはなにか</h1>
+  <p>1991年と2026年をくらべる</p>
+  <span class="emoji">🏆</span>
+</header>
+
+<div class="intro">
+  <p>志村が大学を卒業したのは<b>1991年</b>。ちょうど35年前です。</p>
+  <p>その年の「いい会社」「いい人生」は、2026年の今も同じでしょうか。下の数字と変化を見てから、最後の問いを考えてください。</p>
+</div>
+
+<!-- ============ 1 ============ -->
+<div class="sec"><span class="icon">🌏</span><h2>日本の対外的な位置</h2></div>
+<div class="cmp">
+  <div class="row head"><div class="k">項目</div><div class="o">1991年ごろ</div><div class="n">2026年ごろ</div></div>
+  <div class="row"><div class="k">名目GDPの世界順位</div>
+    <div class="o"><span class="v">2位</span><span class="s">アメリカに次ぐ</span></div>
+    <div class="n"><span class="v">4位</span><span class="s">2025年。ドイツに抜かれ、インドが迫る（IMF 2026年4月）</span></div></div>
+  <div class="row"><div class="k">世界のGDPに占める割合</div>
+    <div class="o"><span class="v">約15%</span><span class="s">1994年のピークは約18%</span></div>
+    <div class="n"><span class="v">3.8%</span><span class="s">2024年（内閣府）</span></div></div>
+  <div class="row"><div class="k">1人当たりGDP</div>
+    <div class="o"><span class="v">世界トップクラス</span><span class="s">1990年代半ばにOECD加盟国中5位</span></div>
+    <div class="n"><span class="v">世界38位</span><span class="s">2025年（IMF）。OECD加盟国中では24位（2024年）</span></div></div>
+  <div class="row"><div class="k">世界の時価総額ランキング</div>
+    <div class="o"><span class="v">上位20社中14社が日本企業</span><span class="s">1989年。1位はNTT</span></div>
+    <div class="n"><span class="v">上位50社に日本企業は1社</span><span class="s">トヨタ自動車が39位（2024年）</span></div></div>
+  <div class="row"><div class="k">日経平均株価</div>
+    <div class="o"><span class="v">約2万3,000円</span><span class="s">1991年末。1989年末の3万8,915円から下落中</span></div>
+    <div class="n"><span class="v">6万8,000円台</span><span class="s">2026年6月に史上最高値</span></div></div>
+  <div class="row"><div class="k">1ドルは</div>
+    <div class="o"><span class="v">約135円</span></div>
+    <div class="n"><span class="v">約150円</span><span class="s">2025年</span></div></div>
+  <div class="row"><div class="k">消費税</div>
+    <div class="o"><span class="v">3%</span><span class="s">1989年に導入</span></div>
+    <div class="n"><span class="v">10%</span><span class="s">2019年から</span></div></div>
+  <div class="row"><div class="k">世界の出来事</div>
+    <div class="o"><span class="v">ソ連崩壊</span><span class="s">1991年12月。前年に東西ドイツ統一</span></div>
+    <div class="n"><span class="v">生成AIの普及</span><span class="s">スマホと生成AIが仕事の道具に</span></div></div>
+</div>
+
+<!-- ============ 2 ============ -->
+<div class="sec"><span class="icon">💼</span><h2>働き方とお金</h2></div>
+<div class="cmp">
+  <div class="row head"><div class="k">項目</div><div class="o">1991年ごろ</div><div class="n">2026年ごろ</div></div>
+  <div class="row"><div class="k">大卒求人倍率</div>
+    <div class="o"><span class="v">2.86倍</span><span class="s">1991年卒。調査開始以来の最高</span></div>
+    <div class="n"><span class="v">1.66倍</span><span class="s">2026年卒（リクルートワークス研究所）</span></div></div>
+  <div class="row"><div class="k">平均給与（1年勤めた人）</div>
+    <div class="o"><span class="v">447万円</span><span class="s">1991年分（国税庁）</span></div>
+    <div class="n"><span class="v">487万円</span><span class="s">2025年分。35年で約1割しか増えていない</span></div></div>
+  <div class="row"><div class="k">大卒の初任給</div>
+    <div class="o"><span class="v">約17.9万円</span><span class="s">1991年</span></div>
+    <div class="n"><span class="v">26.2万円</span><span class="s">2025年（厚生労働省）</span></div></div>
+  <div class="row"><div class="k">非正規で働く人の割合</div>
+    <div class="o"><span class="v">約2割</span></div>
+    <div class="n"><span class="v">約4割弱</span><span class="s">2025年 約37%</span></div></div>
+  <div class="row"><div class="k">共働きと専業主婦</div>
+    <div class="o"><span class="v">ほぼ同数</span><span class="s">1990年代半ばに共働きが上回る</span></div>
+    <div class="n"><span class="v">共働き1,300万 ／ 専業主婦508万世帯</span><span class="s">2024年</span></div></div>
+  <div class="row"><div class="k">働く時間と休み</div>
+    <div class="o"><span class="v">年2,000時間超が普通</span><span class="s">土曜出勤・学校も土曜授業。「24時間戦えますか」（1989年のCM）</span></div>
+    <div class="n"><span class="v">週休2日・働き方改革</span><span class="s">残業の上限規制（2019年〜）、在宅勤務</span></div></div>
+  <div class="row"><div class="k">会社との関係</div>
+    <div class="o"><span class="v">終身雇用・年功序列</span><span class="s">新卒で入った会社で定年まで、が前提</span></div>
+    <div class="n"><span class="v">転職・副業が当たり前に</span><span class="s">ジョブ型、スキルで選ぶ・選ばれる</span></div></div>
+  <div class="row"><div class="k">女性と仕事</div>
+    <div class="o"><span class="v">均等法施行から5年</span><span class="s">育児休業法は1991年成立、1992年施行</span></div>
+    <div class="n"><span class="v">男性の育休も制度化</span><span class="s">産後パパ育休（2022年〜）</span></div></div>
+</div>
+
+<!-- ============ 3 ============ -->
+<div class="sec"><span class="icon">👥</span><h2>人口と大学</h2></div>
+<div class="cmp">
+  <div class="row head"><div class="k">項目</div><div class="o">1991年ごろ</div><div class="n">2026年ごろ</div></div>
+  <div class="row"><div class="k">総人口</div>
+    <div class="o"><span class="v">約1億2,400万人</span></div>
+    <div class="n"><span class="v">1億2,322万人</span><span class="s">2025年10月。2008年をピークに減少中</span></div></div>
+  <div class="row"><div class="k">生まれた子どもの数</div>
+    <div class="o"><span class="v">約122万人</span><span class="s">1991年</span></div>
+    <div class="n"><span class="v">約67万人</span><span class="s">2025年。10年連続で過去最少</span></div></div>
+  <div class="row"><div class="k">合計特殊出生率</div>
+    <div class="o"><span class="v">1.53</span></div>
+    <div class="n"><span class="v">1.14</span><span class="s">2025年。過去最低</span></div></div>
+  <div class="row"><div class="k">同じ学年の人数（生まれた年の出生数）</div>
+    <div class="o"><span class="v">約187万人</span><span class="s">1968年生まれ（1991年に大卒）</span></div>
+    <div class="n"><span class="v">約112万人</span><span class="s">2003年生まれ（2026年に大卒）</span></div></div>
+  <div class="row"><div class="k">18歳の人口</div>
+    <div class="o"><span class="v">約200万人</span><span class="s">1992年の約205万人がピーク</span></div>
+    <div class="n"><span class="v">約110万人</span><span class="s">2025年</span></div></div>
+  <div class="row"><div class="k">大学（学部）進学率</div>
+    <div class="o"><span class="v">約25%</span><span class="s">4人に1人</span></div>
+    <div class="n"><span class="v">58.6%</span><span class="s">2025年。過去最高</span></div></div>
+  <div class="row"><div class="k">大学（学部）卒業者</div>
+    <div class="o"><span class="v">約43万人</span></div>
+    <div class="n"><span class="v">約59万人</span><span class="s">学年の人数は減ったのに、大卒は増えた</span></div></div>
+</div>
+
+<h3 style="margin:24px 0 10px;font-weight:800">年齢別の人口（全体に占める割合）</h3>
+<div class="pyr">
+  <div class="yr">1991年ごろ</div>
+  <div class="bar"><span class="a" style="width:18.2%">18%</span><span class="b" style="width:69.2%">69%</span><span class="c" style="width:12.6%">13%</span></div>
+  <div class="yr" style="margin-top:14px">2025年</div>
+  <div class="bar"><span class="a" style="width:10.9%">11%</span><span class="b" style="width:59.7%">60%</span><span class="c" style="width:29.4%">29%</span></div>
+  <div class="legend"><span><i style="background:#7fd6a8"></i>0〜14歳</span><span><i style="background:#9cc3ff"></i>15〜64歳（働く世代）</span><span><i style="background:#ffb38a"></i>65歳以上</span></div>
+  <p style="margin:10px 0 0;font-size:.9rem">65歳以上の割合は<b>約2.3倍</b>に。今は国民の<span class="em">3.4人に1人</span>が65歳以上。</p>
+</div>
+
+<!-- ============ 4 ============ -->
+<div class="sec"><span class="icon">📼</span><h2>1991年にはあって、今はないもの</h2></div>
+<div class="gone">
+  <div class="g"><span class="from">ポケベル</span><span class="arrow">→</span><span class="to">スマホ・LINE</span><span class="note">数字で「0840（おはよう）」と送った。個人向けは2019年に終了</span></div>
+  <div class="g"><span class="from">公衆電話とテレホンカード</span><span class="arrow">→</span><span class="to">携帯電話</span><span class="note">1991年に小型の携帯電話「ムーバ」が登場。持っている人はごく一部</span></div>
+  <div class="g"><span class="from">紙の切符・回数券</span><span class="arrow">→</span><span class="to">Suica・スマホ決済</span><span class="note">Suicaは2001年から</span></div>
+  <div class="g"><span class="from">レンタルビデオ（VHS）</span><span class="arrow">→</span><span class="to">動画配信</span><span class="note">借りたら巻き戻して返す</span></div>
+  <div class="g"><span class="from">カセット・CD・ウォークマン</span><span class="arrow">→</span><span class="to">音楽ストリーミング</span></div>
+  <div class="g"><span class="from">フィルムカメラと現像</span><span class="arrow">→</span><span class="to">スマホのカメラ・SNS</span><span class="note">撮った写真は、現像するまで見られない</span></div>
+  <div class="g"><span class="from">ワープロ専用機・手書きの書類</span><span class="arrow">→</span><span class="to">PC・クラウド・生成AI</span></div>
+  <div class="g"><span class="from">FAXと手紙</span><span class="arrow">→</span><span class="to">メール・チャット</span></div>
+  <div class="g"><span class="from">分厚い就職情報誌と資料請求はがき</span><span class="arrow">→</span><span class="to">就活サイト・オンライン面接</span></div>
+  <div class="g"><span class="from">紙の地図と時刻表</span><span class="arrow">→</span><span class="to">地図アプリ・乗換案内</span></div>
+  <div class="g"><span class="from">百科事典</span><span class="arrow">→</span><span class="to">検索・生成AI</span></div>
+  <div class="g"><span class="from">オフィスの灰皿・新幹線の喫煙車</span><span class="arrow">→</span><span class="to">屋内は原則禁煙</span><span class="note">2020年の改正健康増進法から</span></div>
+  <div class="g"><span class="from">土曜の授業・土曜出勤</span><span class="arrow">→</span><span class="to">週休2日</span><span class="note">学校の完全週5日制は2002年から</span></div>
+  <div class="g"><span class="from">ソビエト連邦</span><span class="arrow">→</span><span class="to">ロシアなど15か国</span><span class="note">1991年12月に崩壊</span></div>
+</div>
+
+<!-- ============ 5 ============ -->
+<div class="sec"><span class="icon">🏆</span><h2>1991年の「成功」と、いま</h2></div>
+<div class="then">
+  <div class="box old">
+    <h3>1991年によく言われた「成功」</h3>
+    <ul>
+      <li>有名な大企業に新卒で入る</li>
+      <li>定年まで同じ会社で働き、年功で昇進・昇給</li>
+      <li>結婚して、マイホームと車を持つ</li>
+      <li>日本の会社にいれば、世界で勝てる</li>
+    </ul>
+  </div>
+  <div class="box new">
+    <h3>2026年に起きていること</h3>
+    <ul>
+      <li>1989年に世界の上位にいた日本の大企業の多くは、今は上位にいない</li>
+      <li>平均給与は35年で約1割増。物価や社会保険料も上がった</li>
+      <li>転職・副業・起業・海外で働く、が選べる</li>
+      <li>大卒は2人に1人以上。学歴だけでは差がつかない</li>
+    </ul>
+  </div>
+</div>
+
+<div class="sec"><span class="icon">🤔</span><h2>考えてみよう</h2></div>
+<ol class="qs">
+  <li>1991年の「成功」の条件のうち、2026年の今も通用するものはどれか。通用しなくなったものはどれか。
+    <span>上の表から根拠になる数字を1つ選んで説明する</span></li>
+  <li>1991年に「正解」だった選択（大企業に入る、など）を、35年後の今から見て、あなたは成功だと思うか。
+    <span>本人の満足、お金、時間、家族、社会への影響など、何を基準にしたかも書く</span></li>
+  <li>35年後の2061年、あなたは55歳前後。今の「当たり前」のうち、なくなっていそうなものを3つ挙げる。
+    <span>スマホ、就職サイト、新卒一括採用、通勤……</span></li>
+  <li>あなたにとっての「成功」を、条件3つで書く。そのうち、インターンの4か月で確かめられるものはどれか。</li>
+</ol>
+
+<!-- ============ 出典 ============ -->
+<div class="sec"><span class="icon">📚</span><h2>数字の出典</h2></div>
+<div class="src">
+  <p>「約」を付けた数字は、年や集計の定義が少しずれる値、または概数です。年によって調査方法が変わっている項目（非正規の割合、労働時間など）は、傾向をつかむための目安として見てください。</p>
+  <ul>
+    <li>平均給与：国税庁「民間給与実態統計調査」（平成3年分 4,466千円、令和7年分 487万円）
+      <a href="https://www.nta.go.jp/publication/statistics/kokuzeicho/minkan1997/menu/03.htm">nta.go.jp</a></li>
+    <li>大卒求人倍率：リクルートワークス研究所「ワークス大卒求人倍率調査」
+      <a href="https://www.works-i.com/surveys/item/250424_recruitment_saiyo_ratio.pdf">works-i.com</a></li>
+    <li>初任給：厚生労働省「賃金構造基本統計調査」（1991年は <a href="https://nenji-toukei.com/n/kiji/10021">年次統計</a> の整理による）</li>
+    <li>GDP・1人当たりGDP：IMF World Economic Outlook（2026年4月版）、内閣府「国民経済計算 GDPの国際比較」
+      <a href="https://www.esri.cao.go.jp/jp/sna/data/data_list/kakuhou/files/2024/sankou/pdf/kokusaihikaku_20251223.pdf">esri.cao.go.jp</a></li>
+    <li>時価総額ランキング：東洋経済オンライン
+      <a href="https://toyokeizai.net/articles/-/601987">toyokeizai.net</a></li>
+    <li>人口・年齢構成：総務省統計局「人口推計」
+      <a href="https://www.stat.go.jp/data/jinsui/pdf/202603.pdf">stat.go.jp</a></li>
+    <li>出生数・合計特殊出生率：厚生労働省「人口動態統計」
+      <a href="https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/kakutei25/dl/04_houdouR07.pdf">mhlw.go.jp</a></li>
+    <li>大学進学率・卒業者数：文部科学省「学校基本調査」
+      <a href="https://www.mext.go.jp/content/20260327-mxt_chousa01-000048552_10.pdf">mext.go.jp</a></li>
+    <li>共働き世帯：労働政策研究・研修機構
+      <a href="https://www.jil.go.jp/kokunai/statistics/qa/a07.html">jil.go.jp</a></li>
+    <li>日経平均：各社報道（2026年6月3日 終値6万8,402円）</li>
+  </ul>
+</div>
+
+</div>
+</body>
+</html>
