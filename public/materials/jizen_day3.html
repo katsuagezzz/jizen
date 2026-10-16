@@ -110,7 +110,7 @@
   /* mail */
   .mcard { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:18px; margin:0 0 18px; box-shadow:var(--shadow); }
   .mcard h3 { margin:0 0 10px; font-size:1.1rem; font-weight:800; display:flex; gap:8px; align-items:center; }
-  .mcard h3 .tag { font-size:.75rem; color:#fff; background:var(--c); border:2px solid var(--edge); border-radius:999px; padding:0 10px; }
+  .mcard h3 .tag { font-size:.75rem; color:#fff; background:var(--c); border:2px solid var(--edge); border-radius:999px; padding:0 10px; white-space:nowrap; flex:none; }
   .mcard ul { margin:0; padding-left:1.2em; }
   .pills { display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 0; padding:0; list-style:none; }
   .pills li { background:var(--cb); border:2px solid var(--edge); border-radius:999px; padding:2px 12px; font-size:.92rem; }
@@ -234,7 +234,7 @@
 - 明日：画面キャプチャを取り、スライド7〜8を作成</div></div>
 
 <div class="sec"><span class="icon">🏅</span><h2>お手本の日報（先輩の実例）</h2></div>
-<p style="margin:0 0 14px">前期のインターンで実際に提出された日報2本。名前・学籍番号・企業名・社内の固有名詞はぼかしています。<a href="/materials/jizen_day2.html" style="color:var(--blue);font-weight:800">Day2 で学んだ書き方</a>がどう使われているかに注目。</p>
+<p style="margin:0 0 14px">前期のインターンで実際に提出された日報3本（2人分）。名前・学籍番号・企業名・社内の固有名詞はぼかしています。<a href="/materials/jizen_day2.html" style="color:var(--blue);font-weight:800">Day2 で学んだ書き方</a>がどう使われているかに注目。</p>
 
 <div class="mcard c-green">
   <h3><span class="tag">実例A</span>前期最終日の日報（出勤）</h3>
@@ -259,8 +259,20 @@
   </ul>
 </div>
 
+<div class="mcard c-purple">
+  <h3><span class="tag">実例C</span>実例Aの2週間前の日報（出勤）</h3>
+  <div class="shots"><a href="/materials/img/day3_ideal_c1.jpg" target="_blank" rel="noopener"><img src="/materials/img/day3_ideal_c1.jpg" alt="日報1ページ目：基本情報、本日の業務予定と自己目標、自己評価" loading="lazy"><span>1ページ目（タップで拡大）</span></a><a href="/materials/img/day3_ideal_c2.jpg" target="_blank" rel="noopener"><img src="/materials/img/day3_ideal_c2.jpg" alt="日報2ページ目：時刻ごとの実際にやったこと、学んだことを3点に番号で整理" loading="lazy"><span>2ページ目（タップで拡大）</span></a><a href="/materials/img/day3_ideal_c3.jpg" target="_blank" rel="noopener"><img src="/materials/img/day3_ideal_c3.jpg" alt="日報3ページ目：本日の感想、実習指導者からのコメント" loading="lazy"><span>3ページ目（タップで拡大）</span></a></div>
+  <ul class="pts" style="--c:var(--purple);--cb:var(--purple-bg)">
+    <li><b class="k">結論が先</b>学んだことの冒頭で<q>本日の学びは、下記の3点である</q>と数を先に言い、<b>1. 2. 3.</b> の見出しを並べてから本文に入る</li>
+    <li><b class="k">見出し</b><q>放送実演とワンチャンス主義に関する深い理解</q><q>レポート作成による知識の定着</q>。見出しだけ縦に読めば1日の中身が分かる</li>
+    <li><b class="k">体言止め</b>自己目標は<q>基本的な言葉遣い</q><q>正確性を重視した承認作業とデータの確認</q>。短く、夕方に「できたか」を確かめられる</li>
+    <li><b class="k">自分の言葉</b>調べた専門用語を<q>放送実演とは、〜を指し</q>と定義から説明。読んだ指導者が理解度を確認できる</li>
+    <li><b class="k">成長が見える</b>約2週間後の実例Aでは、目標に「週に一度」「月に二冊」と数字が入っている。同じ人の日報が少しずつ具体的になっていく</li>
+  </ul>
+</div>
+
 <div class="mcard c-orange">
-  <h3><span class="tag">2本に共通</span>読み手がすぐ分かる</h3>
+  <h3><span class="tag">3本に共通</span>読み手がすぐ分かる</h3>
   <ul>
     <li>体調や私生活の話がない。<b>仕事のことだけ</b>（前のセクションの悪い例とくらべてみよう）</li>
     <li>「頑張りました」「勉強になりました」だけで終わらず、<b>何を・どれだけ・次にどうするか</b>が書いてある</li>
