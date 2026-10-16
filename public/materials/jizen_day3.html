@@ -144,6 +144,16 @@
   .nippo-tbl th { background:var(--blue-bg); text-align:left; padding:6px 10px; border-bottom:2px solid var(--edge); }
   .nippo-tbl td { padding:6px 10px; border-bottom:1px solid var(--dots); vertical-align:top; }
   .nippo-tbl td.d { white-space:nowrap; font-weight:800; }
+  .shots { display:flex; gap:12px; overflow-x:auto; padding:4px 2px 10px; scroll-snap-type:x mandatory; }
+  .shots a { flex:0 0 min(78%,320px); scroll-snap-align:start; }
+  .shots img { width:100%; height:auto; display:block; border:3px solid var(--edge); border-radius:14px; background:#fff; }
+  .shots span { display:block; text-align:center; font-size:.78rem; font-weight:800; color:var(--muted); margin-top:4px; }
+  .pts { list-style:none; margin:10px 0 0; padding:0; }
+  .pts li { position:relative; padding:8px 12px 8px 108px; margin:8px 0; background:var(--cb, var(--yellow-bg)); border-radius:14px; }
+  .pts li b.k { position:absolute; left:10px; top:8px; width:86px; text-align:center; font-size:.78rem; color:#fff; background:var(--c, var(--orange));
+    border:2px solid var(--edge); border-radius:999px; padding:0 4px; }
+  .pts q { font-weight:800; quotes:"「" "」"; }
+  @media (max-width:520px) { .pts li { padding-left:12px; } .pts li b.k { position:static; display:inline-block; width:auto; padding:0 10px; margin-bottom:4px; } }
 </style>
 </head>
 <body>
@@ -222,6 +232,41 @@
 - 完了：スライド1〜6（システム概要・画面構成）
 - 残り：スライド7〜10（インストール手順）、動画
 - 明日：画面キャプチャを取り、スライド7〜8を作成</div></div>
+
+<div class="sec"><span class="icon">🏅</span><h2>お手本の日報（先輩の実例）</h2></div>
+<p style="margin:0 0 14px">前期のインターンで実際に提出された日報2本。名前・学籍番号・企業名・社内の固有名詞はぼかしています。<a href="/materials/jizen_day2.html" style="color:var(--blue);font-weight:800">Day2 で学んだ書き方</a>がどう使われているかに注目。</p>
+
+<div class="mcard c-green">
+  <h3><span class="tag">実例A</span>前期最終日の日報（出勤）</h3>
+  <div class="shots"><a href="/materials/img/day3_ideal_a1.jpg" target="_blank" rel="noopener"><img src="/materials/img/day3_ideal_a1.jpg" alt="日報1ページ目：基本情報、本日の業務予定と自己目標、自己評価" loading="lazy"><span>1ページ目（タップで拡大）</span></a><a href="/materials/img/day3_ideal_a2.jpg" target="_blank" rel="noopener"><img src="/materials/img/day3_ideal_a2.jpg" alt="日報2ページ目：時刻ごとの実際にやったこと、本日の業務から学んだこと（後期の目標を階層つきの箇条書きで整理）" loading="lazy"><span>2ページ目（タップで拡大）</span></a><a href="/materials/img/day3_ideal_a3.jpg" target="_blank" rel="noopener"><img src="/materials/img/day3_ideal_a3.jpg" alt="日報3ページ目：目標の続き、本日の感想、実習指導者からのコメント" loading="lazy"><span>3ページ目（タップで拡大）</span></a></div>
+  <ul class="pts" style="--c:var(--green);--cb:var(--green-bg)">
+    <li><b class="k">箇条書き</b>業務予定も自己目標も「・」で1行ずつ。<q>前期の学びの集大成と後期の展望</q><q>承認作業の集中と効率化の定着</q>のように<b>体言止め</b>で短い</li>
+    <li><b class="k">見出し</b>後期の目標を <b>1 → ① → ・</b> の3段で整理。<q>業務スキル・知識の深化と応用</q>→<q>著作権実務の専門性向上</q>と、見出しだけ読んでも中身が分かる</li>
+    <li><b class="k">数字</b><q>週に一度は改善点を最低1つ</q><q>月に二冊以上</q>など、あとで「できたか」を確かめられる書き方</li>
+    <li><b class="k">量が分かる</b>時刻表の作業に処理した番号の範囲（2300〜2310 など）があり、1時間で何件進んだかが読み手に分かる</li>
+    <li><b class="k">結論が先</b>学んだことの1文目が<q>40日間を総括し、後期に向けた具体的な改善点と目標を策定した</q>。何をした日かが最初に分かる</li>
+  </ul>
+</div>
+
+<div class="mcard c-blue">
+  <h3><span class="tag">実例B</span>在宅勤務の日の日報</h3>
+  <div class="shots"><a href="/materials/img/day3_ideal_b1.jpg" target="_blank" rel="noopener"><img src="/materials/img/day3_ideal_b1.jpg" alt="日報1ページ目：基本情報、本日の業務予定と自己目標、自己評価" loading="lazy"><span>1ページ目（タップで拡大）</span></a><a href="/materials/img/day3_ideal_b2.jpg" target="_blank" rel="noopener"><img src="/materials/img/day3_ideal_b2.jpg" alt="日報2ページ目：時刻ごとの実際にやったこと、見出しつきの学んだことと感想" loading="lazy"><span>2ページ目（タップで拡大）</span></a></div>
+  <ul class="pts" style="--c:var(--blue);--cb:var(--blue-bg)">
+    <li><b class="k">タイトル</b>学んだこと・感想の段落ごとに<b>【見出し】＋一言のタイトル</b>。<q>【他社事例の視点】アクセラレーションにも色がある</q><q>【想定外の変更にも対応】柔軟に切り替える力</q></li>
+    <li><b class="k">結論が先</b>タイトルで結論を言い、本文で理由と事実（会議が中止になった経緯）を書く。Day2 の「1文目に結論、2文目に理由」と同じ形</li>
+    <li><b class="k">時刻表</b>9:00〜18:00 を5つに区切り、何に何時間使ったかが一目で分かる</li>
+    <li><b class="k">自己目標</b><q>調査内容をわかりやすくまとめ、自社との違いや活かせる視点を見つける</q>。その日の業務につながる目標で、夕方に振り返れる</li>
+  </ul>
+</div>
+
+<div class="mcard c-orange">
+  <h3><span class="tag">2本に共通</span>読み手がすぐ分かる</h3>
+  <ul>
+    <li>体調や私生活の話がない。<b>仕事のことだけ</b>（前のセクションの悪い例とくらべてみよう）</li>
+    <li>「頑張りました」「勉強になりました」だけで終わらず、<b>何を・どれだけ・次にどうするか</b>が書いてある</li>
+    <li>このまま AI に読み込ませても整理しやすい形。4か月分たまれば、ガクチカと履歴書の材料になる</li>
+  </ul>
+</div>
 
 <div class="sec"><span class="icon">💡</span><h2>フィードバックから学ぶべき3つのポイント</h2></div>
 <div class="points">
