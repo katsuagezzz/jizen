@@ -32,7 +32,7 @@ def split_title(title: str) -> tuple[str, str, str]:
 
 
 def card(i: int, path: Path) -> str:
-    href = html.escape(path.relative_to(DIST).as_posix())
+    href = "/" + html.escape(path.relative_to(DIST).as_posix())
     day, main, sub = split_title(page_title(path))
     badge = f'<span class="day">{html.escape(day)}</span>' if day else ""
     subline = f'<span class="sub">{html.escape(sub)}</span>' if sub else ""
@@ -136,6 +136,36 @@ def main() -> None:
   <ul>
 {items}
   </ul>
+</main>
+</body>
+</html>
+""",
+        encoding="utf-8",
+    )
+    # 404.html が無いと Cloudflare Pages は存在しない URL にもトップページを返し、
+    # 相対リンクが /materials/materials/... のように崩れるため、必ず用意する。
+    (DIST / "404.html").write_text(
+        f"""<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>ページが見つかりません｜{SITE_TITLE}</title>
+<style>
+  body {{ margin:0; min-height:100vh; display:grid; place-items:center; background:#fff8ee; color:#22202b;
+    font-family:"Hiragino Maru Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif; text-align:center; padding:16px; }}
+  @media (prefers-color-scheme: dark) {{ body {{ background:#1b1824; color:#f4f1fa; }} }}
+  h1 {{ font-size:1.4rem; }}
+  a {{ display:inline-block; margin-top:12px; font-weight:800; color:inherit; border:3px solid currentColor;
+    border-radius:999px; padding:6px 18px; text-decoration:none; }}
+</style>
+</head>
+<body>
+<main>
+  <h1>ページが見つかりません</h1>
+  <p>URLが変わったか、まちがっている可能性があります。</p>
+  <a href="/">← {SITE_TITLE} の一覧へ</a>
 </main>
 </body>
 </html>
