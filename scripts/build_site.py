@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "public"
 DIST = ROOT / "dist"
-SITE_TITLE = "事前指導2D"
+SITE_TITLE = "実習Ⅰ Ⅱ 2D"
 SITE_LEAD = "インターンに行く前に読んでおく資料"
 JST = timezone(timedelta(hours=9))
 # カードの色と絵文字を順番に割り当てる
@@ -127,7 +127,7 @@ def main() -> None:
 <body>
 <main>
   <header class="hero">
-    <span class="chip">インターン事前指導</span>
+    <span class="chip">インターン実習</span>
     <h1>{SITE_TITLE}</h1>
     <p>{SITE_LEAD}</p>
     <span class="deco">🎒</span>
