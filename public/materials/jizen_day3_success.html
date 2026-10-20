@@ -122,6 +122,19 @@
   .rk .tot b { font-size:1.25rem; }
   .big { text-align:center; margin:16px 0 4px; font-weight:800; font-size:1.05rem; }
   .big b { font-size:1.6rem; background:linear-gradient(transparent 55%, var(--mark-pink) 55%); padding:0 4px; }
+  .gdp4 { width:100%; border-collapse:separate; border-spacing:0; background:var(--card); border:3px solid var(--edge); border-radius:22px; box-shadow:var(--shadow); overflow:hidden; font-size:.92rem; }
+  .gdp4 th { padding:8px 10px; color:#fff; font-weight:800; font-size:.85rem; text-align:right; background:var(--edge); }
+  .gdp4 th:first-child { text-align:left; }
+  .gdp4 th.o { background:var(--old); } .gdp4 th.n { background:var(--new); }
+  .gdp4 td { padding:8px 10px; border-top:2px dashed var(--muted); text-align:right; vertical-align:top; }
+  .gdp4 td:first-child { text-align:left; font-weight:800; white-space:nowrap; }
+  .gdp4 td b { display:block; font-size:1.05rem; white-space:nowrap; }
+  .gdp4 td small { display:block; font-size:.75rem; color:var(--muted); line-height:1.4; }
+  .gdp4 tr.jp td { background:var(--yellow-bg); }
+  @media (max-width:600px) { .gdp4 { font-size:.85rem; } .gdp4 th, .gdp4 td { padding:7px 6px; } .gdp4 td:first-child { white-space:normal; } .gdp4 td:first-child { width:5.2em; } .gdp4 td b { font-size:.86rem; } }
+  .flip { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; margin-top:14px; }
+  .flip .box h3 { font-size:1rem; }
+  .flip .box p { margin:0; font-size:.9rem; line-height:1.7; }
   .rev { width:100%; border-collapse:collapse; font-size:.9rem; }
   .rev th, .rev td { padding:6px 10px; border-bottom:1px dashed var(--muted); text-align:left; }
   .rev td.r, .rev th.r { text-align:right; white-space:nowrap; }
@@ -175,6 +188,24 @@
     <div class="o"><span class="v">ソ連崩壊</span><span class="s">1991年12月。前年に東西ドイツ統一</span></div>
     <div class="n"><span class="v">生成AIの普及</span><span class="s">スマホと生成AIが仕事の道具に</span></div></div>
 </div>
+
+<h3 style="margin:26px 0 8px;font-weight:800">1人当たりGDP 4か国くらべ（日本・オーストラリア・韓国・ミャンマー）</h3>
+<p class="src">名目・米ドル換算。IMF「World Economic Outlook」2026年4月版の数値で、両年をそろえて比べます（2026年はまだ推計途中のため、最新の実績見込みである2025年を使用）。上の表の世界銀行（2024年）とは出典・年が異なるため、日本の金額が少し違います。</p>
+<table class="gdp4">
+  <thead><tr><th>国</th><th class="o">1991年</th><th class="n">2025年（世界順位）</th></tr></thead>
+  <tbody>
+    <tr class="jp"><td>🇯🇵 日本</td><td><b>約3万100ドル</b><small>世界トップ10圏</small></td><td><b>約3万6,000ドル</b><small>38位／193か国</small></td></tr>
+    <tr><td>🇦🇺 オーストラリア</td><td><b>約1万8,700ドル</b><small>日本の約6割</small></td><td><b>約6万6,400ドル</b><small>13位　日本の約1.8倍</small></td></tr>
+    <tr><td>🇰🇷 韓国</td><td><b>約7,900ドル</b><small>日本の約4分の1</small></td><td><b>約3万6,200ドル</b><small>37位　日本とほぼ同じ</small></td></tr>
+    <tr><td>🇲🇲 ミャンマー</td><td><b>約140ドル</b><small>日本の約200分の1（国連統計）</small></td><td><b>約1,500ドル</b><small>163位　日本の約24分の1</small></td></tr>
+  </tbody>
+</table>
+<div class="flip">
+  <div class="box new"><h3>🇦🇺 オーストラリアに逆転された</h3><p>1991年は日本の約6割。資源輸出の好調と豪ドル高で2000年代後半に日本を追い抜き、2025年には<span class="em">日本の約1.8倍</span>に。</p></div>
+  <div class="box new"><h3>🇰🇷 韓国にも逆転された</h3><p>1991年は日本の約4分の1。内閣府の国際比較では<span class="em">2023年に韓国が日本を上回った</span>（韓国35,674ドル、日本35,229ドル）。IMFの2025年でも韓国37位・日本38位。</p></div>
+  <div class="box old"><h3>🇲🇲 ミャンマーとの差は縮まった</h3><p>約200分の1から約24分の1へ。それでも差は大きく、2021年のクーデター後は経済が停滞。日本で働くミャンマー出身者も増えています。</p></div>
+</div>
+<p class="src" style="margin-top:10px">円安の影響：名目ドル換算は為替で大きく動きます。1991年は年平均で1ドル約135円、2025年は150円前後。円で見た日本の所得が同じでも、ドルで見ると小さくなります。順位は「豊かさ」の一つの物差しにすぎません。</p>
 
 <h3 style="margin:26px 0 8px;font-weight:800">世界の時価総額トップ10（株式の市場評価額）</h3>
 <p class="src">時価総額は原則「株価 × 発行済株式数」。売上・利益・会社の買収価格とは異なります。以下は各資料に掲載された上位10社の比較です。1989年は原誌の転載資料、2026年は別の集計記事に基づき、同じ月日・同じ集計方法には統一できていません。1991年対2026年の厳密な比較ではなく、上位企業の顔ぶれの変化を考える参考資料です。</p>
@@ -354,6 +385,8 @@
       <a href="https://www.works-i.com/surveys/item/250424_recruitment_saiyo_ratio.pdf">works-i.com</a></li>
     <li>初任給・新規学卒者賃金：厚生労働省「賃金構造基本統計調査」<a href="https://www.mhlw.go.jp/toukei/itiran/roudou/chingin/kouzou/01/kouzou7.html">1991年（附属統計表第1表・企業規模計・男女別）</a>／<a href="https://www.mhlw.go.jp/toukei/itiran/roudou/chingin/kouzou/z2025/dl/10.pdf">2025年（第10表）</a>／<a href="https://www.mhlw.go.jp/toukei/itiran/roudou/chingin/kouzou/z2020/chuui.html">2020年の定義変更</a></li>
     <li>GDP：世界銀行WDIの同一取得版（2026年10月16日取得）。<a href="https://api.worldbank.org/v2/country/JPN;WLD/indicator/NY.GDP.MKTP.CD?date=1991:2024&amp;format=json&amp;per_page=100">名目GDP（NY.GDP.MKTP.CD）</a>／<a href="https://api.worldbank.org/v2/country/JPN/indicator/NY.GDP.PCAP.CD?date=1991:2024&amp;format=json&amp;per_page=100">1人当たりGDP（NY.GDP.PCAP.CD）</a>。世界シェアは日本÷世界。順位は集計地域を除く国・地域の公表値を比較（欠測国は除外）。両年とも米ドル建て・暦年。照合資料：内閣府「GDPの国際比較」では2024年シェア3.8%、1人当たり33,785ドル。統計の改定版・人口系列の差によりWDIと小差がある。
+      <a href="https://www.esri.cao.go.jp/jp/sna/data/data_list/kakuhou/files/2024/sankou/pdf/kokusaihikaku_20251223.pdf">esri.cao.go.jp</a></li>
+    <li>1人当たりGDP 4か国：IMF「World Economic Outlook Database」2026年4月版の名目・米ドル換算（NGDPDPC）。1991年・2025年の値と2025年の世界順位（193か国・地域）は、同版を掲載する <a href="https://ecodb.net/ranking/group/XK/imf_ngdpdpc.html">世界経済のネタ帳</a>・<a href="https://www.worldometers.info/gdp/gdp-per-capita/">Worldometer</a>・<a href="https://www.globalnote.jp/post-1339.html">GLOBAL NOTE</a> で確認。ミャンマーの1991年はIMFにドル建て値がないため国連統計（National Accounts）の概数。日本の1991年の位置は「1990年9位・1995年3位」（IMF）からの目安。韓国の逆転年は内閣府「GDPの国際比較」（OECD統計ベース）。オーストラリアの逆転時期はIMFの年次値の比較による概数。
       <a href="https://www.esri.cao.go.jp/jp/sna/data/data_list/kakuhou/files/2024/sankou/pdf/kokusaihikaku_20251223.pdf">esri.cao.go.jp</a></li>
     <li>時価総額トップ10：1989年はビジネスウィーク誌1989年7月17日号を基にダイヤモンド社が作成した表の転載（原誌は未確認。号の日付を評価基準日とみなさない）（
       <a href="https://www.manegy.com/news/detail/7934/">マネジー</a> の表による）、2026年は10月5日時点の集計（
