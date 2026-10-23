@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Day4 人生におけるポジショニング - 自動運転とHDマップから考える</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#fff8ee; --dots:#ffd9b8; --card:#ffffff; --ink:#22202b; --muted:#6c6878; --edge:#22202b;
+    --pink:#ff5c8a; --pink-bg:#ffe3ec; --orange:#ff8a3d; --orange-bg:#ffe9d9;
+    --yellow:#e0a800; --yellow-bg:#fff4cc; --green:#2bb673; --green-bg:#dcf7e8;
+    --blue:#3d8bff; --blue-bg:#e0edff; --purple:#9b5cff; --purple-bg:#efe4ff;
+    --mark:#ffe55c; --mark-pink:#ffc2d4; --shadow:4px 4px 0 var(--edge);
+    --old:#9b5cff; --new:#ff8a3d;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#1b1824; --dots:#2c2738; --card:#262233; --ink:#f4f1fa; --muted:#b2acc2; --edge:#0c0a12;
+      --pink-bg:#40202d; --orange-bg:#40291b; --yellow-bg:#3d3418; --green-bg:#173528;
+      --blue-bg:#1a2a45; --purple-bg:#2e2147; --mark:#7a6a12; --mark-pink:#7a2a44;
+    }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; color:var(--ink); line-height:1.8; font-size:16px;
+    font-family:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;
+    background-color:var(--bg);
+    background-image:radial-gradient(var(--dots) 1.5px, transparent 1.5px); background-size:22px 22px; }
+  .wrap { max-width:900px; margin:0 auto; padding:20px 16px 80px; }
+  .backlink { display:inline-block; font-weight:800; font-size:.9rem; color:var(--ink); text-decoration:none;
+    background:var(--card); border:2px solid var(--edge); border-radius:999px; padding:4px 14px; box-shadow:2px 2px 0 var(--edge); }
+
+  .hero { position:relative; margin:20px 0 28px; padding:32px 24px 28px; border:3px solid var(--edge); border-radius:28px;
+    background:linear-gradient(135deg,#3d8bff 0%,#2bb673 55%,#e0a800 100%); color:#fff; box-shadow:6px 6px 0 var(--edge); overflow:hidden; }
+  .hero::after { content:""; position:absolute; right:-40px; top:-40px; width:180px; height:180px; border-radius:50%; background:rgba(255,255,255,.18); }
+  .hero .chip { display:inline-block; background:#fff; color:#22202b; font-weight:800; font-size:.8rem;
+    border:2px solid #22202b; border-radius:999px; padding:2px 12px; transform:rotate(-2deg); }
+  .hero h1 { font-size:clamp(1.7rem,6vw,2.5rem); line-height:1.3; margin:14px 0 6px; font-weight:800; text-shadow:3px 3px 0 rgba(34,32,43,.35); }
+  .hero p { margin:0; font-weight:700; }
+  .hero .emoji { position:absolute; right:22px; bottom:12px; font-size:3.2rem; transform:rotate(10deg); }
+  @media (max-width:600px) { .hero .emoji { top:12px; bottom:auto; right:12px; font-size:2.4rem; } .hero h1 { margin-top:22px; } }
+
+  .intro { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:18px 20px; box-shadow:var(--shadow); }
+  .intro p { margin:0 0 8px; } .intro p:last-child { margin:0; }
+
+  .sec { display:flex; align-items:center; gap:10px; margin:44px 0 16px; }
+  .sec .icon { flex:none; width:48px; height:48px; border-radius:50%; display:grid; place-items:center; font-size:1.5rem;
+    background:var(--card); border:3px solid var(--edge); box-shadow:3px 3px 0 var(--edge); }
+  .sec h2 { margin:0; font-size:clamp(1.2rem,4.5vw,1.55rem); font-weight:800; line-height:1.35;
+    background:linear-gradient(transparent 62%, var(--mark) 62%); padding:0 4px; }
+
+  /* 問い */
+  .qs { list-style:none; margin:0; padding:0; counter-reset:q; }
+  .qs li { counter-increment:q; position:relative; background:var(--card); border:3px solid var(--edge); border-radius:18px;
+    padding:14px 16px 14px 62px; margin:0 0 14px; box-shadow:var(--shadow); font-weight:700; }
+  .qs li::before { content:"Q" counter(q); position:absolute; left:14px; top:14px; width:36px; height:36px; border-radius:10px;
+    background:var(--pink); color:#fff; font-weight:800; display:grid; place-items:center; border:2px solid var(--edge); transform:rotate(-6deg); font-size:.9rem; }
+  .qs li span { display:block; font-weight:400; font-size:.9rem; color:var(--muted); margin-top:4px; }
+
+  .then { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
+  .box { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:16px 18px; box-shadow:var(--shadow); }
+  .box h3 { margin:0 0 6px; font-size:1.05rem; font-weight:800; }
+  .box ul { margin:0; padding-left:1.2em; }
+  .box.old { background:var(--purple-bg); } .box.new { background:var(--orange-bg); }
+
+  .em { font-weight:800; background:linear-gradient(transparent 55%, var(--mark-pink) 55%); padding:0 2px; }
+  .src { font-size:.82rem; color:var(--muted); line-height:1.7; }
+  .src a { color:var(--blue); word-break:break-all; }
+  .src ul { padding-left:1.2em; }
+  .rank2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; margin-top:6px; }
+  .rk { background:var(--card); border:3px solid var(--edge); border-radius:22px; box-shadow:var(--shadow); overflow:hidden; }
+  .rk h3 { margin:0; padding:10px 16px; color:#fff; font-size:1rem; font-weight:800; }
+  .rk.o h3 { background:var(--old); } .rk.n h3 { background:var(--new); }
+  .rk ol { list-style:none; margin:0; padding:6px 0; counter-reset:r; }
+  .rk li { counter-increment:r; display:flex; align-items:baseline; gap:8px; padding:5px 16px; border-bottom:1px dashed var(--muted); font-size:.95rem; }
+  .rk li:last-child { border-bottom:none; }
+  .rk li::before { content:counter(r); flex:none; width:1.6em; font-weight:800; color:var(--muted); }
+  .rk li .nm { flex:1; } .rk li .mc { font-weight:800; white-space:nowrap; }
+  .rk li.jp .nm::after { content:"日本"; margin-left:6px; font-size:.7rem; font-weight:800; color:#fff; background:#e60033; border-radius:6px; padding:0 6px; vertical-align:1px; }
+  .rk .tot { background:var(--yellow-bg); padding:10px 16px; font-weight:800; border-top:2px solid var(--edge); }
+  .rk .tot b { font-size:1.25rem; }
+  .big { text-align:center; margin:16px 0 4px; font-weight:800; font-size:1.05rem; }
+  .big b { font-size:1.6rem; background:linear-gradient(transparent 55%, var(--mark-pink) 55%); padding:0 4px; }
+  .em { font-weight:800; background:linear-gradient(transparent 55%, var(--mark-pink) 55%); padding:0 2px; }
+  .src { font-size:.82rem; color:var(--muted); line-height:1.7; }
+  .src a { color:var(--blue); word-break:break-all; }
+  .src ul { padding-left:1.2em; }
+
+  .box { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:16px 18px; box-shadow:var(--shadow); }
+  .box h3 { margin:0 0 6px; font-size:1.05rem; font-weight:800; }
+  .box p { margin:0 0 6px; } .box p:last-child { margin:0; }
+  .box ul { margin:0; padding-left:1.2em; }
+  .grid2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
+  .box.a { background:var(--blue-bg); } .box.b { background:var(--green-bg); } .box.y { background:var(--yellow-bg); } .box.p { background:var(--pink-bg); }
+  .tag { display:inline-block; font-size:.75rem; font-weight:800; border:2px solid var(--edge); border-radius:999px; padding:0 10px; margin-right:6px; background:var(--card); }
+
+  /* 用語 */
+  .terms { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; }
+  .term { background:var(--card); border:3px solid var(--edge); border-radius:18px; padding:12px 14px; box-shadow:3px 3px 0 var(--edge); }
+  .term b { display:block; font-size:1rem; }
+  .term span { font-size:.88rem; color:var(--muted); line-height:1.6; display:block; margin-top:2px; }
+
+  /* 2陣営の表 */
+  .camp { width:100%; border-collapse:separate; border-spacing:0; background:var(--card); border:3px solid var(--edge); border-radius:22px; box-shadow:var(--shadow); overflow:hidden; font-size:.93rem; }
+  .camp th { padding:10px 12px; color:#fff; font-weight:800; text-align:left; font-size:.9rem; }
+  .camp th:first-child { background:var(--edge); width:4.5em; }
+  .camp th.m { background:var(--blue); } .camp th.n { background:var(--green); }
+  .camp td { padding:10px 12px; border-top:2px dashed var(--muted); vertical-align:top; line-height:1.6; }
+  .camp td:first-child { font-weight:800; background:var(--yellow-bg); }
+
+  /* タイムライン */
+  .tl { list-style:none; margin:0; padding:0 0 0 22px; border-left:4px solid var(--edge); }
+  .tl li { position:relative; margin:0 0 14px; padding:10px 14px; background:var(--card); border:3px solid var(--edge); border-radius:16px; box-shadow:3px 3px 0 var(--edge); }
+  .tl li::before { content:""; position:absolute; left:-36px; top:16px; width:18px; height:18px; border-radius:50%; background:var(--pink); border:3px solid var(--edge); }
+  .tl li.bad::before { background:var(--muted); }
+  .tl .yr { font-weight:800; color:var(--pink); margin-right:6px; }
+  .tl li.bad .yr { color:var(--muted); }
+
+  /* サプライチェーン */
+  .chain { display:flex; flex-direction:column; gap:0; }
+  .layer { display:grid; grid-template-columns:150px 1fr; background:var(--card); border:3px solid var(--edge); border-radius:16px; box-shadow:3px 3px 0 var(--edge); overflow:hidden; }
+  .layer .ln { background:var(--edge); color:#fff; font-weight:800; padding:10px 12px; display:flex; align-items:center; gap:6px; }
+  .layer .lc { padding:10px 14px; font-size:.92rem; line-height:1.6; }
+  .layer .lc small { display:block; color:var(--muted); font-size:.8rem; }
+  .layer.hot .ln { background:var(--pink); }
+  .down { text-align:center; font-weight:800; color:var(--muted); line-height:1.6; }
+  @media (max-width:600px) { .layer { grid-template-columns:1fr; } }
+
+  .quote { margin:18px 0; padding:16px 20px; background:var(--card); border:3px solid var(--edge); border-left:12px solid var(--pink); border-radius:18px; box-shadow:var(--shadow); font-weight:800; font-size:1.1rem; line-height:1.6; }
+  .quote small { display:block; font-weight:400; font-size:.85rem; color:var(--muted); margin-top:4px; }
+
+  /* 人生の問い */
+  .life { width:100%; border-collapse:separate; border-spacing:0; background:var(--card); border:3px solid var(--edge); border-radius:22px; box-shadow:var(--shadow); overflow:hidden; font-size:.92rem; }
+  .life th { background:var(--edge); color:#fff; padding:9px 12px; text-align:left; font-size:.88rem; }
+  .life td { padding:10px 12px; border-top:2px dashed var(--muted); vertical-align:top; line-height:1.6; }
+  .life td:first-child { font-weight:800; width:34%; }
+  .life td:nth-child(2) { color:var(--muted); }
+  @media (max-width:600px) { .life thead { display:none; } .life tr { display:block; border-top:2px dashed var(--muted); } .life tr:first-child { border-top:none; } .life td { display:block; width:auto !important; border-top:none; padding:6px 12px; } .life td:first-child { padding-top:12px; } .life td:last-child { padding-bottom:12px; } .life td:nth-child(2)::before { content:"自動運転では："; font-weight:800; } .life td:nth-child(3)::before { content:"あなたなら："; font-weight:800; color:var(--ink); } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a class="backlink" href="/">← 実習Ⅰ Ⅱ 2D の一覧へ</a>
+
+<header class="hero">
+  <span class="chip">Day4</span>
+  <h1>人生における<br>ポジショニング</h1>
+  <p>イノベーションとサプライチェーンの、どこに身を置くか</p>
+  <span class="emoji">🧭</span>
+</header>
+
+<div class="intro">
+  <p>同じだけ努力しても、<b>どこに立っているか</b>で結果は大きく変わります。Day3では、1991年に「勝ち組」だった銀行や大企業が、35年でどう変わったかを見ました。</p>
+  <p>Day4は、いま進行中の<b>自動運転</b>の技術競争を題材に、「技術の前提が変わったとき、どこにいた人や会社が困り、どこにいた人が伸びるのか」を考えます。最後に、それを<b>自分のキャリアとインターン先</b>に置き換えて議論します。</p>
+  <p><b>読み方：</b>このページは、自動運転とHDマップについての参考文章をもとにしています。参考文章には<b>筆者の意見</b>が含まれます。「事実」と「意見」を分けて読んでください。</p>
+</div>
+
+<!-- ============ 1 ============ -->
+<div class="sec"><span class="icon">📖</span><h2>まず用語をおさえる</h2></div>
+<div class="terms">
+  <div class="term"><b>🗺️ HDマップ</b><span>車線、標識、縁石などの位置を、センチメートル単位で測った高精度な3D地図。車は「地図と見比べて」自分の位置を知る。</span></div>
+  <div class="term"><b>📡 LiDAR（ライダー）</b><span>レーザー光を当てて、周りの物までの距離を測るセンサー。Light Detection and Ranging の略。</span></div>
+  <div class="term"><b>🧠 ニューラルネット／End-to-End AI</b><span>大量の走行データから学んだAIが、カメラ映像などから直接「どう運転するか」を判断する方式。</span></div>
+  <div class="term"><b>🚕 ロボタクシー</b><span>運転手のいない、無人のタクシー。米国ではWaymoが有料で運行している。</span></div>
+  <div class="term"><b>🔗 サプライチェーン</b><span>部品・技術・サービスが、作り手から最終的な利用者に届くまでのつながり。どの段にいるかで、もうけ方もリスクも違う。</span></div>
+  <div class="term"><b>💡 イノベーション</b><span>新しい技術や仕組みで、それまでの「当たり前」が入れ替わること。得をする人と、困る人が必ず出る。</span></div>
+</div>
+
+<!-- ============ 2 ============ -->
+<div class="sec"><span class="icon">⚔️</span><h2>TeslaとWaymo、本当の違い</h2></div>
+<div class="grid2">
+  <div class="box a"><h3>🚕 Waymo（グーグル系）</h3>
+    <ul><li>LiDAR＋カメラ＋<b>HDマップ</b></li><li>地図と照合して自分の位置を特定</li><li><b>無人の有料運行で先行</b>：2026年3月、全米10都市で<b>週50万回</b>の有料乗車と発表。年末に週100万回が目標</li></ul></div>
+  <div class="box b"><h3>🚗 Tesla</h3>
+    <ul><li><b>カメラだけ</b>（車1台に8台）</li><li>HDマップを前提にせず、ニューラルネットが映像から判断</li><li>世界中を走る自社の車から集まるデータでAIを鍛える</li></ul></div>
+</div>
+<p>よく話題になるのは「カメラだけで十分か、LiDARも必要か」です。しかし参考文章の筆者は、本当の争点は<span class="em">HDマップが必要かどうか</span>だと指摘します。</p>
+<div class="quote">本当の問題は「今どちらが進んでいるか」ではなく、<br>「どちらがより安く規模を拡大できるか」<small>参考文章の筆者の見方。HDマップに頼る限り、新しい街に広げるたびに地図を作り、道路や建物が変わるたびに更新するコストがかかる。</small></div>
+<div class="box y"><h3>🔍 事実と意見を分けてみよう</h3>
+  <ul>
+    <li><span class="tag">事実</span>Waymoは2026年3月に「週50万回の有料乗車」を発表した</li>
+    <li><span class="tag">意見</span>「Waymoは生まれるのが早すぎた。HDマップに頼る時代遅れの技術でTeslaに勝てるわけがない」（参考文章が紹介した海外の筆者の意見）</li>
+    <li><span class="tag">？</span>Waymoが今後もHDマップに頼り続けるかは、外からは分からない（参考文章の筆者も「何もしていないとは思えない」と書いている）</li>
+  </ul>
+</div>
+
+<!-- ============ 3 ============ -->
+<div class="sec"><span class="icon">🗾</span><h2>地図に賭けた日本のDMP</h2></div>
+<p>2016年当時、自動運転には<b>HDマップが不可欠</b>だと考えられていました。日本では政府の主導で、自動車メーカー10社と地図・測量会社が協力し、HDマップを作る会社をつくりました。</p>
+<ol class="tl">
+  <li><span class="yr">2016年</span>政府主導で設立（現 ダイナミックマッププラットフォーム＝DMP）。自動車メーカー10社などが参加</li>
+  <li><span class="yr">2019年3月</span>全国の高速道路・自動車専用道路 約29,205km（上下線合計）のHDマップが完成</li>
+  <li><span class="yr">2019年</span>日産「ProPILOT 2.0」に採用。ただし使えるのは<b>高速道路だけ</b>（地図のある場所でしか走れない）</li>
+  <li><span class="yr">2019年</span>米国の地図会社Ushr（アッシャー）を買収。GMの運転支援「Super Cruise」に地図を供給</li>
+  <li class="bad"><span class="yr">その後</span>GMは人身事故の後、ロボタクシー事業（Cruise）から撤退。ただし運転支援の開発は続け、<b>DMPの売上の約43%がGM</b>（2025年3月期）</li>
+  <li class="bad"><span class="yr">次世代</span><b>出資者で最初の採用者だった日産</b>が、次世代ProPILOTに英国Wayveの技術（HDマップを使わないAI）を採用</li>
+  <li><span class="yr">2025年3月</span>東証グロース市場に上場</li>
+  <li class="bad"><span class="yr">2025年7月</span>政府系ファンドINCJ（出資総額163.4億円）が保有株を売り切り。参考文章の計算では回収は約110億円、<b>約50億円の損失</b></li>
+</ol>
+
+<!-- ============ 4 ============ -->
+<div class="sec"><span class="icon">🇪🇺</span><h2>同じ「地図」でも、欧州のHEREは違う</h2></div>
+<div class="grid2">
+  <div class="box"><h3>🇯🇵 DMP</h3>
+    <ul><li><b>専用の計測車両</b>で走って地図を作る</li><li>広げるほど、更新するほど費用がかかる</li><li>大口顧客（GM）への依存が大きい</li></ul></div>
+  <div class="box"><h3>🇪🇺 HERE</h3>
+    <ul><li>2015年、BMW・Audi・Daimlerが約28億ユーロでNokiaから買収</li><li><b>一般の車</b>が走りながら集めるカメラ・センサーデータ等をAIで統合して地図を更新（UniMap）</li><li>集まったデータはAIの学習にも使える可能性</li><li>EUで義務化された速度制限支援（ISA）向けデータで大きなシェア。事業が多角的</li></ul></div>
+</div>
+<p style="margin-top:14px">同じ「地図の会社」でも、<span class="em">データが自然に集まる仕組み</span>と<span class="em">複数の使い道</span>を持っているかどうかで、立場の強さが違います。</p>
+
+<!-- ============ 5 ============ -->
+<div class="sec"><span class="icon">🧩</span><h2>HDマップへの依存度で整理すると</h2></div>
+<table class="camp">
+  <thead><tr><th></th><th class="m">HDマップに頼る（地図を作る）</th><th class="n">HDマップを必須としない</th></tr></thead>
+  <tbody>
+    <tr><td>米国</td><td>Waymo、GM Super Cruise（Ushrの地図）</td><td>Tesla、Rivian</td></tr>
+    <tr><td>日本</td><td>DMP、日産 ProPILOT 2.0</td><td>日産 次世代ProPILOT（Wayve）</td></tr>
+    <tr><td>欧州</td><td>HERE</td><td>NVIDIA Alpamayo（Mercedes-Benzと共同開発）</td></tr>
+  </tbody>
+</table>
+<p class="src" style="margin-top:8px">参考文章の整理による。Rivianはカメラに加えてLiDARも使うが、事前に整備したHDマップを必須としない方向。HEREの株主であるMercedes-Benzが、地図を必須としないNVIDIAとも組んでいる点にも注目。</p>
+
+<!-- ============ 6 ============ -->
+<div class="sec"><span class="icon">🔗</span><h2>自動運転のサプライチェーン</h2></div>
+<p>技術の前提が変わると、サプライチェーンの<b>どの段が要らなくなるか</b>が問われます。下の図で、HDマップの段（ピンク）がまさにその立場です。</p>
+<div class="chain">
+  <div class="layer"><div class="ln">⚙️ 半導体</div><div class="lc">AIを動かすチップ<small>例：NVIDIA</small></div></div>
+  <div class="down">▼</div>
+  <div class="layer"><div class="ln">📡 センサー</div><div class="lc">カメラ、LiDAR、レーダー<small>「カメラだけ」なら、LiDARの段が小さくなる</small></div></div>
+  <div class="down">▼</div>
+  <div class="layer hot"><div class="ln">🗺️ 地図</div><div class="lc">HDマップの作成と更新<small>例：DMP、HERE。「地図を必須としない」AIが広がると、この段の価値が揺らぐ</small></div></div>
+  <div class="down">▼</div>
+  <div class="layer"><div class="ln">🧠 AIソフト</div><div class="lc">運転を判断するAI<small>例：Wayve、NVIDIA Alpamayo、Tesla・Rivianの自社開発</small></div></div>
+  <div class="down">▼</div>
+  <div class="layer"><div class="ln">🚗 完成車</div><div class="lc">自動車メーカー<small>例：日産、GM、Mercedes-Benz。どの技術を採用するかを選ぶ側</small></div></div>
+  <div class="down">▼</div>
+  <div class="layer"><div class="ln">🚕 サービス</div><div class="lc">ロボタクシー、運転支援つきの車<small>例：Waymo。利用者と直接つながる</small></div></div>
+</div>
+<div class="box p" style="margin-top:16px"><h3>💥 前提が変わるときの痛み</h3>
+  <p>参考文章の筆者はこう結んでいます。HDマップは2016年には不可欠だと考えられていたが、ニューラルネットの進化で必要性そのものが問われるようになった。HDマップ必須を前提に巨額の投資をしてきた企業や政府は、<b>痛みを伴う決断</b>をする段階に来ているのかもしれない、と。</p>
+  <p>一方で、地図に頼らない方式が本当に勝つかは<b>まだ決着していません</b>。現時点で無人の商用運行の規模はWaymoが先行しています。</p>
+</div>
+
+<!-- ============ 7 ============ -->
+<div class="sec"><span class="icon">🧭</span><h2>自分の人生に置き換える</h2></div>
+<p>会社の立ち位置を見る問いは、そのまま<b>自分のキャリア</b>にも使えます。</p>
+<table class="life">
+  <thead><tr><th>ポジショニングの問い</th><th>自動運転では</th><th>あなたなら</th></tr></thead>
+  <tbody>
+    <tr><td>① その前提は10年後も成り立つか</td><td>「HDマップは不可欠」という2016年の前提が揺らいだ</td><td>いま学んでいるスキルや、入りたい業界の「当たり前」は？</td></tr>
+    <tr><td>② 広げるほど安くなるか、高くなるか</td><td>地図は広げるほど作成・更新の費用がかかる。AIは走るほどデータが増えて強くなる</td><td>経験を積むほど楽になる仕事か、ずっと同じ手間がかかる仕事か</td></tr>
+    <tr><td>③ 1つの相手に依存していないか</td><td>DMPの売上の4割以上がGM</td><td>1社・1業界でしか通用しないスキルになっていないか</td></tr>
+    <tr><td>④ データ（経験）が自然に集まる場所か</td><td>HEREは一般の車からデータが集まる仕組みを持つ</td><td>インターン先で、毎日なにが自然と身につくか</td></tr>
+    <tr><td>⑤ 乗り換える判断ができるか</td><td>日産は、出資した会社の地図から、別の技術に乗り換えた</td><td>うまくいかないと分かったとき、やめる・変える勇気があるか</td></tr>
+    <tr><td>⑥ どの段にいるか</td><td>半導体、地図、AI、完成車、サービス。段ごとに強みとリスクが違う</td><td>インターン先は、その業界のサプライチェーンのどの段か</td></tr>
+  </tbody>
+</table>
+
+<!-- ============ 8 ============ -->
+<div class="sec"><span class="icon">🗣️</span><h2>議論しよう</h2></div>
+<ol class="qs">
+  <li>あなたがDMPの社長なら、次の一手は何か。
+    <span>地図をやめる？ 別の使い道を探す？ HEREのようにデータの集め方を変える？ 理由も書く</span></li>
+  <li>Waymo型（地図に頼る）とTesla型（地図に頼らない）、就職するならどちらか。
+    <span>「今どちらが進んでいるか」と「どちらが安く広げられるか」の両方から理由を述べる</span></li>
+  <li>あなたのインターン先は、業界のサプライチェーンのどの段にいるか。上流と下流には誰がいるか。
+    <span>新しい技術が出たとき、その段は「要らなくなる」側か「伸びる」側か</span></li>
+  <li>Day3の1991年の「成功」（大企業・銀行に入る）と、今日の話をつなげて考える。
+    <span>あなたは、変化の「前提」にいる側と、前提を「変える」側の、どちらに身を置きたいか</span></li>
+  <li>今日の議論を、Day2の書き方で日報にまとめる。
+    <span>タイトルをつける／1文目に結論／2文目に理由／箇条書き・体言止め</span></li>
+</ol>
+
+<!-- ============ 出典 ============ -->
+<div class="sec"><span class="icon">📚</span><h2>参考資料</h2></div>
+<div class="src">
+  <p>このページの企業の動き・数値は、配布した参考文章「HDマップと自動運転」の記述をもとにしています（一次資料との照合は一部のみ）。参考文章には筆者の意見が含まれます。</p>
+  <ul>
+    <li>Waymoの週50万回の有料乗車（2026年3月発表）：
+      <a href="https://techcrunch.com/2026/03/27/waymo-skyrocketing-ridership-in-one-chart/">TechCrunch（2026年3月27日）</a>／<a href="https://insideevs.com/news/791245/waymo-rides-per-week-2026-doubled/">InsideEVs</a></li>
+    <li>DMP：上場（2025年3月、東証グロース）、HDマップ整備、Ushr買収、売上に占めるGM比率は参考文章の記述による</li>
+    <li>INCJの損失額：参考文章の筆者による試算（上場時の売却分を譲渡と同じ価格で評価した場合）</li>
+    <li>HERE：2015年の買収、UniMap、ISA向けデータの採用状況は参考文章の記述（HEREの発表を含む）による</li>
+    <li>参考動画：「Eight cameras. 36 frames a second. ~2 billion pieces of information in.」Tesla のFSD（カメラだけで走る自動運転）の作り方を解説した約20分の動画</li>
+  </ul>
+</div>
+
+</div>
+</body>
+</html>
