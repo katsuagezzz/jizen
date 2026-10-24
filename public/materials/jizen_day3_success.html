@@ -150,6 +150,29 @@
   .popf table { width:100%; border-collapse:collapse; font-size:.85rem; margin-top:6px; }
   .popf th, .popf td { padding:4px 8px; border-bottom:1px dashed var(--muted); text-align:right; }
   .popf th:first-child, .popf td:first-child { text-align:left; }
+  /* 産業と企業 */
+  .ind { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:16px 18px; box-shadow:var(--shadow);
+    --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s0:#b9b4c4; }
+  @media (prefers-color-scheme: dark) { .ind { --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s0:#5c566b; } }
+  .ind .rowc { display:grid; grid-template-columns:7.5em 1fr; gap:4px 10px; align-items:center; margin:8px 0; }
+  .ind .nm { font-weight:800; font-size:.92rem; }
+  .ind .nm small { display:block; font-weight:400; font-size:.75rem; color:var(--muted); }
+  .ind .st { display:flex; height:30px; gap:2px; }
+  .ind .st span { display:grid; place-items:center; font-size:.78rem; font-weight:800; color:#fff; white-space:nowrap; overflow:hidden; border-radius:4px; }
+  .ind .st .a { background:var(--s1); } .ind .st .b { background:var(--s2); } .ind .st .c { background:var(--s3); } .ind .st .o { background:var(--s0); }
+  .ind .one { display:flex; align-items:center; gap:8px; }
+  .ind .one i { display:block; height:20px; background:var(--s1); border-radius:0 4px 4px 0; min-width:3px; }
+  .ind .one b { font-size:.85rem; white-space:nowrap; }
+  .ind .lg2 { display:flex; flex-wrap:wrap; gap:4px 14px; font-size:.82rem; font-weight:700; margin-top:8px; }
+  .ind .lg2 i { display:inline-block; width:12px; height:12px; border-radius:3px; vertical-align:-1px; margin-right:4px; }
+  .ind ol.co { list-style:none; margin:0; padding:0; }
+  .ind ol.co li { display:grid; grid-template-columns:2.8em 9.5em 1fr; gap:8px; align-items:center; padding:4px 0; border-bottom:1px dashed var(--muted); font-size:.88rem; }
+  .ind ol.co li:last-child { border-bottom:none; }
+  .ind ol.co .r { font-weight:800; color:var(--muted); text-align:right; white-space:nowrap; font-size:.85rem; }
+  .ind ol.co .c2 { font-weight:800; line-height:1.3; } .ind ol.co .c2 small { display:block; font-weight:400; color:var(--muted); font-size:.72rem; }
+  @media (max-width:600px) { .ind .rowc { grid-template-columns:1fr; } .ind ol.co li { grid-template-columns:2.6em 7em 1fr; } }
+  .mm { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px; }
+  .mm .g b { display:block; }
   .rev { width:100%; border-collapse:collapse; font-size:.9rem; }
   .rev th, .rev td { padding:6px 10px; border-bottom:1px dashed var(--muted); text-align:left; }
   .rev td.r, .rev th.r { text-align:right; white-space:nowrap; }
@@ -420,6 +443,77 @@
 })();
 </script>
 
+
+<!-- ============ 産業と企業 ============ -->
+<div class="sec"><span class="icon">🏭</span><h2>3か国の産業と大企業（日本・ロシア・ミャンマー）</h2></div>
+<p>人口だけでなく、<b>どんな産業で稼いでいるか</b>、<b>どんな会社が大きいか</b>も国によって大きく違います。</p>
+
+<h3 style="margin:20px 0 8px;font-weight:800">経済全体の大きさ（名目GDP・2025年）</h3>
+<div class="ind">
+  <div class="rowc"><span class="nm">🇯🇵 日本</span><span class="one"><i style="width:78%"></i><b>約4.4兆ドル</b></span></div>
+  <div class="rowc"><span class="nm">🇷🇺 ロシア</span><span class="one"><i style="width:46%"></i><b>約2.6兆ドル</b></span></div>
+  <div class="rowc"><span class="nm">🇲🇲 ミャンマー</span><span class="one"><i style="width:1.5%"></i><b>約820億ドル（日本の約54分の1）</b></span></div>
+  <p class="src" style="margin:6px 0 0">IMF「World Economic Outlook」2026年4月版の1人当たり名目GDP×人口からの概数。棒の長さは金額に比例。</p>
+</div>
+
+<h3 style="margin:24px 0 8px;font-weight:800">産業別の構成（GDPに占める割合）</h3>
+<div class="ind">
+  <div class="rowc"><span class="nm">🇯🇵 日本<small>2023年</small></span><div class="st"><span class="a" style="width:0.9%" title="農林水産業 0.9%"></span><span class="b" style="width:28.6%" title="工業 28.6%">29%</span><span class="c" style="width:69.8%" title="サービス業 69.8%">サービス 70%</span><span class="o" style="width:0.7%" title="その他 0.7%"></span></div></div>
+  <div class="rowc"><span class="nm">🇷🇺 ロシア<small>2023年</small></span><div class="st"><span class="a" style="width:3.4%" title="農林水産業 3.4%"></span><span class="b" style="width:30.7%" title="工業 30.7%">31%</span><span class="c" style="width:56.9%" title="サービス業 56.9%">サービス 57%</span><span class="o" style="width:9.0%" title="その他（税等）9.0%">9%</span></div></div>
+  <div class="rowc"><span class="nm">🇲🇲 ミャンマー<small>2023年</small></span><div class="st"><span class="a" style="width:22.7%" title="農林水産業 22.7%">農業 23%</span><span class="b" style="width:36.7%" title="工業 36.7%">37%</span><span class="c" style="width:39.7%" title="サービス業 39.7%">40%</span><span class="o" style="width:0.9%" title="その他 0.9%"></span></div></div>
+  <div class="lg2"><span><i style="background:var(--s1)"></i>農林水産業</span><span><i style="background:var(--s2)"></i>工業（製造業・鉱業・建設・電気など）</span><span><i style="background:var(--s3)"></i>サービス業（商業・金融・通信など）</span><span><i style="background:var(--s0)"></i>その他（税・補助金の調整など）</span></div>
+  <ul style="margin:10px 0 0;padding-left:1.2em;font-size:.9rem">
+    <li><b>日本：</b>農業は1%未満。<span class="em">7割がサービス業</span>。工業は約3割で、自動車などの製造業が支える。</li>
+    <li><b>ロシア：</b>工業の中で<span class="em">石油・天然ガス</span>などの資源の採掘が大きな割合を占める。</li>
+    <li><b>ミャンマー：</b>農業が<span class="em">約4分の1</span>。日本の1%未満と比べると、働く人の多くが農業に関わる国。</li>
+  </ul>
+  <p class="src" style="margin:8px 0 0">世界銀行の産業別付加価値（% of GDP）を掲載する二次資料の値。日本は0.9・28.6・69.8%、ロシアは3.35・30.65・56.88%、ミャンマーは22.7・36.7・39.7%。3項目の合計と100%の差を「その他」として表示。</p>
+</div>
+
+<h3 style="margin:24px 0 8px;font-weight:800">🇯🇵 日本の売上トップ10（2026年3月期）</h3>
+<div class="ind">
+  <ol class="co">
+    <li><span class="r">1</span><span class="c2">トヨタ自動車<small>自動車</small></span><span class="one"><i style="width:78.0%"></i><b>50.7兆円</b></span></li>
+    <li><span class="r">2</span><span class="c2">本田技研工業<small>自動車・二輪</small></span><span class="one"><i style="width:33.6%"></i><b>21.8兆円</b></span></li>
+    <li><span class="r">3</span><span class="c2">三菱商事<small>総合商社</small></span><span class="one"><i style="width:29.1%"></i><b>18.9兆円</b></span></li>
+    <li><span class="r">4</span><span class="c2">伊藤忠商事<small>総合商社</small></span><span class="one"><i style="width:22.8%"></i><b>14.8兆円</b></span></li>
+    <li><span class="r">5</span><span class="c2">三菱UFJ FG<small>銀行（経常収益）</small></span><span class="one"><i style="width:22.5%"></i><b>14.6兆円</b></span></li>
+    <li><span class="r">6</span><span class="c2">NTT<small>通信</small></span><span class="one"><i style="width:22.2%"></i><b>14.4兆円</b></span></li>
+    <li><span class="r">7</span><span class="c2">三井物産<small>総合商社</small></span><span class="one"><i style="width:21.5%"></i><b>14.0兆円</b></span></li>
+    <li><span class="r">8</span><span class="c2">ソニーグループ<small>エレクトロニクス・エンタメ</small></span><span class="one"><i style="width:19.2%"></i><b>12.5兆円</b></span></li>
+    <li><span class="r">9</span><span class="c2">日産自動車<small>自動車</small></span><span class="one"><i style="width:18.5%"></i><b>12.0兆円</b></span></li>
+    <li><span class="r">10</span><span class="c2">ENEOS HD<small>石油</small></span><span class="one"><i style="width:18.1%"></i><b>11.8兆円</b></span></li>
+  </ol>
+  <p class="src" style="margin:8px 0 0">有価証券報告書の連結売上高（EDINETのデータ）。銀行は売上の代わりに経常収益。上場していない会社は含まない。11位以下は豊田通商、日本郵政、第一ライフグループ、三井住友FG、イオンと続く。</p>
+</div>
+<p style="margin:10px 4px 0;font-size:.92rem">トップ10のうち<b>自動車が3社、総合商社が3社</b>。1989年の時価総額トップに並んだ銀行（Day3の上の表）は、売上では三菱UFJの1社だけ。</p>
+
+<h3 style="margin:24px 0 8px;font-weight:800">🇷🇺 ロシアの売上上位（2024年の実績）</h3>
+<div class="ind">
+  <ol class="co">
+    <li><span class="r">1</span><span class="c2">ガスプロム<small>天然ガス（国営系）</small></span><span class="one"><i style="width:78%"></i><b>約10.7兆ルーブル</b></span></li>
+    <li><span class="r">2〜5</span><span class="c2">ロスネフチ<small>石油（国営系）</small></span><span style="font-size:.82rem;color:var(--muted)">上位5社</span></li>
+    <li><span class="r">4</span><span class="c2">ルクオイル<small>石油（民間）</small></span><span style="font-size:.82rem;color:var(--muted)">4位</span></li>
+    <li><span class="r">2〜5</span><span class="c2">ズベルバンク<small>銀行（国営系）</small></span><span style="font-size:.82rem;color:var(--muted)">上位5社。利益は1位</span></li>
+    <li><span class="r">2〜5</span><span class="c2">VTB<small>銀行（国営系）</small></span><span style="font-size:.82rem;color:var(--muted)">上位5社</span></li>
+    <li><span class="r">6</span><span class="c2">X5<small>スーパー・小売</small></span><span class="one"><i style="width:28.4%"></i><b>約3.9兆ルーブル</b></span></li>
+  </ol>
+  <p class="src" style="margin:8px 0 0">ロシアの経済誌RBCの「RBC 500」（2025年10月公表、2024年の売上）。今回確認できたのは上位6社までで、2・3・5位の順番と7〜10位は確認できていない。1位ガスプロムの約10.7兆ルーブルは、2024年の平均レート（1ドル約93ルーブル）で約1,150億ドル（約17兆円）の目安。</p>
+</div>
+<p style="margin:10px 4px 0;font-size:.92rem">上位は<b>石油・ガスと銀行</b>、しかも<span class="em">国が大株主の会社</span>が中心。上位500社の売上のうち約27%を石油・ガス会社が占める。</p>
+
+<h3 style="margin:24px 0 8px;font-weight:800">🇲🇲 ミャンマーの主な企業（順位なし）</h3>
+<p style="margin:0 4px 10px;font-size:.92rem">ミャンマーは、売上を公表しない財閥系・国軍系・国営の企業が多く、<b>信頼できる売上ランキングがありません</b>。これ自体が「情報が見えにくい市場」という特徴です。</p>
+<div class="mm">
+  <div class="g"><b>🏦 KBZ（カンボーザ）グループ</b><span class="note">民間最大級の銀行KBZ銀行を中心とする財閥。スマホ決済「KBZPay」も</span></div>
+  <div class="g"><b>🏦 CB銀行・AYA銀行</b><span class="note">大手の民間銀行</span></div>
+  <div class="g"><b>🏗️ シュエタウン・グループ</b><span class="note">建設・不動産などの大手財閥</span></div>
+  <div class="g"><b>🏢 ヨマ・ストラテジック</b><span class="note">不動産・自動車・金融など。シンガポール証券取引所に上場</span></div>
+  <div class="g"><b>⛽ MOGE（ミャンマー石油ガス公社）</b><span class="note">国営。天然ガスの輸出は国の大きな外貨収入源</span></div>
+  <div class="g"><b>🎖️ MEHL・MEC</b><span class="note">国軍系の複合企業。2021年のクーデター後、米英EUの制裁対象に。キリンは2022年に、MEHLと組んでいたビール事業から撤退</span></div>
+</div>
+<p class="src" style="margin:8px 0 0">企業の説明は各社・報道の公開情報による概要。売上・順位は付けていない。</p>
+
 <!-- ============ 4 ============ -->
 <div class="sec"><span class="icon">📼</span><h2>1991年から主役が変わったもの</h2></div>
 <div class="gone">
@@ -491,6 +585,7 @@
       <a href="https://population.un.org/wpp/">population.un.org</a></li>
     <li>将来人口：国連「World Population Prospects 2024」中位推計（2025・2050・2100年）。日本・ロシア・ミャンマーの値は同推計を掲載する <a href="https://www.populationpyramid.net/japan/2100/">PopulationPyramid.net</a>・<a href="https://data.un.org/Data.aspx?q=Russian+Federation&amp;d=PopDiv&amp;f=variableID%3A12%3BcrID%3A643">UNdata</a> 等で確認（一次データとの照合は一部のみ）。1991年はミャンマーが国連統計、ロシアが世界銀行の実績値
       <a href="https://population.un.org/wpp/">population.un.org</a></li>
+    <li>3か国の産業と大企業：GDPの規模はIMF WEO 2026年4月版（1人当たり名目GDP×人口の概数）。産業構成は世界銀行の産業別付加価値を掲載する二次資料（<a href="https://ecoindica.com/countries/japan-gdp/">日本</a>／<a href="https://www.statista.com/statistics/271378/distribution-of-gross-domestic-product-gdp-across-economic-sectors-in-russia/">ロシア（Statista）</a>／<a href="https://www.theglobaleconomy.com/Burma-Myanmar/share_of_agriculture/">ミャンマー</a>）で、一次データとの照合は未了。日本の売上トップ10はEDINET（有価証券報告書）の連結売上高、2026年3月期。ロシアは<a href="https://www.rbc.ru/business/30/10/2025/6901febd9a79472454d4b2f0">RBC 500（2025年10月30日公表）</a>の報道（<a href="https://www.sravni.ru/novost/2025/10/30/opublikovan-rejting-krupnejshih-kompanij-rossii/">Sravni</a>、<a href="https://www.tks.ru/politics/2025/10/30/0006/">TKS</a>）。原表は未確認</li>
     <li>時価総額トップ10：1989年はビジネスウィーク誌1989年7月17日号を基にダイヤモンド社が作成した表の転載（原誌は未確認。号の日付を評価基準日とみなさない）（
       <a href="https://www.manegy.com/news/detail/7934/">マネジー</a> の表による）、2026年は10月5日時点の集計（
       <a href="https://www.investingcube.com/deep-analysis/largest-companies-by-market-cap-in-2026-nvidia-leads-the-global-rankings/">Investing Cube</a>）。二次資料同士の参考比較。20社対50社の異なる母数の比較は使わない</li>
