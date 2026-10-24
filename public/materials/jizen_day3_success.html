@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Day3 「成功」とはなにか - 1991年と2026年をくらべる</title>
+<title>Day3 非連続な成長 - マクロな視点で、どの国・エリアに身を置くか</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
@@ -173,6 +173,41 @@
   @media (max-width:600px) { .ind .rowc { grid-template-columns:1fr; } .ind ol.co li { grid-template-columns:2.6em 7em 1fr; } }
   .mm { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px; }
   .mm .g b { display:block; }
+  /* 税・社会保険 */
+  .taxc { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:16px 18px; box-shadow:var(--shadow);
+    --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; }
+  @media (prefers-color-scheme: dark) { .taxc { --s1:#3987e5; --s2:#d95926; --s3:#199e70; } }
+  .taxc .grp { margin:4px 0 14px; } .taxc .grp:last-of-type { margin-bottom:6px; }
+  .taxc .inc { font-weight:800; margin-bottom:4px; }
+  .taxc .ln { display:grid; grid-template-columns:3.4em 1fr; gap:8px; align-items:center; margin:4px 0; }
+  .taxc .yr { font-size:.82rem; font-weight:800; color:var(--muted); }
+  .taxc .bar2 { display:flex; align-items:center; gap:2px; height:26px; }
+  .taxc .bar2 span { height:100%; border-radius:4px; }
+  .taxc .bar2 .a { background:var(--s1); } .taxc .bar2 .b { background:var(--s2); } .taxc .bar2 .c { background:var(--s3); }
+  .taxc .bar2 b { margin-left:8px; font-size:.85rem; white-space:nowrap; }
+  .taxc .lg3 { display:flex; flex-wrap:wrap; gap:4px 14px; font-size:.82rem; font-weight:700; }
+  .taxc .lg3 i { display:inline-block; width:12px; height:12px; border-radius:3px; vertical-align:-1px; margin-right:4px; }
+  .ttab { width:100%; border-collapse:collapse; font-size:.88rem; }
+  .ttab th, .ttab td { padding:6px 8px; border-bottom:1px dashed var(--muted); text-align:right; white-space:nowrap; }
+  .ttab th:first-child, .ttab td:first-child { text-align:left; }
+  .ttab thead th { border-bottom:2px solid var(--edge); }
+  .ttab td.up { color:#e34948; font-weight:800; }
+  .scroll { overflow-x:auto; }
+  .tl2 { list-style:none; margin:0; padding:0; }
+  .tl2 li { display:grid; grid-template-columns:4.2em 1fr; gap:10px; padding:6px 0; border-bottom:1px dashed var(--muted); font-size:.92rem; }
+  .tl2 li:last-child { border-bottom:none; } .tl2 b.y { color:var(--pink); }
+  .nomad { width:100%; border-collapse:collapse; font-size:.86rem; }
+  .nomad th, .nomad td { padding:7px 8px; border-bottom:1px dashed var(--muted); text-align:left; vertical-align:top; }
+  .nomad thead th { border-bottom:2px solid var(--edge); white-space:nowrap; }
+  .nomad td:first-child { font-weight:800; white-space:nowrap; }
+  .nomad tr.area td { background:var(--yellow-bg); font-weight:800; border-bottom:2px solid var(--edge); }
+  .nomad tr.jp td { background:var(--pink-bg); }
+  @media (max-width:600px) { .nomad thead { display:none; } .nomad tr { display:block; border-bottom:1px dashed var(--muted); padding:6px 0; } .nomad td { display:block; border:none; padding:1px 8px; } .nomad tr.area { border-bottom:2px solid var(--edge); } .nomad td:nth-child(2)::before { content:"条件："; font-weight:800; } .nomad td:nth-child(3)::before { content:"期間："; font-weight:800; } }
+  .stat3 { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; }
+  .stat3 .t { background:var(--card); border:3px solid var(--edge); border-radius:18px; padding:12px 16px; box-shadow:3px 3px 0 var(--edge); }
+  .stat3 .t small { display:block; font-size:.8rem; color:var(--muted); font-weight:700; }
+  .stat3 .t b { display:block; font-size:1.5rem; line-height:1.3; }
+  .stat3 .t span { font-size:.8rem; color:var(--muted); }
   .rev { width:100%; border-collapse:collapse; font-size:.9rem; }
   .rev th, .rev td { padding:6px 10px; border-bottom:1px dashed var(--muted); text-align:left; }
   .rev td.r, .rev th.r { text-align:right; white-space:nowrap; }
@@ -186,13 +221,14 @@
 
 <header class="hero">
   <span class="chip">実習Ⅰ Ⅱ 2D ／ Day3</span>
-  <h1>「成功」とはなにか</h1>
-  <p>1991年と2026年をくらべる</p>
-  <span class="emoji">🏆</span>
+  <h1>非連続な成長</h1>
+  <p>マクロな視点で、これからの人生、どこに身を置くか</p>
+  <span class="emoji">🌏</span>
 </header>
 
 <div class="intro">
-  <p>志村が大学を卒業したのは<b>1991年</b>。ちょうど35年前です。</p>
+  <p><b>テーマ：</b>マクロな視点で、これからの人生、<b>どこに身を置いたらいいのか</b>。今回は「<b>どの国・エリアに身を置くか</b>」を考えます。</p>
+  <p>世の中は少しずつ変わるのではなく、ある時点で<b>非連続に</b>入れ替わります。志村が大学を卒業したのは<b>1991年</b>。ちょうど35年前です。</p>
   <p>その年の「いい会社」「いい人生」は、2026年の今も同じでしょうか。下の数字と変化を見てから、最後の問いを考えてください。</p>
   <p><b>数字の読み方：</b>左は1991年前後、右は2026年時点で参照した近年の資料です。すべてが1991年と2026年の同一年条件の比較ではありません。各欄の対象年・基準日を確認してください。「約」は丸めを表し、年や定義の違いは注記で区別します。</p>
 </div>
@@ -556,6 +592,125 @@
   </div>
 </div>
 
+
+<!-- ============ 税 ============ -->
+<div class="sec"><span class="icon">💴</span><h2>日本の税金と社会保険料：2006年と2026年</h2></div>
+<p>「どこに身を置くか」を考えるとき、<b>稼いだお金のうちいくら手元に残るか</b>は大事な物差しです。日本では20年で、税と社会保険料の負担が少しずつ重くなってきました。</p>
+<div class="stat3">
+  <div class="t"><small>国民負担率（税＋社会保険料÷国民所得）</small><b>37.3% → 45.7%</b><span>2006年度（実績）→ 2026年度（見通し）</span></div>
+  <div class="t"><small>消費税（標準税率）</small><b>5% → 10%</b><span>2014年に8%、2019年に10%（食料品などは8%）</span></div>
+  <div class="t"><small>厚生年金保険料（会社と本人の合計）</small><b>14.6% → 18.3%</b><span>2004年から毎年上がり、2017年から18.3%で固定</span></div>
+</div>
+
+<h3 style="margin:22px 0 8px;font-weight:800">この20年の主な変化</h3>
+<div class="box">
+<ul class="tl2">
+  <li><b class="y">2007年</b><span>国から地方へ税源を移す改革。所得税が下がり、住民税が一律10%に。所得税の「定率減税」（税額の1割引き）が廃止</span></li>
+  <li><b class="y">2013年</b><span>東日本大震災の復興特別所得税（所得税額の2.1%）が始まる（2037年まで）。所得税の最高税率を45%に引き上げ（2015年分から）</span></li>
+  <li><b class="y">2014〜</b><span>消費税 5%→8%（2014年）→10%（2019年）</span></li>
+  <li><b class="y">2016〜</b><span>会社員の「給与所得控除」の上限を段階的に縮小（2020年から195万円）。高い年収ほど負担増</span></li>
+  <li><b class="y">2017年</b><span>厚生年金保険料が18.3%に到達</span></li>
+  <li><b class="y">2026年</b><span>所得税の基礎控除の引き上げ（年収の壁を178万円に）。4月から「子ども・子育て支援金」を健康保険料に上乗せ</span></li>
+</ul>
+</div>
+
+<h3 style="margin:22px 0 8px;font-weight:800">年収別：1年間に払う税＋社会保険料（本人負担）</h3>
+<div class="taxc">
+  <div class="grp"><div class="inc">年収500万円</div>
+    <div class="ln"><span class="yr">2006年</span><div class="bar2"><span class="a" style="width:19.55%" title="社会保険料 約61万円"></span><span class="b" style="width:7.10%" title="所得税 約22万円"></span><span class="c" style="width:4.64%" title="住民税 約14万円"></span><b>約98万円（19.6%）</b></div></div>
+    <div class="ln"><span class="yr">2026年</span><div class="bar2"><span class="a" style="width:23.49%" title="社会保険料 約73万円"></span><span class="b" style="width:2.91%" title="所得税 約9万円"></span><span class="c" style="width:7.74%" title="住民税 約24万円"></span><b>約107万円（21.3%）</b></div></div>
+  </div>
+  <div class="grp"><div class="inc">年収1,000万円</div>
+    <div class="ln"><span class="yr">2006年</span><div class="bar2"><span class="a" style="width:16.56%" title="社会保険料 約104万円"></span><span class="b" style="width:13.63%" title="所得税 約85万円"></span><span class="c" style="width:8.45%" title="住民税 約53万円"></span><b>約242万円（24.1%）</b></div></div>
+    <div class="ln"><span class="yr">2026年</span><div class="bar2"><span class="a" style="width:20.29%" title="社会保険料 約127万円"></span><span class="b" style="width:13.15%" title="所得税 約82万円"></span><span class="c" style="width:10.21%" title="住民税 約64万円"></span><b>約273万円（27.3%）</b></div></div>
+  </div>
+  <div class="grp"><div class="inc">年収2,000万円</div>
+    <div class="ln"><span class="yr">2006年</span><div class="bar2"><span class="a" style="width:9.50%" title="社会保険料 約119万円"></span><span class="b" style="width:26.92%" title="所得税 約336万円"></span><span class="c" style="width:13.81%" title="住民税 約173万円"></span><b>約628万円（31.4%）</b></div></div>
+    <div class="ln"><span class="yr">2026年</span><div class="bar2"><span class="a" style="width:13.23%" title="社会保険料 約165万円"></span><span class="b" style="width:29.98%" title="所得税 約375万円"></span><span class="c" style="width:12.79%" title="住民税 約160万円"></span><b>約700万円（35.0%）</b></div></div>
+  </div>
+  <div class="lg3"><span><i style="background:var(--s1)"></i>社会保険料（年金・健康保険・雇用保険など）</span><span><i style="background:var(--s2)"></i>所得税</span><span><i style="background:var(--s3)"></i>住民税</span></div>
+  <div class="scroll" style="margin-top:12px">
+  <table class="ttab">
+    <thead><tr><th>年収</th><th>2006年</th><th>2026年</th><th>差</th><th>手取り（2006→2026）</th></tr></thead>
+    <tbody>
+      <tr><td>500万円</td><td>約98万円<br><small>19.6%</small></td><td>約107万円<br><small>21.3%</small></td><td class="up">+約9万円</td><td>約402万円 → 約393万円</td></tr>
+      <tr><td>1,000万円</td><td>約242万円<br><small>24.1%</small></td><td>約273万円<br><small>27.3%</small></td><td class="up">+約31万円</td><td>約758万円 → 約727万円</td></tr>
+      <tr><td>2,000万円</td><td>約628万円<br><small>31.4%</small></td><td>約700万円<br><small>35.0%</small></td><td class="up">+約72万円</td><td>約1,372万円 → 約1,300万円</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+<ul style="margin:12px 0 0;padding-left:1.2em;font-size:.92rem">
+  <li>どの年収でも負担は増え、<span class="em">年収が高いほど増え方が大きい</span>（年収2,000万円では年に約72万円増）。</li>
+  <li>いちばん増えたのは<b>社会保険料</b>（厚生年金の料率アップ、健康保険の上限の引き上げなど）。</li>
+  <li>年収500万円では所得税は減った（2007年の住民税への移し替え、2026年の基礎控除の引き上げ）が、住民税と社会保険料の増加がそれを上回る。</li>
+  <li>会社も社会保険料をほぼ同じ額だけ負担しています。給与明細に出ない「見えない負担」です。</li>
+</ul>
+<p class="src" style="margin-top:8px"><b>計算の前提（概算）：</b>東京都で働く30代の会社員、独身・扶養なし、賞与なし（月給×12か月）、40歳未満のため介護保険料なし。社会保険料は月給をそのまま標準報酬とした近似。2006年は政府管掌健康保険8.2%・厚生年金14.642%（同年9月以降）・雇用保険0.8%（本人）、所得税は定率減税（10%、上限12.5万円）後、住民税は5・10・13%の3段階で定率減税（7.5%、上限2万円）後。2026年は協会けんぽ東京9.85%＋子ども・子育て支援金0.23%（4月から）・厚生年金18.3%・雇用保険0.5%（本人）、所得税は令和8年度改正後の基礎控除と復興特別所得税を含む、住民税は一律10%。どちらも労使折半の本人分。実際の金額は、賞与・控除・自治体・年齢で変わります。</p>
+
+<!-- ============ ノマド ============ -->
+<div class="sec"><span class="icon">💻</span><h2>デジタルノマドビザ：国境を越えて働く</h2></div>
+<p><b>デジタルノマド</b>とは、ネットを使って、場所を決めずに働く人のこと。<b>デジタルノマドビザ</b>は、<b>外国の会社や顧客の仕事をリモートで続けながら</b>、その国に一定期間住むことを認める制度です。その国で就職するための就労ビザとは違い、「稼ぎは国外、生活はこの国」が前提です。</p>
+<div class="stat3">
+  <div class="t"><small>米国のデジタルノマド</small><b>約1,850万人</b><span>2025年。米国の働き手の約12%（MBO Partners調査）</span></div>
+  <div class="t"><small>日本のデジタルノマドビザ発給</small><b>646件</b><span>2025年（前年257件）。米国240件、豪州114件、カナダ46件など</span></div>
+  <div class="t"><small>制度がある国・地域</small><b>60か国以上</b><span>2020年のコロナ禍以降に急増（民間の集計）</span></div>
+</div>
+<div class="box" style="margin-top:14px;padding:10px 12px">
+<div class="scroll">
+<table class="nomad">
+  <thead><tr><th>国・地域</th><th>主な条件（収入・資産）</th><th>期間など</th></tr></thead>
+  <tbody>
+    <tr class="area"><td colspan="3">🌏 日本・アジア</td></tr>
+    <tr class="jp"><td>🇯🇵 日本</td><td>年収1,000万円以上。日本とビザ免除・租税条約のある国の人</td><td>2024年3月開始。最長6か月、更新なし</td></tr>
+    <tr><td>🇹🇭 タイ（DTV）</td><td>預金50万バーツ（約230万円）以上</td><td>2024年開始。5年間有効、1回180日まで滞在</td></tr>
+    <tr><td>🇲🇾 マレーシア（DE Rantau）</td><td>年収2.4万ドル以上（IT人材）、それ以外は6万ドル以上</td><td>12か月、さらに12か月延長可</td></tr>
+    <tr><td>🇮🇩 インドネシア（E33G）</td><td>年収6万ドル以上、国外の会社で働く</td><td>最長1年。バリ島が人気</td></tr>
+    <tr><td>🇰🇷 韓国（ワーケーションビザ）</td><td>韓国の1人当たりGNIの約2倍の年収</td><td>2024年開始。最長2年程度（資料により異なる）</td></tr>
+    <tr><td>🇹🇼 台湾</td><td>年収2万ドル以上（20代）、4万ドル以上（30歳以上）など</td><td>最長6か月程度（資料により異なる）</td></tr>
+    <tr class="area"><td colspan="3">🌎 南米・中米</td></tr>
+    <tr><td>🇧🇷 ブラジル</td><td>月収1,500ドル以上、または預金1.8万ドル以上</td><td>1年、延長可。条件が低めで人気</td></tr>
+    <tr><td>🇨🇴 コロンビア</td><td>最低賃金の数倍の月収（資料により月750〜900ドル程度）</td><td>最長2年</td></tr>
+    <tr><td>🇨🇷 コスタリカ</td><td>月収3,000ドル以上（家族は4,000ドル）</td><td>最長2年程度</td></tr>
+    <tr class="area"><td colspan="3">🌍 欧州・北米</td></tr>
+    <tr><td>🇵🇹 ポルトガル（D8）</td><td>月収 約3,700ユーロ以上（最低賃金の4倍）</td><td>更新でき、永住への道もある</td></tr>
+    <tr><td>🇪🇸 スペイン</td><td>月収 約2,850ユーロ以上（最低賃金の2倍）</td><td>2023年開始。更新可</td></tr>
+    <tr><td>🇪🇪 エストニア</td><td>月収 約4,500ユーロ以上</td><td>2020年、世界に先がけて開始。最長1年</td></tr>
+    <tr><td>🇺🇸 アメリカ</td><td colspan="2">デジタルノマド専用のビザはない（観光ビザで働くことは認められていない）</td></tr>
+  </tbody>
+</table>
+</div>
+</div>
+<ul style="margin:12px 0 0;padding-left:1.2em;font-size:.92rem">
+  <li>日本の条件「年収1,000万円以上」は、アジアの中でも<b>かなり高め</b>。日本は「お金を落としてくれる高所得の人」を呼びたい。</li>
+  <li>一方で、タイ・ブラジルなどは条件が低く、<span class="em">若い人や生活費を抑えたい人</span>が集まりやすい。</li>
+  <li>実際に住むと、<b>税金（どの国で納めるか）・健康保険・年金</b>の扱いが問題になります。日本の住民票を抜くかどうかでも変わるため、行く前に必ず確認を。</li>
+</ul>
+<p class="src" style="margin-top:8px">各国の条件は2026年時点の民間の比較資料による概要で、資料により金額・期間が異なります。実際に申請する場合は、各国政府の公式サイトで最新の条件を確認してください。</p>
+
+<!-- ============ 海外在留邦人 ============ -->
+<div class="sec"><span class="icon">✈️</span><h2>海外に住む日本人は何人？</h2></div>
+<div class="stat3">
+  <div class="t"><small>海外に住む日本人（2025年10月1日）</small><b>約129.8万人</b><span>ピークは2019年の約141.0万人。コロナ禍で減り、横ばい</span></div>
+  <div class="t"><small>うち永住者</small><b>約58.8万人</b><span>過去最多。その国に生活の拠点を移した人</span></div>
+  <div class="t"><small>うち長期滞在者（3か月以上）</small><b>約71.0万人</b><span>駐在員・留学生など。2018年から約2割減</span></div>
+</div>
+<div class="taxc" style="margin-top:14px">
+  <div class="inc">海外に住む日本人の内訳（2025年）</div>
+  <div class="bar2" style="height:30px"><span class="a" style="width:45.3%" title="永住者 588,486人"></span><span class="c" style="width:54.7%" title="長期滞在者 709,684人"></span></div>
+  <div class="lg3" style="margin-top:6px"><span><i style="background:var(--s1)"></i>永住者 58.8万人（45%）</span><span><i style="background:var(--s3)"></i>長期滞在者 71.0万人（55%）</span></div>
+  <div class="inc" style="margin-top:14px">住んでいる国（上位3か国）</div>
+  <div class="ln"><span class="yr">🇺🇸 米国</span><div class="bar2"><span class="a" style="width:60%"></span><b>41.6万人（32%）</b></div></div>
+  <div class="ln"><span class="yr">🇦🇺 豪州</span><div class="bar2"><span class="a" style="width:15.2%"></span><b>10.6万人（8%）</b></div></div>
+  <div class="ln"><span class="yr">🇨🇳 中国</span><div class="bar2"><span class="a" style="width:13.4%"></span><b>9.3万人（7%）</b></div></div>
+</div>
+<ul style="margin:12px 0 0;padding-left:1.2em;font-size:.92rem">
+  <li>会社の命令で行く<b>駐在員・留学生（長期滞在者）は減り</b>、自分で決めて<b>移り住む人（永住者）は増えている</b>。</li>
+  <li>北米・アジア・西欧の3地域で全体の約8割。北米は1985年以降ずっと1位。</li>
+  <li>日本の人口（約1億2,300万人）に対しては約1%。「みんなが出ていく」わけではないが、<span class="em">選択肢として当たり前になりつつある</span>。</li>
+</ul>
+<p class="src" style="margin-top:8px">外務省「海外在留邦人数調査統計」（2025年10月1日現在、2025年12月公表）。国別・永住者数は同統計を集計した解説サイトの値で、外務省の統計表との照合は一部のみ。</p>
+
 <div class="sec"><span class="icon">🤔</span><h2>考えてみよう</h2></div>
 <ol class="qs">
   <li>1991年の「成功」の条件のうち、2026年の今も通用するものはどれか。通用しなくなったものはどれか。
@@ -565,6 +720,8 @@
   <li>35年後の2061年、あなたは55歳前後。今の「当たり前」のうち、なくなっていそうなものを3つ挙げる。
     <span>スマホ、就職サイト、新卒一括採用、通勤……</span></li>
   <li>あなたにとっての「成功」を、条件3つで書く。そのうち、インターンの4か月で確かめられるものはどれか。</li>
+  <li>10年後、あなたはどの国・エリアに身を置いていたいか。
+    <span>人口、産業、税と社会保険料、ビザの条件のうち、何を一番重視したか理由も書く。日本に残る場合も、その理由を書く</span></li>
 </ol>
 
 <!-- ============ 出典 ============ -->
@@ -586,6 +743,9 @@
     <li>将来人口：国連「World Population Prospects 2024」中位推計（2025・2050・2100年）。日本・ロシア・ミャンマーの値は同推計を掲載する <a href="https://www.populationpyramid.net/japan/2100/">PopulationPyramid.net</a>・<a href="https://data.un.org/Data.aspx?q=Russian+Federation&amp;d=PopDiv&amp;f=variableID%3A12%3BcrID%3A643">UNdata</a> 等で確認（一次データとの照合は一部のみ）。1991年はミャンマーが国連統計、ロシアが世界銀行の実績値
       <a href="https://population.un.org/wpp/">population.un.org</a></li>
     <li>3か国の産業と大企業：GDPの規模はIMF WEO 2026年4月版（1人当たり名目GDP×人口の概数）。産業構成は世界銀行の産業別付加価値を掲載する二次資料（<a href="https://ecoindica.com/countries/japan-gdp/">日本</a>／<a href="https://www.statista.com/statistics/271378/distribution-of-gross-domestic-product-gdp-across-economic-sectors-in-russia/">ロシア（Statista）</a>／<a href="https://www.theglobaleconomy.com/Burma-Myanmar/share_of_agriculture/">ミャンマー</a>）で、一次データとの照合は未了。日本の売上トップ10はEDINET（有価証券報告書）の連結売上高、2026年3月期。ロシアは<a href="https://www.rbc.ru/business/30/10/2025/6901febd9a79472454d4b2f0">RBC 500（2025年10月30日公表）</a>の報道（<a href="https://www.sravni.ru/novost/2025/10/30/opublikovan-rejting-krupnejshih-kompanij-rossii/">Sravni</a>、<a href="https://www.tks.ru/politics/2025/10/30/0006/">TKS</a>）。原表は未確認</li>
+    <li>税と社会保険料：国民負担率は財務省（<a href="https://www.mof.go.jp/policy/budget/topics/futanritsu/20260305.html">令和8年度の国民負担率</a>）と<a href="https://www.jil.go.jp/kokunai/statistics/shuyo/0603.html">JILPT（2006年度37.3%）</a>。年収別の金額は、上記の前提による志村ゼミの概算（2006年は当時の税率・保険料率、2026年は<a href="https://www.kyoukaikenpo.or.jp/shibu/tokyo/public_relations/e-mail_magazine/473.html">協会けんぽ東京支部の2026年度料率</a>、令和8年度税制改正の基礎控除（<a href="https://biz.moneyforward.com/accounting/basic/89764/">解説</a>）など）。社会保険料は標準報酬の等級を使わない近似</li>
+    <li>デジタルノマドビザ：日本の発給件数は外務省「査証発給統計」（<a href="https://www.kankokeizai.com/2608181800kks/">観光経済新聞</a>、<a href="https://prtimes.jp/main/html/rd/p/000000024.000126832.html">PR TIMES</a>）。米国のデジタルノマド数は<a href="https://www.mbopartners.com/state-of-independence/digital-nomads/">MBO Partners</a>。各国の条件は<a href="https://www.expatden.com/global/digital-nomad-visa-asia/">ExpatDen</a>・<a href="https://www.freelancermap.com/blog/digital-nomad-visa/">freelancermap</a>・<a href="https://immigrantinvest.com/digital-nomad-visa/">Immigrant Invest</a> などの民間比較資料</li>
+    <li>海外在留邦人：<a href="https://www.mofa.go.jp/mofaj/press/release/pressit_000001_03172.html">外務省 報道発表</a>／<a href="https://x.com/MofaJapan_jp/status/2004184529704276207">外務省の公表（X）</a>。永住者・長期滞在者・国別は<a href="https://keizai-marumie.com/japanese_nationals_abroad_permanent/">keizai-marumie</a>・<a href="https://worldinvest.jp/japanese-residents-abroad-ranking/">worldinvest</a>の集計</li>
     <li>時価総額トップ10：1989年はビジネスウィーク誌1989年7月17日号を基にダイヤモンド社が作成した表の転載（原誌は未確認。号の日付を評価基準日とみなさない）（
       <a href="https://www.manegy.com/news/detail/7934/">マネジー</a> の表による）、2026年は10月5日時点の集計（
       <a href="https://www.investingcube.com/deep-analysis/largest-companies-by-market-cap-in-2026-nvidia-leads-the-global-rankings/">Investing Cube</a>）。二次資料同士の参考比較。20社対50社の異なる母数の比較は使わない</li>
