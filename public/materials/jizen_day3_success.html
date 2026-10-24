@@ -132,7 +132,8 @@
   .gdp4 td small { display:block; font-size:.75rem; color:var(--muted); line-height:1.4; }
   .gdp4 tr.jp td { background:var(--yellow-bg); }
   @media (max-width:600px) { .gdp4 { font-size:.85rem; } .gdp4 th, .gdp4 td { padding:7px 6px; } .gdp4 td:first-child { white-space:normal; } .gdp4 td:first-child { width:5.2em; } .gdp4 td b { font-size:.86rem; } }
-  .flip { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; margin-top:14px; }
+  .flip { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:14px; }
+  @media (max-width:600px) { .flip { grid-template-columns:1fr; } }
   .flip .box h3 { font-size:1rem; }
   .flip .box p { margin:0; font-size:.9rem; line-height:1.7; }
   .rev { width:100%; border-collapse:collapse; font-size:.9rem; }
@@ -189,7 +190,7 @@
     <div class="n"><span class="v">生成AIの普及</span><span class="s">スマホと生成AIが仕事の道具に</span></div></div>
 </div>
 
-<h3 style="margin:26px 0 8px;font-weight:800">1人当たりGDP 4か国くらべ（日本・オーストラリア・韓国・ミャンマー）</h3>
+<h3 style="margin:26px 0 8px;font-weight:800">1人当たりGDP 5か国くらべ（日本・オーストラリア・韓国・ミャンマー・ロシア）</h3>
 <p class="src">名目・米ドル換算。IMF「World Economic Outlook」2026年4月版の数値で、両年をそろえて比べます（2026年はまだ推計途中のため、最新の実績見込みである2025年を使用）。上の表の世界銀行（2024年）とは出典・年が異なるため、日本の金額が少し違います。</p>
 <table class="gdp4">
   <thead><tr><th>国</th><th class="o">1991年</th><th class="n">2025年（世界順位）</th></tr></thead>
@@ -198,12 +199,14 @@
     <tr><td>🇦🇺 オーストラリア</td><td><b>約1万8,700ドル</b><small>日本の約6割</small></td><td><b>約6万6,400ドル</b><small>13位　日本の約1.8倍</small></td></tr>
     <tr><td>🇰🇷 韓国</td><td><b>約7,900ドル</b><small>日本の約4分の1</small></td><td><b>約3万6,200ドル</b><small>37位　日本とほぼ同じ</small></td></tr>
     <tr><td>🇲🇲 ミャンマー</td><td><b>約140ドル</b><small>日本の約200分の1（国連統計）</small></td><td><b>約1,500ドル</b><small>163位　日本の約24分の1</small></td></tr>
+    <tr><td>🇷🇺 ロシア</td><td><b>約3,500ドル</b><small>日本の約9分の1（世界銀行）</small></td><td><b>約1万8,000ドル</b><small>68位　日本の約半分</small></td></tr>
   </tbody>
 </table>
 <div class="flip">
   <div class="box new"><h3>🇦🇺 オーストラリアに逆転された</h3><p>1991年は日本の約6割。資源輸出の好調と豪ドル高で2000年代後半に日本を追い抜き、2025年には<span class="em">日本の約1.8倍</span>に。</p></div>
   <div class="box new"><h3>🇰🇷 韓国にも逆転された</h3><p>1991年は日本の約4分の1。内閣府の国際比較では<span class="em">2023年に韓国が日本を上回った</span>（韓国35,674ドル、日本35,229ドル）。IMFの2025年でも韓国37位・日本38位。</p></div>
   <div class="box old"><h3>🇲🇲 ミャンマーとの差は縮まった</h3><p>約200分の1から約24分の1へ。それでも差は大きく、2021年のクーデター後は経済が停滞。日本で働くミャンマー出身者も増えています。</p></div>
+  <div class="box old"><h3>🇷🇺 ソ連崩壊の年から</h3><p>1991年12月にソ連が崩壊し、ロシアは混乱の中で再出発。日本の約9分の1から<span class="em">約半分</span>へ。ただし石油・天然ガスの価格とルーブル相場で大きく上下します。</p></div>
 </div>
 <p class="src" style="margin-top:10px">円安の影響：名目ドル換算は為替で大きく動きます。1991年は年平均で1ドル約135円、2025年は150円前後。円で見た日本の所得が同じでも、ドルで見ると小さくなります。順位は「豊かさ」の一つの物差しにすぎません。</p>
 
@@ -321,6 +324,25 @@
   <p style="margin:10px 0 0;font-size:.9rem">65歳以上の割合は<b>約2.3倍</b>に。2025年の総人口では<span class="em">3.4人に1人</span>が65歳以上。バーの幅は小数第1位、表示は整数に丸めています。丸めにより合計が100%にならない場合があります。</p>
 </div>
 
+<h3 style="margin:24px 0 10px;font-weight:800">くらべてみよう：ミャンマーとロシアの年齢構成</h3>
+<div class="pyr">
+  <div class="yr">🇲🇲 ミャンマー　1991年</div>
+  <div class="bar"><span class="a" style="width:35.8%">36%</span><span class="b" style="width:59.7%">60%</span><span class="c" style="width:4.5%">5%</span></div>
+  <div class="yr" style="margin-top:10px">🇲🇲 ミャンマー　2025年</div>
+  <div class="bar"><span class="a" style="width:24.1%">24%</span><span class="b" style="width:68.4%">68%</span><span class="c" style="width:7.5%">8%</span></div>
+  <div class="yr" style="margin-top:18px">🇷🇺 ロシア　1991年</div>
+  <div class="bar"><span class="a" style="width:22.8%">23%</span><span class="b" style="width:66.8%">67%</span><span class="c" style="width:10.4%">10%</span></div>
+  <div class="yr" style="margin-top:10px">🇷🇺 ロシア　2025年</div>
+  <div class="bar"><span class="a" style="width:17.0%">17%</span><span class="b" style="width:65.2%">65%</span><span class="c" style="width:17.8%">18%</span></div>
+  <div class="legend"><span><i style="background:#7fd6a8"></i>0〜14歳</span><span><i style="background:#9cc3ff"></i>15〜64歳（働く世代）</span><span><i style="background:#ffb38a"></i>65歳以上</span></div>
+  <ul style="margin:10px 0 0;padding-left:1.2em;font-size:.9rem">
+    <li><b>ミャンマー：</b>子どもの割合は下がったが、働く世代が<span class="em">約7割</span>と厚い「人口ボーナス」期。65歳以上は1割未満で、日本の1991年（13%）よりまだ若い。</li>
+    <li><b>ロシア：</b>65歳以上が約10%→約18%に。子どもと高齢者がほぼ同じ割合で、日本ほどではないが高齢化が進む。</li>
+    <li><b>日本（上）：</b>65歳以上は29%。3か国の中で、もっとも早く高齢化が進んだ。</li>
+  </ul>
+  <p class="src" style="margin:8px 0 0">1991年は世界銀行WDI（国連人口部の推計に基づく）、2025年は国連「World Population Prospects 2024」の推計（ロシアは同推計を掲載する二次資料の概数）。日本の総務省の数値とは出典が異なります。</p>
+</div>
+
 <!-- ============ 4 ============ -->
 <div class="sec"><span class="icon">📼</span><h2>1991年から主役が変わったもの</h2></div>
 <div class="gone">
@@ -386,8 +408,10 @@
     <li>初任給・新規学卒者賃金：厚生労働省「賃金構造基本統計調査」<a href="https://www.mhlw.go.jp/toukei/itiran/roudou/chingin/kouzou/01/kouzou7.html">1991年（附属統計表第1表・企業規模計・男女別）</a>／<a href="https://www.mhlw.go.jp/toukei/itiran/roudou/chingin/kouzou/z2025/dl/10.pdf">2025年（第10表）</a>／<a href="https://www.mhlw.go.jp/toukei/itiran/roudou/chingin/kouzou/z2020/chuui.html">2020年の定義変更</a></li>
     <li>GDP：世界銀行WDIの同一取得版（2026年10月16日取得）。<a href="https://api.worldbank.org/v2/country/JPN;WLD/indicator/NY.GDP.MKTP.CD?date=1991:2024&amp;format=json&amp;per_page=100">名目GDP（NY.GDP.MKTP.CD）</a>／<a href="https://api.worldbank.org/v2/country/JPN/indicator/NY.GDP.PCAP.CD?date=1991:2024&amp;format=json&amp;per_page=100">1人当たりGDP（NY.GDP.PCAP.CD）</a>。世界シェアは日本÷世界。順位は集計地域を除く国・地域の公表値を比較（欠測国は除外）。両年とも米ドル建て・暦年。照合資料：内閣府「GDPの国際比較」では2024年シェア3.8%、1人当たり33,785ドル。統計の改定版・人口系列の差によりWDIと小差がある。
       <a href="https://www.esri.cao.go.jp/jp/sna/data/data_list/kakuhou/files/2024/sankou/pdf/kokusaihikaku_20251223.pdf">esri.cao.go.jp</a></li>
-    <li>1人当たりGDP 4か国：IMF「World Economic Outlook Database」2026年4月版の名目・米ドル換算（NGDPDPC）。1991年・2025年の値と2025年の世界順位（193か国・地域）は、同版を掲載する <a href="https://ecodb.net/ranking/group/XK/imf_ngdpdpc.html">世界経済のネタ帳</a>・<a href="https://www.worldometers.info/gdp/gdp-per-capita/">Worldometer</a>・<a href="https://www.globalnote.jp/post-1339.html">GLOBAL NOTE</a> で確認。ミャンマーの1991年はIMFにドル建て値がないため国連統計（National Accounts）の概数。日本の1991年の位置は「1990年9位・1995年3位」（IMF）からの目安。韓国の逆転年は内閣府「GDPの国際比較」（OECD統計ベース）。オーストラリアの逆転時期はIMFの年次値の比較による概数。
+    <li>1人当たりGDP 4か国：IMF「World Economic Outlook Database」2026年4月版の名目・米ドル換算（NGDPDPC）。1991年・2025年の値と2025年の世界順位（193か国・地域）は、同版を掲載する <a href="https://ecodb.net/ranking/group/XK/imf_ngdpdpc.html">世界経済のネタ帳</a>・<a href="https://www.worldometers.info/gdp/gdp-per-capita/">Worldometer</a>・<a href="https://www.globalnote.jp/post-1339.html">GLOBAL NOTE</a> で確認。ミャンマーの1991年はIMFにドル建て値がないため国連統計（National Accounts）の概数。ロシアの1991年はIMFに値がないため世界銀行の名目GDP（約5,180億ドル）を人口（約1億4,840万人）で割った概数、2025年はIMF（17,972ドル、68位）。日本の1991年の位置は「1990年9位・1995年3位」（IMF）からの目安。韓国の逆転年は内閣府「GDPの国際比較」（OECD統計ベース）。オーストラリアの逆転時期はIMFの年次値の比較による概数。
       <a href="https://www.esri.cao.go.jp/jp/sna/data/data_list/kakuhou/files/2024/sankou/pdf/kokusaihikaku_20251223.pdf">esri.cao.go.jp</a></li>
+    <li>ミャンマー・ロシアの年齢構成：1991年は世界銀行WDI（<a href="https://fred.stlouisfed.org/series/SPPOP0014TOZSMMR">ミャンマー0〜14歳</a>／<a href="https://fred.stlouisfed.org/series/SPPOP65UPTOZSMMR">65歳以上</a>／<a href="https://www.indexmundi.com/facts/russia/indicator/SP.POP.0014.TO.ZS">ロシア0〜14歳</a>／<a href="https://fred.stlouisfed.org/series/SPPOP65UPTOZSRUS">65歳以上</a>）。15〜64歳は100%からの差。2025年は国連「World Population Prospects 2024」（ミャンマー）と同推計を掲載する <a href="https://georank.org/demographics/russia">GeoRank</a>（ロシア）。一次データとの照合は未了
+      <a href="https://population.un.org/wpp/">population.un.org</a></li>
     <li>時価総額トップ10：1989年はビジネスウィーク誌1989年7月17日号を基にダイヤモンド社が作成した表の転載（原誌は未確認。号の日付を評価基準日とみなさない）（
       <a href="https://www.manegy.com/news/detail/7934/">マネジー</a> の表による）、2026年は10月5日時点の集計（
       <a href="https://www.investingcube.com/deep-analysis/largest-companies-by-market-cap-in-2026-nvidia-leads-the-global-rankings/">Investing Cube</a>）。二次資料同士の参考比較。20社対50社の異なる母数の比較は使わない</li>
