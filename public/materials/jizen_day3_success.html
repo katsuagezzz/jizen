@@ -182,11 +182,17 @@
   .taxc .ln { display:grid; grid-template-columns:3.4em 1fr; gap:8px; align-items:center; margin:4px 0; }
   .taxc .yr { font-size:.82rem; font-weight:800; color:var(--muted); }
   .taxc .bar2 { display:flex; align-items:center; gap:2px; height:26px; }
-  .taxc .bar2 span { height:100%; border-radius:4px; }
+  .taxc .bar2 span { height:100%; border-radius:4px; flex:none; }
+  .taxc .bar2 b { min-width:0; }
+  @media (max-width:600px) { .taxc .bar2 b { white-space:normal; font-size:.78rem; line-height:1.25; } .incc .ln { grid-template-columns:4.6em 1fr; } .incc .ln .yr { font-size:.72rem; line-height:1.3; } }
   .taxc .bar2 .a { background:var(--s1); } .taxc .bar2 .b { background:var(--s2); } .taxc .bar2 .c { background:var(--s3); }
   .taxc .bar2 b { margin-left:8px; font-size:.85rem; white-space:nowrap; }
   .taxc .lg3 { display:flex; flex-wrap:wrap; gap:4px 14px; font-size:.82rem; font-weight:700; }
   .taxc .lg3 i { display:inline-block; width:12px; height:12px; border-radius:3px; vertical-align:-1px; margin-right:4px; }
+  .incc .grp2 { margin:6px 0 16px; }
+  .incc .grp2 .inc small { font-weight:400; color:var(--muted); font-size:.78rem; margin-left:6px; }
+  .incc .ln { grid-template-columns:5.6em 1fr; }
+  .incc .bar2 .r { background:repeating-linear-gradient(45deg,var(--s2) 0 3px,transparent 3px 7px); border:2px solid var(--s2); box-sizing:border-box; }
   .ttab { width:100%; border-collapse:collapse; font-size:.88rem; }
   .ttab th, .ttab td { padding:6px 8px; border-bottom:1px dashed var(--muted); text-align:right; white-space:nowrap; }
   .ttab th:first-child, .ttab td:first-child { text-align:left; }
@@ -648,6 +654,45 @@
 </ul>
 <p class="src" style="margin-top:8px"><b>計算の前提（概算）：</b>東京都で働く30代の会社員、独身・扶養なし、賞与なし（月給×12か月）、40歳未満のため介護保険料なし。社会保険料は月給をそのまま標準報酬とした近似。2006年は政府管掌健康保険8.2%・厚生年金14.642%（同年9月以降）・雇用保険0.8%（本人）、所得税は定率減税（10%、上限12.5万円）後、住民税は5・10・13%の3段階で定率減税（7.5%、上限2万円）後。2026年は協会けんぽ東京9.85%＋子ども・子育て支援金0.23%（4月から）・厚生年金18.3%・雇用保険0.5%（本人）、所得税は令和8年度改正後の基礎控除と復興特別所得税を含む、住民税は一律10%。どちらも労使折半の本人分。実際の金額は、賞与・控除・自治体・年齢で変わります。</p>
 
+
+<h3 style="margin:26px 0 8px;font-weight:800">日本の所得：平均と中央値（2006年と最新）</h3>
+<p style="margin:0 4px 10px">負担が増えた一方で、<b>所得そのもの</b>はどう変わったでしょうか。</p>
+<div class="taxc incc">
+  <div class="grp2"><div class="inc">1世帯当たりの平均所得<small>国民生活基礎調査（2006年の所得→2024年の所得）</small></div>
+    <div class="ln"><span class="yr">2006年</span><div class="bar2"><span class="a" style="width:51.9%" title="566.8万円"></span><b>566.8万円</b></div></div>
+    <div class="ln"><span class="yr">最新</span><div class="bar2"><span class="b" style="width:52.7%" title="575.2万円"></span><b>575.2万円 <small style="font-weight:700;color:var(--muted)">（+1.5%）</small></b></div></div>
+    <div class="ln"><span class="yr">最新を物価で調整</span><div class="bar2"><span class="r" style="width:46.4%" title="2006年の物価に直すと約506万円"></span><b>約506万円</b></div></div>
+  </div>
+  <div class="grp2"><div class="inc">1世帯当たりの所得の中央値<small>まん中の世帯。2006年と同じ</small></div>
+    <div class="ln"><span class="yr">2006年</span><div class="bar2"><span class="a" style="width:41.3%" title="451万円"></span><b>451万円</b></div></div>
+    <div class="ln"><span class="yr">最新</span><div class="bar2"><span class="b" style="width:41.3%" title="451万円"></span><b>451万円 <small style="font-weight:700;color:var(--muted)">（±0%）</small></b></div></div>
+    <div class="ln"><span class="yr">最新を物価で調整</span><div class="bar2"><span class="r" style="width:36.4%" title="2006年の物価に直すと約397万円"></span><b>約397万円</b></div></div>
+  </div>
+  <div class="grp2"><div class="inc">会社員の平均給与<small>民間給与実態統計（2006年分→2025年分）</small></div>
+    <div class="ln"><span class="yr">2006年</span><div class="bar2"><span class="a" style="width:39.9%" title="435万円"></span><b>435万円</b></div></div>
+    <div class="ln"><span class="yr">最新</span><div class="bar2"><span class="b" style="width:44.6%" title="487万円"></span><b>487万円 <small style="font-weight:700;color:var(--muted)">（+12%）</small></b></div></div>
+    <div class="ln"><span class="yr">最新を物価で調整</span><div class="bar2"><span class="r" style="width:38.1%" title="2006年の物価に直すと約416万円"></span><b>約416万円</b></div></div>
+  </div>
+  <div class="grp2"><div class="inc">その平均給与の手取り<small>上の前提で税・社会保険料を引いた概算</small></div>
+    <div class="ln"><span class="yr">2006年</span><div class="bar2"><span class="a" style="width:32.4%" title="353万円"></span><b>353万円</b></div></div>
+    <div class="ln"><span class="yr">最新</span><div class="bar2"><span class="b" style="width:35.1%" title="383万円"></span><b>383万円 <small style="font-weight:700;color:var(--muted)">（+8.5%）</small></b></div></div>
+    <div class="ln"><span class="yr">最新を物価で調整</span><div class="bar2"><span class="r" style="width:30.1%" title="2006年の物価に直すと約328万円"></span><b>約328万円</b></div></div>
+  </div>
+  <div class="lg3"><span><i style="background:var(--s1)"></i>2006年</span><span><i style="background:var(--s2)"></i>最新（名目）</span><span><i style="background:repeating-linear-gradient(45deg,var(--s2) 0 3px,transparent 3px 6px);border:1px solid var(--s2)"></i>最新を2006年の物価に直した値（実質）</span></div>
+</div>
+<div class="stat3" style="margin-top:14px">
+  <div class="t"><small>物価（消費者物価指数）</small><b>約14〜17%上昇</b><span>2006年→2024年で約14%、2025年で約17%</span></div>
+  <div class="t"><small>平均より所得が低い世帯</small><b>61.2% → 61.5%</b><span>平均は一部の高所得世帯に引っぱられる。「ふつうの世帯」は中央値で見る</span></div>
+  <div class="t"><small>正社員と正社員以外の平均給与（2025年分）</small><b>559万円 / 210万円</b><span>男性597万円、女性342万円</span></div>
+</div>
+<ul style="margin:12px 0 0;padding-left:1.2em;font-size:.92rem">
+  <li>世帯の<b>中央値は451万円で、20年近く同じ</b>。物価が上がった分だけ、実質では<span class="em">約1割強の目減り</span>。</li>
+  <li>会社員の平均給与は52万円増えたが、物価の上昇（約17%）に追いつかず、<b>実質では約4%減</b>。</li>
+  <li>手取りにすると、さらに差が開く（名目+8.5%、実質では<span class="em">約7%減</span>）。税・社会保険料の増加が効いている。</li>
+  <li>世帯所得には年金暮らしの高齢者世帯も含まれる。高齢者世帯の増加が平均や中央値を押し下げている面もある。</li>
+</ul>
+<p class="src" style="margin-top:8px">世帯所得：厚生労働省「国民生活基礎調査」（2007年調査＝2006年の所得：平均566.8万円・中央値451万円、2025年調査＝2024年の所得：平均575.2万円・中央値451万円）。平均給与：国税庁「民間給与実態統計調査」（平成18年分435万円、令和7年分487万円、1年を通じて勤務した給与所得者）。手取りは上の税・社会保険料の前提で計算した概算（2006年は当時の制度、最新は2026年の制度）。実質値は総務省「消費者物価指数」（総合）で2006年の物価に換算した概算（2006→2024年 約1.137倍、2006→2025年 約1.17倍）。</p>
+
 <!-- ============ ノマド ============ -->
 <div class="sec"><span class="icon">💻</span><h2>デジタルノマドビザ：国境を越えて働く</h2></div>
 <p><b>デジタルノマド</b>とは、ネットを使って、場所を決めずに働く人のこと。<b>デジタルノマドビザ</b>は、<b>外国の会社や顧客の仕事をリモートで続けながら</b>、その国に一定期間住むことを認める制度です。その国で就職するための就労ビザとは違い、「稼ぎは国外、生活はこの国」が前提です。</p>
@@ -744,6 +789,7 @@
       <a href="https://population.un.org/wpp/">population.un.org</a></li>
     <li>3か国の産業と大企業：GDPの規模はIMF WEO 2026年4月版（1人当たり名目GDP×人口の概数）。産業構成は世界銀行の産業別付加価値を掲載する二次資料（<a href="https://ecoindica.com/countries/japan-gdp/">日本</a>／<a href="https://www.statista.com/statistics/271378/distribution-of-gross-domestic-product-gdp-across-economic-sectors-in-russia/">ロシア（Statista）</a>／<a href="https://www.theglobaleconomy.com/Burma-Myanmar/share_of_agriculture/">ミャンマー</a>）で、一次データとの照合は未了。日本の売上トップ10はEDINET（有価証券報告書）の連結売上高、2026年3月期。ロシアは<a href="https://www.rbc.ru/business/30/10/2025/6901febd9a79472454d4b2f0">RBC 500（2025年10月30日公表）</a>の報道（<a href="https://www.sravni.ru/novost/2025/10/30/opublikovan-rejting-krupnejshih-kompanij-rossii/">Sravni</a>、<a href="https://www.tks.ru/politics/2025/10/30/0006/">TKS</a>）。原表は未確認</li>
     <li>税と社会保険料：国民負担率は財務省（<a href="https://www.mof.go.jp/policy/budget/topics/futanritsu/20260305.html">令和8年度の国民負担率</a>）と<a href="https://www.jil.go.jp/kokunai/statistics/shuyo/0603.html">JILPT（2006年度37.3%）</a>。年収別の金額は、上記の前提による志村ゼミの概算（2006年は当時の税率・保険料率、2026年は<a href="https://www.kyoukaikenpo.or.jp/shibu/tokyo/public_relations/e-mail_magazine/473.html">協会けんぽ東京支部の2026年度料率</a>、令和8年度税制改正の基礎控除（<a href="https://biz.moneyforward.com/accounting/basic/89764/">解説</a>）など）。社会保険料は標準報酬の等級を使わない近似</li>
+    <li>所得の平均・中央値：<a href="https://www.mhlw.go.jp/toukei/saikin/hw/k-tyosa/k-tyosa25/index.html">厚生労働省「2025年 国民生活基礎調査の概況」</a>／<a href="https://www.mhlw.go.jp/toukei/saikin/hw/k-tyosa/k-tyosa10/2-1.html">年次別の所得の状況</a>・<a href="https://www.wam.go.jp/wamappl/bb14gs50.nsf/0/5d7c0bc463105079492574c100019893/$FILE/20080911_1shiryou_all.pdf">平成19年調査の概況（2006年の所得の中央値）</a>。平均給与は国税庁<a href="https://www.nta.go.jp/publication/statistics/kokuzeicho/minkan/gaiyou/2006.htm">平成18年分</a>・<a href="https://www.nta.go.jp/publication/statistics/kokuzeicho/minkan/gaiyou/2025.htm">令和7年分</a>。物価は<a href="https://www.stat.go.jp/data/cpi/sokuhou/nen/index-z.html">総務省統計局</a>（2025年平均111.9、2020年基準）と、2006年の値は<a href="https://www.keizai-ondokei.net/cpi/">2025年基準の長期系列を掲載する資料</a>からの換算で、公式の2006年値との照合は未了</li>
     <li>デジタルノマドビザ：日本の発給件数は外務省「査証発給統計」（<a href="https://www.kankokeizai.com/2608181800kks/">観光経済新聞</a>、<a href="https://prtimes.jp/main/html/rd/p/000000024.000126832.html">PR TIMES</a>）。米国のデジタルノマド数は<a href="https://www.mbopartners.com/state-of-independence/digital-nomads/">MBO Partners</a>。各国の条件は<a href="https://www.expatden.com/global/digital-nomad-visa-asia/">ExpatDen</a>・<a href="https://www.freelancermap.com/blog/digital-nomad-visa/">freelancermap</a>・<a href="https://immigrantinvest.com/digital-nomad-visa/">Immigrant Invest</a> などの民間比較資料</li>
     <li>海外在留邦人：<a href="https://www.mofa.go.jp/mofaj/press/release/pressit_000001_03172.html">外務省 報道発表</a>／<a href="https://x.com/MofaJapan_jp/status/2004184529704276207">外務省の公表（X）</a>。永住者・長期滞在者・国別は<a href="https://keizai-marumie.com/japanese_nationals_abroad_permanent/">keizai-marumie</a>・<a href="https://worldinvest.jp/japanese-residents-abroad-ranking/">worldinvest</a>の集計</li>
     <li>時価総額トップ10：1989年はビジネスウィーク誌1989年7月17日号を基にダイヤモンド社が作成した表の転載（原誌は未確認。号の日付を評価基準日とみなさない）（
