@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Day5 人生におけるポジショニング - 自動運転とHDマップから考える</title>
+<title>Day5 自分の身をどこに置くか？ - ミクロ編</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
@@ -139,6 +139,43 @@
   .life td:first-child { font-weight:800; width:34%; }
   .life td:nth-child(2) { color:var(--muted); }
   @media (max-width:600px) { .life thead { display:none; } .life tr { display:block; border-top:2px dashed var(--muted); } .life tr:first-child { border-top:none; } .life td { display:block; width:auto !important; border-top:none; padding:6px 12px; } .life td:first-child { padding-top:12px; } .life td:last-child { padding-bottom:12px; } .life td:nth-child(2)::before { content:"自動運転では："; font-weight:800; } .life td:nth-child(3)::before { content:"あなたなら："; font-weight:800; color:var(--ink); } }
+
+  /* ミクロ編 */
+  .lead2 { margin:0 0 14px; }
+  .sc { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:14px 16px; box-shadow:var(--shadow); margin-bottom:14px; }
+  .sc h3 { margin:0 0 8px; font-size:1.05rem; font-weight:800; }
+  .pills { display:flex; flex-wrap:wrap; align-items:stretch; gap:6px 4px; }
+  .pills .pl { background:var(--blue-bg); border:2px solid var(--edge); border-radius:12px; padding:4px 10px; font-size:.86rem; line-height:1.45; }
+  .pills .pl b { display:block; font-size:.9rem; }
+  .pills .pl small { color:var(--muted); font-size:.76rem; }
+  .pills .pl.hot { background:var(--pink-bg); }
+  .pills .ar { align-self:center; font-weight:800; color:var(--muted); }
+  .sc .pt { margin:10px 0 0; font-size:.9rem; background:var(--yellow-bg); border-radius:12px; padding:6px 12px; }
+  .smile { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; align-items:end; margin:8px 0 4px; }
+  .smile div { border:2px solid var(--edge); border-radius:10px 10px 4px 4px; background:var(--green-bg); display:flex; align-items:flex-end; justify-content:center; text-align:center; font-size:.78rem; font-weight:800; padding:4px 2px; line-height:1.3; }
+  .moat { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; }
+  .moat .m { background:var(--card); border:3px solid var(--edge); border-radius:18px; padding:12px 14px; box-shadow:3px 3px 0 var(--edge); }
+  .moat .m b { display:block; font-size:1rem; }
+  .moat .m span { display:block; font-size:.86rem; line-height:1.6; margin-top:2px; }
+  .moat .m small { display:block; font-size:.78rem; color:var(--muted); margin-top:4px; }
+  .org { text-align:center; }
+  .org .lv { display:inline-block; background:var(--card); border:3px solid var(--edge); border-radius:14px; padding:6px 14px; font-weight:800; box-shadow:3px 3px 0 var(--edge); }
+  .org .lv small { display:block; font-weight:400; font-size:.76rem; color:var(--muted); }
+  .org .dn { font-weight:800; color:var(--muted); line-height:1.4; margin:2px 0; }
+  .org .row4 { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:10px; text-align:left; margin-top:6px; }
+  .org .dept { background:var(--card); border:3px solid var(--edge); border-radius:16px; padding:10px 12px; box-shadow:3px 3px 0 var(--edge); font-size:.86rem; }
+  .org .dept b { display:block; font-size:1rem; margin-bottom:2px; }
+  .org .dept .k { display:inline-block; font-size:.72rem; font-weight:800; border:2px solid var(--edge); border-radius:999px; padding:0 8px; margin-bottom:4px; }
+  .org .dept ul { margin:4px 0 0; padding-left:1.1em; }
+  .cmp5 { width:100%; border-collapse:collapse; font-size:.86rem; background:var(--card); }
+  .cmp5 th, .cmp5 td { padding:8px; border-bottom:1px dashed var(--muted); text-align:left; vertical-align:top; }
+  .cmp5 thead th { background:var(--edge); color:#fff; white-space:nowrap; }
+  .cmp5 td:first-child { font-weight:800; white-space:nowrap; background:var(--yellow-bg); }
+  .tblw { border:3px solid var(--edge); border-radius:18px; overflow:hidden; box-shadow:var(--shadow); }
+  @media (max-width:640px) { .cmp5 thead { display:none; } .cmp5 tr { display:block; border-bottom:2px solid var(--edge); } .cmp5 td { display:block; border:none; padding:4px 12px; } .cmp5 td:first-child { padding:8px 12px; } .cmp5 td:nth-child(2)::before { content:"稼ぎ方："; font-weight:800; } .cmp5 td:nth-child(3)::before { content:"中心の部門："; font-weight:800; } .cmp5 td:nth-child(4)::before { content:"強みの資産："; font-weight:800; } .cmp5 td:nth-child(5)::before { content:"気をつけること："; font-weight:800; } .cmp5 td:nth-child(6)::before { content:"インターンで見る点："; font-weight:800; } }
+  .camp.reg th:first-child { width:6.8em; } .camp.reg td:first-child { white-space:nowrap; }
+  .divider { margin:56px 0 0; padding:14px 18px; border:3px dashed var(--edge); border-radius:18px; text-align:center; font-weight:800; background:var(--yellow-bg); }
+  .divider small { display:block; font-weight:400; font-size:.85rem; color:var(--muted); }
 </style>
 </head>
 <body>
@@ -148,10 +185,125 @@
 
 <header class="hero">
   <span class="chip">Day5</span>
-  <h1>人生における<br>ポジショニング</h1>
-  <p>イノベーションとサプライチェーンの、どこに身を置くか</p>
+  <h1>自分の身を<br>どこに置くか？</h1>
+  <p>ミクロ編：業界・会社・部署の、どこに立つか</p>
   <span class="emoji">🧭</span>
 </header>
+
+<div class="intro">
+  <p><b>Day4（マクロ編）</b>では、どの<b>国・エリア</b>に身を置くかを考えました。<b>Day5（ミクロ編）</b>では、もっと近づいて、どの<b>業界・会社・部署</b>に身を置くかを考えます。</p>
+  <p>手がかりは3つ。<b>①サプライチェーンのどこにいるか</b>、<b>②その会社に「堀（MOAT）」があるか</b>、<b>③会社の中のどの部門か</b>。最後に、自動運転のケーススタディで練習します。</p>
+</div>
+
+<!-- ============ A ============ -->
+<div class="sec"><span class="icon">🔗</span><h2>サプライチェーンとは？</h2></div>
+<p class="lead2">モノやサービスが、<b>原料から最終的な利用者に届くまでの、会社と会社のつながり</b>。原料に近い側を<b>上流（川上）</b>、利用者に近い側を<b>下流（川下）</b>と呼びます。</p>
+<div class="grid2">
+  <div class="box a"><h3>⬆️ 上流（川上）</h3><ul><li>素材・部品・製造装置</li><li>一般の人には見えにくいが、<b>代わりがきかない技術</b>を持つと強い</li><li>例：シリコンウェハー、半導体の製造装置</li></ul></div>
+  <div class="box b"><h3>⬇️ 下流（川下）</h3><ul><li>小売・サービス・ブランド</li><li>利用者と直接つながり、<b>データとブランド</b>を持てる</li><li>例：ユニクロの店舗とアプリ、携帯ショップ</li></ul></div>
+</div>
+<div class="box" style="margin-top:14px"><h3>📈 スマイルカーブ：もうかるのは両端？</h3>
+  <div class="smile"><div style="height:96px">研究開発・素材</div><div style="height:70px">部品</div><div style="height:44px">組み立て</div><div style="height:70px">販売・物流</div><div style="height:96px">ブランド・サービス</div></div>
+  <p style="font-size:.88rem">パソコンや電子機器でよく言われる考え方。<b>組み立て</b>はまねされやすく利益が薄く、<b>両端（開発・素材と、ブランド・サービス）</b>に利益が集まりやすい。すべての業界に当てはまるわけではない。</p>
+</div>
+
+<!-- ============ B ============ -->
+<div class="sec"><span class="icon">🏭</span><h2>産業別のサプライチェーン</h2></div>
+<p class="lead2">ピンクの段は、そのチェーンの中で<b>交渉力（値段を決める力）を持ちやすい</b>ところの例。</p>
+<div class="sc"><h3>🤖 AI</h3><div class="pills"><span class="pl"><b>素材・製造装置</b><small>信越化学（シリコンウェハー）、ASML、東京エレクトロン</small></span><span class="ar">→</span><span class="pl hot"><b>半導体</b><small>設計：NVIDIA／製造：TSMC</small></span><span class="ar">→</span><span class="pl"><b>データセンター・クラウド</b><small>AWS、Microsoft、Google、さくらインターネット＋大量の電力</small></span><span class="ar">→</span><span class="pl hot"><b>AIモデル</b><small>OpenAI、Anthropic、Googleなど</small></span><span class="ar">→</span><span class="pl"><b>アプリ・サービス</b><small>チャット、業務ツール、検索</small></span><span class="ar">→</span><span class="pl"><b>利用者</b><small>企業・個人</small></span></div>
+  <p class="pt">いまは<b>半導体</b>に利益が集中。AIを動かすには<b>電力</b>も大量に必要で、電力会社や発電設備の会社にも追い風。日本企業は素材・製造装置の上流に強い。</p></div>
+<div class="sc"><h3>👕 アパレル</h3><div class="pills"><span class="pl"><b>素材</b><small>綿・化学繊維（東レなど）</small></span><span class="ar">→</span><span class="pl"><b>紡績・織布・染色</b><small>糸と生地をつくる</small></span><span class="ar">→</span><span class="pl"><b>縫製</b><small>アジアの工場が中心</small></span><span class="ar">→</span><span class="pl hot"><b>企画・ブランド</b><small>デザイン・商品企画</small></span><span class="ar">→</span><span class="pl"><b>物流</b><small>倉庫・配送</small></span><span class="ar">→</span><span class="pl hot"><b>小売</b><small>百貨店・専門店・EC</small></span><span class="ar">→</span><span class="pl"><b>消費者</b><small></small></span></div>
+  <p class="pt">ユニクロ（ファーストリテイリング）は、企画から販売までを自社でまとめる<b>SPA（製造小売）</b>。間に入る会社を減らして利益を取る。総合商社は、ブランドと工場の間をつなぐ役割を担うことが多い。</p></div>
+<div class="sc"><h3>📱 通信</h3><div class="pills"><span class="pl"><b>通信機器</b><small>基地局：エリクソン、ノキア、NEC、富士通</small></span><span class="ar">→</span><span class="pl hot"><b>通信キャリア</b><small>ドコモ、KDDI、ソフトバンク、楽天</small></span><span class="ar">→</span><span class="pl"><b>MVNO（格安SIM）</b><small>キャリアの回線を借りて売る</small></span><span class="ar">→</span><span class="pl"><b>端末</b><small>Apple、Samsung、Googleなど</small></span><span class="ar">→</span><span class="pl"><b>販売代理店</b><small>携帯ショップ</small></span><span class="ar">→</span><span class="pl"><b>利用者</b><small></small></span></div>
+  <p class="pt">電波は国の免許がないと使えない<b>規制産業</b>。キャリアは数社に限られる。格安SIMや携帯ショップは、キャリアの回線や方針に左右される立場。</p></div>
+<div class="sc"><h3>🍺 ビール</h3><div class="pills"><span class="pl"><b>原料</b><small>麦芽・ホップ（多くを輸入）</small></span><span class="ar">→</span><span class="pl hot"><b>醸造（メーカー）</b><small>アサヒ、キリン、サントリー、サッポロ</small></span><span class="ar">→</span><span class="pl"><b>酒類卸</b><small>国分、三菱食品など</small></span><span class="ar">→</span><span class="pl"><b>小売・飲食店</b><small>スーパー、コンビニ、居酒屋</small></span><span class="ar">→</span><span class="pl"><b>消費者</b><small></small></span></div>
+  <p class="pt">お酒をつくるにも売るにも<b>国の免許</b>が必要。値段の中には<b>酒税</b>が含まれる。大手4社の寡占が長く続いてきた。</p></div>
+
+<!-- ============ C ============ -->
+<div class="sec"><span class="icon">⚖️</span><h2>規制産業の事例</h2></div>
+<p class="lead2">国の<b>免許・許可</b>がないと参入できない業界。参入できる会社が限られるので<b>競争が少なく、利益が安定しやすい</b>。一方で、<b>規制が変わると業界の地図が一気に変わる</b>。</p>
+<table class="camp reg" style="font-size:.9rem">
+  <thead><tr><th>業界</th><th class="m">規制（免許・許可）</th><th class="n">規制が変わったとき</th></tr></thead>
+  <tbody>
+    <tr><td>通信</td><td>電波の利用に国の免許</td><td>1985年の通信自由化（電電公社→NTT）で新しい会社が参入。のちに携帯電話の時代へ</td></tr>
+    <tr><td>電力</td><td>発電・送電・小売の各事業に登録・許可</td><td>2016年の電力小売の全面自由化で、ガス会社や通信会社も電気を売るように</td></tr>
+    <tr><td>酒（ビール）</td><td>製造免許・販売免許、酒税</td><td>1994年、ビールの製造免許に必要な最低製造量が年2,000kLから60kLに下がり、地ビール（クラフトビール）が生まれた</td></tr>
+    <tr><td>銀行・保険</td><td>銀行業・保険業の免許、金融庁の監督</td><td>ネット銀行やスマホ決済など、ITから参入する会社が増えた</td></tr>
+    <tr><td>放送</td><td>放送局の免許</td><td>ネット配信は免許なしで始められ、視聴者の時間を取り合うライバルに</td></tr>
+    <tr><td>医薬品</td><td>製造・販売の承認・許可</td><td>一部の薬のネット販売が解禁され、ドラッグストアやECの戦い方が変わった</td></tr>
+  </tbody>
+</table>
+<p class="lead2" style="margin-top:10px;font-size:.92rem">💡 規制に守られた会社は安定しているが、<b>規制が変わったときの備え</b>があるかも見よう。Day4の「就労ビザ」も、国が人の移動を規制している例。</p>
+
+<!-- ============ D ============ -->
+<div class="sec"><span class="icon">🏰</span><h2>バフェットのMOAT（経済的な堀）</h2></div>
+<p class="lead2">世界的な投資家<b>ウォーレン・バフェット</b>は、会社を<b>お城</b>にたとえ、ライバルが攻めてこられないように守る<b>「堀（MOAT）」</b>がある会社に、長く投資することを好みます。堀が広く深い会社ほど、長く利益を出し続けられる。</p>
+<div class="moat">
+  <div class="m"><b>🏷️ ブランド</b><span>高くても「これがいい」と選ばれる</span><small>例：コカ・コーラ（バークシャーが長年の大株主）、Apple</small></div>
+  <div class="m"><b>🕸️ ネットワーク効果</b><span>使う人が増えるほど便利になり、さらに人が集まる</span><small>例：LINE、決済サービス、クレジットカード網</small></div>
+  <div class="m"><b>🔒 乗り換えの手間（スイッチングコスト）</b><span>やめると面倒・損なので使い続ける</span><small>例：会社の会計ソフト、iPhoneとiCloud</small></div>
+  <div class="m"><b>🏭 コストの安さ（規模）</b><span>大量に作る・仕入れるほど安くできる</span><small>例：ユニクロ、Amazonの物流</small></div>
+  <div class="m"><b>📜 免許・規制・特許</b><span>国のルールや特許で、他社が入れない</span><small>例：通信、電力、新薬の特許</small></div>
+  <div class="m"><b>🧠 代わりがきかない技術・データ</b><span>まねするのに何年もかかる</span><small>例：半導体の製造装置、地図やAIの学習データ</small></div>
+</div>
+<div class="box y" style="margin-top:14px"><h3>✍️ 自分にも「堀」はあるか？</h3>
+  <p>会社だけでなく、<b>人にも堀がある</b>。国際的に通じる資格やスキル（Day4）、ほかの人がまねしにくい経験の組み合わせ、信頼の積み重ね。<b>イノベーションで堀が埋められることもある</b>（次の節）。</p></div>
+
+<!-- ============ E ============ -->
+<div class="sec"><span class="icon">💡</span><h2>イノベーション</h2></div>
+<p class="lead2">経済学者<b>シュンペーター</b>は、イノベーションを「<b>新しい組み合わせ（新結合）</b>」と呼びました。発明そのものだけでなく、組み合わせ方を変えることもイノベーションです。</p>
+<div class="terms">
+  <div class="term"><b>① 新しい製品・サービス</b><span>スマートフォン、生成AI</span></div>
+  <div class="term"><b>② 新しい作り方</b><span>トヨタ生産方式、AIで自動化</span></div>
+  <div class="term"><b>③ 新しい市場</b><span>日本のアニメを海外に売る</span></div>
+  <div class="term"><b>④ 新しい仕入れ先・材料</b><span>化学繊維、リサイクル素材</span></div>
+  <div class="term"><b>⑤ 新しい組織・仕組み</b><span>SPA、サブスク、フリマアプリ</span></div>
+</div>
+<div class="grid2" style="margin-top:14px">
+  <div class="box a"><h3>🔧 持続的イノベーション</h3><ul><li>今のお客さんのために、今の製品を良くする</li><li>例：カメラの画素数を上げる、ガラケーを薄くする</li><li>大企業が得意</li></ul></div>
+  <div class="box p"><h3>💥 破壊的イノベーション</h3><ul><li>最初は性能が低く安い。でも「十分」になったとき、市場ごと入れ替わる</li><li>例：デジカメ → スマホのカメラ、DVDレンタル → 動画配信</li><li>新しい会社が勝ちやすい</li></ul></div>
+</div>
+<div class="quote">イノベーションのジレンマ<small>クリステンセンが1997年に唱えた考え方。大企業は今のお客さんの声を正しく聞くほど、破壊的イノベーションへの対応が遅れてしまう。後半の「HDマップと自動運転」も、この視点で読んでみよう。</small></div>
+
+<!-- ============ F ============ -->
+<div class="sec"><span class="icon">🏢</span><h2>会社の中の組織（ガバナンス）</h2></div>
+<p class="lead2">同じ会社でも、<b>どの部門にいるか</b>で、仕事も評価のされ方も、身につくことも違います。<b>ガバナンス</b>とは、会社が正しく運営されるように<b>決める・任せる・見張る</b>仕組みのこと。</p>
+<div class="org">
+  <span class="lv">株主（株主総会）<small>会社の持ち主。取締役を選ぶ</small></span>
+  <div class="dn">▼ 選ぶ</div>
+  <span class="lv">取締役会<small>大事なことを決め、経営陣を見張る（社外取締役も）</small></span>　<span class="lv">監査役など<small>不正やミスがないかチェック</small></span>
+  <div class="dn">▼ 任せる</div>
+  <span class="lv">社長・経営陣（CEO）<small>日々の経営を進める</small></span>
+  <div class="dn">▼</div>
+  <div class="row4">
+    <div class="dept"><span class="k" style="background:var(--blue-bg)">お金を守る・回す</span><b>🗂️ 管理部門</b>経理・財務、経営企画、人事、法務・総務
+      <ul><li>会社の数字を作り、計画を立て、ルールを守らせる</li><li>直接は売上を生まない（コストセンター）</li><li>会社全体が見える。<span class="em">簿記・会計</span>が武器に</li></ul></div>
+    <div class="dept"><span class="k" style="background:var(--pink-bg)">お金を稼ぐ</span><b>🤝 営業部門</b>法人営業、店舗、マーケティング
+      <ul><li>お客さんに売り、売上を作る（プロフィットセンター）</li><li>成果が数字で見えやすい</li><li>お客さんの声が一番早く届く</li></ul></div>
+    <div class="dept"><span class="k" style="background:var(--green-bg)">つくる</span><b>🏭 製造部門</b>工場、品質管理、調達（仕入れ）
+      <ul><li>決めた品質・コスト・納期で作る</li><li>改善の積み重ねが強み</li><li>サプライチェーンの上流とつながる</li></ul></div>
+    <div class="dept"><span class="k" style="background:var(--purple-bg)">未来をつくる</span><b>🚀 新規ビジネス</b>新規事業、研究開発（R&amp;D）
+      <ul><li>まだない売上を作る。失敗も多い</li><li>予算がつくかは、会社が伸びているか次第（Day4）</li><li>イノベーションの担い手</li></ul></div>
+  </div>
+</div>
+<p class="lead2" style="margin-top:12px;font-size:.92rem">💡 インターン先では、<b>自分がどの部門の仕事をしているか</b>、その部門が会社の中でどんな役割か、を日報に書いてみよう。</p>
+
+<!-- ============ G ============ -->
+<div class="sec"><span class="icon">🧩</span><h2>メーカー・商社・販売代理店・人材会社・金融の違い</h2></div>
+<p class="lead2">業種によって、<b>何で稼ぐか</b>と、<b>会社の中でどの部門が大きいか</b>が違います。</p>
+<div class="tblw"><table class="cmp5">
+  <thead><tr><th>業種</th><th>稼ぎ方</th><th>中心の部門</th><th>強みの資産</th><th>気をつけること</th><th>インターンで見る点</th></tr></thead>
+  <tbody>
+    <tr><td>🏭 メーカー</td><td>製品を作って売る</td><td>研究開発・製造・営業がそろう</td><td>工場・設備・技術・特許</td><td>設備にお金がかかる。技術の変化に弱いことも</td><td>どんな工程で作っているか、原価の考え方</td></tr>
+    <tr><td>🚢 商社</td><td>仕入れて売る差額と手数料。近年は会社への投資</td><td>営業部門（資源・食料・機械など商品別の本部）＋管理部門</td><td>人脈・情報・取引網・投資先</td><td>売上は大きいが利益率は低め。資源価格に左右されることも</td><td>何と何をつないでいるか、投資先との関わり方</td></tr>
+    <tr><td>🛍️ 販売代理店</td><td>メーカーやキャリアの商品を代わりに売って手数料</td><td>営業・店舗</td><td>お客さんとの接点・販売網</td><td>商品も手数料も、メーカー側の方針次第</td><td>手数料の仕組み、お客さんの声の生かし方</td></tr>
+    <tr><td>👥 人材会社</td><td>人の紹介・派遣で手数料</td><td>法人営業とキャリアアドバイザー（求職者の担当）</td><td>求人・求職者のデータ、信頼</td><td>景気が悪いと求人が減る。AIによる変化も大きい</td><td>企業と人の両方から、どう信頼を得ているか</td></tr>
+    <tr><td>🏦 金融</td><td>お金を貸す・預かる・運用して、金利と手数料</td><td>営業に加えて、審査・リスク管理・コンプライアンス</td><td>免許・信用・顧客の資産</td><td>規制産業。ルールを守る部門の比重が大きい</td><td>リスクをどう測り、どう管理しているか</td></tr>
+  </tbody>
+</table></div>
+<p class="lead2" style="margin-top:10px;font-size:.92rem">💡 サプライチェーンで見ると、<b>メーカーは「つくる」</b>、<b>商社・販売代理店は「つなぐ・届ける」</b>、<b>人材会社は「人をつなぐ」</b>、<b>金融は「お金を流す」</b>役割。自分はどの役割が好きか、考えてみよう。</p>
+
+<div class="divider">ここからは、ケーススタディ<br>「人生におけるポジショニング：自動運転とHDマップから考える」<small>上の考え方（サプライチェーン・MOAT・イノベーション）を使って読んでみよう</small></div>
 
 <div class="intro">
   <p>同じだけ努力しても、<b>どこに立っているか</b>で結果は大きく変わります。Day4では、1991年に「勝ち組」だった銀行や大企業が、35年でどう変わったかを見ました。</p>
