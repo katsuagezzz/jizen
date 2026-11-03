@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Day6 規制産業 - 免許・監督官庁・利潤の構造</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --bg:#fff8ee; --dots:#ffd9b8; --card:#ffffff; --ink:#22202b; --muted:#6c6878; --edge:#22202b;
+    --pink:#ff5c8a; --pink-bg:#ffe3ec; --orange:#ff8a3d; --orange-bg:#ffe9d9;
+    --yellow:#e0a800; --yellow-bg:#fff4cc; --green:#2bb673; --green-bg:#dcf7e8;
+    --blue:#3d8bff; --blue-bg:#e0edff; --purple:#9b5cff; --purple-bg:#efe4ff;
+    --mark:#ffe55c; --mark-pink:#ffc2d4; --shadow:4px 4px 0 var(--edge);
+    --old:#9b5cff; --new:#ff8a3d;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#1b1824; --dots:#2c2738; --card:#262233; --ink:#f4f1fa; --muted:#b2acc2; --edge:#0c0a12;
+      --pink-bg:#40202d; --orange-bg:#40291b; --yellow-bg:#3d3418; --green-bg:#173528;
+      --blue-bg:#1a2a45; --purple-bg:#2e2147; --mark:#7a6a12; --mark-pink:#7a2a44;
+    }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; color:var(--ink); line-height:1.8; font-size:16px;
+    font-family:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;
+    background-color:var(--bg);
+    background-image:radial-gradient(var(--dots) 1.5px, transparent 1.5px); background-size:22px 22px; }
+  .wrap { max-width:900px; margin:0 auto; padding:20px 16px 80px; }
+  .backlink { display:inline-block; font-weight:800; font-size:.9rem; color:var(--ink); text-decoration:none;
+    background:var(--card); border:2px solid var(--edge); border-radius:999px; padding:4px 14px; box-shadow:2px 2px 0 var(--edge); }
+
+  .hero { position:relative; margin:20px 0 28px; padding:32px 24px 28px; border:3px solid var(--edge); border-radius:28px;
+    background:linear-gradient(135deg,#22202b 0%,#3d8bff 55%,#2bb673 100%); color:#fff; box-shadow:6px 6px 0 var(--edge); overflow:hidden; }
+  .hero::after { content:""; position:absolute; right:-40px; top:-40px; width:180px; height:180px; border-radius:50%; background:rgba(255,255,255,.18); }
+  .hero .chip { display:inline-block; background:#fff; color:#22202b; font-weight:800; font-size:.8rem;
+    border:2px solid #22202b; border-radius:999px; padding:2px 12px; transform:rotate(-2deg); }
+  .hero h1 { font-size:clamp(1.7rem,6vw,2.5rem); line-height:1.3; margin:14px 0 6px; font-weight:800; text-shadow:3px 3px 0 rgba(34,32,43,.35); }
+  .hero p { margin:0; font-weight:700; }
+  .hero .emoji { position:absolute; right:22px; bottom:12px; font-size:3.2rem; transform:rotate(10deg); }
+  @media (max-width:600px) { .hero .emoji { top:12px; bottom:auto; right:12px; font-size:2.4rem; } .hero h1 { margin-top:22px; } }
+
+  .intro { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:18px 20px; box-shadow:var(--shadow); }
+  .intro p { margin:0 0 8px; } .intro p:last-child { margin:0; }
+
+  .sec { display:flex; align-items:center; gap:10px; margin:44px 0 16px; }
+  .sec .icon { flex:none; width:48px; height:48px; border-radius:50%; display:grid; place-items:center; font-size:1.5rem;
+    background:var(--card); border:3px solid var(--edge); box-shadow:3px 3px 0 var(--edge); }
+  .sec h2 { margin:0; font-size:clamp(1.2rem,4.5vw,1.55rem); font-weight:800; line-height:1.35;
+    background:linear-gradient(transparent 62%, var(--mark) 62%); padding:0 4px; }
+
+  /* 問い */
+  .qs { list-style:none; margin:0; padding:0; counter-reset:q; }
+  .qs li { counter-increment:q; position:relative; background:var(--card); border:3px solid var(--edge); border-radius:18px;
+    padding:14px 16px 14px 62px; margin:0 0 14px; box-shadow:var(--shadow); font-weight:700; }
+  .qs li::before { content:"Q" counter(q); position:absolute; left:14px; top:14px; width:36px; height:36px; border-radius:10px;
+    background:var(--pink); color:#fff; font-weight:800; display:grid; place-items:center; border:2px solid var(--edge); transform:rotate(-6deg); font-size:.9rem; }
+  .qs li span { display:block; font-weight:400; font-size:.9rem; color:var(--muted); margin-top:4px; }
+
+  .then { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
+  .box { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:16px 18px; box-shadow:var(--shadow); }
+  .box h3 { margin:0 0 6px; font-size:1.05rem; font-weight:800; }
+  .box ul { margin:0; padding-left:1.2em; }
+  .box.old { background:var(--purple-bg); } .box.new { background:var(--orange-bg); }
+
+  .em { font-weight:800; background:linear-gradient(transparent 55%, var(--mark-pink) 55%); padding:0 2px; }
+  .src { font-size:.82rem; color:var(--muted); line-height:1.7; }
+  .src a { color:var(--blue); word-break:break-all; }
+  .src ul { padding-left:1.2em; }
+  .rank2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; margin-top:6px; }
+  .rk { background:var(--card); border:3px solid var(--edge); border-radius:22px; box-shadow:var(--shadow); overflow:hidden; }
+  .rk h3 { margin:0; padding:10px 16px; color:#fff; font-size:1rem; font-weight:800; }
+  .rk.o h3 { background:var(--old); } .rk.n h3 { background:var(--new); }
+  .rk ol { list-style:none; margin:0; padding:6px 0; counter-reset:r; }
+  .rk li { counter-increment:r; display:flex; align-items:baseline; gap:8px; padding:5px 16px; border-bottom:1px dashed var(--muted); font-size:.95rem; }
+  .rk li:last-child { border-bottom:none; }
+  .rk li::before { content:counter(r); flex:none; width:1.6em; font-weight:800; color:var(--muted); }
+  .rk li .nm { flex:1; } .rk li .mc { font-weight:800; white-space:nowrap; }
+  .rk li.jp .nm::after { content:"日本"; margin-left:6px; font-size:.7rem; font-weight:800; color:#fff; background:#e60033; border-radius:6px; padding:0 6px; vertical-align:1px; }
+  .rk .tot { background:var(--yellow-bg); padding:10px 16px; font-weight:800; border-top:2px solid var(--edge); }
+  .rk .tot b { font-size:1.25rem; }
+  .big { text-align:center; margin:16px 0 4px; font-weight:800; font-size:1.05rem; }
+  .big b { font-size:1.6rem; background:linear-gradient(transparent 55%, var(--mark-pink) 55%); padding:0 4px; }
+  .em { font-weight:800; background:linear-gradient(transparent 55%, var(--mark-pink) 55%); padding:0 2px; }
+  .src { font-size:.82rem; color:var(--muted); line-height:1.7; }
+  .src a { color:var(--blue); word-break:break-all; }
+  .src ul { padding-left:1.2em; }
+
+  .box { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:16px 18px; box-shadow:var(--shadow); }
+  .box h3 { margin:0 0 6px; font-size:1.05rem; font-weight:800; }
+  .box p { margin:0 0 6px; } .box p:last-child { margin:0; }
+  .box ul { margin:0; padding-left:1.2em; }
+  .grid2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
+  .box.a { background:var(--blue-bg); } .box.b { background:var(--green-bg); } .box.y { background:var(--yellow-bg); } .box.p { background:var(--pink-bg); }
+  .tag { display:inline-block; font-size:.75rem; font-weight:800; border:2px solid var(--edge); border-radius:999px; padding:0 10px; margin-right:6px; background:var(--card); }
+
+
+  .lead2 { margin:0 0 14px; }
+  .note2 { font-size:.82rem; color:var(--muted); margin:8px 2px 0; line-height:1.6; }
+  .viz { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:14px 16px; box-shadow:var(--shadow);
+    --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s0:#b9b4c4; --grid:#e4e1ea; }
+  @media (prefers-color-scheme: dark) { .viz { --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s0:#5c566b; --grid:#3a3546; } }
+  .viz h3 { margin:0 0 8px; font-size:1rem; font-weight:800; }
+  .viz svg { display:block; width:100%; max-width:560px; margin:0 auto; height:auto; }
+  .viz svg.tri { max-width:420px; }
+  .viz svg text { font-family:inherit; fill:var(--ink); }
+  .viz svg .mu { fill:var(--muted); }
+  .lg { display:flex; flex-wrap:wrap; gap:4px 14px; font-size:.82rem; font-weight:700; margin-top:6px; }
+  .lg i { display:inline-block; width:12px; height:12px; border-radius:3px; vertical-align:-1px; margin-right:4px; }
+  .hb { display:grid; grid-template-columns:11em 1fr; gap:4px 10px; align-items:center; margin:5px 0; font-size:.86rem; }
+  .hb .bar { display:flex; align-items:center; gap:8px; }
+  .hb .bar i { display:block; height:20px; border-radius:0 4px 4px 0; flex:none; }
+  .hb .bar b { font-size:.82rem; white-space:nowrap; }
+  @media (max-width:600px) { .hb { grid-template-columns:7.5em 1fr; font-size:.78rem; } }
+  .tbl { width:100%; border-collapse:collapse; font-size:.85rem; }
+  .tbl th, .tbl td { padding:7px 8px; border-bottom:1px dashed var(--muted); text-align:left; vertical-align:top; }
+  .tbl thead th { background:var(--edge); color:#fff; white-space:nowrap; }
+  .tbl td:first-child { font-weight:800; white-space:nowrap; }
+  .tw { border:3px solid var(--edge); border-radius:18px; overflow:hidden; box-shadow:var(--shadow); background:var(--card); }
+  .scroll { overflow-x:auto; }
+  .types { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; }
+  .types .t { background:var(--card); border:3px solid var(--edge); border-radius:16px; padding:10px 12px; box-shadow:3px 3px 0 var(--edge); }
+  .types .t b { display:block; } .types .t span { font-size:.84rem; color:var(--muted); display:block; }
+  .tl { list-style:none; margin:0; padding:0 0 0 22px; border-left:4px solid var(--edge); }
+  .tl li { position:relative; margin:0 0 10px; padding:6px 12px; background:var(--card); border:3px solid var(--edge); border-radius:14px; box-shadow:3px 3px 0 var(--edge); font-size:.88rem; }
+  .tl li::before { content:""; position:absolute; left:-35px; top:12px; width:16px; height:16px; border-radius:50%; background:var(--blue); border:3px solid var(--edge); }
+  .tl .yr { font-weight:800; color:var(--blue); margin-right:6px; }
+  .tl li.re::before { background:var(--pink); } .tl li.re .yr { color:var(--pink); }
+  .flowt td:nth-child(2) { white-space:nowrap; font-weight:800; color:var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a class="backlink" href="/">← 実習Ⅰ Ⅱ 2D の一覧へ</a>
+
+<header class="hero">
+  <span class="chip">Day6</span>
+  <h1>規制産業</h1>
+  <p>免許・監督官庁・利潤の構造</p>
+  <span class="emoji">⚖️</span>
+</header>
+
+<div class="intro">
+  <p><b>規制産業</b>：法律にもとづき、国の免許・許可・認可がないと事業ができない、または価格や業務の内容が制限される産業。</p>
+  <p>この回の内容：①規制の種類　②主な規制産業と監督官庁　③自由市場との利潤の違い（経済学）　④政治・税・免許のつながり　⑤規制緩和の事例</p>
+</div>
+
+<!-- ============ 1 ============ -->
+<div class="sec"><span class="icon">📐</span><h2>規制の4つの種類</h2></div>
+<div class="types">
+  <div class="t"><b>① 参入規制</b><span>免許・許可・登録がないと始められない。例：銀行、通信、酒の製造</span></div>
+  <div class="t"><b>② 価格規制</b><span>料金に国の認可・届出が必要。例：電気の送配電料金、鉄道運賃、タクシー運賃</span></div>
+  <div class="t"><b>③ 数量・設備の規制</b><span>台数・量・設備の基準。例：ビールの最低製造量、タクシーの台数（特定地域）</span></div>
+  <div class="t"><b>④ 業務・行為の規制</b><span>してよいこと・してはいけないことを定める。例：銀行の兼業制限、薬の販売方法</span></div>
+</div>
+
+<!-- ============ 2 ============ -->
+<div class="sec"><span class="icon">🏛️</span><h2>主な規制産業と監督官庁</h2></div>
+<div class="tw scroll">
+<table class="tbl">
+  <thead><tr><th>業界</th><th>主な法律</th><th>監督官庁</th><th>規制の例</th><th>主な事業者</th></tr></thead>
+  <tbody>
+    <tr><td>銀行</td><td>銀行法</td><td>金融庁</td><td>免許、自己資本比率、検査</td><td>三菱UFJ、三井住友、みずほ</td></tr>
+    <tr><td>保険</td><td>保険業法</td><td>金融庁</td><td>免許、保険商品の認可</td><td>日本生命、第一生命、東京海上</td></tr>
+    <tr><td>証券</td><td>金融商品取引法</td><td>金融庁</td><td>登録、販売ルール</td><td>野村、大和、SBI</td></tr>
+    <tr><td>電力</td><td>電気事業法</td><td>経済産業省（資源エネルギー庁）</td><td>事業ごとの許可・登録、送配電料金の承認</td><td>東京電力、関西電力など</td></tr>
+    <tr><td>都市ガス</td><td>ガス事業法</td><td>経済産業省</td><td>導管事業の許可、保安</td><td>東京ガス、大阪ガス</td></tr>
+    <tr><td>通信</td><td>電気通信事業法・電波法</td><td>総務省</td><td>周波数の割り当て（免許）、登録</td><td>ドコモ、KDDI、ソフトバンク、楽天</td></tr>
+    <tr><td>放送</td><td>放送法・電波法</td><td>総務省</td><td>放送局の免許</td><td>NHK、民放キー局</td></tr>
+    <tr><td>鉄道</td><td>鉄道事業法</td><td>国土交通省</td><td>事業の許可、運賃の上限認可</td><td>JR各社、私鉄</td></tr>
+    <tr><td>タクシー</td><td>道路運送法</td><td>国土交通省</td><td>事業の許可、運賃の認可</td><td>日本交通、第一交通など</td></tr>
+    <tr><td>航空</td><td>航空法</td><td>国土交通省</td><td>事業の許可、安全基準</td><td>ANA、JAL</td></tr>
+    <tr><td>建設</td><td>建設業法</td><td>国土交通省・都道府県</td><td>建設業の許可</td><td>大手ゼネコンなど</td></tr>
+    <tr><td>医薬品</td><td>医薬品医療機器等法（薬機法）</td><td>厚生労働省</td><td>製造販売の承認・許可</td><td>武田薬品、アステラスなど</td></tr>
+    <tr><td>人材派遣</td><td>労働者派遣法</td><td>厚生労働省</td><td>事業の許可</td><td>リクルート、パーソルなど</td></tr>
+    <tr><td>酒</td><td>酒税法</td><td>国税庁（財務省）</td><td>製造免許・販売免許、酒税</td><td>アサヒ、キリン、サントリー、サッポロ</td></tr>
+    <tr><td>たばこ</td><td>たばこ事業法</td><td>財務省</td><td>国内での製造はJTのみ</td><td>JT</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note2">事業者は例。法律・制度は概要で、細かな条件は業界ごとに異なる。</p>
+
+<!-- ============ 3 ============ -->
+<div class="sec"><span class="icon">📈</span><h2>自由市場と規制市場：利潤の違い</h2></div>
+<div class="grid2">
+  <div class="box b"><h3>自由市場（完全競争）</h3><ul><li>誰でも参入できる</li><li>利益が出ると新しい会社が入り、価格が下がる</li><li>長期的には<b>超過利潤（経済的利潤）は0</b>に近づく</li></ul></div>
+  <div class="box a"><h3>規制市場（参入障壁あり）</h3><ul><li>免許を持つ会社しか参入できない</li><li>新規参入による値下がりが起きにくい</li><li>超過利潤が残りやすい（<b>レント</b>）</li></ul></div>
+</div>
+
+<div class="viz" style="margin-top:14px">
+  <h3>図1：競争と独占の価格・数量（教科書的なモデル）</h3>
+  <svg viewBox="0 0 440 320" role="img" aria-label="需要曲線、限界収入曲線、限界費用の図。独占では価格が高く数量が少なく、死荷重が生じる">
+    <rect x="50" y="115" width="113" height="85" fill="var(--s1)" opacity=".28"/>
+    <polygon points="163,115 163,200 277,200" fill="var(--s2)" opacity=".35"/>
+    <line x1="50" y1="20" x2="50" y2="280" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="50" y1="280" x2="420" y2="280" stroke="var(--muted)" stroke-width="1.5"/>
+    <text x="34" y="26" font-size="13" font-weight="700">価格</text>
+    <text x="392" y="300" font-size="13" font-weight="700">数量</text>
+    <line x1="50" y1="30" x2="370" y2="270" stroke="var(--s1)" stroke-width="2.5"/>
+    <text x="330" y="236" font-size="12" font-weight="700">需要</text>
+    <line x1="50" y1="30" x2="210" y2="270" stroke="var(--s1)" stroke-width="2" stroke-dasharray="6 4"/>
+    <text x="196" y="262" font-size="12" font-weight="700" text-anchor="end">限界収入</text>
+    <line x1="50" y1="200" x2="410" y2="200" stroke="var(--s3)" stroke-width="2.5"/>
+    <text x="408" y="192" font-size="12" font-weight="700" text-anchor="end">限界費用＝平均費用</text>
+    <line x1="163" y1="115" x2="163" y2="280" stroke="var(--muted)" stroke-dasharray="3 3"/>
+    <line x1="277" y1="200" x2="277" y2="280" stroke="var(--muted)" stroke-dasharray="3 3"/>
+    <line x1="50" y1="115" x2="163" y2="115" stroke="var(--muted)" stroke-dasharray="3 3"/>
+    <circle cx="163" cy="115" r="5" fill="var(--s1)"/><circle cx="277" cy="200" r="5" fill="var(--s3)"/>
+    <text x="44" y="119" font-size="12" text-anchor="end">P独占</text>
+    <text x="44" y="204" font-size="12" text-anchor="end">P競争</text>
+    <text x="163" y="296" font-size="12" text-anchor="middle">Q独占</text>
+    <text x="277" y="296" font-size="12" text-anchor="middle">Q競争</text>
+    <text x="106" y="163" font-size="12" font-weight="800" text-anchor="middle">独占利潤</text>
+    <text x="200" y="190" font-size="11" font-weight="800">死荷重</text>
+  </svg>
+  <div class="lg"><span><i style="background:var(--s1);opacity:.5"></i>独占利潤＝（P独占−費用）×Q独占</span><span><i style="background:var(--s2);opacity:.6"></i>死荷重＝社会全体で失われる取引</span></div>
+  <p class="note2">競争：価格＝限界費用（P競争）まで下がり、超過利潤は0。独占：限界収入＝限界費用となる量まで生産を絞り、価格を上げる。</p>
+</div>
+
+<div class="viz" style="margin-top:14px">
+  <h3>図2：利益率の推移のイメージ（概念図・数値はなし）</h3>
+  <svg viewBox="0 0 440 240" role="img" aria-label="自由市場では参入により利益率が下がり、規制市場では規制緩和まで利益率が維持される概念図">
+    <line x1="40" y1="20" x2="40" y2="200" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="40" y1="200" x2="420" y2="200" stroke="var(--muted)" stroke-width="1.5"/>
+    <text x="30" y="16" font-size="12" font-weight="700">利益率</text>
+    <text x="392" y="220" font-size="12" font-weight="700">時間</text>
+    <path d="M40,40 C110,60 150,150 230,168 S360,176 410,178" fill="none" stroke="var(--s2)" stroke-width="2.5"/>
+    <path d="M40,90 L300,90 C320,90 330,150 360,160 L410,164" fill="none" stroke="var(--s1)" stroke-width="2.5"/>
+    <line x1="300" y1="30" x2="300" y2="200" stroke="var(--muted)" stroke-dasharray="3 3"/>
+    <text x="304" y="44" font-size="11" class="mu">規制緩和</text>
+  </svg>
+  <div class="lg"><span><i style="background:var(--s2)"></i>自由市場：参入が増えて利益率が下がる</span><span><i style="background:var(--s1)"></i>規制市場：規制がある間は維持、緩和後に低下</span></div>
+</div>
+
+<div class="viz" style="margin-top:14px">
+  <h3>図3：業種別の平均給与（2024年分、1年を通じて勤務した給与所得者）</h3>
+  <div class="hb"><span>電気・ガス・熱供給・水道</span><span class="bar"><i style="width:68%;background:var(--s1)"></i><b>832万円</b></span></div>
+  <div class="hb"><span>金融・保険</span><span class="bar"><i style="width:57.4%;background:var(--s1)"></i><b>702万円</b></span></div>
+  <div class="hb"><span>情報通信</span><span class="bar"><i style="width:53.9%;background:var(--s0)"></i><b>660万円</b></span></div>
+  <div class="hb"><span>製造</span><span class="bar"><i style="width:46.4%;background:var(--s0)"></i><b>568万円</b></span></div>
+  <div class="hb"><span>建設</span><span class="bar"><i style="width:46.2%;background:var(--s0)"></i><b>565万円</b></span></div>
+  <div class="hb"><span>不動産・物品賃貸</span><span class="bar"><i style="width:40.5%;background:var(--s0)"></i><b>496万円</b></span></div>
+  <div class="hb"><span>運輸・郵便</span><span class="bar"><i style="width:39.8%;background:var(--s0)"></i><b>488万円</b></span></div>
+  <div class="hb"><span>卸売・小売</span><span class="bar"><i style="width:33.5%;background:var(--s0)"></i><b>410万円</b></span></div>
+  <div class="hb"><span>宿泊・飲食サービス</span><span class="bar"><i style="width:22.8%;background:var(--s0)"></i><b>279万円</b></span></div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>参入規制が強い業種（電力・ガス・金融・保険）</span><span><i style="background:var(--s0)"></i>その他</span></div>
+  <p class="note2">出典：国税庁「令和6年分 民間給与実態統計調査」。全体平均は478万円。給与の差は規制だけでなく、設備の大きさ、年齢構成、正社員の比率なども影響する（相関であって因果の証明ではない）。</p>
+</div>
+
+<h3 style="margin:22px 0 8px;font-weight:800">経済学のキーワード</h3>
+<div class="tw scroll">
+<table class="tbl">
+  <thead><tr><th>用語</th><th>内容</th><th>例</th></tr></thead>
+  <tbody>
+    <tr><td>参入障壁</td><td>新しい会社が入りにくくする要因。免許、巨額の設備、特許など</td><td>周波数免許、送電網</td></tr>
+    <tr><td>レント（超過利潤）</td><td>競争があれば消えるはずの利益。参入規制があると残る</td><td>免許を持つ会社の安定した利益</td></tr>
+    <tr><td>自然独占</td><td>設備に巨額の固定費がかかり、1社でまとめて供給したほうが安い産業。代わりに国が価格を規制する</td><td>送配電網、水道、鉄道</td></tr>
+    <tr><td>総括原価方式</td><td>料金＝かかった費用＋決められた利益。費用を減らす動機が弱く、設備を増やすほど利益が増えやすい（アバーチ＝ジョンソン効果）</td><td>かつての電気料金。送配電は2023年からレベニューキャップ制度（収入の上限を決める方式）に移行</td></tr>
+    <tr><td>レントシーキング</td><td>新しい価値を生むのではなく、規制や特権を得ることで利益を得ようとする活動（タロック、クルーガー）</td><td>参入を制限するための働きかけ</td></tr>
+    <tr><td>規制の虜</td><td>規制する側（官庁）が、規制される業界の利益を代弁するようになる現象（スティグラー、1971年）</td><td>業界と官庁の人の行き来、情報の偏り</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============ 4 ============ -->
+<div class="sec"><span class="icon">🔺</span><h2>政治・官庁・企業・税のつながり</h2></div>
+<div class="viz">
+  <h3>図4：政・官・業の三角形</h3>
+  <svg class="tri" viewBox="0 0 360 330" role="img" aria-label="国会・政治家、省庁、業界の三角形と、それぞれの間の関係">
+    <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker></defs>
+    <line x1="180" y1="62" x2="72" y2="236" stroke="var(--muted)" stroke-width="2" marker-end="url(#ar)" marker-start="url(#ar)"/>
+    <line x1="180" y1="62" x2="288" y2="236" stroke="var(--muted)" stroke-width="2" marker-end="url(#ar)" marker-start="url(#ar)"/>
+    <line x1="140" y1="262" x2="220" y2="262" stroke="var(--muted)" stroke-width="2" marker-end="url(#ar)" marker-start="url(#ar)"/>
+    <rect x="110" y="14" width="140" height="48" rx="12" fill="var(--card)" stroke="var(--edge)" stroke-width="3"/>
+    <text x="180" y="36" font-size="14" font-weight="800" text-anchor="middle">政：国会・政治家</text>
+    <text x="180" y="53" font-size="11" text-anchor="middle" class="mu">法律と予算を決める</text>
+    <rect x="8" y="238" width="128" height="50" rx="12" fill="var(--card)" stroke="var(--edge)" stroke-width="3"/>
+    <text x="72" y="260" font-size="14" font-weight="800" text-anchor="middle">官：監督官庁</text>
+    <text x="72" y="278" font-size="11" text-anchor="middle" class="mu">免許・検査・処分</text>
+    <rect x="224" y="238" width="128" height="50" rx="12" fill="var(--card)" stroke="var(--edge)" stroke-width="3"/>
+    <text x="288" y="260" font-size="14" font-weight="800" text-anchor="middle">業：規制産業</text>
+    <text x="288" y="278" font-size="11" text-anchor="middle" class="mu">業界団体を通じて</text>
+    <text x="112" y="140" font-size="11" text-anchor="end">法律・予算・</text><text x="112" y="154" font-size="11" text-anchor="end">幹部人事</text>
+    <text x="248" y="140" font-size="11">献金（政党へ）・</text><text x="248" y="154" font-size="11">陳情・選挙の支援</text>
+    <text x="180" y="306" font-size="11" text-anchor="middle">免許・許可・検査・行政処分 ⇄ 申請・報告</text>
+    <text x="180" y="322" font-size="11" text-anchor="middle" class="mu">官庁OBの再就職（天下り）</text>
+  </svg>
+  <p class="note2">政・官・業が互いに利益を支え合う関係は「鉄の三角形」とも呼ばれる。企業・団体献金は政党などに限られ（政治資金規正法）、官庁による再就職のあっせんは2007年の国家公務員法改正で規制された。</p>
+</div>
+
+<h3 style="margin:22px 0 8px;font-weight:800">表：お金と権限の流れ</h3>
+<div class="tw scroll">
+<table class="tbl flowt">
+  <thead><tr><th>だれから</th><th>→</th><th>だれへ</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td>有権者</td><td>投票</td><td>政治家</td><td>選挙で国会議員を選ぶ</td></tr>
+    <tr><td>国会</td><td>法律</td><td>省庁</td><td>規制の根拠になる法律（銀行法、電波法など）を作る</td></tr>
+    <tr><td>省庁</td><td>免許</td><td>企業</td><td>免許・許可・認可を出し、検査し、違反があれば業務改善命令・業務停止・免許取消</td></tr>
+    <tr><td>企業</td><td>税・料金</td><td>国</td><td>酒税・たばこ税・揮発油税（ガソリン税）などは事業者がまとめて納める。電波を使う会社は電波利用料を払う</td></tr>
+    <tr><td>業界団体</td><td>陳情</td><td>政治家・省庁</td><td>規制の変更や税率について意見・要望を伝える</td></tr>
+    <tr><td>省庁OB</td><td>再就職</td><td>企業・業界団体</td><td>規制のルールを知る人材として採用される</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="viz" style="margin-top:14px">
+  <h3>図5：規制産業が集める主な税（2026年度予算、国税）</h3>
+  <div class="hb"><span>揮発油税等（ガソリン）</span><span class="bar"><i style="width:69%;background:var(--s1)"></i><b>1兆1,560億円</b></span></div>
+  <div class="hb"><span>酒税</span><span class="bar"><i style="width:68.5%;background:var(--s1)"></i><b>1兆1,478億円</b></span></div>
+  <div class="hb"><span>たばこ税等</span><span class="bar"><i style="width:65.3%;background:var(--s1)"></i><b>1兆937億円</b></span></div>
+  <p class="note2">出典：財務省「消費課税（国税）の概要」。それぞれ国税収入（約90兆円）の約1.2〜1.3%。酒の製造・販売の免許制度には、酒税を確実に集める（酒税の保全）という目的もある。</p>
+</div>
+
+<!-- ============ 5 ============ -->
+<div class="sec"><span class="icon">🗓️</span><h2>規制緩和と再規制の事例</h2></div>
+<ul class="tl">
+  <li><span class="yr">1985</span>通信の自由化。日本電信電話公社がNTTに民営化し、新しい通信会社が参入</li>
+  <li><span class="yr">1987</span>国鉄の分割・民営化（JR各社へ）</li>
+  <li><span class="yr">1994</span>ビールの製造免許に必要な最低製造量を年2,000kLから60kLに引き下げ。地ビールが登場</li>
+  <li><span class="yr">1996〜</span>金融ビッグバン。手数料の自由化、銀行・証券・保険の相互参入</li>
+  <li><span class="yr">2000</span>大規模小売店舗法を廃止。郊外の大型店が増加</li>
+  <li><span class="yr">2002</span>タクシーの台数の規制（需給調整）を廃止。台数が増え、運転手の収入が低下</li>
+  <li class="re"><span class="yr">2009</span>再規制：タクシー適正化・活性化特別措置法。地域によって台数を減らす方向へ</li>
+  <li><span class="yr">2014</span>一般用医薬品のインターネット販売を原則解禁</li>
+  <li><span class="yr">2016</span>電力小売の全面自由化。ガス・通信会社などが電気を販売</li>
+  <li><span class="yr">2017</span>都市ガス小売の全面自由化</li>
+  <li><span class="yr">2024</span>日本版ライドシェア開始（タクシー会社の管理のもとで一般ドライバーが運送）</li>
+</ul>
+<div class="lg"><span><i style="background:var(--blue)"></i>規制緩和</span><span><i style="background:var(--pink)"></i>再規制</span></div>
+
+<!-- ============ 6 ============ -->
+<div class="sec"><span class="icon">🧾</span><h2>比較：規制産業と自由市場の会社</h2></div>
+<div class="tw scroll">
+<table class="tbl">
+  <thead><tr><th>項目</th><th>規制産業</th><th>自由市場</th></tr></thead>
+  <tbody>
+    <tr><td>参入</td><td>免許が必要。競合は少数</td><td>自由。競合が多い</td></tr>
+    <tr><td>価格</td><td>認可・届出が必要な場合がある</td><td>会社が自由に決める</td></tr>
+    <tr><td>利益</td><td>安定しやすい</td><td>変動が大きい。高い利益は参入で縮む</td></tr>
+    <tr><td>成長</td><td>規制の範囲内に限られやすい</td><td>新しい市場を自分で作れる</td></tr>
+    <tr><td>主なリスク</td><td>規制緩和・制度変更、行政処分</td><td>競争・価格下落</td></tr>
+    <tr><td>重要な部門</td><td>法務・コンプライアンス、官庁や政治との調整（渉外）</td><td>営業・マーケティング・商品開発</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============ 7 ============ -->
+<div class="sec"><span class="icon">📝</span><h2>課題</h2></div>
+<ol class="qs">
+  <li>実習先の業界に、法律にもとづく免許・許可・登録はあるか。ある場合、根拠の法律名と監督官庁を調べる。
+    <span>AIに「〇〇業の根拠法と監督官庁」と聞き、官庁の公式サイトで確認する</span></li>
+  <li>図1を使って、タクシーの台数規制を廃止すると、価格・台数・運転手の収入がどう変わるか説明する。
+    <span>2002年と2009年の事例と比べる</span></li>
+  <li>表「お金と権限の流れ」の中から1つ選び、利点と問題点を1つずつ挙げる。</li>
+  <li>規制産業の会社と自由市場の会社、それぞれに入社した場合に必要なスキルを3つずつ挙げる。</li>
+</ol>
+
+<div class="sec"><span class="icon">📚</span><h2>出典</h2></div>
+<div class="src">
+  <ul>
+    <li>業種別の平均給与：<a href="https://www.nta.go.jp/publication/statistics/kokuzeicho/minkan2024/pdf/R06_000.pdf">国税庁「令和6年分 民間給与実態統計調査」</a>（業種別の平均給与、千円単位を万円に丸め）</li>
+    <li>税収：<a href="https://www.mof.go.jp/tax_policy/summary/consumption/d01.htm">財務省「消費課税（国税）の概要」</a>（令和8年度予算額）</li>
+    <li>経済学の用語：G. Stigler “The Theory of Economic Regulation”（1971年）、H. Averch &amp; L. Johnson（1962年）、G. Tullock（1967年）、A. Krueger（1974年）</li>
+    <li>法律・監督官庁・年表は各省庁の公表資料にもとづく概要</li>
+  </ul>
+</div>
+
+</div>
+</body>
+</html>
