@@ -1,0 +1,3 @@
+# Old URL -> new URL (Day6 page renamed to match the lecture day)
+/materials/jizen_day5.html /materials/jizen_day6 301
+/materials/jizen_day5 /materials/jizen_day6 301

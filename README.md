@@ -11,6 +11,8 @@
 
 一覧ページのカードには各HTMLの `<title>` が使われます。`Day3 本題 - 副題` の形にすると、「Day3」がバッジ、「副題」が小さなラベルになります。一覧はファイル名の順（例: `jizen_day2.html` → `jizen_day3.html`）に並びます。
 
+ファイル名のルール（Day6以降）: 資料は `jizen_day{講義のDay}.html`、講義のまとめは `jizen_day{講義のDay}_summary.html`（例: Day7 → `jizen_day7.html` / `jizen_day7_summary.html`）。Day5以前は配布済みURLを残すため旧名のまま（Day4資料 `jizen_day3_success.html`、Day5資料 `jizen_day4.html` など）。URLを変えたときは `public/_redirects` に旧URLからの転送を書く。
+
 ## 初回セットアップ（1回だけ）
 
 ### 1. Cloudflare Pages プロジェクトを作成
