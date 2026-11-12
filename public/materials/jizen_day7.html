@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Day7 お金は不要になるのか - ユニバーサル・インカムと給付の世界事例</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --bg:#fff8ee; --dots:#ffd9b8; --card:#ffffff; --ink:#22202b; --muted:#6c6878; --edge:#22202b;
+    --pink:#ff5c8a; --pink-bg:#ffe3ec; --orange:#ff8a3d; --orange-bg:#ffe9d9;
+    --yellow:#e0a800; --yellow-bg:#fff4cc; --green:#2bb673; --green-bg:#dcf7e8;
+    --blue:#3d8bff; --blue-bg:#e0edff; --purple:#9b5cff; --purple-bg:#efe4ff;
+    --mark:#ffe55c; --mark-pink:#ffc2d4; --shadow:4px 4px 0 var(--edge);
+    --old:#9b5cff; --new:#ff8a3d;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#1b1824; --dots:#2c2738; --card:#262233; --ink:#f4f1fa; --muted:#b2acc2; --edge:#0c0a12;
+      --pink-bg:#40202d; --orange-bg:#40291b; --yellow-bg:#3d3418; --green-bg:#173528;
+      --blue-bg:#1a2a45; --purple-bg:#2e2147; --mark:#7a6a12; --mark-pink:#7a2a44;
+    }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; color:var(--ink); line-height:1.8; font-size:16px;
+    font-family:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;
+    background-color:var(--bg);
+    background-image:radial-gradient(var(--dots) 1.5px, transparent 1.5px); background-size:22px 22px; }
+  .wrap { max-width:900px; margin:0 auto; padding:20px 16px 80px; }
+  .backlink { display:inline-block; font-weight:800; font-size:.9rem; color:var(--ink); text-decoration:none;
+    background:var(--card); border:2px solid var(--edge); border-radius:999px; padding:4px 14px; box-shadow:2px 2px 0 var(--edge); }
+
+  .hero { position:relative; margin:20px 0 28px; padding:32px 24px 28px; border:3px solid var(--edge); border-radius:28px;
+    background:linear-gradient(135deg,#9b5cff 0%,#3d8bff 50%,#2bb673 100%); color:#fff; box-shadow:6px 6px 0 var(--edge); overflow:hidden; }
+  .hero::after { content:""; position:absolute; right:-40px; top:-40px; width:180px; height:180px; border-radius:50%; background:rgba(255,255,255,.18); }
+  .hero .chip { display:inline-block; background:#fff; color:#22202b; font-weight:800; font-size:.8rem;
+    border:2px solid #22202b; border-radius:999px; padding:2px 12px; transform:rotate(-2deg); }
+  .hero h1 { font-size:clamp(1.7rem,6vw,2.5rem); line-height:1.3; margin:14px 0 6px; font-weight:800; text-shadow:3px 3px 0 rgba(34,32,43,.35); }
+  .hero p { margin:0; font-weight:700; }
+  .hero .emoji { position:absolute; right:22px; bottom:12px; font-size:3.2rem; transform:rotate(10deg); }
+  @media (max-width:600px) { .hero .emoji { top:12px; bottom:auto; right:12px; font-size:2.4rem; } .hero h1 { margin-top:22px; } }
+
+  .intro { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:18px 20px; box-shadow:var(--shadow); }
+  .intro p { margin:0 0 8px; } .intro p:last-child { margin:0; }
+
+  .sec { display:flex; align-items:center; gap:10px; margin:44px 0 16px; }
+  .sec .icon { flex:none; width:48px; height:48px; border-radius:50%; display:grid; place-items:center; font-size:1.5rem;
+    background:var(--card); border:3px solid var(--edge); box-shadow:3px 3px 0 var(--edge); }
+  .sec h2 { margin:0; font-size:clamp(1.2rem,4.5vw,1.55rem); font-weight:800; line-height:1.35;
+    background:linear-gradient(transparent 62%, var(--mark) 62%); padding:0 4px; }
+
+  /* 問い */
+  .qs { list-style:none; margin:0; padding:0; counter-reset:q; }
+  .qs li { counter-increment:q; position:relative; background:var(--card); border:3px solid var(--edge); border-radius:18px;
+    padding:14px 16px 14px 62px; margin:0 0 14px; box-shadow:var(--shadow); font-weight:700; }
+  .qs li::before { content:"Q" counter(q); position:absolute; left:14px; top:14px; width:36px; height:36px; border-radius:10px;
+    background:var(--pink); color:#fff; font-weight:800; display:grid; place-items:center; border:2px solid var(--edge); transform:rotate(-6deg); font-size:.9rem; }
+  .qs li span { display:block; font-weight:400; font-size:.9rem; color:var(--muted); margin-top:4px; }
+
+  .then { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
+  .box { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:16px 18px; box-shadow:var(--shadow); }
+  .box h3 { margin:0 0 6px; font-size:1.05rem; font-weight:800; }
+  .box ul { margin:0; padding-left:1.2em; }
+  .box.old { background:var(--purple-bg); } .box.new { background:var(--orange-bg); }
+
+  .em { font-weight:800; background:linear-gradient(transparent 55%, var(--mark-pink) 55%); padding:0 2px; }
+  .src { font-size:.82rem; color:var(--muted); line-height:1.7; }
+  .src a { color:var(--blue); word-break:break-all; }
+  .src ul { padding-left:1.2em; }
+  .rank2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; margin-top:6px; }
+  .rk { background:var(--card); border:3px solid var(--edge); border-radius:22px; box-shadow:var(--shadow); overflow:hidden; }
+  .rk h3 { margin:0; padding:10px 16px; color:#fff; font-size:1rem; font-weight:800; }
+  .rk.o h3 { background:var(--old); } .rk.n h3 { background:var(--new); }
+  .rk ol { list-style:none; margin:0; padding:6px 0; counter-reset:r; }
+  .rk li { counter-increment:r; display:flex; align-items:baseline; gap:8px; padding:5px 16px; border-bottom:1px dashed var(--muted); font-size:.95rem; }
+  .rk li:last-child { border-bottom:none; }
+  .rk li::before { content:counter(r); flex:none; width:1.6em; font-weight:800; color:var(--muted); }
+  .rk li .nm { flex:1; } .rk li .mc { font-weight:800; white-space:nowrap; }
+  .rk li.jp .nm::after { content:"日本"; margin-left:6px; font-size:.7rem; font-weight:800; color:#fff; background:#e60033; border-radius:6px; padding:0 6px; vertical-align:1px; }
+  .rk .tot { background:var(--yellow-bg); padding:10px 16px; font-weight:800; border-top:2px solid var(--edge); }
+  .rk .tot b { font-size:1.25rem; }
+  .big { text-align:center; margin:16px 0 4px; font-weight:800; font-size:1.05rem; }
+  .big b { font-size:1.6rem; background:linear-gradient(transparent 55%, var(--mark-pink) 55%); padding:0 4px; }
+  .em { font-weight:800; background:linear-gradient(transparent 55%, var(--mark-pink) 55%); padding:0 2px; }
+  .src { font-size:.82rem; color:var(--muted); line-height:1.7; }
+  .src a { color:var(--blue); word-break:break-all; }
+  .src ul { padding-left:1.2em; }
+
+  .box { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:16px 18px; box-shadow:var(--shadow); }
+  .box h3 { margin:0 0 6px; font-size:1.05rem; font-weight:800; }
+  .box p { margin:0 0 6px; } .box p:last-child { margin:0; }
+  .box ul { margin:0; padding-left:1.2em; }
+  .grid2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
+  .box.a { background:var(--blue-bg); } .box.b { background:var(--green-bg); } .box.y { background:var(--yellow-bg); } .box.p { background:var(--pink-bg); }
+  .tag { display:inline-block; font-size:.75rem; font-weight:800; border:2px solid var(--edge); border-radius:999px; padding:0 10px; margin-right:6px; background:var(--card); }
+
+
+  .lead2 { margin:0 0 14px; }
+  .note2 { font-size:.82rem; color:var(--muted); margin:8px 2px 0; line-height:1.6; }
+  .viz { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:14px 16px; box-shadow:var(--shadow);
+    --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s0:#b9b4c4; --grid:#e4e1ea; }
+  @media (prefers-color-scheme: dark) { .viz { --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s0:#5c566b; --grid:#3a3546; } }
+  .viz h3 { margin:0 0 8px; font-size:1rem; font-weight:800; }
+  .viz svg { display:block; width:100%; max-width:560px; margin:0 auto; height:auto; }
+  .viz svg.tri { max-width:420px; }
+  .viz svg text { font-family:inherit; fill:var(--ink); }
+  .viz svg .mu { fill:var(--muted); }
+  .lg { display:flex; flex-wrap:wrap; gap:4px 14px; font-size:.82rem; font-weight:700; margin-top:6px; }
+  .lg i { display:inline-block; width:12px; height:12px; border-radius:3px; vertical-align:-1px; margin-right:4px; }
+  .hb { display:grid; grid-template-columns:11em 1fr; gap:4px 10px; align-items:center; margin:5px 0; font-size:.86rem; }
+  .hb .bar { display:flex; align-items:center; gap:8px; }
+  .hb .bar i { display:block; height:20px; border-radius:0 4px 4px 0; flex:none; }
+  .hb .bar b { font-size:.82rem; white-space:nowrap; }
+  @media (max-width:600px) { .hb { grid-template-columns:7.5em 1fr; font-size:.78rem; } }
+  .tbl { width:100%; border-collapse:collapse; font-size:.85rem; }
+  .tbl th, .tbl td { padding:7px 8px; border-bottom:1px dashed var(--muted); text-align:left; vertical-align:top; }
+  .tbl thead th { background:var(--edge); color:#fff; white-space:nowrap; }
+  .tbl td:first-child { font-weight:800; white-space:nowrap; }
+  .tw { border:3px solid var(--edge); border-radius:18px; overflow:hidden; box-shadow:var(--shadow); background:var(--card); }
+  .scroll { overflow-x:auto; }
+  .types { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; }
+  .types .t { background:var(--card); border:3px solid var(--edge); border-radius:16px; padding:10px 12px; box-shadow:3px 3px 0 var(--edge); }
+  .types .t b { display:block; } .types .t span { font-size:.84rem; color:var(--muted); display:block; }
+  .tl { list-style:none; margin:0; padding:0 0 0 22px; border-left:4px solid var(--edge); }
+  .tl li { position:relative; margin:0 0 10px; padding:6px 12px; background:var(--card); border:3px solid var(--edge); border-radius:14px; box-shadow:3px 3px 0 var(--edge); font-size:.88rem; }
+  .tl li::before { content:""; position:absolute; left:-35px; top:12px; width:16px; height:16px; border-radius:50%; background:var(--blue); border:3px solid var(--edge); }
+  .tl .yr { font-weight:800; color:var(--blue); margin-right:6px; }
+  .tl li.re::before { background:var(--pink); } .tl li.re .yr { color:var(--pink); }
+  .flowt td:nth-child(2) { white-space:nowrap; font-weight:800; color:var(--muted); }
+
+  .three { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  @media (max-width:700px) { .three { grid-template-columns:1fr; } }
+  .three .t { background:var(--card); border:3px solid var(--edge); border-radius:18px; padding:12px 14px; box-shadow:3px 3px 0 var(--edge); }
+  .three .t b { display:block; font-size:1.02rem; } .three .t small { display:block; color:var(--muted); font-size:.8rem; margin:2px 0 6px; }
+  .three .t ul { margin:0; padding-left:1.1em; font-size:.86rem; }
+  .flowbox { display:grid; grid-template-columns:1fr auto 1fr auto 1fr; gap:8px; align-items:center; }
+  .flowbox .nd { background:var(--card); border:3px solid var(--edge); border-radius:14px; padding:10px 12px; box-shadow:3px 3px 0 var(--edge); font-size:.86rem; }
+  .flowbox .nd b { display:block; font-size:.95rem; margin-bottom:2px; }
+  .flowbox .ar { font-weight:800; color:var(--muted); font-size:1.3rem; text-align:center; }
+  @media (max-width:700px) { .flowbox { grid-template-columns:1fr; } .flowbox .ar { transform:rotate(90deg); } }
+  .eff { font-weight:800; white-space:nowrap; }
+  .eff.dn { color:#e34948; } .eff.eq { color:var(--muted); } .eff.up { color:#1baf7a; }
+  .procon { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width:640px) { .procon { grid-template-columns:1fr; } }
+  @media (max-width:640px) {
+    .tbl.cards thead { display:none; }
+    .tbl.cards tr { display:block; border-bottom:2px solid var(--edge); padding:6px 0; }
+    .tbl.cards td { display:block; border:none; padding:2px 12px; white-space:normal; }
+    .tbl.cards td:first-child { padding-top:6px; }
+    .tbl.cards td:not(:first-child)::before { content:attr(data-label) "："; font-weight:800; color:var(--muted); }
+    .tw.scroll:has(.cards) { overflow:visible; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a class="backlink" href="/">← 実習Ⅰ Ⅱ 2D の一覧へ</a>
+
+<header class="hero">
+  <span class="chip">Day7</span>
+  <h1>お金は不要になるのか</h1>
+  <p>ユニバーサル・インカムと給付の世界事例</p>
+  <span class="emoji">💸</span>
+</header>
+
+<div class="intro">
+  <p><b>きっかけ：</b>イーロン・マスクは「AIとロボットによって、10〜20年後には仕事は選択制になり、お金は意味を持たなくなる」と繰り返し発言している。</p>
+  <p>この回の内容：①マスクの発言　②用語　③米国の「トランプ口座」とマスクの株式寄付　④世界の給付・実験の事例　⑤日本で全員に配った場合の費用　⑥議論のポイント</p>
+</div>
+
+<!-- ============ 1 ============ -->
+<div class="sec"><span class="icon">🗣️</span><h2>マスクの発言</h2></div>
+<ul class="tl">
+  <li><span class="yr">2023.11</span>英国のスナク首相（当時）との対談で「いずれ仕事が必要なくなる時点が来る」</li>
+  <li><span class="yr">2025.11</span>米国・サウジ投資フォーラムで「AIとロボットでお金は意味を持たなくなり、働くことは選択制になる」。<b>「ユニバーサル・ベーシックインカムではなく、ユニバーサル・ハイインカム」</b></li>
+  <li><span class="yr">2025.12</span>Xで「将来、貧困はなくなり、お金を貯める必要もなくなる」。「老後のために貯金する必要はない」とも</li>
+  <li><span class="yr">2026.7</span>英エコノミスト誌のインタビューで「2036年までにお金は意味を失う」と報じられる。「発電量が事実上の通貨になる」との発言も報じられた</li>
+  <li><span class="yr">2026.10</span>Xで「来年、SpaceXの株を1株ずつ、アメリカのすべての子どもに贈る。これは最初の1回だ」</li>
+</ul>
+<p class="note2">発言の日付・文言は報道による。原文の全文は未確認。</p>
+
+<div class="viz" style="margin-top:14px">
+  <h3>図1：マスクの主張の筋道</h3>
+  <div class="flowbox">
+    <div class="nd"><b>AI・ロボット</b>人間の仕事のほとんどを代替</div>
+    <div class="ar">→</div>
+    <div class="nd"><b>モノとサービスが大量に</b>生産コストが下がり、物価が下がる（デフレ）</div>
+    <div class="ar">→</div>
+    <div class="nd"><b>ユニバーサル・ハイインカム</b>政府が全員に高い所得を配る。仕事は趣味に</div>
+  </div>
+</div>
+
+<!-- ============ 2 ============ -->
+<div class="sec"><span class="icon">📖</span><h2>用語</h2></div>
+<div class="tw scroll">
+<table class="tbl cards">
+  <thead><tr><th>用語</th><th>内容</th><th>例</th></tr></thead>
+  <tbody>
+    <tr><td>ベーシックインカム（UBI）</td><td>全員に、条件なしで、定期的に現金を配る</td><td>アラスカの配当金（年1回）</td></tr>
+    <tr><td>ユニバーサル・ハイインカム</td><td>生活に必要な額を超える「高い」所得を全員に配る（マスクの用語）</td><td>実例はない</td></tr>
+    <tr><td>負の所得税</td><td>所得が一定以下の人には、税を取るのではなく逆に給付する。経済学者フリードマンが提唱</td><td>給付付き税額控除（米国のEITCなど）</td></tr>
+    <tr><td>最低所得保障</td><td>収入や資産が少ない人だけに、不足分を給付する（条件つき）</td><td>日本の生活保護、スペインの最低所得（2020年〜）</td></tr>
+    <tr><td>ベビーボンド</td><td>生まれた子どもに資金を口座で渡し、成人まで運用する。現金ではなく<b>資産</b>を配る</td><td>米国のトランプ口座、英国の児童信託基金（2005〜2011年）</td></tr>
+    <tr><td>ユニバーサル・ベーシックサービス</td><td>現金ではなく、医療・教育・交通などを無料で提供する</td><td>北欧の教育無償など</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="three" style="margin-top:14px">
+  <div class="t"><b>💴 現金を配る</b><small>ベーシックインカム／ハイインカム</small><ul><li>使い道は自由</li><li>毎年、巨額の財源が必要</li></ul></div>
+  <div class="t"><b>📈 資産を配る</b><small>ベビーボンド／株式の寄付</small><ul><li>成人まで運用して増やす</li><li>今すぐの生活費にはならない</li></ul></div>
+  <div class="t"><b>🏥 サービスを配る</b><small>ベーシックサービス</small><ul><li>医療・教育・交通を無料に</li><li>使い道は決められている</li></ul></div>
+</div>
+
+<!-- ============ 3 ============ -->
+<div class="sec"><span class="icon">🇺🇸</span><h2>米国：トランプ口座とマスクの株式寄付</h2></div>
+<div class="viz">
+  <h3>図2：トランプ口座の仕組み</h3>
+  <div class="flowbox">
+    <div class="nd"><b>入れる人</b>政府：2025〜2028年生まれに<b>1,000ドル</b>（1回）<br>家族：年<b>5,000ドル</b>まで<br>勤務先：年<b>2,500ドル</b>まで<br>寄付：個人・企業</div>
+    <div class="ar">→</div>
+    <div class="nd"><b>子ども名義の口座</b>米国株の指数（インデックス）などで運用。18歳まで原則引き出せない</div>
+    <div class="ar">→</div>
+    <div class="nd"><b>18歳以降</b>退職口座に移すなどして使う。財務省の試算では、追加の入金なしで18歳時に約3,000〜13,800ドル</div>
+  </div>
+  <p class="note2">根拠：2025年7月4日成立の「ひとつの大きく美しい法（One Big Beautiful Bill Act）」。口座は2026年7月4日から利用開始。対象は社会保障番号を持つ米国籍の子ども。</p>
+</div>
+<div class="tw scroll" style="margin-top:14px">
+<table class="tbl cards">
+  <thead><tr><th>時期</th><th>寄付する人</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td>2025.12</td><td>マイケル・デル夫妻（デル創業者）</td><td>62.5億ドルを寄付。10歳以下の子ども2,500万人の口座に1人250ドル</td></tr>
+    <tr><td>2026.7</td><td>グウィン・ショットウェル（SpaceX社長）</td><td>200万人以上の子どもの口座に、SpaceX株を1株ずつ</td></tr>
+    <tr><td>2026.10</td><td>イーロン・マスク</td><td>「来年、SpaceX株をアメリカのすべての子どもに1株ずつ」と表明。報道では総額約100億ドル規模の試算。方法・時期の詳細は未公表</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note2">報道によると、開設されたトランプ口座は600万件以上、そのうち140万件に政府の1,000ドルが入金済み（2026年10月時点）。</p>
+
+<!-- ============ 4 ============ -->
+<div class="sec"><span class="icon">🌍</span><h2>世界の給付・実験の事例</h2></div>
+<div class="tw scroll">
+<table class="tbl cards">
+  <thead><tr><th>国・地域</th><th>期間</th><th>対象</th><th>給付</th><th>種類</th></tr></thead>
+  <tbody>
+    <tr><td>🇺🇸 アラスカ州</td><td>1982〜</td><td>全住民</td><td>石油収入の基金から年1回（2025年は1,000ドル）</td><td>全員・現金（恒久）</td></tr>
+    <tr><td>🇮🇷 イラン</td><td>2010〜</td><td>ほぼ全国民</td><td>燃料補助金を廃止し、その分を現金で配布</td><td>全員・現金</td></tr>
+    <tr><td>🇫🇮 フィンランド</td><td>2017〜2018</td><td>失業者2,000人</td><td>月560ユーロ</td><td>国の実験</td></tr>
+    <tr><td>🇰🇪 ケニア</td><td>2017〜</td><td>農村の住民</td><td>1日約0.75ドル（月約22.5ドル）を最長12年。NPOのGiveDirectly</td><td>民間の実験</td></tr>
+    <tr><td>🇺🇸 ストックトン市</td><td>2019〜2021</td><td>125人</td><td>月500ドル</td><td>市の実験</td></tr>
+    <tr><td>🇺🇸 イリノイ・テキサス州</td><td>2020〜2023</td><td>低所得者1,000人</td><td>月1,000ドルを3年（OpenResearch、サム・アルトマンが関わる団体）</td><td>民間の実験</td></tr>
+    <tr><td>🇩🇪 ドイツ</td><td>2021〜2024</td><td>122人</td><td>月1,200ユーロを3年（Mein Grundeinkommen）</td><td>民間の実験</td></tr>
+    <tr><td>🇰🇷 韓国 京畿道</td><td>2019〜</td><td>24歳の住民</td><td>年100万ウォン（地域通貨）</td><td>年齢限定</td></tr>
+    <tr><td>🇰🇷 韓国 農漁村</td><td>2026〜</td><td>モデル地域の全住民</td><td>月15万ウォン（地域の商品券）</td><td>国のモデル事業</td></tr>
+    <tr><td>🇯🇵 日本</td><td>2020</td><td>全住民</td><td>1人10万円を1回（特別定額給付金、総額約12.7兆円）</td><td>全員・現金（1回）</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="viz" style="margin-top:14px">
+  <h3>図3：実験の結果（働く量への影響）</h3>
+  <div class="tw scroll" style="box-shadow:none;border-width:2px">
+  <table class="tbl cards">
+    <thead><tr><th>実験</th><th>働く量</th><th>その他の結果</th></tr></thead>
+    <tbody>
+      <tr><td>フィンランド</td><td><span class="eff eq">→ ほぼ変化なし</span>（就業日数がわずかに増加）</td><td>心身の健康、生活の満足度が改善</td></tr>
+      <tr><td>ケニア</td><td><span class="eff eq">→ 総労働は減らず</span></td><td>雇われる仕事から自営業へ移る人が増えた</td></tr>
+      <tr><td>ストックトン</td><td><span class="eff up">↑ フルタイム就業が増加</span>（28%→40%、比較群は32%→37%）</td><td>不安やうつ症状が減少</td></tr>
+      <tr><td>OpenResearch</td><td><span class="eff dn">↓ 週1.3時間ほど減少</span>（就業率も2ポイント低下）</td><td>増えた時間の多くは余暇。転職先を選ぶ人も</td></tr>
+      <tr><td>ドイツ</td><td><span class="eff eq">→ 変化なし</span>（週約40時間で比較群と同じ）</td><td>精神的な健康が改善。給付の3分の1以上を貯蓄</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note2">どの実験も対象は限られた人数・期間で、全国民に恒久的に配った場合の結果（物価や税への影響）は分からない。</p>
+</div>
+
+<!-- ============ 5 ============ -->
+<div class="sec"><span class="icon">🧮</span><h2>日本で全員に配ったら、いくらかかるか</h2></div>
+<div class="viz">
+  <h3>図4：毎月の給付額と、1年間の総額（人口1億2,320万人で計算）</h3>
+  <div class="hb"><span>月1万円</span><span class="bar"><i style="width:7.5%;background:var(--s1)"></i><b>約15兆円</b></span></div>
+  <div class="hb"><span>月3万円</span><span class="bar"><i style="width:22.5%;background:var(--s1)"></i><b>約44兆円</b></span></div>
+  <div class="hb"><span>月5万円</span><span class="bar"><i style="width:37.5%;background:var(--s1)"></i><b>約74兆円</b></span></div>
+  <div class="hb"><span>月7万円</span><span class="bar"><i style="width:52.5%;background:var(--s2)"></i><b>約104兆円</b></span></div>
+  <div class="hb"><span>月10万円</span><span class="bar"><i style="width:75%;background:var(--s2)"></i><b>約148兆円</b></span></div>
+  <div class="hb" style="margin-top:10px"><span><b>参考：国税収入</b><br><small>2026年度予算</small></span><span class="bar"><i style="width:45.6%;background:var(--s0)"></i><b>約90兆円</b></span></div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>国税収入より少ない</span><span><i style="background:var(--s2)"></i>国税収入を超える</span><span><i style="background:var(--s0)"></i>参考</span></div>
+  <p class="note2">月額×12か月×人口の単純計算。実際には、年金や児童手当などの給付をやめて置き換える分、所得税で一部を回収する分などで、必要な追加財源は変わる。</p>
+</div>
+
+<!-- ============ 6 ============ -->
+<div class="sec"><span class="icon">⚖️</span><h2>議論のポイント</h2></div>
+<div class="procon">
+  <div class="box b"><h3>賛成の主な理由</h3><ul>
+    <li><b>AIで仕事が減る</b>ことへの備え</li>
+    <li>申請や審査が不要で、<b>行政の手間が少ない</b>（フリードマンなど右派からも支持）</li>
+    <li>生活保護を受けられていない人も含め、<b>貧困をなくせる</b></li>
+    <li>実験では、働く量は大きく減らず、<b>健康が改善</b></li>
+    <li>転職・起業・学び直しに挑戦しやすくなる</li>
+  </ul></div>
+  <div class="box p"><h3>反対・懸念の主な理由</h3><ul>
+    <li><b>財源</b>：日本で月7万円なら年約104兆円</li>
+    <li>お金が増えても、モノが増えなければ<b>物価が上がる</b></li>
+    <li><b>働く人が減る</b>（OpenResearchでは週1時間程度減少）</li>
+    <li>困っている人に重点的に配るほうが効率的</li>
+    <li>配る主体（国・企業）に<b>力が集中</b>する</li>
+  </ul></div>
+</div>
+
+<h3 style="margin:22px 0 8px;font-weight:800">「お金が不要になる」への主な反論</h3>
+<div class="tw scroll">
+<table class="tbl cards">
+  <thead><tr><th>論点</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td>増やせないもの</td><td>土地（都心の家）、人気の場所、有名人の時間、限定品は、AIでも増やせない。配分の手段としてお金や順番が残る</td></tr>
+    <tr><td>新しい希少資源</td><td>電力・半導体・計算資源（AIを動かす力）が新たな希少資源になる。マスク自身も「発電量が通貨になる」と発言</td></tr>
+    <tr><td>だれが配るか</td><td>AIやロボットを持つ企業・国に富が集中する。配る側の判断で、受け取る側の生活が決まる</td></tr>
+    <tr><td>時期の不確かさ</td><td>10〜20年後という予測が外れたら、貯蓄をしなかった人が困る。資産が多い人の発言であることも考慮が必要</td></tr>
+    <tr><td>人の欲求</td><td>これまでも生産性が上がるたびに、人は新しい欲しいものを見つけてきた</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3 style="margin:22px 0 8px;font-weight:800">株式の寄付（トランプ口座）をめぐる論点</h3>
+<div class="procon">
+  <div class="box a"><h3>評価する見方</h3><ul><li>子どもが若いうちから株式市場に参加し、資産を持てる</li><li>政府の負担が小さく、民間の寄付を集めやすい</li></ul></div>
+  <div class="box y"><h3>疑問視する見方</h3><ul><li>今の生活に困っている家庭の助けにならない</li><li>家族が追加で入金できる家庭ほど差が広がる</li><li>自社株の寄付は、寄付する企業の株価や評判にも関わる</li></ul></div>
+</div>
+
+<!-- ============ 7 ============ -->
+<div class="sec"><span class="icon">📝</span><h2>課題</h2></div>
+<ol class="qs">
+  <li>図4を使い、日本で月5万円を全員に配る場合の財源案を2つ考える。
+    <span>増税（何の税か）、既存の給付の置き換え、国債など</span></li>
+  <li>図3の5つの実験から1つ選び、「働く量が変わらなかった（または減った）」理由を自分なりに説明する。</li>
+  <li>「現金を配る」「資産を配る」「サービスを配る」のうち、日本の大学生に最も効果があるのはどれか。理由とともに答える。</li>
+  <li>AIで多くの仕事が代替されても、お金が必要であり続ける理由を1つ挙げる。逆に、本当に不要になるとしたら何が条件か。</li>
+</ol>
+
+<div class="sec"><span class="icon">📚</span><h2>出典</h2></div>
+<div class="src">
+  <ul>
+    <li>マスクの発言：<a href="https://fortune.com/2026/01/19/when-does-elon-musk-say-work-will-be-optional-and-money-will-be-irrelevant-ai-robotics/">Fortune</a>／<a href="https://www.foxbusiness.com/economy/musk-predicts-ai-create-universal-high-income-make-saving-money-unnecessary">Fox Business</a>／<a href="https://finance.yahoo.com/news/elon-musk-claims-money-become-112000791.html">Yahoo Finance</a>／<a href="https://topics.smt.docomo.ne.jp/article/itmedia_business/trend/itmedia_business-20260730_022">ITmedia ビジネスオンライン</a></li>
+    <li>マスクの株式寄付：<a href="https://www.bloomberg.com/news/articles/2026-10-19/musk-says-he-will-gift-spacex-shares-to-every-kid-in-america">Bloomberg（2026年10月19日）</a>／<a href="https://www.aljazeera.com/news/2026/10/21/musk-pledges-10bn-in-spacex-shares-for-us-children-who-really-gains">Al Jazeera</a>／<a href="https://www.cpapracticeadvisor.com/2026/10/20/musk-plans-to-gift-spacex-shares-to-kids-through-trump-accounts/192012/">CPA Practice Advisor</a></li>
+    <li>トランプ口座・デル夫妻の寄付：<a href="https://foxbusiness.com/politics/white-house-unveils-trump-accounts-children-6-25-billion-dell-investment">Fox Business</a>／<a href="https://wjla.com/news/nation-world/trump-to-announce-trump-accounts-over-6-billion-pledge-from-the-dell-family-investment-children-under-18-savings-retirement-benefit-family-americans">WJLA</a></li>
+    <li>OpenResearch：<a href="https://www.nber.org/system/files/working_papers/w32719/w32719.pdf">NBER Working Paper w32719</a>／<a href="https://www.cbsnews.com/news/sam-altman-universal-basic-income-study-open-research">CBS News</a></li>
+    <li>ドイツ：<a href="https://www.diw.de/de/diw_01.c.945271.de/pilotprojekt_grundeinkommen__feldstudie_entkraeftet_mythos_von_der_sozialen_haengematte.html">DIW Berlin（2025年4月）</a></li>
+    <li>韓国 農漁村基本所得：<a href="https://www.tridge.com/news/rural-basic-income-to-be-paid-from-the-end-o-ywrvtw">韓国メディアの報道（英訳）</a></li>
+    <li>フィンランド・ケニア・ストックトン：各実験の報告をまとめた解説（<a href="https://maseconomics.com/universal-basic-income/">MAS Economics</a> など）。一次資料との照合は一部のみ</li>
+    <li>国税収入：<a href="https://www.mof.go.jp/tax_policy/summary/consumption/d01.htm">財務省</a>（令和8年度予算、約89.99兆円）。図4の費用は志村ゼミの単純計算</li>
+  </ul>
+</div>
+
+</div>
+<script>
+document.querySelectorAll('table.tbl.cards').forEach(function(t){
+  var h=[].map.call(t.querySelectorAll('thead th'),function(th){return th.textContent;});
+  t.querySelectorAll('tbody tr').forEach(function(tr){[].forEach.call(tr.children,function(td,i){if(h[i])td.setAttribute('data-label',h[i]);});});
+});
+</script>
+</body>
+</html>
