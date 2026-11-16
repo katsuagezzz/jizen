@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Day7 講義のまとめ - 面談の日程調整・富の分配・お金が不要になる理屈・AIで実習先を分析</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#fff8ee; --dots:#ffd9b8; --card:#ffffff; --ink:#22202b; --muted:#6c6878; --edge:#22202b;
+    --pink:#ff5c8a; --pink-bg:#ffe3ec; --orange:#ff8a3d; --orange-bg:#ffe9d9;
+    --yellow:#e0a800; --yellow-bg:#fff4cc; --green:#2bb673; --green-bg:#dcf7e8;
+    --blue:#3d8bff; --blue-bg:#e0edff; --purple:#9b5cff; --purple-bg:#efe4ff;
+    --mark:#ffe55c; --mark-pink:#ffc2d4; --shadow:4px 4px 0 var(--edge);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#1b1824; --dots:#2c2738; --card:#262233; --ink:#f4f1fa; --muted:#b2acc2; --edge:#0c0a12;
+      --pink-bg:#40202d; --orange-bg:#40291b; --yellow-bg:#3d3418; --green-bg:#173528;
+      --blue-bg:#1a2a45; --purple-bg:#2e2147; --mark:#7a6a12; --mark-pink:#7a2a44;
+    }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; color:var(--ink); line-height:1.85; font-size:16px;
+    font-family:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;
+    background-color:var(--bg);
+    background-image:radial-gradient(var(--dots) 1.5px, transparent 1.5px); background-size:22px 22px; }
+  .wrap { max-width:860px; margin:0 auto; padding:20px 16px 80px; }
+  .backlink { display:inline-block; font-weight:800; font-size:.9rem; color:var(--ink); text-decoration:none;
+    background:var(--card); border:2px solid var(--edge); border-radius:999px; padding:4px 14px; box-shadow:2px 2px 0 var(--edge); }
+
+  .hero { position:relative; margin:20px 0 28px; padding:32px 24px 28px; border:3px solid var(--edge); border-radius:28px;
+    background:linear-gradient(135deg,#9b5cff 0%,#3d8bff 50%,#2bb673 100%); color:#fff; box-shadow:6px 6px 0 var(--edge); overflow:hidden; }
+  .hero::after { content:""; position:absolute; right:-40px; top:-40px; width:180px; height:180px; border-radius:50%; background:rgba(255,255,255,.18); }
+  .hero .chip { display:inline-block; background:#fff; color:#22202b; font-weight:800; font-size:.8rem;
+    border:2px solid #22202b; border-radius:999px; padding:2px 12px; transform:rotate(-2deg); }
+  .hero h1 { font-size:clamp(1.7rem,6vw,2.5rem); line-height:1.3; margin:14px 0 6px; font-weight:800; text-shadow:3px 3px 0 rgba(34,32,43,.35); }
+  .hero p { margin:0; font-weight:700; }
+  .hero .emoji { position:absolute; right:22px; bottom:12px; font-size:3.2rem; transform:rotate(10deg); }
+  @media (max-width:600px) { .hero .emoji { top:12px; bottom:auto; right:12px; font-size:2.4rem; } .hero h1 { margin-top:22px; } }
+
+  .take { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:18px 20px; box-shadow:var(--shadow); margin-bottom:8px; }
+  .take h2 { margin:0 0 8px; font-size:1.15rem; font-weight:800; }
+  .take ol { margin:0; padding-left:1.4em; }
+  .take li { margin:6px 0; font-weight:700; }
+
+  .sec { display:flex; align-items:center; gap:10px; margin:44px 0 16px; }
+  .sec .icon { flex:none; width:48px; height:48px; border-radius:50%; display:grid; place-items:center; font-size:1.5rem;
+    background:var(--card); border:3px solid var(--edge); box-shadow:3px 3px 0 var(--edge); }
+  .sec h2 { margin:0; font-size:clamp(1.2rem,4.5vw,1.55rem); font-weight:800; line-height:1.35;
+    background:linear-gradient(transparent 62%, var(--mark) 62%); padding:0 4px; }
+  .lead { margin:0 0 14px; }
+  .linkbtn { display:inline-flex; align-items:center; gap:6px; margin:0 0 18px; font-weight:800; color:var(--ink); text-decoration:none;
+    background:var(--card); border:3px solid var(--edge); border-radius:999px; padding:4px 16px; box-shadow:3px 3px 0 var(--edge); }
+  .linkbtn:hover { transform:translate(-1px,-1px); box-shadow:4px 4px 0 var(--edge); }
+
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; }
+  .box { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:16px 18px; box-shadow:var(--shadow); }
+  .box.wide { grid-column:1/-1; }
+  .box h3 { margin:0 0 6px; font-size:1.08rem; font-weight:800; display:flex; align-items:center; gap:8px; }
+  .box h3 .tag { font-size:.75rem; color:#fff; background:var(--c); border:2px solid var(--edge); border-radius:999px; padding:0 10px; white-space:nowrap; }
+  .box ul { margin:0; padding-left:1.2em; }
+  .box li { margin:4px 0; }
+  .box .note { margin:8px 0 0; font-size:.9rem; background:var(--cb); border-radius:12px; padding:6px 12px; }
+  .c-pink { --c:var(--pink); --cb:var(--pink-bg); } .c-orange { --c:var(--orange); --cb:var(--orange-bg); }
+  .c-yellow { --c:var(--yellow); --cb:var(--yellow-bg); } .c-green { --c:var(--green); --cb:var(--green-bg); }
+  .c-blue { --c:var(--blue); --cb:var(--blue-bg); } .c-purple { --c:var(--purple); --cb:var(--purple-bg); }
+
+  .em { font-weight:800; background:linear-gradient(transparent 55%, var(--mark-pink) 55%); padding:0 2px; }
+  .ul { font-weight:800; background:linear-gradient(transparent 55%, var(--mark) 55%); padding:0 2px; }
+
+  .flow { list-style:none; margin:0; padding:0; counter-reset:f; }
+  .flow > li { counter-increment:f; position:relative; background:var(--card); border:3px solid var(--edge); border-radius:18px;
+    padding:12px 16px 12px 58px; margin:0 0 16px; box-shadow:var(--shadow); }
+  .flow > li::before { content:counter(f); position:absolute; left:14px; top:12px; width:32px; height:32px; border-radius:10px;
+    background:var(--c,var(--blue)); color:#fff; font-weight:800; display:grid; place-items:center; border:2px solid var(--edge); transform:rotate(-6deg); }
+  .flow > li b.h { display:block; font-size:1.02rem; }
+  .flow > li ul { margin:4px 0 0; padding-left:1.2em; }
+
+  .chain { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:6px 0 14px; }
+  .chain span { background:var(--card); border:2px solid var(--edge); border-radius:999px; padding:2px 12px; font-weight:800; font-size:.92rem; }
+  .chain i { font-style:normal; font-weight:800; color:var(--muted); }
+
+  .md { background:#22202b; color:#f4f1fa; border:3px solid var(--edge); border-radius:16px; padding:14px 16px; margin:10px 0 0;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.88rem; line-height:1.7; white-space:pre-wrap; overflow-x:auto; }
+  .md .c { color:#ffc531; }
+
+  .qa { list-style:none; margin:0; padding:0; counter-reset:q; }
+  .qa > li { counter-increment:q; position:relative; background:var(--card); border:3px solid var(--edge); border-radius:18px;
+    padding:14px 16px 14px 62px; margin:0 0 16px; box-shadow:var(--shadow); }
+  .qa > li::before { content:"Q" counter(q); position:absolute; left:14px; top:14px; width:36px; height:36px; border-radius:10px;
+    background:var(--pink); color:#fff; font-weight:800; display:grid; place-items:center; border:2px solid var(--edge); transform:rotate(-6deg); font-size:.9rem; }
+  .qa .q { display:block; font-weight:800; font-size:1.02rem; }
+  .qa .ctx { display:block; font-size:.85rem; color:var(--muted); margin:2px 0 8px; }
+  .qa .a { display:block; background:var(--green-bg); border-radius:12px; padding:8px 12px; font-size:.93rem; }
+  .qa .a b.lb { color:var(--green); margin-right:4px; }
+  .mx { display:grid; grid-template-columns:auto 1fr 1fr; gap:6px; font-size:.88rem; margin-top:8px; }
+  .mx div { background:var(--card); border:2px solid var(--edge); border-radius:10px; padding:6px 10px; }
+  .mx .hd { background:transparent; border:none; font-weight:800; text-align:center; padding:2px; }
+  .mx .rh { background:transparent; border:none; font-weight:800; writing-mode:horizontal-tb; display:flex; align-items:center; }
+  .mx b { display:block; }
+  @media (max-width:600px) { .mx { grid-template-columns:4.5em 1fr 1fr; font-size:.8rem; } }
+  .logic { display:grid; grid-template-columns:1fr auto 1fr; gap:10px; align-items:stretch; margin-top:6px; }
+  .logic .vs { display:grid; place-items:center; font-weight:800; color:var(--muted); }
+  @media (max-width:600px) { .logic { grid-template-columns:1fr; } .logic .vs { padding:0; } }
+
+  .pills { display:flex; flex-wrap:wrap; align-items:center; gap:6px 4px; margin:6px 0; }
+  .pills .pl { background:var(--card); border:2px solid var(--edge); border-radius:12px; padding:3px 10px; font-size:.86rem; line-height:1.45; }
+  .pills .pl b { display:block; font-size:.9rem; } .pills .pl small { color:var(--muted); font-size:.76rem; }
+  .pills .pl.in { background:var(--green-bg); } .pills .pl.out { background:var(--orange-bg); } .pills .pl.me { background:var(--purple-bg); }
+  .pills .ar { font-weight:800; color:var(--muted); }
+  .sb { display:grid; grid-template-columns:1fr auto 1fr; gap:10px; align-items:stretch; }
+  .sb .vs { display:grid; place-items:center; font-weight:800; font-size:1.3rem; }
+  @media (max-width:600px) { .sb { grid-template-columns:1fr; } .sb .vs { padding:0; } }
+  .warn { background:var(--pink-bg); border:3px solid var(--edge); border-radius:22px; padding:16px 18px; box-shadow:var(--shadow); }
+  .warn h3 { margin:0 0 6px; font-weight:800; }
+  .warn ul { margin:0; padding-left:1.2em; }
+  .stat { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; }
+  .stat .t { background:var(--card); border:3px solid var(--edge); border-radius:18px; padding:12px 16px; box-shadow:3px 3px 0 var(--edge); }
+  .stat .t small { display:block; font-size:.8rem; color:var(--muted); font-weight:700; }
+  .stat .t b { display:block; font-size:1.25rem; line-height:1.35; }
+  .stat .t span { font-size:.8rem; color:var(--muted); }
+  .steps { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin:8px 0; }
+  .steps span { background:var(--card); border:2px solid var(--edge); border-radius:999px; padding:2px 12px; font-weight:800; font-size:.88rem; }
+  .steps i { font-style:normal; color:var(--muted); font-weight:800; }
+
+  .hb { display:grid; grid-template-columns:9em 1fr; gap:4px 10px; align-items:center; margin:6px 0; font-size:.88rem; }
+  .hb .bar { display:flex; align-items:center; gap:8px; }
+  .hb .bar i { display:block; height:22px; border-radius:0 4px 4px 0; flex:none; min-width:3px; }
+  .hb .bar b { font-size:.84rem; white-space:nowrap; }
+  .tbl { width:100%; border-collapse:collapse; font-size:.88rem; background:var(--card); }
+  .tbl th, .tbl td { padding:8px 10px; border-bottom:1px dashed var(--muted); text-align:left; vertical-align:top; }
+  .tbl thead th { background:var(--edge); color:#fff; }
+  .tbl td:first-child { font-weight:800; white-space:nowrap; }
+  .tw { border:3px solid var(--edge); border-radius:18px; overflow:hidden; box-shadow:var(--shadow); }
+  .learn { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width:600px) { .learn { grid-template-columns:1fr; } }
+  .learn .col { background:var(--card); border:3px solid var(--edge); border-radius:18px; padding:12px 14px; box-shadow:3px 3px 0 var(--edge); text-align:center; }
+  .learn .col h3 { margin:0 0 8px; font-size:1rem; }
+  .learn .nd { display:inline-block; border:2px solid var(--edge); border-radius:12px; padding:3px 12px; font-weight:800; font-size:.88rem; background:var(--yellow-bg); }
+  .learn .nd.b { background:var(--blue-bg); } .learn .nd.g { background:var(--green-bg); }
+  .learn .dn { color:var(--muted); font-weight:800; margin:2px 0; font-size:.85rem; }
+
+  .viz2 { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:14px 16px; box-shadow:var(--shadow); }
+  .viz2 h3 { margin:0 0 8px; font-size:1rem; font-weight:800; }
+  .viz2 svg { display:block; width:100%; max-width:520px; margin:0 auto; height:auto; }
+  .viz2 svg text { font-family:inherit; fill:var(--ink); }
+  .mail { background:#22202b; color:#f4f1fa; border:3px solid var(--edge); border-radius:16px; padding:12px 14px; font-size:.86rem; line-height:1.75; white-space:pre-wrap; }
+  .mail b { color:#ffc531; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a class="backlink" href="/">← 実習Ⅰ Ⅱ 2D の一覧へ</a>
+
+<header class="hero">
+  <span class="chip">実習Ⅰ Ⅱ 2D ／ Day7　講義のまとめ</span>
+  <h1>Day7 講義のまとめ</h1>
+  <p>面談の日程調整・富の分配・お金が不要になる理屈・AIで実習先を分析</p>
+  <span class="emoji">💸</span>
+</header>
+
+<a class="linkbtn" href="/materials/jizen_day7.html">📖 Day7の資料「お金は不要になるのか」を開く</a>
+
+<div class="take">
+  <h2>🎯 要点</h2>
+  <ol>
+    <li>面談の日程調整：候補は<b>曜日と時間帯をずらして3つ</b>。会議のリンクは依頼する側（学生）が発行し、必要な情報だけ送る</li>
+    <li>富をどう分けるか：<b>お金持ちが自分で配る</b>（寄付・株の配布）か、<b>国が税で集めて配る</b>（ベーシックインカムなど）か。政治の大きな対立軸</li>
+    <li>マスクの「お金は不要になる」の裏には<b>需要と供給</b>の理屈がある。AIで供給が需要を大きく上回ると、価格がつかなくなる</li>
+    <li>お金を稼ぐことは前提。その先に<b>何をしたいか</b>まで考えておく</li>
+    <li>AI講座：講義で学んだ視点をチェックリストにして、実習先を分析する</li>
+  </ol>
+</div>
+
+<!-- ============ 1 ============ -->
+<div class="sec"><span class="icon">📅</span><h2>実習先との面談：日程調整の手順</h2></div>
+<ul class="flow">
+  <li style="--c:var(--blue)"><b class="h">候補を3つ送る</b>開始と終了の時刻を必ず書く（30分または15分）。<b>曜日と時間帯の両方をずらす</b>。会社は曜日ごとに会議や出張が決まっていることが多く、同じ曜日で時間だけずらしても合わないことが多い。細切れの時間帯は出さない</li>
+  <li style="--c:var(--green)"><b class="h">返事のパターン</b>（a）候補のどれかでOK　（b）会社から別の日を提案される → 自分の予定と合わせる　（c）すべてNG → おわびのうえ、別の3つを再提案。日程が決まるまで繰り返す</li>
+  <li style="--c:var(--orange)"><b class="h">会議のリンクを送る</b>面談を依頼した側が発行するのが一般的（相手に手間をかけさせない）。Zoomの招待文はそのままだと長いので、<b>日時・URL・ミーティングID・パスコード</b>だけを残す。会社側が「こちらで設定します」と言った場合は従う</li>
+  <li style="--c:var(--purple)"><b class="h">ゴール</b>日時とリンクについて、お互いが合意した状態。当日は遅れない。服装はスーツでなくてよいが、落ち着いた普段着で</li>
+</ul>
+<div class="grid" style="margin-top:6px">
+  <div class="box"><h3>例：候補を送るメール</h3><div class="mail">件名：面談日程のご相談（〇〇大学 氏名）
+
+〇〇株式会社 〇〇様
+
+お世話になっております。〇〇大学の（氏名）です。
+実習前の面談について、以下の日程はいかがでしょうか。
+<b>① 11月20日（木）10:00〜10:30</b>
+<b>② 11月24日（月）14:00〜14:30</b>
+<b>③ 11月26日（水）16:00〜16:30</b>
+ご都合のよい日時をお知らせいただけますと幸いです。</div><p class="note">木曜午前・月曜午後・水曜夕方のように、曜日と時間帯をばらけさせる。「恐れ入りますが」などの言い回しは、相手の返信も参考にする</p></div>
+  <div class="box"><h3>例：リンクを送るメール</h3><div class="mail">面談の日程が確定しましたので、オンライン会議の情報をお送りします。
+時間になりましたら、下記のURLからお入りください。
+
+<b>日時</b>：11月24日（月）14:00〜14:30
+<b>URL</b>：https://zoom.us/j/…
+<b>ミーティングID</b>：123 4567 8901
+<b>パスコード</b>：xxxxxx</div><p class="note">電話番号など自動で入る情報は削除し、必要な4項目だけにする</p></div>
+</div>
+<p class="lead" style="margin-top:12px;font-size:.9rem">志望理由書の提出時期は、大学からの案内で確認すること。</p>
+
+<!-- ============ 2 ============ -->
+<div class="sec"><span class="icon">⚠️</span><h2>実習中止になった事例</h2></div>
+<div class="box c-pink">
+  <ul>
+    <li>ある受け入れ企業から、実習生の多くについて「当日になって休む」「途中で帰る」「オンラインの定例会議に出てこない」「連絡がつかず進捗がわからない」として、<b>実習の即時中止の申し入れ</b>があった</li>
+    <li>実習をしていない日に日報を出した例もあり、これは<b>不正</b>として扱われた。実習の中止と、単位が認められない対応になった</li>
+    <li>このような対応は、<b>翌年以降の後輩の受け入れ</b>にも影響する（受け入れの継続は未定になっている）</li>
+  </ul>
+  <p class="note">Day3資料「インターン先での作法・所作」の「遅刻・無断欠席」も読み直しておこう。</p>
+</div>
+
+<!-- ============ 3 ============ -->
+<div class="sec"><span class="icon">⚖️</span><h2>富をだれが、どう分けるか</h2></div>
+<div class="viz2">
+  <h3>図1：資本主義では富がかたよる（イメージ）</h3>
+  <svg viewBox="0 0 420 200" role="img" aria-label="多数の人が少ない富を持ち、少数の人が多くの富を持つ分布のイメージ">
+    <line x1="40" y1="170" x2="400" y2="170" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="40" y1="20" x2="40" y2="170" stroke="var(--muted)" stroke-width="1.5"/>
+    <path d="M40,170 C60,30 90,30 120,90 S220,160 400,166" fill="none" stroke="#2a78d6" stroke-width="2.5"/>
+    <text x="34" y="16" font-size="12" font-weight="700">人数</text>
+    <text x="398" y="190" font-size="12" font-weight="700" text-anchor="end">持っている富 →</text>
+    <text x="96" y="48" font-size="12">多くの人</text>
+    <text x="330" y="150" font-size="12">ごく少数の富裕層</text>
+  </svg>
+</div>
+<div class="grid" style="margin-top:14px">
+  <div class="box c-orange"><h3><span class="tag">考え方A</span>お金持ちが自分で配る</h3><ul><li>米国の共和党寄り（リバタリアン・保守）。マスク、ピーター・ティールなど</li><li>国が税で集めて配るのは非効率、という考え</li><li>トランプ口座への寄付、子どもへの株の配布など</li><li>米国では寄付が<b>節税</b>にもなる</li></ul></div>
+  <div class="box c-blue"><h3><span class="tag">考え方B</span>国が税で集めて配る</h3><ul><li>米国の民主党の一部（民主社会主義）など</li><li>収入や資産の格差を、税と給付で小さくする</li><li>ベーシックインカム、学費の負担軽減など</li></ul></div>
+</div>
+<div class="tw" style="margin-top:14px"><table class="tbl">
+  <thead><tr><th>動き</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td>米国の中間選挙</td><td>2026年11月3日の中間選挙で、民主党が上院・下院の両方で多数を獲得（報道）。物価高への不満などが背景とされる</td></tr>
+    <tr><td>米国の若い世代</td><td>ミレニアル世代とZ世代が有権者の多数になっていく。学費や奨学金の負担が大きく、分配を求める声が強まるとの見方</td></tr>
+    <tr><td>日本</td><td>65歳以上が人口の約3割。若い世代の声が政治に届きにくい構造</td></tr>
+  </tbody>
+</table></div>
+
+<h3 style="margin:22px 0 8px;font-weight:800">国のファンドがもうけたお金は、だれのものか</h3>
+<div class="box">
+  <ul>
+    <li>官民ファンドの産業革新投資機構（JIC）は、2024年に半導体材料のJSRを約9,000億円で買収した</li>
+    <li>2026年11月9日、三井化学と日本政策投資銀行がJSRを約1兆8,400億円で買収すると発表。差額は約9,000億円以上</li>
+  </ul>
+  <div class="grid" style="margin-top:10px">
+    <div class="box c-green" style="box-shadow:none"><h3><span class="tag">使い方A</span>再投資</h3><p style="margin:0;font-size:.9rem">次の企業に投資して、さらに価値を高める（これまでの主流）</p></div>
+    <div class="box c-purple" style="box-shadow:none"><h3><span class="tag">使い方B</span>国民に還元</h3><p style="margin:0;font-size:.9rem">税金で取ったお金ではない利益なので、ベーシックインカムや学校の設備などで国民に返すべき、という意見</p></div>
+  </div>
+</div>
+
+<!-- ============ 4 ============ -->
+<div class="sec"><span class="icon">📉</span><h2>「お金が不要になる」の理屈</h2></div>
+<div class="viz2">
+  <h3>図2：人が作る量と、AIが作る量（概念図）</h3>
+  <svg viewBox="0 0 440 230" role="img" aria-label="需要の上限を、人の労働による供給は下回り、AIによる供給は上回る概念図">
+    <line x1="50" y1="200" x2="420" y2="200" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="50" y1="20" x2="50" y2="200" stroke="var(--muted)" stroke-width="1.5"/>
+    <text x="44" y="16" font-size="12" font-weight="700">量</text>
+    <line x1="50" y1="90" x2="420" y2="90" stroke="#1baf7a" stroke-width="2.5" stroke-dasharray="6 4"/>
+    <text x="58" y="82" font-size="12" font-weight="700">需要の上限（人数×1日24時間）</text>
+    <rect x="110" y="140" width="80" height="60" fill="#2a78d6" rx="4"/>
+    <text x="150" y="132" font-size="12" font-weight="700" text-anchor="middle">人が作る</text>
+    <text x="150" y="218" font-size="11" text-anchor="middle">1日8時間・週5日</text>
+    <rect x="270" y="30" width="80" height="170" fill="#eb6834" rx="4"/>
+    <text x="310" y="24" font-size="12" font-weight="700" text-anchor="middle">AI・ロボットが作る</text>
+    <text x="310" y="218" font-size="11" text-anchor="middle">24時間、上限なし</text>
+  </svg>
+  <p class="note">人が作る量は需要より少ないので、モノやサービスに価値（価格）がつく。AIやロボットが需要を超える量を作ると、価格がつかなくなり、<b>交換の手段としてのお金</b>の意味が薄れる、というのがマスクの理屈。</p>
+</div>
+<ul class="flow" style="margin-top:14px">
+  <li style="--c:var(--blue)"><b class="h">需要の上限</b>見る・使う人の時間には限りがある（1日24時間×人口）。エンタメなどは、これ以上供給しても売れない</li>
+  <li style="--c:var(--orange)"><b class="h">すでに起きている例</b>縦型のショートドラマは、講義の説明では大半がAIで作られ、見る人の需要を上回る量の作品がすでにある。動画の価値は大きく下がる</li>
+  <li style="--c:var(--green)"><b class="h">次はモノ</b>ロボットが服などを作るようになれば、欲しい以上の量が出回り、値段がつかなくなる可能性</li>
+  <li style="--c:var(--purple)"><b class="h">学ぶこと</b>この理屈は、アダム・スミス以来の需要と供給の考え方そのもの。経済の基本を知っていれば、こうした発言の意味を自分で読み解ける</li>
+</ul>
+<p class="box" style="margin-top:6px">お金の量はこの10年ほどで大きく増え、お金の価値は下がりやすい。<b>お金を稼ぐのは前提として、そのお金で何をしたいか</b>まで考えておこう。</p>
+
+<!-- ============ 5 ============ -->
+<div class="sec"><span class="icon">🤖</span><h2>AI講座：講義の視点で実習先を分析する</h2></div>
+<p class="lead">情報を集めることは簡単になった。差がつくのは<b>何を調べ、どう解釈するか</b>。その視点は、これまでの講義（サプライチェーン、規制産業など）ですでに学んでいる（秋山先生）。</p>
+<ul class="flow">
+  <li style="--c:var(--blue)"><b class="h">講義の視点を一覧にする</b>講義資料のURLをAIに渡し「各回で学んだ視点を一覧にして」と頼む</li>
+  <li style="--c:var(--green)"><b class="h">視点をグループにまとめる</b>例：「業界・市場」「成長・マクロ環境」「競争力」。興味のあるグループを選ぶ</li>
+  <li style="--c:var(--orange)"><b class="h">チェック項目と解釈に分解する</b>「この視点を、確認できる項目と、その解釈に分けて」と頼む</li>
+  <li style="--c:var(--purple)"><b class="h">実習先を調べる</b>会社名・ホームページのURL・事業内容を入れて「このチェックリストで調べて」と頼む（通常のチャットで十分）</li>
+  <li style="--c:var(--pink)"><b class="h">知りたいことを足す</b>働く人・投資家・顧客の目線での長所と短所、競合と立ち位置、業界の給与水準と全業種平均の比較など</li>
+  <li style="--c:var(--yellow)"><b class="h">診断表にまとめる</b>「読みやすい1枚の診断表にして」と頼む（GeminiのCanvas、ClaudeのArtifactなど）</li>
+</ul>
+<div class="tw" style="margin-top:6px"><table class="tbl">
+  <thead><tr><th>視点</th><th>チェック項目の例</th><th>解釈の例</th></tr></thead>
+  <tbody>
+    <tr><td>サプライチェーン</td><td>顧客は企業（BtoB）か個人（BtoC）か</td><td>BtoBなら、取引先の業界の景気に左右される</td></tr>
+    <tr><td>多重下請け</td><td>「元請け」「下請け」「協力会社」という言葉が出てくるか</td><td>元請けに近いほど利益と年収が高くなりやすい</td></tr>
+    <tr><td>工程</td><td>企画・開発の工程を持っているか</td><td>利益が残りやすい工程を持っている可能性</td></tr>
+    <tr><td>業界の成長</td><td>業界の売上は伸びているか</td><td>伸びている業界は新しい仕事に予算がつきやすい</td></tr>
+  </tbody>
+</table></div>
+<p class="lead" style="margin-top:10px;font-size:.9rem">使いどころ：面談の前の準備、面談で聞く質問づくり、志望理由書。面談の相手や創業者の情報（考え方・経歴）も調べておくと、話がかみ合いやすい。</p>
+
+<!-- ============ 6 ============ -->
+<div class="sec"><span class="icon">❓</span><h2>授業で答えられなかった質問</h2></div>
+<p class="lead">講義中に出た問いのうち、教室で答えが出なかった（出にくかった）もの。下の「答えの例」は一つの考え方です。</p>
+<ol class="qa">
+  <li><span class="q">マイケル・デルとは、どんな人？</span>
+    <span class="ctx">「知っている人」と聞かれて、知らない人が多かった</span>
+    <span class="a"><b class="lb">答え</b>パソコンメーカー、デル・テクノロジーズの創業者。テキサス大学在学中の1984年に起業した。2025年12月、妻のスーザンとともに、米国の子どものトランプ口座に62.5億ドルを寄付すると表明した（Day7資料）。</span></li>
+  <li><span class="q">ベーシックインカムのお金は、だれが出す？</span>
+    <span class="ctx">「国民全員にお金を配る制度」までは答えが出たが、だれが出すかで止まった</span>
+    <span class="a"><b class="lb">答え</b>国（政府）が、税などを財源に、全員に一律・無条件で配る制度。お金持ちの寄付とは違い、制度として決まった額が配られる。日本の児童手当のように、すでに一部の人に一律で配る制度もある。</span></li>
+  <li><span class="q">AIによって、いま供給が増えているものは？</span>
+    <span class="ctx">「ロボット」「知的労働」は出たが、具体例が少なかった</span>
+    <span class="a"><b class="lb">答えの例</b>文章、画像、イラスト、動画（ショートドラマなど）、音楽、プログラム、翻訳、資料の要約。これからはロボットによる物の生産や運転なども。</span></li>
+  <li><span class="q">Zoomのミーティングは、どう設定して共有する？</span>
+    <span class="ctx">リンクを送ったことがない人がいた</span>
+    <span class="a"><b class="lb">答え</b>Zoomにサインイン →「スケジュール」で日時と時間を入力して保存 →「招待をコピー」。コピーした文から、日時・URL・ミーティングID・パスコードだけを残して送る。無料版は1回の会議が40分までなので、面談の長さに注意する。</span></li>
+</ol>
+
+<div class="box c-yellow" style="margin-top:6px">
+  <h3>考えてみよう</h3>
+  <p style="margin:0">「お金持ちが自分で配る」と「国が税で集めて配る」。あなたはどちらを支持するか。講義では答えが分かれた。理由とともに、自分の立場を書いてみよう。</p>
+</div>
+
+</div>
+</body>
+</html>
