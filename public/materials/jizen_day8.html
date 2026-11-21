@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Day8 ナレッジ・マッシュアップ - AIで資料を自分用にカスタマイズする</title>
+<title>Day8 マッシュアップ・メディア - AIで資料を自分用にカスタマイズする</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
@@ -160,6 +160,10 @@
   .steps li { counter-increment:s; position:relative; background:var(--card); border:3px solid var(--edge); border-radius:16px; padding:10px 14px 10px 54px; box-shadow:3px 3px 0 var(--edge); font-size:.92rem; }
   .steps li::before { content:counter(s); position:absolute; left:12px; top:10px; width:30px; height:30px; border-radius:50%; background:var(--blue); color:#fff; font-weight:800; display:grid; place-items:center; border:2px solid var(--edge); }
   .steps li b { display:block; }
+  .sample { display:block; max-width:360px; margin:0 auto; text-align:center; text-decoration:none; color:var(--muted); font-size:.8rem; font-weight:700; }
+  .sample img { display:block; width:100%; height:auto; border:3px solid var(--edge); border-radius:14px; box-shadow:3px 3px 0 var(--edge); margin-bottom:4px; }
+  .parts { list-style:none; margin:12px auto 0; padding:0; max-width:560px; font-size:.86rem; }
+  .parts li { padding:3px 0; border-bottom:1px dashed var(--muted); } .parts li b { color:var(--blue); margin-right:6px; }
   .mock { background:var(--card); border:3px solid var(--edge); border-radius:18px; box-shadow:var(--shadow); padding:14px 16px; font-size:.86rem; }
   .mock .meta { font-size:.75rem; color:var(--muted); font-weight:700; }
   .mock h4 { margin:2px 0 10px; font-size:1.05rem; font-weight:800; line-height:1.4; }
@@ -193,13 +197,13 @@
 
 <header class="hero">
   <span class="chip">Day8</span>
-  <h1>ナレッジ・マッシュアップ</h1>
+  <h1>マッシュアップ・メディア</h1>
   <p>AIで資料を自分用にカスタマイズする</p>
   <span class="emoji">🧩</span>
 </header>
 
 <div class="intro">
-  <p><b>ナレッジ・マッシュアップ：</b>複数の情報源をAIで要約・翻訳・比較し、自分用の資料（教科書）にまとめること。</p>
+  <p><b>マッシュアップ・メディア：</b>複数の情報源をAIで要約・翻訳・比較し、自分用のメディア（資料・教科書）にまとめたもの。</p>
   <p>この回の内容：①前提　②手順　③ワーク1：1社のレポートをまとめる　④ワーク2：複数社のレポートを比較する　⑤AIの出力の確認方法　⑥提出物</p>
 </div>
 
@@ -234,11 +238,12 @@
   </div>
 </div>
 <ol class="steps" style="margin-top:14px">
-  <li><b>スペースを作る</b>資料と指示をまとめて保存できる場所。例：ChatGPT・Claudeの「プロジェクト」、Perplexityの「スペース」、NotebookLMの「ノートブック」</li>
+  <li><b>Museでスペースを作る</b>Meta の AI「Muse」の「スペース」機能を使う。作りたい画面を言葉で説明すると、専用の画面（ツール）が作られる</li>
   <li><b>テーマを決めて指示（プロンプト）を書く</b>何を・どの形式で・何を明確にするかを指定する</li>
   <li><b>情報源（URL・PDF）を入れる</b>URLを読めない場合はPDFをダウンロードしてアップロード</li>
   <li><b>出力を確認・修正する</b>数字・日付・社名を原文で確かめ、足りない点を追加で指示</li>
   <li><b>更新する</b>新しいレポートが出たら同じスペースで再実行</li>
+  <li><b>他のAIでも試す</b>同じプロンプトを ChatGPT・Claude・Gemini・Perplexity・NotebookLM などでも実行し、出力を比べる</li>
 </ol>
 
 <div class="sec"><span class="icon">1️⃣</span><h2>ワーク1：企業のレポートをまとめる</h2></div>
@@ -249,20 +254,15 @@
 </div>
 
 <div class="viz" style="margin-top:16px">
-  <h3>図2　出力の例（イメージ）</h3>
-  <div class="mock">
-    <div class="meta">General ・ 記事 ・ 2026年11月20日</div>
-    <h4>元駐マレーシア米大使がa16zの顧問に就任</h4>
-    <div class="two">
-      <div class="f"><b>発見 — 何が分かったか</b>米国の技術企業が国ごとの規制・政府の優先課題を理解する必要が高まっている</div>
-      <div class="t"><b>提言 — 社会の方向性</b>外交経験者の助言を、AIインフラ・サイバーセキュリティ・防衛分野の創業者が活用する流れ</div>
-    </div>
-    <ul>
-      <li>要点：経歴（大使・国家安全保障会議の上級部長）</li>
-      <li>要点：担当する分野と地域（インド太平洋）</li>
-    </ul>
-  </div>
-  <p class="note2">記事ごとに「見出し／発見／提言／要点」の同じ型で並ぶ。型を指定すると比較しやすくなる。</p>
+  <h3>図2　完成見本：ワーク1のプロンプトで作ったスペース</h3>
+  <a class="sample" href="/materials/img/day8_sample_a16z.jpg" target="_blank" rel="noopener"><img src="/materials/img/day8_sample_a16z.jpg" alt="a16zの記事をまとめたスペースの画面。分野別のタブ、記事の見出し、発見・提言の2枠、要点の箇条書き、最新情報をチェックするボタン" loading="lazy"><span>タップで拡大</span></a>
+  <ul class="parts">
+    <li><b>①</b>分野別のタブ（General／Infra／Fintech など）</li>
+    <li><b>②</b>記事ごとの見出し・日付・著者</li>
+    <li><b>③</b>「発見 — 何が分かったか」「提言 — 社会の方向性」の2枠</li>
+    <li><b>④</b>要点の箇条書き</li>
+    <li><b>⑤</b>「最新情報をチェック」ボタンで更新</li>
+  </ul>
 </div>
 
 <div class="grid2" style="margin-top:16px">
@@ -372,10 +372,13 @@ EFG 見通し2027：https://assets.ctfassets.net/1u811bvgvthc/KsAQG92v2oQ85VqoY3
   <li>18本のうち、各社の見方が最も分かれていた点を1つ挙げる。
     <span>例：米国株の水準、金利の方向、ドル円、中国の扱い</span></li>
   <li>AIの出力で誤り・不確かな点を1つ見つけ、原文と照合した結果を書く。</li>
+  <li>同じプロンプトをMuse以外のAI1つでも実行し、出力の違いを1つ書く。
+    <span>例：読めた資料の数、表の形、数値の有無、更新の仕方</span></li>
 </ol>
 
 <div class="sec"><span class="icon">📚</span><h2>出典</h2></div>
 <div class="src"><ul>
+  <li>Muse（Meta）のスペース機能：<a href="https://ai.giftx.co.jp/blog/muse-spaces/">解説記事</a>／<a href="https://www.inside.com.tw/article/42851-meta-muse-spaces">INSIDE</a></li>
   <li>Andreessen Horowitz：<a href="https://a16z.com/news-content/">News &amp; Content</a></li>
   <li>ワーク2の18本：上のプロンプト内のURL（各社が公開している2027年見通し）</li>
 </ul></div>
