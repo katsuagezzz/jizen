@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Day8 ナレッジ・マッシュアップ - AIで資料を自分用にカスタマイズする</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --bg:#fff8ee; --dots:#ffd9b8; --card:#ffffff; --ink:#22202b; --muted:#6c6878; --edge:#22202b;
+    --pink:#ff5c8a; --pink-bg:#ffe3ec; --orange:#ff8a3d; --orange-bg:#ffe9d9;
+    --yellow:#e0a800; --yellow-bg:#fff4cc; --green:#2bb673; --green-bg:#dcf7e8;
+    --blue:#3d8bff; --blue-bg:#e0edff; --purple:#9b5cff; --purple-bg:#efe4ff;
+    --mark:#ffe55c; --mark-pink:#ffc2d4; --shadow:4px 4px 0 var(--edge);
+    --old:#9b5cff; --new:#ff8a3d;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#1b1824; --dots:#2c2738; --card:#262233; --ink:#f4f1fa; --muted:#b2acc2; --edge:#0c0a12;
+      --pink-bg:#40202d; --orange-bg:#40291b; --yellow-bg:#3d3418; --green-bg:#173528;
+      --blue-bg:#1a2a45; --purple-bg:#2e2147; --mark:#7a6a12; --mark-pink:#7a2a44;
+    }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; color:var(--ink); line-height:1.8; font-size:16px;
+    font-family:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;
+    background-color:var(--bg);
+    background-image:radial-gradient(var(--dots) 1.5px, transparent 1.5px); background-size:22px 22px; }
+  .wrap { max-width:900px; margin:0 auto; padding:20px 16px 80px; }
+  .backlink { display:inline-block; font-weight:800; font-size:.9rem; color:var(--ink); text-decoration:none;
+    background:var(--card); border:2px solid var(--edge); border-radius:999px; padding:4px 14px; box-shadow:2px 2px 0 var(--edge); }
+
+  .hero { position:relative; margin:20px 0 28px; padding:32px 24px 28px; border:3px solid var(--edge); border-radius:28px;
+    background:linear-gradient(135deg,#9b5cff 0%,#3d8bff 50%,#2bb673 100%); color:#fff; box-shadow:6px 6px 0 var(--edge); overflow:hidden; }
+  .hero::after { content:""; position:absolute; right:-40px; top:-40px; width:180px; height:180px; border-radius:50%; background:rgba(255,255,255,.18); }
+  .hero .chip { display:inline-block; background:#fff; color:#22202b; font-weight:800; font-size:.8rem;
+    border:2px solid #22202b; border-radius:999px; padding:2px 12px; transform:rotate(-2deg); }
+  .hero h1 { font-size:clamp(1.7rem,6vw,2.5rem); line-height:1.3; margin:14px 0 6px; font-weight:800; text-shadow:3px 3px 0 rgba(34,32,43,.35); }
+  .hero p { margin:0; font-weight:700; }
+  .hero .emoji { position:absolute; right:22px; bottom:12px; font-size:3.2rem; transform:rotate(10deg); }
+  @media (max-width:600px) { .hero .emoji { top:12px; bottom:auto; right:12px; font-size:2.4rem; } .hero h1 { margin-top:22px; } }
+
+  .intro { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:18px 20px; box-shadow:var(--shadow); }
+  .intro p { margin:0 0 8px; } .intro p:last-child { margin:0; }
+
+  .sec { display:flex; align-items:center; gap:10px; margin:44px 0 16px; }
+  .sec .icon { flex:none; width:48px; height:48px; border-radius:50%; display:grid; place-items:center; font-size:1.5rem;
+    background:var(--card); border:3px solid var(--edge); box-shadow:3px 3px 0 var(--edge); }
+  .sec h2 { margin:0; font-size:clamp(1.2rem,4.5vw,1.55rem); font-weight:800; line-height:1.35;
+    background:linear-gradient(transparent 62%, var(--mark) 62%); padding:0 4px; }
+
+  /* 問い */
+  .qs { list-style:none; margin:0; padding:0; counter-reset:q; }
+  .qs li { counter-increment:q; position:relative; background:var(--card); border:3px solid var(--edge); border-radius:18px;
+    padding:14px 16px 14px 62px; margin:0 0 14px; box-shadow:var(--shadow); font-weight:700; }
+  .qs li::before { content:"Q" counter(q); position:absolute; left:14px; top:14px; width:36px; height:36px; border-radius:10px;
+    background:var(--pink); color:#fff; font-weight:800; display:grid; place-items:center; border:2px solid var(--edge); transform:rotate(-6deg); font-size:.9rem; }
+  .qs li span { display:block; font-weight:400; font-size:.9rem; color:var(--muted); margin-top:4px; }
+
+  .then { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
+  .box { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:16px 18px; box-shadow:var(--shadow); }
+  .box h3 { margin:0 0 6px; font-size:1.05rem; font-weight:800; }
+  .box ul { margin:0; padding-left:1.2em; }
+  .box.old { background:var(--purple-bg); } .box.new { background:var(--orange-bg); }
+
+  .em { font-weight:800; background:linear-gradient(transparent 55%, var(--mark-pink) 55%); padding:0 2px; }
+  .src { font-size:.82rem; color:var(--muted); line-height:1.7; }
+  .src a { color:var(--blue); word-break:break-all; }
+  .src ul { padding-left:1.2em; }
+  .rank2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; margin-top:6px; }
+  .rk { background:var(--card); border:3px solid var(--edge); border-radius:22px; box-shadow:var(--shadow); overflow:hidden; }
+  .rk h3 { margin:0; padding:10px 16px; color:#fff; font-size:1rem; font-weight:800; }
+  .rk.o h3 { background:var(--old); } .rk.n h3 { background:var(--new); }
+  .rk ol { list-style:none; margin:0; padding:6px 0; counter-reset:r; }
+  .rk li { counter-increment:r; display:flex; align-items:baseline; gap:8px; padding:5px 16px; border-bottom:1px dashed var(--muted); font-size:.95rem; }
+  .rk li:last-child { border-bottom:none; }
+  .rk li::before { content:counter(r); flex:none; width:1.6em; font-weight:800; color:var(--muted); }
+  .rk li .nm { flex:1; } .rk li .mc { font-weight:800; white-space:nowrap; }
+  .rk li.jp .nm::after { content:"日本"; margin-left:6px; font-size:.7rem; font-weight:800; color:#fff; background:#e60033; border-radius:6px; padding:0 6px; vertical-align:1px; }
+  .rk .tot { background:var(--yellow-bg); padding:10px 16px; font-weight:800; border-top:2px solid var(--edge); }
+  .rk .tot b { font-size:1.25rem; }
+  .big { text-align:center; margin:16px 0 4px; font-weight:800; font-size:1.05rem; }
+  .big b { font-size:1.6rem; background:linear-gradient(transparent 55%, var(--mark-pink) 55%); padding:0 4px; }
+  .em { font-weight:800; background:linear-gradient(transparent 55%, var(--mark-pink) 55%); padding:0 2px; }
+  .src { font-size:.82rem; color:var(--muted); line-height:1.7; }
+  .src a { color:var(--blue); word-break:break-all; }
+  .src ul { padding-left:1.2em; }
+
+  .box { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:16px 18px; box-shadow:var(--shadow); }
+  .box h3 { margin:0 0 6px; font-size:1.05rem; font-weight:800; }
+  .box p { margin:0 0 6px; } .box p:last-child { margin:0; }
+  .box ul { margin:0; padding-left:1.2em; }
+  .grid2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
+  .box.a { background:var(--blue-bg); } .box.b { background:var(--green-bg); } .box.y { background:var(--yellow-bg); } .box.p { background:var(--pink-bg); }
+  .tag { display:inline-block; font-size:.75rem; font-weight:800; border:2px solid var(--edge); border-radius:999px; padding:0 10px; margin-right:6px; background:var(--card); }
+
+
+  .lead2 { margin:0 0 14px; }
+  .note2 { font-size:.82rem; color:var(--muted); margin:8px 2px 0; line-height:1.6; }
+  .viz { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:14px 16px; box-shadow:var(--shadow);
+    --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s0:#b9b4c4; --grid:#e4e1ea; }
+  @media (prefers-color-scheme: dark) { .viz { --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s0:#5c566b; --grid:#3a3546; } }
+  .viz h3 { margin:0 0 8px; font-size:1rem; font-weight:800; }
+  .viz svg { display:block; width:100%; max-width:560px; margin:0 auto; height:auto; }
+  .viz svg.tri { max-width:420px; }
+  .viz svg text { font-family:inherit; fill:var(--ink); }
+  .viz svg .mu { fill:var(--muted); }
+  .lg { display:flex; flex-wrap:wrap; gap:4px 14px; font-size:.82rem; font-weight:700; margin-top:6px; }
+  .lg i { display:inline-block; width:12px; height:12px; border-radius:3px; vertical-align:-1px; margin-right:4px; }
+  .hb { display:grid; grid-template-columns:11em 1fr; gap:4px 10px; align-items:center; margin:5px 0; font-size:.86rem; }
+  .hb .bar { display:flex; align-items:center; gap:8px; }
+  .hb .bar i { display:block; height:20px; border-radius:0 4px 4px 0; flex:none; }
+  .hb .bar b { font-size:.82rem; white-space:nowrap; }
+  @media (max-width:600px) { .hb { grid-template-columns:7.5em 1fr; font-size:.78rem; } }
+  .tbl { width:100%; border-collapse:collapse; font-size:.85rem; }
+  .tbl th, .tbl td { padding:7px 8px; border-bottom:1px dashed var(--muted); text-align:left; vertical-align:top; }
+  .tbl thead th { background:var(--edge); color:#fff; white-space:nowrap; }
+  .tbl td:first-child { font-weight:800; white-space:nowrap; }
+  .tw { border:3px solid var(--edge); border-radius:18px; overflow:hidden; box-shadow:var(--shadow); background:var(--card); }
+  .scroll { overflow-x:auto; }
+  .types { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; }
+  .types .t { background:var(--card); border:3px solid var(--edge); border-radius:16px; padding:10px 12px; box-shadow:3px 3px 0 var(--edge); }
+  .types .t b { display:block; } .types .t span { font-size:.84rem; color:var(--muted); display:block; }
+  .tl { list-style:none; margin:0; padding:0 0 0 22px; border-left:4px solid var(--edge); }
+  .tl li { position:relative; margin:0 0 10px; padding:6px 12px; background:var(--card); border:3px solid var(--edge); border-radius:14px; box-shadow:3px 3px 0 var(--edge); font-size:.88rem; }
+  .tl li::before { content:""; position:absolute; left:-35px; top:12px; width:16px; height:16px; border-radius:50%; background:var(--blue); border:3px solid var(--edge); }
+  .tl .yr { font-weight:800; color:var(--blue); margin-right:6px; }
+  .tl li.re::before { background:var(--pink); } .tl li.re .yr { color:var(--pink); }
+  .flowt td:nth-child(2) { white-space:nowrap; font-weight:800; color:var(--muted); }
+
+  .three { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  @media (max-width:700px) { .three { grid-template-columns:1fr; } }
+  .three .t { background:var(--card); border:3px solid var(--edge); border-radius:18px; padding:12px 14px; box-shadow:3px 3px 0 var(--edge); }
+  .three .t b { display:block; font-size:1.02rem; } .three .t small { display:block; color:var(--muted); font-size:.8rem; margin:2px 0 6px; }
+  .three .t ul { margin:0; padding-left:1.1em; font-size:.86rem; }
+  .flowbox { display:grid; grid-template-columns:1fr auto 1fr auto 1fr; gap:8px; align-items:center; }
+  .flowbox .nd { background:var(--card); border:3px solid var(--edge); border-radius:14px; padding:10px 12px; box-shadow:3px 3px 0 var(--edge); font-size:.86rem; }
+  .flowbox .nd b { display:block; font-size:.95rem; margin-bottom:2px; }
+  .flowbox .ar { font-weight:800; color:var(--muted); font-size:1.3rem; text-align:center; }
+  @media (max-width:640px) {
+    .tbl.cards thead { display:none; }
+    .tbl.cards tr { display:block; border-bottom:2px solid var(--edge); padding:6px 0; }
+    .tbl.cards td { display:block; border:none; padding:2px 12px; white-space:normal; }
+    .tbl.cards td:first-child { padding-top:6px; }
+    .tbl.cards td:not(:first-child)::before { content:attr(data-label) "："; font-weight:800; color:var(--muted); }
+    .tw.scroll:has(.cards) { overflow:visible; }
+  }
+
+  .hero { background:linear-gradient(135deg,#2bb673 0%,#3d8bff 55%,#9b5cff 100%); }
+  .pbox { position:relative; background:var(--card); border:3px solid var(--edge); border-radius:18px; box-shadow:var(--shadow); overflow:hidden; }
+  .pbox .ph { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:6px 8px 6px 14px; background:var(--edge); color:#fff; font-weight:800; font-size:.85rem; }
+  .pbox button { font:inherit; font-size:.8rem; font-weight:800; cursor:pointer; background:var(--mark); color:#22202b; border:2px solid #fff; border-radius:999px; padding:2px 12px; }
+  .pbox pre { margin:0; padding:12px 14px; white-space:pre-wrap; word-break:break-all; font-family:inherit; font-size:.84rem; line-height:1.7; }
+  .pbox.long pre { font-size:.82rem; }
+  .steps { list-style:none; margin:0; padding:0; counter-reset:s; display:grid; gap:10px; }
+  .steps li { counter-increment:s; position:relative; background:var(--card); border:3px solid var(--edge); border-radius:16px; padding:10px 14px 10px 54px; box-shadow:3px 3px 0 var(--edge); font-size:.92rem; }
+  .steps li::before { content:counter(s); position:absolute; left:12px; top:10px; width:30px; height:30px; border-radius:50%; background:var(--blue); color:#fff; font-weight:800; display:grid; place-items:center; border:2px solid var(--edge); }
+  .steps li b { display:block; }
+  .mock { background:var(--card); border:3px solid var(--edge); border-radius:18px; box-shadow:var(--shadow); padding:14px 16px; font-size:.86rem; }
+  .mock .meta { font-size:.75rem; color:var(--muted); font-weight:700; }
+  .mock h4 { margin:2px 0 10px; font-size:1.05rem; font-weight:800; line-height:1.4; }
+  .mock .two { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  @media (max-width:640px) { .mock .two { grid-template-columns:1fr; } }
+  .mock .f { border-left:4px solid var(--s3, #1baf7a); background:var(--green-bg); border-radius:10px; padding:8px 10px; }
+  .mock .t { border-left:4px solid var(--orange); background:var(--orange-bg); border-radius:10px; padding:8px 10px; }
+  .mock .f b, .mock .t b { display:block; font-size:.78rem; }
+  .mock ul { margin:8px 0 0; padding-left:1.2em; }
+  .axes { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; }
+  .axes .ax { background:var(--card); border:3px solid var(--edge); border-radius:16px; padding:10px 12px; box-shadow:3px 3px 0 var(--edge); text-align:center; }
+  .axes .ax .e { font-size:1.6rem; display:block; }
+  .axes .ax b { display:block; } .axes .ax span { font-size:.8rem; color:var(--muted); display:block; line-height:1.5; }
+  .flow3 { display:grid; grid-template-columns:1.1fr auto 1fr auto 1fr; gap:8px; align-items:center; }
+  .flow3 .col { display:grid; gap:6px; }
+  .flow3 .nd { background:var(--card); border:3px solid var(--edge); border-radius:14px; padding:8px 10px; box-shadow:3px 3px 0 var(--edge); font-size:.84rem; }
+  .flow3 .nd b { display:block; font-size:.92rem; }
+  .flow3 .nd.ai { background:var(--purple-bg); text-align:center; } .flow3 .nd.me { background:var(--yellow-bg); text-align:center; }
+  .flow3 .ar { font-weight:800; color:var(--muted); font-size:1.3rem; text-align:center; }
+  @media (max-width:700px) { .flow3 { grid-template-columns:1fr; } .flow3 .ar { transform:rotate(90deg); } }
+  .chk { list-style:none; margin:0; padding:0; display:grid; gap:8px; }
+  .chk li { background:var(--card); border:3px solid var(--edge); border-radius:14px; padding:8px 12px 8px 42px; position:relative; box-shadow:3px 3px 0 var(--edge); font-size:.9rem; }
+  .chk li::before { content:"✓"; position:absolute; left:12px; top:8px; width:22px; height:22px; border-radius:6px; background:var(--green); color:#fff; font-weight:800; display:grid; place-items:center; font-size:.8rem; border:2px solid var(--edge); }
+  .chk li span { display:block; font-size:.82rem; color:var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a class="backlink" href="/">← 実習Ⅰ Ⅱ 2D の一覧へ</a>
+
+<header class="hero">
+  <span class="chip">Day8</span>
+  <h1>ナレッジ・マッシュアップ</h1>
+  <p>AIで資料を自分用にカスタマイズする</p>
+  <span class="emoji">🧩</span>
+</header>
+
+<div class="intro">
+  <p><b>ナレッジ・マッシュアップ：</b>複数の情報源をAIで要約・翻訳・比較し、自分用の資料（教科書）にまとめること。</p>
+  <p>この回の内容：①前提　②手順　③ワーク1：1社のレポートをまとめる　④ワーク2：複数社のレポートを比較する　⑤AIの出力の確認方法　⑥提出物</p>
+</div>
+
+<div class="sec"><span class="icon">🔓</span><h2>前提：情報もツールも無料</h2></div>
+<div class="then">
+  <div class="box old"><h3>以前</h3><ul>
+    <li>専門家の解説・有料レポート経由で知る</li>
+    <li>英語の一次資料は翻訳待ち</li>
+    <li>教科書は他人が作ったものを読む</li>
+  </ul></div>
+  <div class="box new"><h3>現在</h3><ul>
+    <li>企業・金融機関の一次資料がWebで<span class="em">無料公開</span></li>
+    <li>要約・翻訳・比較の道具（AI）も<span class="em">無料</span>で使える</li>
+    <li>教科書は<span class="em">自分で作れる</span></li>
+  </ul></div>
+</div>
+<p class="note2">差がつくのは「どの情報を選ぶか」「何を聞くか」「出力を確かめるか」の3点。</p>
+
+<div class="sec"><span class="icon">🔀</span><h2>手順</h2></div>
+<div class="viz">
+  <h3>図1　複数の情報源 → AI → 自分の資料</h3>
+  <div class="flow3">
+    <div class="col">
+      <div class="nd"><b>Webの記事</b>企業ブログ・ニュース</div>
+      <div class="nd"><b>PDFレポート</b>投資見通し・年次報告</div>
+      <div class="nd"><b>統計・資料</b>官公庁・国際機関</div>
+    </div>
+    <div class="ar">→</div>
+    <div class="nd ai"><b>🤖 AI</b>要約・翻訳<br>比較・表にする</div>
+    <div class="ar">→</div>
+    <div class="nd me"><b>📘 自分の教科書</b>箇条書き・比較表<br>発見と提言</div>
+  </div>
+</div>
+<ol class="steps" style="margin-top:14px">
+  <li><b>スペースを作る</b>資料と指示をまとめて保存できる場所。例：ChatGPT・Claudeの「プロジェクト」、Perplexityの「スペース」、NotebookLMの「ノートブック」</li>
+  <li><b>テーマを決めて指示（プロンプト）を書く</b>何を・どの形式で・何を明確にするかを指定する</li>
+  <li><b>情報源（URL・PDF）を入れる</b>URLを読めない場合はPDFをダウンロードしてアップロード</li>
+  <li><b>出力を確認・修正する</b>数字・日付・社名を原文で確かめ、足りない点を追加で指示</li>
+  <li><b>更新する</b>新しいレポートが出たら同じスペースで再実行</li>
+</ol>
+
+<div class="sec"><span class="icon">1️⃣</span><h2>ワーク1：企業のレポートをまとめる</h2></div>
+<p class="lead2">対象：米国のベンチャーキャピタル Andreessen Horowitz（a16z）の記事一覧。次のプロンプトをAIに入力する。</p>
+<div class="pbox">
+  <div class="ph"><span>プロンプト（ワーク1）</span><button type="button" data-copy="p1">コピー</button></div>
+  <pre id="p1">下記URLのレポートを各々要約、解説して。新たな発見、提言を明確に例示。説明は箇条書きで。最新のレポートが出たら更新して。https://a16z.com/news-content/</pre>
+</div>
+
+<div class="viz" style="margin-top:16px">
+  <h3>図2　出力の例（イメージ）</h3>
+  <div class="mock">
+    <div class="meta">General ・ 記事 ・ 2026年11月20日</div>
+    <h4>元駐マレーシア米大使がa16zの顧問に就任</h4>
+    <div class="two">
+      <div class="f"><b>発見 — 何が分かったか</b>米国の技術企業が国ごとの規制・政府の優先課題を理解する必要が高まっている</div>
+      <div class="t"><b>提言 — 社会の方向性</b>外交経験者の助言を、AIインフラ・サイバーセキュリティ・防衛分野の創業者が活用する流れ</div>
+    </div>
+    <ul>
+      <li>要点：経歴（大使・国家安全保障会議の上級部長）</li>
+      <li>要点：担当する分野と地域（インド太平洋）</li>
+    </ul>
+  </div>
+  <p class="note2">記事ごとに「見出し／発見／提言／要点」の同じ型で並ぶ。型を指定すると比較しやすくなる。</p>
+</div>
+
+<div class="grid2" style="margin-top:16px">
+  <div class="box a"><h3>指示に含まれる要素</h3><ul>
+    <li>対象：URLのレポート</li>
+    <li>作業：要約・解説</li>
+    <li>明確にする点：発見・提言</li>
+    <li>形式：箇条書き</li>
+    <li>継続：最新版で更新</li>
+  </ul></div>
+  <div class="box y"><h3>注意</h3><ul>
+    <li>「更新して」と書いても、AIが自動で再訪問するとは限らない</li>
+    <li>定期実行の機能を使うか、新しい記事が出たら再度依頼する</li>
+    <li>一覧ページだけ読んで個別記事を読まない場合がある。個別記事のURLを渡すと精度が上がる</li>
+  </ul></div>
+</div>
+
+<div class="sec"><span class="icon">2️⃣</span><h2>ワーク2：複数の企業レポートを比較する</h2></div>
+<p class="lead2">テーマ：2027年の投資テーマ。18本の投資見通しレポートを1つのスペースで比較する。次のプロンプトをそのまま入力する。</p>
+<div class="pbox long">
+  <div class="ph"><span>プロンプト（ワーク2）</span><button type="button" data-copy="p2">コピー</button></div>
+  <pre id="p2">作りたいスペースのテーマは 2027年の投資テーマです。下記投資会社の戦略を明確に要点をまとめて。なるべく箇条書き。各投資会社の戦略の違い、（分野、アロケーション、地政学予測、金額）など投資戦略を分析して比較できるようにして
+
+JPモルガンAM 投資見通し2027：https://cdn.jpmorganfunds.com/content/dam/jpm-am-aem/global/en/insights/market-insights/investment-outlook-2027.pdf
+
+モルガン・スタンレー 2027年グローバル投資見通し：https://morganstanley.com/insights/articles/stock-market-investment-outlook-2027
+
+UBS 今後1年の展望：https://lnkd.in/gjiVt_gp
+
+ゴールドマン・サックス 2027年グローバル市場見通し：https://gspublishing.com/content/research/en/reports/2026/11/12/20639be2-7e87-4525-a462-ece229e47acb.pdf
+
+バークレイズPB 見通し2027：https://privatebank.barclays.com/content/dam/privatebank-barclays-com/en-gb/private-bank/documents/insights/2026/outlook-2027/Barclays_Private_Bank_Outlook_2027.pdf
+
+JPモルガンPB 見通し2027：https://assets.jpmprivatebank.com/content/dam/jpm-pb-aem/global/en/custom/outlook-2027/documents/2027-annual-outlook.pdf
+
+PGIM 市場見通し2027：https://pgim.com/content/dam/pgim/us/en/pgim-center/active/documents/campaigns/PGIM_2027%20Global%20Market%20Outlook.pdf
+
+DWS AM 2027年の10の投資テーマ：https://lnkd.in/gGcw9vDM
+
+HSBC PB シンク・フューチャー2027：https://hsbc.com.my/content/dam/hsbc/en/docs/wealth-insights/market-outlook/investment-outlook/think-future-2027.pdf
+
+サンタンデール 今後1年の展望2027 — 世界経済見通し：https://santander.com/content/dam/santander-com/es/contenido-paginas/sala-de-comunicacion/the-year-ahead-2027/the-year-ahead-2027-report.pdf
+
+ゴールドマン・サックス マクロ経済見通し2027 — 安定したベースシナリオと下振れリスク：https://gspublishing.com/content/research/en/reports/2026/11/12/0c0ea955-0dca-4122-bf64-1ba3ee02be8b.pdf
+
+インベスコ 2027年投資見通し：https://invesco.com/content/dam/invesco/hk/en/pdf/quicklink/invesco-2027-outlook-hk-nov-26-david-chao.pdf
+
+ING 市場見通し2027：https://think.ing.com/uploads/pdf-replacements/Global_Macro_Outlook_2027.pdf
+
+JPモルガンAM 市場見通し2027：https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/regional/en/insights/market-insights/market-outlook-2027/MI-Market%20Outlook%202027.pdf
+
+ニューバーガー・バーマン 2027年：https://lnkd.in/gftwqtAq
+
+ABNアムロ 2027年グローバル経済見通し：https://lnkd.in/gCp5__qp
+
+EFG 見通し2027：https://assets.ctfassets.net/1u811bvgvthc/KsAQG92v2oQ85VqoY3B4m/ec19697c768241e49cecc71be5297a88/Global_Outlook_2027.pdf
+
+コロンビア・スレッドニードル マルチアセット投資見通し2027：https://docs.columbiathreadneedle.com/documents/Multi-Asset%20Investment%20Outlook%202027%20-%20Technological%20tailwind,%20geopolitical%20headwind.pdf?inline=true</pre>
+</div>
+
+<div class="viz" style="margin-top:16px">
+  <h3>図3　比較の軸（プロンプトで指定した4つ）</h3>
+  <div class="axes">
+    <div class="ax"><span class="e">🏭</span><b>分野</b><span>どの業種・テーマを重視するか（AI、電力、防衛など）</span></div>
+    <div class="ax"><span class="e">🥧</span><b>アロケーション</b><span>株式・債券・現金・オルタナティブの配分</span></div>
+    <div class="ax"><span class="e">🌏</span><b>地政学予測</b><span>米中関係・関税・戦争・選挙の見方</span></div>
+    <div class="ax"><span class="e">💴</span><b>金額</b><span>株価指数・金利・為替・成長率の予想値</span></div>
+  </div>
+</div>
+
+<div class="viz" style="margin-top:16px">
+  <h3>図4　18本のレポートの発行元（立場別）</h3>
+  <div class="hb"><span>運用会社（アセットマネジメント）</span><span class="bar"><i style="width:70.0%;background:var(--s1)"></i><b>7本</b></span></div><div class="hb"><span>プライベートバンク・富裕層向け</span><span class="bar"><i style="width:50.0%;background:var(--s1)"></i><b>5本</b></span></div><div class="hb"><span>投資銀行・証券</span><span class="bar"><i style="width:30.0%;background:var(--s1)"></i><b>3本</b></span></div><div class="hb"><span>商業銀行</span><span class="bar"><i style="width:30.0%;background:var(--s1)"></i><b>3本</b></span></div>
+  <p class="note2">立場によって想定する読者が違う。運用会社＝機関投資家・投資信託の購入者、プライベートバンク＝富裕層、投資銀行＝機関投資家、商業銀行＝法人・個人の預金者。分類は志村ゼミによる大まかなもの。</p>
+</div>
+<div class="tw scroll" style="margin-top:14px">
+  <table class="tbl cards"><thead><tr><th>立場</th><th>本数</th><th>発行元</th></tr></thead><tbody><tr><td>運用会社（アセットマネジメント）</td><td>7</td><td>JPモルガンAM×2、PGIM、DWS、インベスコ、ニューバーガー・バーマン、コロンビア・スレッドニードル</td></tr><tr><td>プライベートバンク・富裕層向け</td><td>5</td><td>UBS、バークレイズPB、JPモルガンPB、HSBC PB、EFG</td></tr><tr><td>投資銀行・証券</td><td>3</td><td>モルガン・スタンレー、ゴールドマン・サックス×2</td></tr><tr><td>商業銀行</td><td>3</td><td>サンタンデール、ING、ABNアムロ</td></tr></tbody></table>
+</div>
+
+<div class="grid2" style="margin-top:16px">
+  <div class="box b"><h3>追加で指示するとよいこと</h3><ul>
+    <li>比較を1つの表にして（行＝会社、列＝4つの軸）</li>
+    <li>各社で一致している点・意見が分かれる点を分けて</li>
+    <li>数値には根拠のページ番号を付けて</li>
+    <li>読めなかったURLを一覧にして</li>
+  </ul></div>
+  <div class="box y"><h3>うまく読めないとき</h3><ul>
+    <li><b>lnkd.in</b> の短縮URLは転送先を開いてから元のURLを渡す</li>
+    <li>PDFが大きい・読めない場合はダウンロードしてアップロード</li>
+    <li>一度に18本が多い場合は5本ずつに分け、最後に統合する</li>
+  </ul></div>
+</div>
+
+<div class="sec"><span class="icon">🔍</span><h2>AIの出力の確認方法</h2></div>
+<ul class="chk">
+  <li>数字は原文で確認<span>指数の水準・金利・成長率は、表のどの数値かを原文のページで照合</span></li>
+  <li>日付と版を確認<span>2026年版と2027年版の取り違え、発行日の誤り</span></li>
+  <li>社名・資料名の取り違え<span>同じ会社の2本（ゴールドマン・サックス、JPモルガンAM）を混同していないか</span></li>
+  <li>事実と推測を分ける<span>レポートに書かれていること／AIが補ったことを区別させる</span></li>
+  <li>読めていない資料を確認<span>「読めなかった資料は？」と聞く。読めていないのに要約を作る場合がある</span></li>
+</ul>
+
+<div class="sec"><span class="icon">📝</span><h2>提出物</h2></div>
+<ol class="qs">
+  <li>ワーク1の出力から、関心のある記事を1本選び「発見」「提言」を自分の言葉で1行ずつ書く。</li>
+  <li>ワーク2の比較表（行＝会社、列＝分野・アロケーション・地政学予測・金額）を提出する。</li>
+  <li>18本のうち、各社の見方が最も分かれていた点を1つ挙げる。
+    <span>例：米国株の水準、金利の方向、ドル円、中国の扱い</span></li>
+  <li>AIの出力で誤り・不確かな点を1つ見つけ、原文と照合した結果を書く。</li>
+</ol>
+
+<div class="sec"><span class="icon">📚</span><h2>出典</h2></div>
+<div class="src"><ul>
+  <li>Andreessen Horowitz：<a href="https://a16z.com/news-content/">News &amp; Content</a></li>
+  <li>ワーク2の18本：上のプロンプト内のURL（各社が公開している2027年見通し）</li>
+</ul></div>
+
+</div>
+<script>
+document.querySelectorAll('table.tbl.cards').forEach(function(t){
+  var h=[].map.call(t.querySelectorAll('thead th'),function(th){return th.textContent;});
+  t.querySelectorAll('tbody tr').forEach(function(tr){[].forEach.call(tr.children,function(td,i){if(h[i])td.setAttribute('data-label',h[i]);});});
+});
+document.querySelectorAll('button[data-copy]').forEach(function(b){
+  b.addEventListener('click',function(){
+    var t=document.getElementById(b.dataset.copy).textContent;
+    var done=function(){b.textContent='コピーしました';setTimeout(function(){b.textContent='コピー';},1600);};
+    if(navigator.clipboard){navigator.clipboard.writeText(t).then(done,function(){});}
+  });
+});
+</script>
+</body>
+</html>
