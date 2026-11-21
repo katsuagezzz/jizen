@@ -89,18 +89,19 @@ def main() -> None:
     background-color:var(--bg);
     background-image:radial-gradient(var(--dots) 1.5px, transparent 1.5px); background-size:22px 22px; }}
   main {{ max-width:1180px; margin:0 auto; padding:24px 16px 64px; }}
-  .hero {{ position:relative; overflow:hidden; padding:22px 24px 20px; border:3px solid var(--edge); border-radius:24px;
-    background:linear-gradient(135deg,#ff5c8a 0%,#ff8a3d 45%,#ffc531 100%); color:#fff; box-shadow:6px 6px 0 var(--edge); }}
-  .hero::after {{ content:""; position:absolute; right:-40px; top:-40px; width:170px; height:170px; border-radius:50%;
+  .hero {{ position:relative; overflow:hidden; display:flex; flex-wrap:wrap; align-items:center; column-gap:14px; row-gap:2px;
+    padding:10px 64px 10px 20px; border:3px solid var(--edge); border-radius:20px;
+    background:linear-gradient(135deg,#ff5c8a 0%,#ff8a3d 45%,#ffc531 100%); color:#fff; box-shadow:5px 5px 0 var(--edge); }}
+  .hero::after {{ content:""; position:absolute; right:-40px; top:-50px; width:130px; height:130px; border-radius:50%;
     background:rgba(255,255,255,.18); }}
-  .hero .chip {{ display:inline-block; background:#fff; color:#22202b; font-weight:800; font-size:.8rem;
-    border:2px solid #22202b; border-radius:999px; padding:2px 12px; transform:rotate(-2deg); }}
-  .hero h1 {{ margin:8px 0 2px; font-size:clamp(1.8rem,6vw,2.4rem); font-weight:800; line-height:1.2;
-    text-shadow:3px 3px 0 rgba(34,32,43,.35); }}
-  .hero p {{ margin:0; font-weight:700; }}
-  .hero .deco {{ position:absolute; right:24px; top:50%; transform:translateY(-50%) rotate(10deg); font-size:3rem; }}
-  @media (max-width:600px) {{ .hero .deco {{ top:14px; transform:rotate(10deg); right:14px; font-size:2.2rem; }} .hero h1 {{ margin-top:16px; }} }}
-  .updated {{ display:inline-block; margin:14px 0 16px; font-size:.8rem; font-weight:700; color:var(--muted);
+  .hero .chip {{ display:inline-block; background:#fff; color:#22202b; font-weight:800; font-size:.75rem;
+    border:2px solid #22202b; border-radius:999px; padding:1px 10px; transform:rotate(-2deg); }}
+  .hero h1 {{ margin:0; font-size:clamp(1.3rem,4vw,1.6rem); font-weight:800; line-height:1.25;
+    text-shadow:2px 2px 0 rgba(34,32,43,.35); }}
+  .hero p {{ margin:0; font-weight:700; font-size:.9rem; }}
+  .hero .deco {{ position:absolute; right:18px; top:50%; transform:translateY(-50%) rotate(10deg); font-size:1.9rem; }}
+  @media (max-width:600px) {{ .hero {{ padding:8px 52px 9px 14px; }} .hero p {{ flex-basis:100%; font-size:.8rem; }} .hero .deco {{ right:12px; font-size:1.6rem; }} }}
+  .updated {{ display:inline-block; margin:10px 0 12px; font-size:.8rem; font-weight:700; color:var(--muted);
     background:var(--card); border:2px solid var(--edge); border-radius:999px; padding:2px 12px; }}
   ul {{ list-style:none; padding:0; margin:0; display:grid; gap:16px;
     grid-template-columns:repeat(auto-fill, minmax(170px, 1fr)); }}
