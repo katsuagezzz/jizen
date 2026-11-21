@@ -35,9 +35,9 @@ def card(i: int, path: Path) -> str:
     href = "/" + html.escape(path.relative_to(DIST).as_posix())
     day, main, sub = split_title(page_title(path))
     badge = f'<span class="day">{html.escape(day)}</span>' if day else ""
-    subline = f'<span class="sub">{html.escape(sub)}</span>' if sub else ""
+    subline = f'<span class="sub"><span>{html.escape(sub)}</span></span>' if sub else ""
     return (
-        f'    <li><a class="card c-{COLORS[i % len(COLORS)]}" href="{href}">'
+        f'    <li><a class="card c-{COLORS[i % len(COLORS)]}" href="{href}" title="{html.escape(page_title(path))}">'
         f'{badge}<span class="emoji">{EMOJIS[i % len(EMOJIS)]}</span>'
         f'<span class="ttl">{html.escape(main)}</span>{subline}'
         f'<span class="go">読む →</span></a></li>'
@@ -88,36 +88,51 @@ def main() -> None:
     font-family:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;
     background-color:var(--bg);
     background-image:radial-gradient(var(--dots) 1.5px, transparent 1.5px); background-size:22px 22px; }}
-  main {{ max-width:760px; margin:0 auto; padding:28px 16px 64px; }}
-  .hero {{ position:relative; overflow:hidden; padding:30px 24px 26px; border:3px solid var(--edge); border-radius:28px;
-    background:linear-gradient(135deg,#ff5c8a 0%,#ff8a3d 45%,#ffc531 100%); color:#fff; box-shadow:6px 6px 0 var(--edge); }}
-  .hero::after {{ content:""; position:absolute; right:-40px; top:-40px; width:170px; height:170px; border-radius:50%;
+  main {{ max-width:1180px; margin:0 auto; padding:24px 16px 64px; }}
+  .hero {{ position:relative; overflow:hidden; display:flex; flex-wrap:wrap; align-items:center; column-gap:14px; row-gap:2px;
+    padding:10px 64px 10px 20px; border:3px solid var(--edge); border-radius:20px;
+    background:linear-gradient(135deg,#ff5c8a 0%,#ff8a3d 45%,#ffc531 100%); color:#fff; box-shadow:5px 5px 0 var(--edge); }}
+  .hero::after {{ content:""; position:absolute; right:-40px; top:-50px; width:130px; height:130px; border-radius:50%;
     background:rgba(255,255,255,.18); }}
-  .hero .chip {{ display:inline-block; background:#fff; color:#22202b; font-weight:800; font-size:.8rem;
-    border:2px solid #22202b; border-radius:999px; padding:2px 12px; transform:rotate(-2deg); }}
-  .hero h1 {{ margin:12px 0 4px; font-size:clamp(2rem,8vw,2.8rem); font-weight:800; line-height:1.2;
-    text-shadow:3px 3px 0 rgba(34,32,43,.35); }}
-  .hero p {{ margin:0; font-weight:700; }}
-  .hero .deco {{ position:absolute; right:20px; bottom:10px; font-size:3rem; transform:rotate(10deg); }}
-  @media (max-width:600px) {{ .hero .deco {{ top:12px; bottom:auto; right:14px; font-size:2.2rem; }} .hero h1 {{ margin-top:20px; }} }}
-  .updated {{ display:inline-block; margin:18px 0 22px; font-size:.8rem; font-weight:700; color:var(--muted);
+  .hero .chip {{ display:inline-block; background:#fff; color:#22202b; font-weight:800; font-size:.75rem;
+    border:2px solid #22202b; border-radius:999px; padding:1px 10px; transform:rotate(-2deg); }}
+  .hero h1 {{ margin:0; font-size:clamp(1.3rem,4vw,1.6rem); font-weight:800; line-height:1.25;
+    text-shadow:2px 2px 0 rgba(34,32,43,.35); }}
+  .hero p {{ margin:0; font-weight:700; font-size:.9rem; }}
+  .hero .deco {{ position:absolute; right:18px; top:50%; transform:translateY(-50%) rotate(10deg); font-size:1.9rem; }}
+  @media (max-width:600px) {{ .hero {{ padding:8px 52px 9px 14px; }} .hero p {{ flex-basis:100%; font-size:.8rem; }} .hero .deco {{ right:12px; font-size:1.6rem; }} }}
+  .updated {{ display:inline-block; margin:10px 0 12px; font-size:.8rem; font-weight:700; color:var(--muted);
     background:var(--card); border:2px solid var(--edge); border-radius:999px; padding:2px 12px; }}
-  ul {{ list-style:none; padding:0; margin:0; display:grid; gap:18px; }}
-  .card {{ position:relative; display:block; text-decoration:none; color:var(--ink); background:var(--card);
-    border:3px solid var(--edge); border-radius:22px; padding:18px 20px 16px; box-shadow:5px 5px 0 var(--edge);
+  ul {{ list-style:none; padding:0; margin:0; display:grid; gap:16px;
+    grid-template-columns:repeat(auto-fill, minmax(170px, 1fr)); }}
+  li {{ min-width:0; }}
+  .card {{ position:relative; display:flex; flex-direction:column; aspect-ratio:1 / 1; overflow:hidden;
+    text-decoration:none; color:var(--ink); background:var(--card);
+    border:3px solid var(--edge); border-radius:20px; padding:17px 14px 9px; box-shadow:4px 4px 0 var(--edge);
     transition:transform .12s, box-shadow .12s; }}
-  .card:hover, .card:focus-visible {{ transform:translate(-2px,-2px); box-shadow:7px 7px 0 var(--edge); outline:none; }}
-  .card:active {{ transform:translate(3px,3px); box-shadow:2px 2px 0 var(--edge); }}
-  .card::before {{ content:""; position:absolute; inset:0 auto 0 0; width:12px; background:var(--c);
-    border-radius:19px 0 0 19px; border-right:3px solid var(--edge); }}
-  .card > * {{ margin-left:8px; }}
-  .day {{ display:inline-block; background:var(--c); color:#fff; font-weight:800; font-size:.95rem; letter-spacing:.04em;
-    border:2px solid var(--edge); border-radius:10px; padding:0 12px; transform:rotate(-4deg); }}
-  .emoji {{ position:absolute; right:18px; top:14px; font-size:2rem; transform:rotate(8deg); }}
-  .ttl {{ display:block; font-size:clamp(1.15rem,4.5vw,1.4rem); font-weight:800; line-height:1.4; margin-top:8px; padding-right:44px; }}
-  .sub {{ display:inline-block; margin-top:6px; font-size:.9rem; font-weight:700; background:var(--cb);
-    border-radius:999px; padding:1px 12px; }}
-  .go {{ display:block; text-align:right; margin-top:6px; font-weight:800; font-size:.9rem; color:var(--c); }}
+  .card:hover, .card:focus-visible {{ transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--edge); outline:none; }}
+  .card:active {{ transform:translate(3px,3px); box-shadow:1px 1px 0 var(--edge); }}
+  .card::before {{ content:""; position:absolute; inset:0 0 auto 0; height:10px; background:var(--c);
+    border-bottom:3px solid var(--edge); }}
+  .day {{ align-self:flex-start; display:inline-block; background:var(--c); color:#fff; font-weight:800; font-size:.9rem;
+    letter-spacing:.04em; border:2px solid var(--edge); border-radius:9px; padding:0 10px; transform:rotate(-4deg); margin-top:2px; }}
+  .emoji {{ position:absolute; right:10px; top:16px; font-size:1.7rem; transform:rotate(8deg); }}
+  .ttl {{ flex:none; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden;
+    font-size:1rem; font-weight:800; line-height:1.32; margin-top:8px; }}
+  .sub > span {{ display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden; }}
+  .sub {{ flex:none; display:block;
+    margin-top:5px; font-size:.74rem; font-weight:700; line-height:1.4; color:var(--ink);
+    background:var(--cb); border-radius:10px; padding:3px 8px; }}
+  .go {{ margin-top:auto; text-align:right; font-weight:800; font-size:.8rem; line-height:1.3; color:var(--c); padding-top:2px; }}
+  @media (max-width:600px) {{
+    ul {{ grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px; }}
+    .card {{ padding:18px 10px 10px; border-radius:16px; }}
+    .day {{ font-size:.82rem; padding:0 8px; }}
+    .emoji {{ font-size:1.4rem; right:8px; top:14px; }}
+    .ttl {{ font-size:.92rem; margin-top:8px; }}
+    .sub {{ font-size:.7rem; }}
+    .go {{ font-size:.76rem; }}
+  }}
   .c-pink {{ --c:var(--pink); --cb:var(--pink-bg); }} .c-orange {{ --c:var(--orange); --cb:var(--orange-bg); }}
   .c-yellow {{ --c:var(--yellow); --cb:var(--yellow-bg); }} .c-green {{ --c:var(--green); --cb:var(--green-bg); }}
   .c-blue {{ --c:var(--blue); --cb:var(--blue-bg); }} .c-purple {{ --c:var(--purple); --cb:var(--purple-bg); }}
