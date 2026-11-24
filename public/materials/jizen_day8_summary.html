@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Day8 講義のまとめ - AIで情報をまとめる・VCと投資会社のレポート・上流の情報源を自動で追う</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#fff8ee; --dots:#ffd9b8; --card:#ffffff; --ink:#22202b; --muted:#6c6878; --edge:#22202b;
+    --pink:#ff5c8a; --pink-bg:#ffe3ec; --orange:#ff8a3d; --orange-bg:#ffe9d9;
+    --yellow:#e0a800; --yellow-bg:#fff4cc; --green:#2bb673; --green-bg:#dcf7e8;
+    --blue:#3d8bff; --blue-bg:#e0edff; --purple:#9b5cff; --purple-bg:#efe4ff;
+    --mark:#ffe55c; --mark-pink:#ffc2d4; --shadow:4px 4px 0 var(--edge);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#1b1824; --dots:#2c2738; --card:#262233; --ink:#f4f1fa; --muted:#b2acc2; --edge:#0c0a12;
+      --pink-bg:#40202d; --orange-bg:#40291b; --yellow-bg:#3d3418; --green-bg:#173528;
+      --blue-bg:#1a2a45; --purple-bg:#2e2147; --mark:#7a6a12; --mark-pink:#7a2a44;
+    }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; color:var(--ink); line-height:1.85; font-size:16px;
+    font-family:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;
+    background-color:var(--bg);
+    background-image:radial-gradient(var(--dots) 1.5px, transparent 1.5px); background-size:22px 22px; }
+  .wrap { max-width:860px; margin:0 auto; padding:20px 16px 80px; }
+  .backlink { display:inline-block; font-weight:800; font-size:.9rem; color:var(--ink); text-decoration:none;
+    background:var(--card); border:2px solid var(--edge); border-radius:999px; padding:4px 14px; box-shadow:2px 2px 0 var(--edge); }
+
+  .hero { position:relative; margin:20px 0 28px; padding:32px 24px 28px; border:3px solid var(--edge); border-radius:28px;
+    background:linear-gradient(135deg,#9b5cff 0%,#3d8bff 50%,#2bb673 100%); color:#fff; box-shadow:6px 6px 0 var(--edge); overflow:hidden; }
+  .hero::after { content:""; position:absolute; right:-40px; top:-40px; width:180px; height:180px; border-radius:50%; background:rgba(255,255,255,.18); }
+  .hero .chip { display:inline-block; background:#fff; color:#22202b; font-weight:800; font-size:.8rem;
+    border:2px solid #22202b; border-radius:999px; padding:2px 12px; transform:rotate(-2deg); }
+  .hero h1 { font-size:clamp(1.7rem,6vw,2.5rem); line-height:1.3; margin:14px 0 6px; font-weight:800; text-shadow:3px 3px 0 rgba(34,32,43,.35); }
+  .hero p { margin:0; font-weight:700; }
+  .hero .emoji { position:absolute; right:22px; bottom:12px; font-size:3.2rem; transform:rotate(10deg); }
+  @media (max-width:600px) { .hero .emoji { top:12px; bottom:auto; right:12px; font-size:2.4rem; } .hero h1 { margin-top:22px; } }
+
+  .take { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:18px 20px; box-shadow:var(--shadow); margin-bottom:8px; }
+  .take h2 { margin:0 0 8px; font-size:1.15rem; font-weight:800; }
+  .take ol { margin:0; padding-left:1.4em; }
+  .take li { margin:6px 0; font-weight:700; }
+
+  .sec { display:flex; align-items:center; gap:10px; margin:44px 0 16px; }
+  .sec .icon { flex:none; width:48px; height:48px; border-radius:50%; display:grid; place-items:center; font-size:1.5rem;
+    background:var(--card); border:3px solid var(--edge); box-shadow:3px 3px 0 var(--edge); }
+  .sec h2 { margin:0; font-size:clamp(1.2rem,4.5vw,1.55rem); font-weight:800; line-height:1.35;
+    background:linear-gradient(transparent 62%, var(--mark) 62%); padding:0 4px; }
+  .lead { margin:0 0 14px; }
+  .linkbtn { display:inline-flex; align-items:center; gap:6px; margin:0 0 18px; font-weight:800; color:var(--ink); text-decoration:none;
+    background:var(--card); border:3px solid var(--edge); border-radius:999px; padding:4px 16px; box-shadow:3px 3px 0 var(--edge); }
+  .linkbtn:hover { transform:translate(-1px,-1px); box-shadow:4px 4px 0 var(--edge); }
+
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; }
+  .box { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:16px 18px; box-shadow:var(--shadow); }
+  .box.wide { grid-column:1/-1; }
+  .box h3 { margin:0 0 6px; font-size:1.08rem; font-weight:800; display:flex; align-items:center; gap:8px; }
+  .box h3 .tag { font-size:.75rem; color:#fff; background:var(--c); border:2px solid var(--edge); border-radius:999px; padding:0 10px; white-space:nowrap; }
+  .box ul { margin:0; padding-left:1.2em; }
+  .box li { margin:4px 0; }
+  .box .note { margin:8px 0 0; font-size:.9rem; background:var(--cb); border-radius:12px; padding:6px 12px; }
+  .c-pink { --c:var(--pink); --cb:var(--pink-bg); } .c-orange { --c:var(--orange); --cb:var(--orange-bg); }
+  .c-yellow { --c:var(--yellow); --cb:var(--yellow-bg); } .c-green { --c:var(--green); --cb:var(--green-bg); }
+  .c-blue { --c:var(--blue); --cb:var(--blue-bg); } .c-purple { --c:var(--purple); --cb:var(--purple-bg); }
+
+  .em { font-weight:800; background:linear-gradient(transparent 55%, var(--mark-pink) 55%); padding:0 2px; }
+  .ul { font-weight:800; background:linear-gradient(transparent 55%, var(--mark) 55%); padding:0 2px; }
+
+  .flow { list-style:none; margin:0; padding:0; counter-reset:f; }
+  .flow > li { counter-increment:f; position:relative; background:var(--card); border:3px solid var(--edge); border-radius:18px;
+    padding:12px 16px 12px 58px; margin:0 0 16px; box-shadow:var(--shadow); }
+  .flow > li::before { content:counter(f); position:absolute; left:14px; top:12px; width:32px; height:32px; border-radius:10px;
+    background:var(--c,var(--blue)); color:#fff; font-weight:800; display:grid; place-items:center; border:2px solid var(--edge); transform:rotate(-6deg); }
+  .flow > li b.h { display:block; font-size:1.02rem; }
+  .flow > li ul { margin:4px 0 0; padding-left:1.2em; }
+
+  .chain { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:6px 0 14px; }
+  .chain span { background:var(--card); border:2px solid var(--edge); border-radius:999px; padding:2px 12px; font-weight:800; font-size:.92rem; }
+  .chain i { font-style:normal; font-weight:800; color:var(--muted); }
+
+  .md { background:#22202b; color:#f4f1fa; border:3px solid var(--edge); border-radius:16px; padding:14px 16px; margin:10px 0 0;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.88rem; line-height:1.7; white-space:pre-wrap; overflow-x:auto; }
+  .md .c { color:#ffc531; }
+
+  .qa { list-style:none; margin:0; padding:0; counter-reset:q; }
+  .qa > li { counter-increment:q; position:relative; background:var(--card); border:3px solid var(--edge); border-radius:18px;
+    padding:14px 16px 14px 62px; margin:0 0 16px; box-shadow:var(--shadow); }
+  .qa > li::before { content:"Q" counter(q); position:absolute; left:14px; top:14px; width:36px; height:36px; border-radius:10px;
+    background:var(--pink); color:#fff; font-weight:800; display:grid; place-items:center; border:2px solid var(--edge); transform:rotate(-6deg); font-size:.9rem; }
+  .qa .q { display:block; font-weight:800; font-size:1.02rem; }
+  .qa .ctx { display:block; font-size:.85rem; color:var(--muted); margin:2px 0 8px; }
+  .qa .a { display:block; background:var(--green-bg); border-radius:12px; padding:8px 12px; font-size:.93rem; }
+  .qa .a b.lb { color:var(--green); margin-right:4px; }
+  .mx { display:grid; grid-template-columns:auto 1fr 1fr; gap:6px; font-size:.88rem; margin-top:8px; }
+  .mx div { background:var(--card); border:2px solid var(--edge); border-radius:10px; padding:6px 10px; }
+  .mx .hd { background:transparent; border:none; font-weight:800; text-align:center; padding:2px; }
+  .mx .rh { background:transparent; border:none; font-weight:800; writing-mode:horizontal-tb; display:flex; align-items:center; }
+  .mx b { display:block; }
+  @media (max-width:600px) { .mx { grid-template-columns:4.5em 1fr 1fr; font-size:.8rem; } }
+  .logic { display:grid; grid-template-columns:1fr auto 1fr; gap:10px; align-items:stretch; margin-top:6px; }
+  .logic .vs { display:grid; place-items:center; font-weight:800; color:var(--muted); }
+  @media (max-width:600px) { .logic { grid-template-columns:1fr; } .logic .vs { padding:0; } }
+
+  .pills { display:flex; flex-wrap:wrap; align-items:center; gap:6px 4px; margin:6px 0; }
+  .pills .pl { background:var(--card); border:2px solid var(--edge); border-radius:12px; padding:3px 10px; font-size:.86rem; line-height:1.45; }
+  .pills .pl b { display:block; font-size:.9rem; } .pills .pl small { color:var(--muted); font-size:.76rem; }
+  .pills .pl.in { background:var(--green-bg); } .pills .pl.out { background:var(--orange-bg); } .pills .pl.me { background:var(--purple-bg); }
+  .pills .ar { font-weight:800; color:var(--muted); }
+  .sb { display:grid; grid-template-columns:1fr auto 1fr; gap:10px; align-items:stretch; }
+  .sb .vs { display:grid; place-items:center; font-weight:800; font-size:1.3rem; }
+  @media (max-width:600px) { .sb { grid-template-columns:1fr; } .sb .vs { padding:0; } }
+  .warn { background:var(--pink-bg); border:3px solid var(--edge); border-radius:22px; padding:16px 18px; box-shadow:var(--shadow); }
+  .warn h3 { margin:0 0 6px; font-weight:800; }
+  .warn ul { margin:0; padding-left:1.2em; }
+  .stat { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; }
+  .stat .t { background:var(--card); border:3px solid var(--edge); border-radius:18px; padding:12px 16px; box-shadow:3px 3px 0 var(--edge); }
+  .stat .t small { display:block; font-size:.8rem; color:var(--muted); font-weight:700; }
+  .stat .t b { display:block; font-size:1.25rem; line-height:1.35; }
+  .stat .t span { font-size:.8rem; color:var(--muted); }
+  .steps { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin:8px 0; }
+  .steps span { background:var(--card); border:2px solid var(--edge); border-radius:999px; padding:2px 12px; font-weight:800; font-size:.88rem; }
+  .steps i { font-style:normal; color:var(--muted); font-weight:800; }
+
+  .hb { display:grid; grid-template-columns:9em 1fr; gap:4px 10px; align-items:center; margin:6px 0; font-size:.88rem; }
+  .hb .bar { display:flex; align-items:center; gap:8px; }
+  .hb .bar i { display:block; height:22px; border-radius:0 4px 4px 0; flex:none; min-width:3px; }
+  .hb .bar b { font-size:.84rem; white-space:nowrap; }
+  .tbl { width:100%; border-collapse:collapse; font-size:.88rem; background:var(--card); }
+  .tbl th, .tbl td { padding:8px 10px; border-bottom:1px dashed var(--muted); text-align:left; vertical-align:top; }
+  .tbl thead th { background:var(--edge); color:#fff; }
+  .tbl td:first-child { font-weight:800; white-space:nowrap; }
+  .tw { border:3px solid var(--edge); border-radius:18px; overflow:hidden; box-shadow:var(--shadow); }
+  .learn { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width:600px) { .learn { grid-template-columns:1fr; } }
+  .learn .col { background:var(--card); border:3px solid var(--edge); border-radius:18px; padding:12px 14px; box-shadow:3px 3px 0 var(--edge); text-align:center; }
+  .learn .col h3 { margin:0 0 8px; font-size:1rem; }
+  .learn .nd { display:inline-block; border:2px solid var(--edge); border-radius:12px; padding:3px 12px; font-weight:800; font-size:.88rem; background:var(--yellow-bg); }
+  .learn .nd.b { background:var(--blue-bg); } .learn .nd.g { background:var(--green-bg); }
+  .learn .dn { color:var(--muted); font-weight:800; margin:2px 0; font-size:.85rem; }
+
+  .viz2 { background:var(--card); border:3px solid var(--edge); border-radius:22px; padding:14px 16px; box-shadow:var(--shadow); }
+  .viz2 h3 { margin:0 0 8px; font-size:1rem; font-weight:800; }
+  .viz2 svg { display:block; width:100%; max-width:520px; margin:0 auto; height:auto; }
+  .viz2 svg text { font-family:inherit; fill:var(--ink); }
+  .mail { background:#22202b; color:#f4f1fa; border:3px solid var(--edge); border-radius:16px; padding:12px 14px; font-size:.86rem; line-height:1.75; white-space:pre-wrap; }
+  .mail b { color:#ffc531; }
+  .hero { background:linear-gradient(135deg,#2bb673 0%,#3d8bff 55%,#9b5cff 100%); }
+  .tl4 { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+  .tl4 div { background:var(--card); border:3px solid var(--edge); border-radius:14px; padding:8px 10px; box-shadow:3px 3px 0 var(--edge); font-size:.86rem; }
+  .tl4 div b { display:block; font-size:.95rem; } .tl4 div small { display:block; color:var(--muted); font-weight:700; }
+  .tl4 div.now { background:var(--yellow-bg); }
+  @media (max-width:640px) { .tl4 { grid-template-columns:1fr 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a class="backlink" href="/">← 実習Ⅰ Ⅱ 2D の一覧へ</a>
+
+<header class="hero">
+  <span class="chip">実習Ⅰ Ⅱ 2D ／ Day8　講義のまとめ</span>
+  <h1>Day8 講義のまとめ</h1>
+  <p>AIで情報をまとめる・VCと投資会社のレポート・上流の情報源を自動で追う</p>
+  <span class="emoji">🧩</span>
+</header>
+
+<a class="linkbtn" href="/materials/jizen_day8.html">📖 Day8の資料「マッシュアップ・メディア」を開く</a>
+
+<div class="take">
+  <h2>🎯 要点</h2>
+  <ol>
+    <li>情報はすでにネット上に公開されている。新しいのは、それを<b>まとめる手段（AI）</b>を個人が持てるようになったこと。資料は一人一人違ってよい</li>
+    <li>講義で伝えるのは<b>情報のありか</b>と<b>切り口</b>（経済の基本・地政学・時事・ビジネス用語）。あとは自分で動かして作る</li>
+    <li>ワーク1：ベンチャーキャピタル（a16z）の英語のレポートをMuseで要約する。最先端の事業と、そのサプライチェーンが分かる</li>
+    <li>ワーク2：投資会社18社の見通しを、<b>軸（分野・アロケーション・地政学・金額）</b>を指定して比較する。ビジネス用語をプロンプトに入れると出力の質が上がる</li>
+    <li>1回作って終わりにしない。<b>新しい情報が出たら更新させる</b>（エージェントとしての使い方）</li>
+    <li>AI講座：<b>上流の情報源を特定 → 自動で届く仕組み → 問いを更新</b>の3段階</li>
+  </ol>
+</div>
+
+<!-- ============ 1 ============ -->
+<div class="sec"><span class="icon">💼</span><h2>実習先でのAIの使われ方</h2></div>
+<div class="grid">
+  <div class="box c-blue"><h3>3年生の実習先での例</h3><ul>
+    <li>自社のWebメディアの記事</li>
+    <li>電話のシナリオ（トークスクリプト）</li>
+    <li>イベントで配るチラシ</li>
+  </ul><p class="note">AIを使った作業は、受け入れ企業から好意的に受け止められている</p></div>
+  <div class="box c-green"><h3>4月からの実習に向けて</h3><ul>
+    <li>新しく受け入れる会社は小規模な会社が多く、AIをまだ使い慣れていないことが多い → <b>AIを使えることが強みになる</b></li>
+    <li>鉛筆で字を書くのと同じ感覚で使えるようにしておく</li>
+    <li>履歴書・志望理由書・日報・メールは、パターンを作ってAIで自動化する</li>
+  </ul></div>
+</div>
+
+<!-- ============ 2 ============ -->
+<div class="sec"><span class="icon">📚</span><h2>教材の変化と、これからの学び方</h2></div>
+<div class="tl4">
+  <div><small>5年ほど前</small><b>紙の教科書</b>全員が同じ本を読む</div>
+  <div><small>昨年まで</small><b>Notion</b>資料をオンラインで配る</div>
+  <div><small>今年</small><b>AIで作ったHTML</b>作り方は変わったが、先生が作って配る形は同じ</div>
+  <div class="now"><small>これから</small><b>一人一人が作る</b>共通の知識をもとに、見せ方・量は各自で変える</div>
+</div>
+<div class="grid" style="margin-top:14px">
+  <div class="box c-purple"><h3>これまで</h3><ul>
+    <li>ネット上の情報（政府機関・企業・個人）をまとめられるのは、学校・先生・資本力のある会社</li>
+    <li>学生は、決められた枠の中で90分の授業を受ける</li>
+  </ul></div>
+  <div class="box c-orange"><h3>これから</h3><ul>
+    <li>受け手の一人一人が、AIで自分用にまとめられる</li>
+    <li>分からないところは人によって違う → 量や見せ方も自分で調整する</li>
+  </ul></div>
+</div>
+<div class="box c-yellow" style="margin-top:14px"><h3>講義で教えるもの</h3>
+  <ul>
+    <li><b>情報のありか</b>：政府機関の統計、企業・投資会社のレポートなど。どこに何があるか</li>
+    <li><b>切り口</b>：需要と供給、歴史、地政学、ROI、サプライチェーンなどの用語とフレームワーク</li>
+    <li><b>最近の出来事</b>：ロシアの大統領は誰か、米国の中間選挙の結果など。知らないとAIに聞くこともできない</li>
+  </ul>
+  <p class="note">良い情報に触れ続けると、いつもの友人・コミュニティの外の知識や人に出会う機会（セレンディピティ）が増える</p>
+</div>
+
+<!-- ============ 3 ============ -->
+<div class="sec"><span class="icon">1️⃣</span><h2>ワーク1：ベンチャーキャピタルのレポートをまとめる</h2></div>
+<p class="lead"><b>ベンチャーキャピタル（VC）</b>：新しい会社・事業にお金を投じる会社。a16z（アンドリーセン・ホロウィッツ）は米国シリコンバレーの代表的なVC。</p>
+<div class="chain"><span>起業</span><i>→</i><span>VCから出資を受ける</span><i>→</i><span>事業を伸ばす</span><i>→</i><span>上場</span></div>
+<div class="tw"><table class="tbl">
+  <thead><tr><th></th><th>商売人の考え方</th><th>VCの考え方</th></tr></thead>
+  <tbody>
+    <tr><td>どこに身を置くか</td><td>今、儲かっているところ</td><td>5〜10年後に儲かりそうなところ</td></tr>
+    <tr><td>やり方</td><td>流行っているものを売る（マーケットイン）</td><td>早く見つけて大量のお金を入れ、自分でトレンドを作る</td></tr>
+    <tr><td>根拠</td><td>今の売れ行き</td><td>人に会う・論文を読むなどの調査。外れると自分たちも破綻するので真剣</td></tr>
+  </tbody>
+</table></div>
+<div class="grid" style="margin-top:14px">
+  <div class="box c-blue"><h3>VCのページを読む理由</h3><ul>
+    <li>最先端の事業と、それを支えるサプライチェーンが分かる</li>
+    <li>自分の将来（例：ゲーム業界）で、どこが伸びるかのヒントになる</li>
+    <li>AIに定期的に見に行かせれば、最新の事例が手元に届く</li>
+  </ul></div>
+  <div class="box c-green"><h3>英語の壁はAIで越える</h3><ul>
+    <li>原文が英語でも、日本語・ミャンマー語・ロシア語など自分の分かる言葉にできる</li>
+    <li>SNSの翻訳・切り抜き経由ではなく、<b>一次情報に直接アクセス</b>する</li>
+    <li>さらに「要点を3つに」「イラストに」「音声に」とカスタマイズできる</li>
+  </ul></div>
+</div>
+<p class="lead" style="margin-top:12px;font-size:.9rem">Museを使うのは、ほぼ無料で使いやすく、資料の見本のような画面が1回の指示でできるため。すでに課金している別のAIを使ってもよい。</p>
+
+<!-- ============ 4 ============ -->
+<div class="sec"><span class="icon">2️⃣</span><h2>ワーク2：複数の投資会社を比較する</h2></div>
+<ul class="flow">
+  <li style="--c:var(--blue)"><b class="h">情報源を増やす</b>a16zはAI中心の可能性がある。投資会社を足すと、創薬・防衛など他の分野も見える。<b>世の中は比較が大事</b></li>
+  <li style="--c:var(--orange)"><b class="h">軸を入れる</b>「比較して」だけでなく、分野・アロケーション（配分）・地政学・金額などの軸をプロンプトに入れる。サプライチェーンを入れてもよい</li>
+  <li style="--c:var(--purple)"><b class="h">更新させる</b>「最新のレポートが出たら更新して」。検索や相談とは違う、エージェントとしての使い方</li>
+</ul>
+<div class="box c-pink" style="margin-top:6px"><h3>ビジネス用語は正確に</h3>
+  <p style="margin:0">「ROEとは？」と聞かれて「稼いだお金の…何とか」で止まるのは、分からないのと同じ。<b>Return on Equity（自己資本利益率）</b>と即答できるレベルまで覚える。用語を知っていると、AIへの指示も具体的になる。</p>
+</div>
+
+<!-- ============ 5 ============ -->
+<div class="sec"><span class="icon">🤖</span><h2>AI講座：上流の情報源を見つけ、自動で追う</h2></div>
+<p class="lead">資料の図1の左側（どの記事・レポートを見ればよいか）を、自分で見つける方法（秋山先生）。<b>筋の良い人が参照している情報をたどる</b>。</p>
+<div class="chain"><span>国内メディア・インフルエンサー</span><i>←</i><span>引用元の研究者・著者</span><i>←</i><span>一次データ・研究</span></div>
+<p class="lead" style="font-size:.9rem">中間のメディアは見出しや切り抜きで極端になりやすい（「やっていない人は終わり」など）。AIで情報を加工・発信する人が増えるほど、一次情報を自分で取りに行く価値が上がる。</p>
+
+<ul class="flow">
+  <li style="--c:var(--blue)"><b class="h">上流の情報源を特定する（ディープリサーチ）</b>
+    <ul>
+      <li>例：「4年制大学の学生です。平均的な給与の中流層の資産形成と投資戦略について、直近3か月のニュース・専門誌・SNSの記事を集め、引用元の海外の人物・媒体を洗い出して。多く参照されている上位5人を選んで」</li>
+      <li>上流の条件：複数の発信者から参照されている、自分で調査・研究して根拠を持っている</li>
+      <li>続けて「5人が定期的に出演・配信している媒体（ポッドキャスト・ニュースレター）を、URL・頻度・更新状況つきで」</li>
+    </ul></li>
+  <li style="--c:var(--green)"><b class="h">自動で情報が届く仕組みを作る</b>
+    <ul>
+      <li>情報源を<b>ストック</b>と<b>フロー</b>に分ける（下の表）</li>
+      <li>フローはMuseに定期タスクとして任せる（下の流れ）</li>
+    </ul></li>
+  <li style="--c:var(--orange)"><b class="h">問いを更新する</b>
+    <ul>
+      <li>例：「平均的な給与で資産形成するには」→「金利が上がる局面でどう動くか」→「個別の投資戦略」「節約」</li>
+      <li>新しい問いが出たら、1に戻って情報源を探し直す</li>
+    </ul></li>
+</ul>
+
+<div class="tw" style="margin-top:6px"><table class="tbl">
+  <thead><tr><th></th><th>ストック</th><th>フロー</th></tr></thead>
+  <tbody>
+    <tr><td>例</td><td>本・論文</td><td>ポッドキャスト・ブログ・ニュースレター</td></tr>
+    <tr><td>更新</td><td>半年〜年に1回</td><td>毎週〜月に1回</td></tr>
+    <tr><td>学び方</td><td>1回まとめて学ぶ。「学習のロードマップを作って」と頼み、NotebookLMにまとめる</td><td>定期的にチェックする。Museに任せる</td></tr>
+  </tbody>
+</table></div>
+
+<div class="box c-purple" style="margin-top:14px"><h3>フローを自動で追う流れ（例：ポッドキャスト）</h3>
+  <div class="chain" style="margin-bottom:6px"><span>Museが毎週新しい回をチェック</span><i>→</i><span>RSSから音声を取得</span><i>→</i><span>NotebookLMに追加</span><i>→</i><span>日本語の音声解説・スライドを作成</span><i>→</i><span>通知（任意でSpotifyに保存）</span></div>
+  <ul>
+    <li>見ている情報源を、Museのスペースにテーマ別の一覧として表示する</li>
+    <li>例：1時間49分の回 → 21分の日本語の解説</li>
+    <li>使い方の例：移動中に音声解説を聞き、スライドを見て、分からない点はノートブックに質問する</li>
+    <li>NotebookLMには上限があるので、番組ごとにチェックする曜日をずらす</li>
+  </ul>
+</div>
+
+<div class="grid" style="margin-top:14px">
+  <div class="box c-yellow"><h3>準備</h3><ul>
+    <li>MuseからNotebookLMを操作するには、Museの設定（セキュアストレージ）にGoogleアカウントを登録する</li>
+    <li>Spotifyに保存する場合は、コネクターでSpotifyをつなぐ</li>
+  </ul><p class="note">ログイン情報をAIに預けることになる。リスクを理解したうえで各自で判断する</p></div>
+  <div class="box c-pink"><h3>注意（著作権）</h3><ul>
+    <li>音声をダウンロードして自分で聞くのは問題ないとされる</li>
+    <li>NotebookLMへのアップロードやSpotifyへの保存はグレーの可能性がある</li>
+    <li><b>自分一人で使い、公開・共有しない</b></li>
+  </ul></div>
+</div>
+
+<div class="box c-green" style="margin-top:14px"><h3>まとめ（志村）</h3><ul>
+  <li>新しい分野では、何を質問すればよいかも分からないのが普通。知識を増やして解像度を上げると、世界が広がり、チャンスも増える</li>
+  <li>AIを使える人と使えない人の差は、情報を<b>自分ごとにできるかどうか</b>の差になる</li>
+  <li>道具は無料で、だれにでも同じ機会がある。使うかどうかは自分次第</li>
+</ul></div>
+
+<!-- ============ 6 ============ -->
+<div class="sec"><span class="icon">❓</span><h2>授業で答えられなかった質問</h2></div>
+<p class="lead">講義中に出た問いのうち、教室で答えが出なかった（出にくかった）もの。下の「答えの例」は一つの考え方です。</p>
+<ol class="qa">
+  <li><span class="q">a16z（アンドリーセン・ホロウィッツ）を知っている？</span>
+    <span class="ctx">「聞いたことがある人」と聞かれて、反応がなかった</span>
+    <span class="a"><b class="lb">答え</b>2009年にマーク・アンドリーセンとベン・ホロウィッツが設立した、米国シリコンバレーのベンチャーキャピタル。「a16z」は Andreessen の a と z の間に16文字あることから。初期の投資先に Facebook、Airbnb、GitHub、Coinbase などがある。AI・暗号資産・防衛（American Dynamism）など分野別にチームを持ち、Webサイトで記事やレポートを公開している。</span></li>
+  <li><span class="q">ROEとは？</span>
+    <span class="ctx">「説明できるレベルの先まで覚える」用語の例として出た</span>
+    <span class="a"><b class="lb">答え</b>Return on Equity（自己資本利益率）。<b>当期純利益 ÷ 自己資本 × 100</b>。株主が出したお金を使って、1年でどれだけ利益を上げたかを表す。日本では、2014年の「伊藤レポート」が最低8%を目標として示した。</span></li>
+  <li><span class="q">ポッドキャストのRSSとは？</span>
+    <span class="ctx">AI講座で「音声はRSSから取得する」と説明があったが、仕組みの説明はなかった</span>
+    <span class="a"><b class="lb">答え</b>サイトの更新情報を決まった形式（XML）で配信する仕組み。ポッドキャストは番組ごとにRSSフィードがあり、各回のタイトル・公開日・音声ファイルのURLが書かれている。ポッドキャストのアプリは、これを定期的に読んで新しい回を取得している。</span></li>
+</ol>
+
+<div class="box c-yellow" style="margin-top:6px">
+  <h3>考えてみよう</h3>
+  <p style="margin:0">自分が知りたいテーマで問いを1つ立てる。その問いについて、多くの発信者が参照している上流の情報源を、AIで5つ探してみよう。</p>
+</div>
+
+</div>
+</body>
+</html>
